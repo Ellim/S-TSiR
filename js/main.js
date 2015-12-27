@@ -1,6 +1,6 @@
 
-/*Survive:TSIR V. 0.0.13*/
-/*The Formula Update*/
+/*Survive:TSIR V. 0.0.14*/
+/*The Github Update*/
 
 //variables
 var currentfood = 150; //Food will drain over time
@@ -8,10 +8,10 @@ var totalexp = 0; //EXP goes up with each forage
 var truetotalexp = 0;
 var exptnl = 10; //EXP to next level
 var currentlevel = 1; //Level will go up with EXP gains
-var wood = 100; 
-var stone = 10;
-var coal = 1;
-var berries = 1;
+var wood = 10000; 
+var stone = 1000;
+var coal = 1000;
+var berries = 1000;
 var woodpersecond = 0; //wood gain per tick
 var stonepersecond = 0; //stone **
 var autoharvestcost = 1; //the cost of this should increase exponentially
@@ -261,6 +261,23 @@ function burnwood(m) {
   update_total_resources();
 }
 
+function eatberries(m) {
+  if (berries >= m) {
+    berries -= m;
+    currentfood += (10 * m);
+    update_total_resources();
+  }
+}
+
+function roastberries(m) {
+  if (berries >= (m * 5) && coal >= m) {      
+    berries -= (m * 5);
+    coal -= m
+    currentfood += (m * 100);
+    update_total_resources();
+  }
+}
+
 function loadgame() {
   	if (localStorage.getItem('currentfood')) {
 	currentfood = parseInt(localStorage.getItem('currentfood'));
@@ -380,29 +397,38 @@ function showsave() {
 
 
 document.getElementById("roastedberries").onclick = function() {
-  if (berries > 0 && coal > 0) {
-	if (document.getElementById("berriesmaxcheckbox").checked) {
-      	var highercur = Math.min(berries, coal);
-      	berries = berries - highercur;
-      	coal = coal - highercur;
-      	currentfood = currentfood + (100 * highercur);
-      	update_total_resources();
-      } else {
-      	berries -= 1;
-      	coal -= 1
-      	currentfood += 100;
-      	update_total_resources();
-      }
+  roastberries(1);
 }
+
+document.getElementById("roastb10").onclick = function() {
+  roastberries(10);
+}
+
+
+document.getElementById("roastb25").onclick = function() {
+  roastberries(25);
+}
+
+
+document.getElementById("roastb100").onclick = function() {
+  roastberries(100);
 }
 
 document.getElementById("eatberries").onclick = function() {
-  if (berries > 0) {
-    berries -= 1;
-    currentfood += 10;
-    update_total_resources();
+  eatberries(1);
   }
-}
+
+document.getElementById("eatb10").onclick = function() {
+  eatberries(10);
+  }
+
+document.getElementById("eatb25").onclick = function() {
+  eatberries(25);
+  }
+
+document.getElementById("eatb100").onclick = function() {
+  eatberries(100);
+  }
 
 document.getElementById("foodstart").onclick = function() {
   update_workers();
