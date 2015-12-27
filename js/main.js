@@ -205,15 +205,24 @@ function savegame() {
   localStorage.setItem('huts', huts);
 }
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function foragestone(m) {
   var e = Math.round(currentlevel / 8);
   if (currentfood  > (0 + m)) {
     var rand = 1 + Math.floor(Math.random() * 6);
-    if (rand > berryfindlevel) berries = berries + (1 * m);
-    wood = wood + (currentlevel * m);
-    stone = stone + (e * m);
-    totalexp = totalexp + (1 * m);
-    truetotalexp = truetotalexp + (1 * m);
+    var randint = getRandomInt(1, m);
+    if (rand > berryfindlevel) {
+      berries += randint;
+    }
+    var randw = getRandomInt(1, currentlevel);
+    var rands = getRandomInt(0, e)
+    wood = wood + randw;
+    stone = stone + rands;
+    totalexp = totalexp + randint;
+    truetotalexp = truetotalexp + randint;
     currentfood = currentfood - (1 * m);
     update_total_exp();
     update_total_resources();
