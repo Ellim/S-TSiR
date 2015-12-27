@@ -1,0 +1,283 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#StartFood').modal('show');
+    });
+</script>
+
+
+
+<!--Main Container-->
+
+<div class="container">
+  
+<!--Buttons Tab-->
+  
+<div class="row bg-info">
+  <div class="col-xs-6">
+    <h1>Survive: <small>The struggle is real</small>    <button id="save" type="button" class="btn btn-info">Save</button>    <button id="load" type="button" class="btn btn-info">Load</button></h1>
+
+<div class="btn-group" role="group">    
+
+      <button id="Forage" type="button" class="btn btn-primary btn-lg btn-block">Forage</button>
+
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" id="forage10" disabled>Forage x10</button>
+        </div>
+<div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" id="forage25" disabled>Forage x25</button>
+ </div>
+        <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" id="forage100" disabled>Forage x100</button>
+ </div>
+          </div>
+
+<div class="btn-group" role="group">    
+  <br />
+      <button id="Burn" type="button" class="btn btn-warning btn-lg btn-block">Burn 100 Wood for 1 Charcoal</button>
+
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-warning" id="burn10">Burn x10</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-warning" id="burn25">Burn x25</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-warning" id="burn100">Burn x100</button>
+        </div>
+       </div>  
+
+  </div>
+    </div>
+<!--UPGRADES-->
+    
+    <h3>Upgrades</h3>
+    
+<ul class="nav nav-tabs">
+
+    <li class="active btn btn-default"><a data-toggle="tab" href="#T1Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+  
+    <li class="btn btn-success"><a data-toggle="tab" href="#T2Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+  
+     <li class="btn btn-primary"><a data-toggle="tab" href="#T3Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+
+    <li class="btn btn-info"><a data-toggle="tab" href="#T4Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+
+    <li class="btn btn-warning"><a data-toggle="tab" href="#T5Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+
+</ul>
+<!--Tab Content-->
+<div class="tab-content">
+  <div id="T1Ups" class="tab-pane fade in active">
+    <br />
+       <button type="button" class="btn btn-default" data-toggle="modal" data-target=".T1WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+       <button type="button" class="btn btn-default" data-toggle="modal" data-target=".T1Construct">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
+  </div>
+  
+  <div id="T2Ups" class="tab-pane fade">
+    <br />
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T2WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T2SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
+  </div>
+  
+   <div id="T3Ups" class="tab-pane fade">
+    <br />
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".T3WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".T3SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
+  </div> 
+ 
+   <div id="T4Ups" class="tab-pane fade">
+    <br />
+     <button type="button" class="btn btn-info" data-toggle="modal" data-target=".T4WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+     <button type="button" class="btn btn-info" data-toggle="modal" data-target=".T4SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
+  </div>
+  
+   <div id="T5Ups" class="tab-pane fade">
+    <br />
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T5WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T5SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
+  </div>
+  
+</div>
+</div>
+
+<!--Resource Tab-->
+<div class="row">
+  <div class="col-xs-6">
+      <h2>Vitals</h2>
+    Food: <span id="currentfood">150</span>(<small id="fps">-1.00/sec</small>)<br />
+    <div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped active" id="foodbar" role="progressbar" aria-valuenow="150" aria-valuemin="0" aria-valuemax="150" style="width:100%">
+      </div>
+    </div>
+    <p> Population: <span id="pop">1</span> <br />
+          Level: <span id="current_level">1</span> <br />
+          Exp: <span id="exptotal">0 </span><span> / </span><span id="exptnl">10</span> <br />
+        <div class="progress">
+  <div class="progress-bar" id="bar" role="progressbar" aria-valuenow="70"
+  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    <span>0%</span>
+  </div>
+</div>
+          Wood per Forage: <span id="woodperclick">1 </span> <br />
+          Stone per Forage: <span id="stoneperclick">0 </span> <br />
+          Chance of Berries: <span id="berrychance">16.67% </span> <br />
+      <p>
+      <h2>Resources</h2>
+          Wood: <span id="total_wood">100</span> (<small id="wps">+0</small>)<br />
+          Stone: <span id="total_stone">10</span> (<small id="sps">+0</small>)<br />
+          Berries: <span id="berries">1</span><br />
+    Charcoal: <span id="total_coal">1</span> (<small id="cps">+0</small>)<br />
+      </p>
+  <p><h2>Crafting</h2>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".CookMenu">Cook <span class="glyphicon glyphicon-fire"></span></button>
+  </p>
+  </div>
+</div>
+
+
+
+
+<!--MODALS-->
+<div class="modal fade StartFood" id="StartFood" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal=lg">
+    <div class="modal-content">
+      <h3 align="center">Food will drain over time, be careful not to starve!</h3><br />
+      <button type="button" id ="foodstart" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">New Game</button><br /><br />
+      <button type="button" id ="loadgame" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">Load Game</button><br /><br />
+    </div>
+  </div>
+</div>
+
+<div class="modal fade HuntingMenu" id="HuntingMenu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Spear</h3><br />
+          <button type="button" class="btn btn-info" id="spear">Craft Spear <span class="glyphicon glyphicon-wrench"></span></button><br />
+          Craft a spear. Used in hunting to improve results.
+        </div>
+        
+        <div class="col-md-4">.col-md-4</div>
+        
+        <div class="col-md-4">.col-md-4</div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade CookMenu" id="CookMenu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Campfire</h3><br />
+          <button type="button" class="btn btn-danger" id="eatberries">Eat Berries <span class="glyphicon glyphicon-apple"></span></button><br />
+          Eat foraged Berries over a fire. Restores 10 Food.
+          <br />
+          <button type="button" class="btn btn-danger" id="roastedberries">Roast Berries <span class="glyphicon glyphicon-fire"></span></button><br />
+          Roast Berries over a fire at the cost of Charcoal. Restores 100 Food.
+        </div>
+        
+        <div class="col-md-4">Coming Soon</div>
+        
+        <div class="col-md-4">Coming Soon</div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade T1WUpgrades" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">
+            <br />
+            Auto-Harvest <small id="autoclicker_level">lvl 0</small><br /><button id="autoharvest" type="button" class="btn btn-success" data-toggle="tooltip" title="Increases the amount of Wood generated by the Auto-Harvester by 1." data-placement="auto right">1 Stone</button><br />
+            Harvest Speed <small id="speed_level">lvl 0</small><br /><button id="harvestupgrade_speed" type="button" class="btn btn-success" data-toggle="tooltip" title="Improves speed of Auto-Harvester by 10%" data-placement="auto right">30 Stone</button><br /><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+<div class="modal fade T1Construct" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">
+            <br />
+            Wooden Hut <span id="hutnum" class="badge">0</span><br /><br /><button id="huts" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden hut to house two more survivors." data-placement="auto right">1500 Wood || 150 Stone</button><br /><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+<div class="modal fade T2WUpgrades" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">
+            <br />
+            Auto-Harvest EXP<small id="autoclicker_level"> 0</small><br /><button id="autoharvestexp" type="button" class="btn btn-success" data-toggle="tooltip" title="Increased EXP gained by the Auto-Harvester by 1 per tick." data-placement="auto right" disabled>10000 Wood</button><br />
+            Wood:Coal Ratio <small id="speed_level">lvl 1</small><br /><button id="woodcoalratio" type="button" class="btn btn-success" data-toggle="tooltip" title="Improves ratio of wood burned to create coal by 10%." data-placement="auto right">10 Charcoal</button><br /><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>  
+
+
+<script>  
+$(document).ready ( function () {
+    //replace document below with enclosing container but below will work too
+    $(document).on('click', "#save", function () {
+       showsave();
+    });
+});
+</script>
+
+<script>
+  $(document).on('click', "#Forage", function() {
+  if (population > 9) { 
+    $('#forage10').prop('disabled', false);
+    }
+  
+  if (population > 24) {
+    $('#forage25').prop('disabled', false);
+    }
+  
+  if (population > 99) {
+    $('#forage100').prop('disabled', false);
+    }
+  
+  })
+</script>
