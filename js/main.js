@@ -380,15 +380,20 @@ function showsave() {
 
 
 document.getElementById("roastedberries").onclick = function() {
-  if (berries > 0 && coal > 1) {
-      berries -= 1;
-      coal -= 1
-      currentfood += 100;
-      update_total_resources();
+  if (berries > 0 && coal > 0) {
+	if (document.getElementById("berriesmaxcheckbox").checked) {
+      	var highercur = Math.min(berries, coal);
+      	berries = berries - highercur;
+      	coal = coal - highercur;
+      	currentfood = currentfood + (100 * highercur);
+      	update_total_resources();
+      } else {
+      	berries -= 1;
+      	coal -= 1
+      	currentfood += 100;
+      	update_total_resources();
       }
-      if (document.getElementById("berriesmaxcheckbox").checked) {
-      	alert("checked");
-      }
+}
 }
 
 document.getElementById("eatberries").onclick = function() {
