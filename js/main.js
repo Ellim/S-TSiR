@@ -516,7 +516,6 @@ document.getElementById("woodcoalratio").onclick = function() {
   if (!buywithcoal(woodcoalratiocost, 1)) return;
   woodcoalratiocost = woodcoalratiocost + (woodcoalratiocost/2);
   burncost = (burncost*.9);
-  update_total_resoureces();
   updateui();
 }
 
