@@ -386,6 +386,9 @@ document.getElementById("roastedberries").onclick = function() {
       currentfood += 100;
       update_total_resources();
       }
+      if (document.getElementById("berriesmaxcheckbox").checked) {
+      	alert("checked");
+      }
 }
 
 document.getElementById("eatberries").onclick = function() {
