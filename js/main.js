@@ -101,11 +101,7 @@ function updateui() {
 
 function buy_with_wood(c, button) {
   if (wood < c) {
-    button.className = 'btn btn-danger btn-lg btn-block';
-    setTimeout(function() {
-      var e = document.getElementsByClassName("btn-danger")[3];
-      e.className = 'btn btn-info btn-lg btn-block';
-    }, 1000);
+    
     return false;
   }
   wood -= c;
@@ -130,11 +126,7 @@ function buywithcoal(c, mult) {
 
 function buy_with_stone(c, button) {
   if (stone < c) {
-    button.className = 'btn btn-danger';
-    setTimeout(function() {
-      var e = document.getElementsByClassName("btn-danger")[3];
-      e.className = 'btn btn-success';
-    }, 1000);
+  
     return false;
   }
   stone -= c;
@@ -143,11 +135,7 @@ function buy_with_stone(c, button) {
 
 function buy_with_coal(c, button) {
   if (coal < c) {
-    button.className = 'btn btn-danger';
-    setTimeout(function() {
-      var e = document.getElementsByClassName("btn-danger")[3];
-      e.className = 'btn btn-success';
-    }, 1000);
+
     return false;
   }
   coal -= c;
