@@ -75,21 +75,25 @@ $(document).ready(function(){
     </div>
 <!--UPGRADES-->
     
-    <h3>Upgrades</h3>
+    <h3>Menu</h3>
     
 <ul class="nav nav-tabs">
 
-    <li class="active btn btn-default"><a data-toggle="tab" href="#T1Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+    <li class="active"><a data-toggle="tab" href="#T1Ups">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
   
-    <li class="btn btn-success"><a data-toggle="tab" href="#T2Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+    <li class=""><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
   
-     <li class="btn btn-primary"><a data-toggle="tab" href="#T3Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+    <li class=""><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
 
-    <li class="btn btn-info"><a data-toggle="tab" href="#T4Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+    <li class=""><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
 
-    <li class="btn btn-warning"><a data-toggle="tab" href="#T5Ups"><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></button></li>
+    <li class=""><a data-toggle="tab" href="#T5Ups">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
 
 </ul>
+
+
+
+
 <!--Tab Content-->
 <div class="tab-content">
   <div id="T1Ups" class="tab-pane fade in active">
@@ -98,17 +102,74 @@ $(document).ready(function(){
        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".T1Construct">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
   </div>
   
-  <div id="T2Ups" class="tab-pane fade">
+  <div id="TabCook" class="tab-pane fade">
+    <br />
+<div class="CookMenu" id="CookMenu" >
+
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Campfire</h3><br />
+ 
+          <div class="btn-group" role="group">    
+  <br />
+      <button type="button" class="btn btn-danger btn-block" id="eatberries">Eat Berries <span class="glyphicon glyphicon-apple"></span></button>
+
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb10">Eat x10</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb25">Eat x25</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb100">Eat x100</button>
+        </div>
+       </div>  
+
+  </div>
+          
+          <div class="btn-group" role="group">    
+  <br />
+                <button type="button" class="btn btn-danger btn-block" id="roastedberries">Roast Berries <span class="glyphicon glyphicon-fire"></span></button>
+
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb10">Burn x10</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb25">Burn x25</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" id="eatb100">Burn x100</button>
+        </div>
+       </div>  
+
+  </div>
+          
+          
+          
+             
+<br />
+          <br />
+          Roast Berries over a fire at the cost of Charcoal. Restores 100 Food.
+        </div>
+        </div>
+          </div>
+        </div>
+
+  
+      
+
+
+
+  
+  <!--   -->
+  
+   <div id="TabResearch" class="tab-pane fade">
     <br />
      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T2WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T2SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
   </div>
-  
-   <div id="T3Ups" class="tab-pane fade">
-    <br />
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".T3WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".T3SUpgrades">Simple Construction <span class="glyphicon glyphicon-home"</span></button>
-  </div> 
  
    <div id="T4Ups" class="tab-pane fade">
     <br />
@@ -152,10 +213,7 @@ $(document).ready(function(){
           Stone: <span id="total_stone">10</span> (<small id="sps">+0</small>)<br />
           Berries: <span id="berries">1</span><br />
     Charcoal: <span id="total_coal">1</span> (<small id="cps">+0</small>)<br />
-      </p>
-  <p><h2>Crafting</h2>
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".CookMenu">Cook <span class="glyphicon glyphicon-fire"></span></button>
-  </p>
+
   </div>
 </div>
 
@@ -193,29 +251,7 @@ $(document).ready(function(){
 </div>
 
 
-<div class="modal fade CookMenu" id="CookMenu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Campfire</h3><br />
-          <button type="button" class="btn btn-danger" id="eatberries">Eat Berries <span class="glyphicon glyphicon-apple"></span></button><br />
-          Eat foraged Berries over a fire. Restores 10 Food.
-          <br />
-          <button type="button" class="btn btn-danger" id="roastedberries">Roast Berries <span class="glyphicon glyphicon-fire"></span></button> <label class="checkbox-inline">
-  <input type="checkbox" id="berriesmaxcheckbox" value="" checked> Use MAX.
-</label><br />
-          Roast Berries over a fire at the cost of Charcoal. Restores 100 Food.
-        </div>
-        
-        <div class="col-md-4">Coming Soon</div>
-        
-        <div class="col-md-4">Coming Soon</div>
-        
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 <div class="modal fade T1WUpgrades" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
