@@ -162,6 +162,17 @@ function update_total_resources() {
   checkquestreq();
   updatefoodpersecond();
   updateui();
+    if (population > 9) { 
+    $('#forage10').prop('disabled', false);
+    }
+  
+  if (population > 24) {
+    $('#forage25').prop('disabled', false);
+    }
+  
+  if (population > 99) {
+    $('#forage100').prop('disabled', false);
+    }
 }
 
 function update_total_exp() {   
