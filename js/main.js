@@ -183,7 +183,7 @@ function update_total_exp() {
 			buildingshidden += 1;
 		}
 		if (currentlevel >= 25 && tradehidden == 0) {
-			$('#trademenubutton').removeClass('hidden');
+			$('#upgrademenubutton').removeClass('hidden');
 			tradehidden += 1;
 		}
       talentpoints += 1;
