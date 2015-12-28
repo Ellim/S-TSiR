@@ -80,13 +80,13 @@ $(document).ready(function(){
     
 <ul class="nav nav-tabs">
 
-    <li class="active"><a data-toggle="tab" href="#T1Ups">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
+    <li class=""><a data-toggle="tab" href="#TabBuildings">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
   
-    <li class=""><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
+    <li class="hidden"><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
   
-    <li class=""><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
+    <li class="active"><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
 
-    <li class=""><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
+    <li class="hidden"><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
 
     <li class=""><a data-toggle="tab" href="#T5Ups">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
 
@@ -97,8 +97,17 @@ $(document).ready(function(){
 
 <!--Tab Content-->
 <div class="tab-content">
-  <div id="T1Ups" class="tab-pane fade in active">
-    <br /><img src="img/hut1.png">
+  
+     <div id="TabResearch" class="tab-pane fade in active">
+     <br /><h2>Talents</h2><br />
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".ResearchForage">Foraging <span class="glyphicon glyphicon-book"</span></button><br /><br />
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button><br /><br />
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button><br /><br />
+  </div>
+  
+  <div id="TabBuildings" class="tab-pane fade">
+    <br /><h2>Housing</h2><br />
+    <img src="img/hut1.png">
     Wood Hut <span id="hutnum" class="badge">0</span><br /><br /><button id="huts" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden hut to house two more survivors." data-placement="auto right">750 Wood || 75 Stone</button><br /><br />
     Wood House <span id="housenum" class="badge">0</span><br /><br /><button id="buyhouse" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden house capable of sustaining five survivors." data-placement="auto right" disabled>10 Scaffold</button><br /><br />
    
@@ -156,11 +165,7 @@ $(document).ready(function(){
   
   <!--   -->
   
-   <div id="TabResearch" class="tab-pane fade">
-    <br />
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4WUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button>
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button>
-  </div>
+
  
    <div id="T4Ups" class="tab-pane fade">
     <br />
@@ -277,16 +282,18 @@ $(document).ready(function(){
  </div>
 -->
 
-<div class="modal fade T2WUpgrades" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
+<div class="modal fade ResearchForage" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="container">
+      <div class="modal-header"><h4>Foraging</h4><br />
+        <div class="modal-body">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-6">
-            <br />
-            Auto-Harvest EXP<small id="autoclicker_level"> 0</small><br /><button id="autoharvestexp" type="button" class="btn btn-success" data-toggle="tooltip" title="Increased EXP gained by the Auto-Harvester by 1 per tick." data-placement="auto right" disabled>10000 Wood</button><br />
-            <br /><br />
-          </div>
+          <div class="col-md-4"><br /><br /><br /><button id="doublestoneforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>More Stone || 15TP</button></div>
+          <div class="col-md-4"><button id="addberryforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Allows the gathering of berries while foraging. Consumes 5 Talent Points." data-placement="auto bottom">Keen Eyes || 5TP</button></div>
+          <div class="col-md-4"><br /><br /><br /><button id="foragefooddown1" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>Endurance Training || 30TP</button></div>
+        </div>
+        </div>
         </div>
       </div>
     </div>
