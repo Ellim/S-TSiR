@@ -332,7 +332,7 @@ function getRandomInt(min, max) {
 
 function foragestone(m) {
   var e = Math.round(currentlevel / 8);
-  if (currentfood  > (0 + m)) {
+  if (currentfood  > m) {
     var rand = 1 + Math.floor(Math.random() * 6);
     var randint = getRandomInt(1, m);
     if (rand > berryfindlevel) {
@@ -342,11 +342,11 @@ function foragestone(m) {
     }
     var randw = getRandomInt(1, currentlevel);
     var rands = getRandomInt(0, e)
-    wood = wood + randw;
-    stone = stone + rands;
+    wood = wood + (randw * m);
+    stone = stone + (rands * m);
     totalexp = totalexp + randint;
     truetotalexp = truetotalexp + randint;
-    currentfood = currentfood - (1 * m);
+    currentfood = currentfood - m;
     update_total_exp();
     update_total_resources();
   }
