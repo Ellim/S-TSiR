@@ -429,7 +429,6 @@ document.getElementById("roastb25").onclick = function() {
   roastberries(25);
 }
 
-
 document.getElementById("roastb100").onclick = function() {
   roastberries(100);
 }
@@ -449,32 +448,6 @@ document.getElementById("eatb25").onclick = function() {
 document.getElementById("eatb100").onclick = function() {
   eatberries(100);
   }
-
-$(document).on('click', "#addberryforage", function() {
-  if (talentpoints >= 5 && keeneyes == 0) {
-    talentpoints -= 5;
-        keeneyes = 1;
-    $('#cookingtalentsbutton').prop('disabled', false);
-    $('#doublestoneforage').prop('disabled', false);
-    $('#foragefooddown1').prop('disabled', false);
-    $('#cookingmenubutton').removeClass('hidden');
-    $('#addberryforage').removeClass('btn-success');
-    $('#addberryforage').addClass('btn-info');
-      }
-    })
-
-$(document).on('click', "#unlockberryroast", function() {
-  if (talentpoints >= 10 && berryroast == 0) {
-    talentpoints -= 10;
-        berryroast = 1;
-    $('#roastedberries').removeClass('hidden');
-    $('#roastberriesmultibutton').removeClass('hidden');
-    $('#unlockberryroast').removeClass('btn-danger');
-    $('#unlockberryroast').addClass('btn-info');
-      }
-    })
-
-
 
 document.getElementById("foodstart").onclick = function() {
   update_workers();
@@ -626,7 +599,29 @@ document.getElementById("save").onclick = function() {
   showsave();
 }
 
+$(document).on('click', "#addberryforage", function() {
+  if (talentpoints >= 5 && keeneyes == 0) {
+    talentpoints -= 5;
+        keeneyes = 1;
+    $('#cookingtalentsbutton').prop('disabled', false);
+    $('#doublestoneforage').prop('disabled', false);
+    $('#foragefooddown1').prop('disabled', false);
+    $('#cookingmenubutton').removeClass('hidden');
+    $('#addberryforage').removeClass('btn-success');
+    $('#addberryforage').addClass('btn-info');
+      }
+    })
 
+$(document).on('click', "#unlockberryroast", function() {
+  if (talentpoints >= 10 && berryroast == 0) {
+    talentpoints -= 10;
+        berryroast = 1;
+    $('#roastedberries').removeClass('hidden');
+    $('#roastberriesmultibutton').removeClass('hidden');
+    $('#unlockberryroast').removeClass('btn-danger');
+    $('#unlockberryroast').addClass('btn-info');
+      }
+    })
 //start our autoclickers
 
 
