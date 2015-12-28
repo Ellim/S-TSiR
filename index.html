@@ -80,30 +80,44 @@ $(document).ready(function(){
     
 <ul class="nav nav-tabs">
 
-    <li class="" id="buildingmenubutton"><a data-toggle="tab" href="#TabBuildings">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
+	<li class="active" id="talentsmenubutton"><a data-toggle="tab" href="#TabTalents">Talents <span class="glyphicon glyphicon-book"></span></a></li>
+	
+	<li class="hidden" id="researchmenubutton"><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-info-sign"></span></a></li>
+	
+    <li class="hidden" id="buildingmenubutton"><a data-toggle="tab" href="#TabBuildings">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
   
     <li class="hidden" id="cookingmenubutton"><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
   
-    <li class="active" id="researchmenubutton"><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
-
     <li class="hidden" id="trademenubutton"><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
 
-    <li class="" id="upgrademenubutton"><a data-toggle="tab" href="#TabUpgrades">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
+    <li class="hidden" id="upgrademenubutton"><a data-toggle="tab" href="#TabUpgrades">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
 
 </ul>
 
-
-
-
-<!--Tab Content-->
+<!--Upgrade Tab Content-->
 <div class="tab-content">
+
+<!--Research Tab--> 
+     <div id="TabTalents" class="tab-pane fade in active">
+		<br />
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target=".ResearchForage" id="foragingtalentsbutton">Foraging <span class="glyphicon glyphicon-book"</span></button><br /><br />
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target=".ResearchCooking" id="cookingtalentsbutton" disabled>Cooking <span class="glyphicon glyphicon-book"</span></button><br /><br />
+		<button type="button" class="btn btn-warning" data-toggle="modal" data-target=".ResearchTrade" id="tradetalentsbutton" disabled>Trade <span class="glyphicon glyphicon-book"</span></button><br /><br />
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".ResearchBuildings" id="buildingstalentsbutton" disabled>Buildings <span class="glyphicon glyphicon-home"</span></button><br /><br />
+		
+	</div>
   
-     <div id="TabResearch" class="tab-pane fade in active">
-     <br /><h2>Talents</h2><br />
-     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".ResearchForage">Foraging <span class="glyphicon glyphicon-book"</span></button><br /><br />
-     <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".ResearchCooking" id="cookingtalentsbutton" disabled>Cooking <span class="glyphicon glyphicon-book"</span></button><br /><br />
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Trade <span class="glyphicon glyphicon-book"</span></button><br /><br />
-  </div>
+	<div id="TabResearch" class="tab-pane fade">
+		<br />
+		<h2>Next Research Project</h2><br />
+
+		<button type="button" class="btn btn-info btn-block" id="researchstart"><span id="nextproject">Test</span></button><br />
+
+		<h2>Completed Research Projects</h2><br />
+		<span id="finishedprojects">Test 1<br />Test 2<br /></span>
+	</div>
+  
+  
   
   <div id="TabBuildings" class="tab-pane fade">
     <br /><h2>Housing</h2><br />
@@ -112,6 +126,8 @@ $(document).ready(function(){
    
   </div>
   
+  
+<!--Cooking Tab-->
   <div id="TabCook" class="tab-pane fade">
     <br />
 <div class="CookMenu" id="CookMenu" >
@@ -156,17 +172,8 @@ $(document).ready(function(){
   </div>
        
 
-  
-      
-
-
-
-  
-  <!--   -->
-  
-
- 
-   <div id="T4Ups" class="tab-pane fade">
+<!--Trading Tab-->
+   <div id="TabTrade" class="tab-pane fade">
     <br />
      <button type="button" class="btn btn-info" data-toggle="modal" data-target=".T4WUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-btc"</span></button>
      <button type="button" class="btn btn-info" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-btc"</span></button>
@@ -174,11 +181,12 @@ $(document).ready(function(){
   
    <div id="TabUpgrades" class="tab-pane fade">
     <br />
-     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T1WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".UpgradeLoggers">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
   </div>
   
 </div>
 </div>
+
 
 <!--Resource Tab-->
 <div class="row">
@@ -189,27 +197,41 @@ $(document).ready(function(){
     <div class="progress-bar progress-bar-success progress-bar-striped active" id="foodbar" role="progressbar" aria-valuenow="150" aria-valuemin="0" aria-valuemax="150" style="width:0%">
       </div>
     </div>
+	Research Project: <span id="currentproject">Test</span><br />
+	<div class="progress">
+    <div class="progress-bar progress-bar-info active" id="rpbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:33%">
+      </div>
+    </div>
+	
     <p> Population: <span id="pop">1</span> <br />
           Level: <span id="current_level">1</span> <br />
           Talent Points: <span id="talentpoints">0</span> <br />
           Exp: <span id="exptotal">0 </span><span> / </span><span id="exptnl">10</span> <br />
         <div class="progress">
-  <div class="progress-bar" id="bar" role="progressbar" aria-valuenow="70"
-  aria-valuemin="0" aria-valuemax="100" style="width:0%">
-    <span>0%</span>
-  </div>
-</div>
+			<div class="progress-bar" id="bar" role="progressbar" aria-valuenow="70"
+			aria-valuemin="0" aria-valuemax="100" style="width:0%">
+			<span>0%</span>
+			</div>
+		</div>
           Wood per Forage: <span id="woodperclick">1 </span> <br />
           Stone per Forage: <span id="stoneperclick">0 </span> <br />
           Chance of Berries: <span id="berrychance">0% </span> <br />
-      <p>
+      
       <h2>Resources</h2>
-          Wood: <span id="total_wood">100</span> (<small id="wps">+0</small>)<br />
-          Stone: <span id="total_stone">10</span> (<small id="sps">+0</small>)<br />
-          Berries: <span id="berries">1</span><br />
-    Charcoal: <span id="total_coal">1</span> (<small id="cps">+0</small>)<br />
-
+          Wood: <span id="total_wood">0</span> (<small id="wps">+0</small>)<br />
+          Stone: <span id="total_stone">0</span> (<small id="sps">+0</small>)<br />
+          Berries: <span id="berries">0</span><br />
+    Charcoal: <span id="total_coal">0</span> (<small id="cps">+0</small>)<br /><br />
+	
+	<!--Quest Tab-->
+	<h2>Quests</h2>
+		<button type="button" class="btn btn-default" id="questcomp"><span class="glyphicon glyphicon-ok text-danger" aria-hidden="true"></span></button> <span id="quest1"></span><br />
+			<span id="questdesc"></span><br />
   </div>
+  
+
+
+
 </div>
 
 
@@ -226,38 +248,15 @@ $(document).ready(function(){
   </div>
 </div>
 
-<div class="modal fade HuntingMenu" id="HuntingMenu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Spear</h3><br />
-          <button type="button" class="btn btn-info" id="spear">Craft Spear <span class="glyphicon glyphicon-wrench"></span></button><br />
-          Craft a spear. Used in hunting to improve results.
-        </div>
-        
-        <div class="col-md-4">.col-md-4</div>
-        
-        <div class="col-md-4">.col-md-4</div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<div class="modal fade T1WUpgrades" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div class="modal fade UpgradeLoggers" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="container">
         <div class="row">
           <div class="col-xs-6">
             <br />
-            Auto-Harvest <small id="autoclicker_level">lvl 0</small><br /><button id="autoharvest" type="button" class="btn btn-success" data-toggle="tooltip" title="Increases the amount of Wood generated by the Auto-Harvester by 1." data-placement="auto right">1 Stone</button><br />
-            Harvest Speed <small id="speed_level">lvl 0</small><br /><button id="harvestupgrade_speed" type="button" class="btn btn-success" data-toggle="tooltip" title="Improves speed of Auto-Harvester by 10%" data-placement="auto right">30 Stone</button><br />
+            Improve Loggers <small id="autoclicker_level">lvl 0</small><br /><button id="autoharvest" type="button" class="btn btn-success" data-toggle="tooltip" title="Increases the amount of Wood generated by Loggers each tick by 1." data-placement="auto right">1 Stone</button><br />
+            Harvest Speed <small id="speed_level">lvl 0</small><br /><button id="harvestupgrade_speed" type="button" class="btn btn-success" data-toggle="tooltip" title="Improves speed of Loggers by 10%" data-placement="auto right">30 Stone</button><br />
             Wood:Coal Ratio <small id="speed_level">lvl 1</small><br /><button id="woodcoalratio" type="button" class="btn btn-success" data-toggle="tooltip" title="Improves ratio of wood burned to create coal by 10%." data-placement="auto right">10 Charcoal</button><br /><br />
           </div>
         </div>
@@ -265,22 +264,6 @@ $(document).ready(function(){
     </div>
   </div>
  </div>
-<!--
-<div class="modal fade T1Construct" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6">
-            <br />
-            Wooden Hut <span id="hutnum" class="badge">0</span><br /><br /><button id="huts" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden hut to house two more survivors." data-placement="auto right">1500 Wood || 150 Stone</button><br /><br />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- </div>
--->
 
 <div class="modal fade ResearchForage" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-lg">

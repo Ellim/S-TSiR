@@ -1,9 +1,11 @@
 
-/*Survive:TSIR V. 0.0.15*/
-/*The Progression Update*/
+/*Survive:TSIR V. 0.0.16*/
+/*The Quest Update*/
 
 //variables
-var currentfood = 150; //Food will drain over time
+var quests = ["Aquire Talent Points","Unlock Keen Eyes","Reach Level 10","Research Cooking Talents","Aquire More Talent Points","Unlock Roasted Berries","Unlock Buildings","Increase Population to 10", "Unlock Carpentry"];
+var questdescs = ["Performing actions such as Foraging or Burning Wood will award EXP.<br />Reach Level 6 and acquire 5 Talent Points.","In the Talents Menu open the Foraging Tree.<br />Spend your Talent Points to unlock 'Keen Eyes'.<br />This will allow you a chance to identify and gather edible berries while foraging.","Get to Level 10.<br />This will unlock the Research Menu.<br />Remember burning wood is a good source of early EXP.","Open the Research Menu.<br />Click the 'Next Project' button to initiate research.<br />Every time you click the button after it is initiated you will generate Research Points.<br /> Once enough RP is gained you will automatically complete the project and the next will be queued for you.","Reach Level 16 to acquire 10 additional Talent Points.","In the Talents Menu open the Cooking Tree.<br />Spend your Talent Points to unlock 'Roasted Berries'.<br />This will allow you to consume 5 Berries and a single unit of Charcoal to increase food at double the rate of eating them raw."];
+var currentfood = 250; //Food will drain over time
 var totalexp = 0; //EXP goes up with each forage
 var truetotalexp = 0;
 var exptnl = 10; //EXP to next level
@@ -37,7 +39,9 @@ var huts = 0;
 var keeneyes = 0;
 var talentpoints = 0;
 var berryroast = 0;
-
+var questnum = 0;
+var researchhidden = 0;
+var tradehidden = 0;
 
 //functions
 function update_total_resources() {    
@@ -76,6 +80,11 @@ function update_total_resources() {
   e14.innerHTML = 'lvl  ' + upgrade_speed;
   var e15 = document.getElementById("talentpoints");
   e15.innerHTML = talentpoints;
+  var e16 = document.getElementById("quest1");
+  e16.innerHTML = quests[questnum];
+  var e17 = document.getElementById("questdesc");
+  e17.innerHTML = questdescs[questnum];
+  
   updatefoodpersecond();
   updateui();
 }
@@ -90,6 +99,14 @@ function update_total_exp() {
     totalexp = totalexp - exptnl;
     exptnl = (exptnl * 1.15).toFixed(0);
     currentlevel = currentlevel +1;
+		if (currentlevel >= 10 && researchhidden == 0) {
+			$('#researchmenubutton').removeClass('hidden');
+			researchhidden += 1;
+		}
+		if (currentlevel >= 25 && tradehidden == 0) {
+			$('#trademenubutton').removeClass('hidden');
+			tradehidden += 1;
+		}
       talentpoints += 1;
     } 
   var e3 = document.getElementById("current_level");
@@ -149,6 +166,10 @@ function buy_with_coal(c, button) {
   }
   coal -= c;
   return true;
+}
+
+function questcomplete() {
+	questnum += 1;
 }
 
 function update_workers() {
@@ -215,6 +236,9 @@ function savegame() {
   localStorage.setItem('keeneyes', keeneyes);
   localStorage.setItem('talentpoints', talentpoints);
   localStorage.setItem('berryroast', berryroast);
+  localStorage.setItem('questnum', questnum);
+  localStorage.setItem('researchhidden', researchhidden);
+  localStorage.setItem('tradehidden', tradehidden);
 }
 
 function getRandomInt(min, max) {
@@ -293,91 +317,69 @@ function loadgame() {
   	if (localStorage.getItem('currentfood')) {
 	currentfood = parseInt(localStorage.getItem('currentfood'));
 }
-
 	if (localStorage.getItem('totalexp')) {
 	totalexp = parseInt(localStorage.getItem('totalexp'));
 }
-
 	if (localStorage.getItem('truetotalexp')) {
 	truetotalexp = parseInt(localStorage.getItem('truetotalexp'));
 }
-
 	if (localStorage.getItem('exptnl')) {
 	exptnl = parseInt(localStorage.getItem('exptnl'));
 }
-
 	if (localStorage.getItem('currentlevel')) {
 	currentlevel = parseInt(localStorage.getItem('currentlevel'));
 }
-
 	if (localStorage.getItem('wood')) {
 	wood = parseInt(localStorage.getItem('wood'));
 }
-
 	if (localStorage.getItem('stone')) {
 	stone = parseInt(localStorage.getItem('stone'));
 }
-
 	if (localStorage.getItem('coal')) {
 	coal = parseInt(localStorage.getItem('coal'));
 }
-
 	if (localStorage.getItem('berries')) {
 	berries = parseInt(localStorage.getItem('berries'));
 }
-
 	if (localStorage.getItem('woodpersecond')) {
 	woodpersecond = parseInt(localStorage.getItem('woodpersecond'));
 }
-
 	if (localStorage.getItem('stonepersecond')) {
 	stonepersecond = parseInt(localStorage.getItem('stonepersecond'));
 }
-
 	if (localStorage.getItem('autoharvestcost')) {
 	autoharvestcost = parseInt(localStorage.getItem('autoharvestcost'));
 }
-
 	if (localStorage.getItem('upgrade_speed')) {
 	upgrade_speed = parseInt(localStorage.getItem('upgrade_speed'));
 }
-
 	if (localStorage.getItem('click_rate')) {
 	click_rate = parseInt(localStorage.getItem('click_rate'));
 }
-
 	if (localStorage.getItem('foodrate')) {
 	foodrate = parseInt(localStorage.getItem('foodrate'));
 }
-
 	if (localStorage.getItem('woodperclick')) {
 	woodperclick = parseInt(localStorage.getItem('woodperclick'));
 }
-
 	if (localStorage.getItem('population')) {
 	population = parseInt(localStorage.getItem('population'));
 }
-
 	if (localStorage.getItem('stoneperclick')) {
 	stoneperclick = parseInt(localStorage.getItem('stoneperclick'));
 }
-
 	if (localStorage.getItem('burncost')) {
 	burncost = parseInt(localStorage.getItem('burncost'));
 }
-
 	if (localStorage.getItem('burnexp')) {
 	burnexp = parseInt(localStorage.getItem('burnexp'));
 }
-
 	if (localStorage.getItem('autoharvestexp')) {
 	autoharvestexp = parseInt(localStorage.getItem('autoharvestexp'));
 }
-
 	if (localStorage.getItem('woodcoalratiocost')) {
 	woodcoalratiocost = parseInt(localStorage.getItem('woodcoalratiocost'));
 }
-
 	if (localStorage.getItem('berryfindlevel')) {
 	berryfindlevel = parseInt(localStorage.getItem('berryfindlevel'));
 }
@@ -402,6 +404,16 @@ function loadgame() {
   if (localStorage.getItem('berryroast')) {
     berryroast = parseInt(localStorage.getItem('berryroast'));
 }
+  if (localStorage.getItem('questnum')) {
+    questnum = parseInt(localStorage.getItem('questnum'));
+}
+  if (localStorage.getItem('researchhidden')) {
+    researchhidden = parseInt(localStorage.getItem('researchhidden'));
+}
+  if (localStorage.getItem('tradehidden')) {
+    tradehidden = parseInt(localStorage.getItem('tradehidden'));
+}
+  
   
   updatefood();
   autosave();
@@ -449,6 +461,12 @@ document.getElementById("eatb100").onclick = function() {
   eatberries(100);
   }
 
+document.getElementById("questcomp").onclick = function() {
+	questcomplete();
+	update_total_resources();
+}
+  
+  
 document.getElementById("foodstart").onclick = function() {
   update_workers();
   updatefood();
@@ -476,28 +494,15 @@ document.getElementById("loadgame").onclick = function() {
     $('#unlockberryroast').removeClass('btn-danger');
     $('#unlockberryroast').addClass('btn-info');
   }
+  if (researchhidden > 0) {
+	$('#researchmenubutton').removeClass('hidden');
+  }
+    if (tradehidden > 0) {
+	$('#trademenubutton').removeClass('hidden');
+  }
+  
 };
 
-document.getElementById("load").onclick = function() {
-  update_workers();
-  loadgame();
-  update_wood_per_second();
-  updatestonepersecond();
-  if (keeneyes > 0) {
-    $('#cookingtalentsbutton').prop('disabled', false);
-    $('#doublestoneforage').prop('disabled', false);
-    $('#foragefooddown1').prop('disabled', false);
-    $('#cookingmenubutton').removeClass('hidden');
-    $('#addberryforage').removeClass('btn-success');
-    $('#addberryforage').addClass('btn-info');
-  }
-    if (berryroast > 0) {
-    $('#roastedberries').removeClass('hidden');
-    $('#roastberriesmultibutton').removeClass('hidden');
-    $('#unlockberryroast').removeClass('btn-danger');
-    $('#unlockberryroast').addClass('btn-info');
-  }
-};
 
 document.getElementById("huts").onclick = function() {
   if (wood >= hutwcost && stone >= hutscost) {
