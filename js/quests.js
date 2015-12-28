@@ -68,3 +68,11 @@ function checkquestreq() {
 	}
 	
 }
+
+function questcomplete() {
+	questcomp = 0;
+	questnum += 1;
+	$('#questcomp').prop('disabled', true);
+	$('#questcheckmark').removeClass('text-success');
+	$('#questcheckmark').addClass('text-danger');
+}
