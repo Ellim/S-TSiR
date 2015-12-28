@@ -5,6 +5,7 @@
 //variables
 var quests = ["Aquire Talent Points","Unlock Keen Eyes","Reach Level 10","Research Cooking Talents","Aquire More Talent Points","Unlock Roasted Berries","Unlock Buildings","Increase Population to 10", "Unlock Carpentry"];
 var questdescs = ["Performing actions such as Foraging or Burning Wood will award EXP.<br />Reach Level 6 and acquire 5 Talent Points.","In the Talents Menu open the Foraging Tree.<br />Spend your Talent Points to unlock 'Keen Eyes'.<br />This will allow you a chance to identify and gather edible berries while foraging.","Get to Level 10.<br />This will unlock the Research Menu.<br />Remember burning wood is a good source of early EXP.","Open the Research Menu.<br />Click the 'Next Project' button to initiate research.<br />Every time you click the button after it is initiated you will generate Research Points.<br /> Once enough RP is gained you will automatically complete the project and the next will be queued for you.","Reach Level 16 to acquire 10 additional Talent Points.","In the Talents Menu open the Cooking Tree.<br />Spend your Talent Points to unlock 'Roasted Berries'.<br />This will allow you to consume 5 Berries and a single unit of Charcoal to increase food at double the rate of eating them raw."];
+
 var currentfood = 250; //Food will drain over time
 var totalexp = 0; //EXP goes up with each forage
 var truetotalexp = 0;
@@ -42,8 +43,42 @@ var berryroast = 0;
 var questnum = 0;
 var researchhidden = 0;
 var tradehidden = 0;
+var questcomp = 0;
+
+
 
 //functions
+function checkquestreq() {
+	switch(questnum) {
+		case 0:
+			if (currentlevel >= 6 && questcomp == 0) {
+			questcomp += 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
+		case 1:
+			if (keeneyes >= 1 && questcomp == 0) {
+			questcomp += 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
+		case 2:
+			if (currentlevel >= 10 && questcomp == 0) {
+			questcomp += 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
+		
+	}
+	
+}
+
 function update_total_resources() {    
   var e = document.getElementById("total_wood");
   e.innerHTML = wood.toFixed(0);
@@ -84,7 +119,7 @@ function update_total_resources() {
   e16.innerHTML = quests[questnum];
   var e17 = document.getElementById("questdesc");
   e17.innerHTML = questdescs[questnum];
-  
+  checkquestreq();
   updatefoodpersecond();
   updateui();
 }
@@ -169,7 +204,11 @@ function buy_with_coal(c, button) {
 }
 
 function questcomplete() {
+	questcomp = 0;
 	questnum += 1;
+	$('#questcomp').prop('disabled', true);
+	$('#questcheckmark').removeClass('text-success');
+	$('#questcheckmark').addClass('text-danger');
 }
 
 function update_workers() {
@@ -239,6 +278,7 @@ function savegame() {
   localStorage.setItem('questnum', questnum);
   localStorage.setItem('researchhidden', researchhidden);
   localStorage.setItem('tradehidden', tradehidden);
+  localStorage.setItem('questcomp', questcomp);
 }
 
 function getRandomInt(min, max) {
@@ -413,7 +453,9 @@ function loadgame() {
   if (localStorage.getItem('tradehidden')) {
     tradehidden = parseInt(localStorage.getItem('tradehidden'));
 }
-  
+  if (localStorage.getItem('questcomp')) {
+    questcomp = parseInt(localStorage.getItem('questcomp'));
+}  
   
   updatefood();
   autosave();
@@ -500,7 +542,11 @@ document.getElementById("loadgame").onclick = function() {
     if (tradehidden > 0) {
 	$('#trademenubutton').removeClass('hidden');
   }
-  
+	if (questcomp > 0) {
+	$('#questcomp').prop('disabled', false);
+	$('#questcheckmark').removeClass('text-danger');
+    $('#questcheckmark').addClass('text-success');
+	}
 };
 
 
