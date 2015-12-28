@@ -74,6 +74,30 @@ function checkquestreq() {
 			$('#questcheckmark').addClass('text-success');
 			break;
 		}
+		case 3:
+			if (currentlevel >= 10 && questcomp == 0) {
+			questcomp = 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
+		case 4:
+			if (currentlevel >= 16 && questcomp == 0) {
+			questcomp += 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
+		case 5:
+			if (berryroast >= 1 && questcomp == 0) {
+			questcomp += 1;
+			$('#questcomp').prop('disabled', false);
+			$('#questcheckmark').removeClass('text-danger');
+			$('#questcheckmark').addClass('text-success');
+			break;
+		}
 		
 	}
 	
