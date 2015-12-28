@@ -68,7 +68,7 @@ function checkquestreq() {
 	}
 	
 }
-
+ 
 function questcomplete() {
 	questcomp = 0;
 	questnum += 1;
