@@ -1,6 +1,6 @@
 
-/*Survive:TSIR V. 0.0.14*/
-/*The Github Update*/
+/*Survive:TSIR V. 0.0.15*/
+/*The Progression Update*/
 
 //variables
 var currentfood = 150; //Food will drain over time
@@ -18,7 +18,7 @@ var autoharvestcost = 1; //the cost of this should increase exponentially
 var upgrade_speed = 0; //the level of the speed up upgrade
 var click_rate = 1000; //ms between each autoclick
 var foodrate = 5000; //ms between food decrease
-var saverate = 300000;
+var saverate = 60000;
 var population = 1;
 var interval_auto; 
 var interval_autof;
@@ -34,6 +34,8 @@ var coalrate = 1;
 var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
+var keeneyes = 0;
+
 
 //functions
 function update_total_resources() {    
@@ -203,6 +205,7 @@ function savegame() {
   localStorage.setItem('hutwcost', hutwcost);
   localStorage.setItem('hutscost', hutscost);
   localStorage.setItem('huts', huts);
+  localStorage.setItem('keeneyes', keeneyes);
 }
 
 function getRandomInt(min, max) {
@@ -379,6 +382,9 @@ function loadgame() {
   if (localStorage.getItem('huts')) {
     huts = parseInt(localStorage.getItem('huts'));
 }
+  if (localStorage.getItem('keeneyes')) {
+    keeneyes = parseInt(localStorage.getItem('keeneyes'));
+}
   updatefood();
   autosave();
   update_total_resources();
@@ -387,11 +393,13 @@ function loadgame() {
 
 function showsave() {
   savegame();
-  alert("The game has been saved. NOTE: The game will autosave every 5 minutes.")
+  alert("The game has been saved. NOTE: The game will autosave once a minute.")
 }
 
 //click events
-
+$(document).on('click', "#addberryforage", function() {
+    $('#addberryforage').prop('disabled', true);
+    })
 
 document.getElementById("roastedberries").onclick = function() {
   roastberries(1);
