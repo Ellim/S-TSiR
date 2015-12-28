@@ -35,7 +35,7 @@ var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
 var keeneyes = 0;
-var talentpoints = 100;
+var talentpoints = 0;
 var berryroast = 0;
 
 
