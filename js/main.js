@@ -35,6 +35,8 @@ var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
 var keeneyes = 0;
+var talentpoints = 100;
+var berryroast = 0;
 
 
 //functions
@@ -54,7 +56,9 @@ function update_total_resources() {
   var e7 = document.getElementById("berries");
   e7.innerHTML = berries.toFixed(0);
   var e8 = document.getElementById("berrychance");
+  if (keeneyes > 0) {
   e8.innerHTML = (((6 - berryfindlevel)/6) * 100).toFixed(2) + '%';
+  } else {e8.innerHTML = 0 + '%';}
   $('#foodbar').width((currentfood/100) + '%');
   var e9 = document.getElementById("pop");
   e9.innerHTML = population.toFixed(0);
@@ -70,6 +74,8 @@ function update_total_resources() {
   e13.innerHTML = ((Math.pow(3, upgrade_speed)) * 30) + ' Stone';
   var e14 = document.getElementById("speed_level");
   e14.innerHTML = 'lvl  ' + upgrade_speed;
+  var e15 = document.getElementById("talentpoints");
+  e15.innerHTML = talentpoints;
   updatefoodpersecond();
   updateui();
 }
@@ -84,6 +90,7 @@ function update_total_exp() {
     totalexp = totalexp - exptnl;
     exptnl = (exptnl * 1.15).toFixed(0);
     currentlevel = currentlevel +1;
+      talentpoints += 1;
     } 
   var e3 = document.getElementById("current_level");
   e3.innerHTML = currentlevel;
@@ -206,6 +213,8 @@ function savegame() {
   localStorage.setItem('hutscost', hutscost);
   localStorage.setItem('huts', huts);
   localStorage.setItem('keeneyes', keeneyes);
+  localStorage.setItem('talentpoints', talentpoints);
+  localStorage.setItem('berryroast', berryroast);
 }
 
 function getRandomInt(min, max) {
@@ -218,7 +227,9 @@ function foragestone(m) {
     var rand = 1 + Math.floor(Math.random() * 6);
     var randint = getRandomInt(1, m);
     if (rand > berryfindlevel) {
+      if (keeneyes > 0){
       berries += randint;
+      }
     }
     var randw = getRandomInt(1, currentlevel);
     var rands = getRandomInt(0, e)
@@ -385,6 +396,13 @@ function loadgame() {
   if (localStorage.getItem('keeneyes')) {
     keeneyes = parseInt(localStorage.getItem('keeneyes'));
 }
+  if (localStorage.getItem('talentpoints')) {
+    talentpoints = parseInt(localStorage.getItem('talentpoints'));
+}
+  if (localStorage.getItem('berryroast')) {
+    berryroast = parseInt(localStorage.getItem('berryroast'));
+}
+  
   updatefood();
   autosave();
   update_total_resources();
@@ -398,42 +416,30 @@ function showsave() {
 
 //click events
 $(document).on('click', "#addberryforage", function() {
-    $('#addberryforage').prop('disabled', true);
+  if (talentpoints >= 5 && keeneyes == 0) {
+    talentpoints -= 5;
+        keeneyes = 1;
+    $('#cookingtalentsbutton').prop('disabled', false);
+    $('#doublestoneforage').prop('disabled', false);
+    $('#foragefooddown1').prop('disabled', false);
+    $('#cookingmenubutton').removeClass('hidden');
+    $('#addberryforage').removeClass('btn-success');
+    $('#addberryforage').addClass('btn-info');
+      }
     })
 
-document.getElementById("roastedberries").onclick = function() {
-  roastberries(1);
-}
-
-document.getElementById("roastb10").onclick = function() {
-  roastberries(10);
-}
-
-
-document.getElementById("roastb25").onclick = function() {
-  roastberries(25);
-}
+$(document).on('click', "#unlockberryroast", function() {
+  if (talentpoints >= 10 && berryroast == 0) {
+    talentpoints -= 10;
+        berryroast = 1;
+    $('#roastedberries').removeClass('hidden');
+    $('#roastberriesmultibutton').removeClass('hidden');
+    $('#unlockberryroast').removeClass('btn-danger');
+    $('#unlockberryroast').addClass('btn-info');
+      }
+    })
 
 
-document.getElementById("roastb100").onclick = function() {
-  roastberries(100);
-}
-
-document.getElementById("eatberries").onclick = function() {
-  eatberries(1);
-  }
-
-document.getElementById("eatb10").onclick = function() {
-  eatberries(10);
-  }
-
-document.getElementById("eatb25").onclick = function() {
-  eatberries(25);
-  }
-
-document.getElementById("eatb100").onclick = function() {
-  eatberries(100);
-  }
 
 document.getElementById("foodstart").onclick = function() {
   update_workers();
@@ -448,6 +454,20 @@ document.getElementById("loadgame").onclick = function() {
   loadgame();
   update_wood_per_second();
   updatestonepersecond();
+    if (keeneyes > 0) {
+    $('#cookingtalentsbutton').prop('disabled', false);
+    $('#doublestoneforage').prop('disabled', false);
+    $('#foragefooddown1').prop('disabled', false);
+    $('#cookingmenubutton').removeClass('hidden');
+    $('#addberryforage').removeClass('btn-success');
+    $('#addberryforage').addClass('btn-info');
+  }
+  if (berryroast > 0) {
+    $('#roastedberries').removeClass('hidden');
+    $('#roastberriesmultibutton').removeClass('hidden');
+    $('#unlockberryroast').removeClass('btn-danger');
+    $('#unlockberryroast').addClass('btn-info');
+  }
 };
 
 document.getElementById("load").onclick = function() {
@@ -455,6 +475,20 @@ document.getElementById("load").onclick = function() {
   loadgame();
   update_wood_per_second();
   updatestonepersecond();
+  if (keeneyes > 0) {
+    $('#cookingtalentsbutton').prop('disabled', false);
+    $('#doublestoneforage').prop('disabled', false);
+    $('#foragefooddown1').prop('disabled', false);
+    $('#cookingmenubutton').removeClass('hidden');
+    $('#addberryforage').removeClass('btn-success');
+    $('#addberryforage').addClass('btn-info');
+  }
+    if (berryroast > 0) {
+    $('#roastedberries').removeClass('hidden');
+    $('#roastberriesmultibutton').removeClass('hidden');
+    $('#unlockberryroast').removeClass('btn-danger');
+    $('#unlockberryroast').addClass('btn-info');
+  }
 };
 
 document.getElementById("huts").onclick = function() {
@@ -556,8 +590,41 @@ document.getElementById("save").onclick = function() {
   savegame();
   showsave();
 }
-//start our autoclickers
 
+document.getElementById("roastedberries").onclick = function() {
+  roastberries(1);
+}
+
+document.getElementById("roastb10").onclick = function() {
+  roastberries(10);
+}
+
+
+document.getElementById("roastb25").onclick = function() {
+  roastberries(25);
+}
+
+
+document.getElementById("roastb100").onclick = function() {
+  roastberries(100);
+}
+
+document.getElementById("eatberries").onclick = function() {
+  eatberries(1);
+  }
+
+document.getElementById("eatb10").onclick = function() {
+  eatberries(10);
+  }
+
+document.getElementById("eatb25").onclick = function() {
+  eatberries(25);
+  }
+
+document.getElementById("eatb100").onclick = function() {
+  eatberries(100);
+  }
+//start our autoclickers
 
 
 
