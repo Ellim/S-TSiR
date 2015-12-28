@@ -88,7 +88,7 @@ $(document).ready(function(){
 
     <li class="hidden"><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
 
-    <li class=""><a data-toggle="tab" href="#T5Ups">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
+    <li class=""><a data-toggle="tab" href="#TabUpgrades">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
 
 </ul>
 
@@ -107,7 +107,6 @@ $(document).ready(function(){
   
   <div id="TabBuildings" class="tab-pane fade">
     <br /><h2>Housing</h2><br />
-    <img src="img/hut1.png">
     Wood Hut <span id="hutnum" class="badge">0</span><br /><br /><button id="huts" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden hut to house two more survivors." data-placement="auto right">750 Wood || 75 Stone</button><br /><br />
     Wood House <span id="housenum" class="badge">0</span><br /><br /><button id="buyhouse" type="button" class="btn btn-success" data-toggle="tooltip" title="Construct a simple wooden house capable of sustaining five survivors." data-placement="auto right" disabled>10 Scaffold</button><br /><br />
    
@@ -173,7 +172,7 @@ $(document).ready(function(){
      <button type="button" class="btn btn-info" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-btc"</span></button>
   </div>
   
-   <div id="T5Ups" class="tab-pane fade">
+   <div id="TabUpgrades" class="tab-pane fade">
     <br />
      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".T1WUpgrades">Auto Harvest <span class="glyphicon glyphicon-tree-deciduous"</span></button>
   </div>
@@ -285,11 +284,10 @@ $(document).ready(function(){
 <div class="modal fade ResearchForage" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header"><h4>Foraging</h4><br />
         <div class="modal-body">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4"><br /><br /><br /><button id="doublestoneforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>More Stone || 15TP</button></div>
+          <div class="col-md-4"><br /><br /><br /><button id="doublestoneforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>Stone Whispering || 15TP</button></div>
           <div class="col-md-4"><button id="addberryforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Allows the gathering of berries while foraging. Consumes 5 Talent Points." data-placement="auto bottom">Keen Eyes || 5TP</button></div>
           <div class="col-md-4"><br /><br /><br /><button id="foragefooddown1" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>Endurance Training || 30TP</button></div>
         </div>
