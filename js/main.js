@@ -35,7 +35,7 @@ var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
 var keeneyes = 0;
-var talentpoints = 0;
+var talentpoints = 100;
 var berryroast = 0;
 
 
@@ -415,6 +415,41 @@ function showsave() {
 }
 
 //click events
+
+document.getElementById("roastedberries").onclick = function() {
+  roastberries(1);
+}
+
+document.getElementById("roastb10").onclick = function() {
+  roastberries(10);
+}
+
+
+document.getElementById("roastb25").onclick = function() {
+  roastberries(25);
+}
+
+
+document.getElementById("roastb100").onclick = function() {
+  roastberries(100);
+}
+
+document.getElementById("eatberries").onclick = function() {
+  eatberries(1);
+  }
+
+document.getElementById("eatb10").onclick = function() {
+  eatberries(10);
+  }
+
+document.getElementById("eatb25").onclick = function() {
+  eatberries(25);
+  }
+
+document.getElementById("eatb100").onclick = function() {
+  eatberries(100);
+  }
+
 $(document).on('click', "#addberryforage", function() {
   if (talentpoints >= 5 && keeneyes == 0) {
     talentpoints -= 5;
@@ -591,39 +626,7 @@ document.getElementById("save").onclick = function() {
   showsave();
 }
 
-document.getElementById("roastedberries").onclick = function() {
-  roastberries(1);
-}
 
-document.getElementById("roastb10").onclick = function() {
-  roastberries(10);
-}
-
-
-document.getElementById("roastb25").onclick = function() {
-  roastberries(25);
-}
-
-
-document.getElementById("roastb100").onclick = function() {
-  roastberries(100);
-}
-
-document.getElementById("eatberries").onclick = function() {
-  eatberries(1);
-  }
-
-document.getElementById("eatb10").onclick = function() {
-  eatberries(10);
-  }
-
-document.getElementById("eatb25").onclick = function() {
-  eatberries(25);
-  }
-
-document.getElementById("eatb100").onclick = function() {
-  eatberries(100);
-  }
 //start our autoclickers
 
 
