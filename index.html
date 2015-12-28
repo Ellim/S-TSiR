@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Survive: The struggle is real 0.0.13</title>
+    <title>Survive: The struggle is real 0.0.14</title>
   </head>
 
   <body>
@@ -80,15 +80,15 @@ $(document).ready(function(){
     
 <ul class="nav nav-tabs">
 
-    <li class=""><a data-toggle="tab" href="#TabBuildings">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
+    <li class="" id="buildingmenubutton"><a data-toggle="tab" href="#TabBuildings">Buildings <span class="glyphicon glyphicon-home"></span></a></li>
   
-    <li class="hidden"><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
+    <li class="hidden" id="cookingmenubutton"><a data-toggle="tab" href="#TabCook">Cooking <span class="glyphicon glyphicon-fire"></span></a></li>
   
-    <li class="active"><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
+    <li class="active" id="researchmenubutton"><a data-toggle="tab" href="#TabResearch">Research <span class="glyphicon glyphicon-book"</span></a></li>
 
-    <li class="hidden"><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
+    <li class="hidden" id="trademenubutton"><a data-toggle="tab" href="#T4Ups">Trade <span class="glyphicon glyphicon-btc"</span></a></li>
 
-    <li class=""><a data-toggle="tab" href="#TabUpgrades">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
+    <li class="" id="upgrademenubutton"><a data-toggle="tab" href="#TabUpgrades">Upgrades <span class="glyphicon glyphicon-stats"</span></a></li>
 
 </ul>
 
@@ -100,9 +100,9 @@ $(document).ready(function(){
   
      <div id="TabResearch" class="tab-pane fade in active">
      <br /><h2>Talents</h2><br />
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".ResearchForage">Foraging <span class="glyphicon glyphicon-book"</span></button><br /><br />
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button><br /><br />
-     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Coming Soon <span class="glyphicon glyphicon-book"</span></button><br /><br />
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target=".ResearchForage">Foraging <span class="glyphicon glyphicon-book"</span></button><br /><br />
+     <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".ResearchCooking" id="cookingtalentsbutton" disabled>Cooking <span class="glyphicon glyphicon-book"</span></button><br /><br />
+     <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".T4SUpgrades" disabled>Trade <span class="glyphicon glyphicon-book"</span></button><br /><br />
   </div>
   
   <div id="TabBuildings" class="tab-pane fade">
@@ -136,9 +136,9 @@ $(document).ready(function(){
        </div>  
   
         <br />
-        <button type="button" class="btn btn-danger btn-block" id="roastedberries">Roast Five Berries <span class="glyphicon glyphicon-fire"></span></button>
+        <button type="button" class="btn btn-danger btn-block hidden" id="roastedberries">Roast Five Berries <span class="glyphicon glyphicon-fire"></span></button>
 
-      <div class="btn-group btn-group-justified">
+      <div class="btn-group btn-group-justified hidden" id="roastberriesmultibutton">
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-danger" id="roastb10">Roast x10</button>
         </div>
@@ -191,6 +191,7 @@ $(document).ready(function(){
     </div>
     <p> Population: <span id="pop">1</span> <br />
           Level: <span id="current_level">1</span> <br />
+          Talent Points: <span id="talentpoints">0</span> <br />
           Exp: <span id="exptotal">0 </span><span> / </span><span id="exptnl">10</span> <br />
         <div class="progress">
   <div class="progress-bar" id="bar" role="progressbar" aria-valuenow="70"
@@ -200,7 +201,7 @@ $(document).ready(function(){
 </div>
           Wood per Forage: <span id="woodperclick">1 </span> <br />
           Stone per Forage: <span id="stoneperclick">0 </span> <br />
-          Chance of Berries: <span id="berrychance">16.67% </span> <br />
+          Chance of Berries: <span id="berrychance">0% </span> <br />
       <p>
       <h2>Resources</h2>
           Wood: <span id="total_wood">100</span> (<small id="wps">+0</small>)<br />
@@ -288,8 +289,8 @@ $(document).ready(function(){
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-4"><br /><br /><br /><button id="doublestoneforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>Stone Whispering || 15TP</button></div>
-          <div class="col-md-4"><button id="addberryforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Allows the gathering of berries while foraging. Consumes 5 Talent Points." data-placement="auto bottom">Keen Eyes || 5TP</button></div>
-          <div class="col-md-4"><br /><br /><br /><button id="foragefooddown1" type="button" class="btn btn-success" data-toggle="tooltip" title="Doubles the amount of Stone gathered with each Forage. Consumes 15 Talent Points." data-placement="auto bottom" disabled>Endurance Training || 30TP</button></div>
+          <div class="col-md-4"><button id="addberryforage" type="button" class="btn btn-success" data-toggle="tooltip" title="Allows the gathering of berries while foraging. Consumes 5 Talent Points." data-placement="auto bottom" data-delay="500">Keen Eyes || 5TP</button></div>
+          <div class="col-md-4"><br /><br /><br /><button id="foragefooddown1" type="button" class="btn btn-success" data-toggle="tooltip" title="Reduces Food cost to forage by 25%. Consumes 30 Talent Points." data-placement="auto bottom" disabled>Endurance Training || 30TP</button></div>
         </div>
         </div>
         </div>
@@ -298,6 +299,24 @@ $(document).ready(function(){
   </div>
  </div>  
 
+<div class="modal fade ResearchCooking" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4"><br /><br /><br /><button id="" type="button" class="btn btn-danger" data-toggle="tooltip" title="Coming Soon." data-placement="auto bottom" disabled>Coming Soon || ??TP</button></div>
+          <div class="col-md-4"><button id="unlockberryroast" type="button" class="btn btn-danger" data-toggle="tooltip" title="Unlocks the ability to roast berries over a fire. Doubles effective food gained from berries." data-placement="auto bottom">Roasted Berries || 10TP</button></div>
+          <div class="col-md-4"><br /><br /><br /><button id="" type="button" class="btn btn-danger" data-toggle="tooltip" title="Coming Soon." data-placement="auto bottom" disabled>Coming Soon || ??TP</button></div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>  
+  
+  
 
 <script>  
 $(document).ready ( function () {
