@@ -5,7 +5,7 @@ function updateresearch() {
       var e = 1 + (population * .1)
     }
    update_total_resources();
-  }, foodrate);
+  }, researchrate);
 }
 
 var berryprojects = ['Keen Eyes']
