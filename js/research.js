@@ -1,3 +1,13 @@
+function updateresearch() {
+  clearInterval(interval_autorp);
+  interval_autorp = setInterval(function() {
+    if (currentfood > 0) {
+      var e = 1 + (population * .1)
+    }
+   update_total_resources();
+  }, foodrate);
+}
+
 var berryprojects = ['Keen Eyes']
 
     if (population > 9) { 
@@ -11,3 +21,7 @@ var berryprojects = ['Keen Eyes']
   if (population > 99) {
     $('#forage100').prop('disabled', false);
     }
+    
+    
+    
+    
