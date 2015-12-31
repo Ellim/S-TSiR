@@ -7,6 +7,8 @@ function foo () {
 	e.innerHTML = questcomp;
 }
 
+
+
 function update_total_resources() {    
   var e = document.getElementById("total_wood");
   e.innerHTML = wood.toFixed(0);
@@ -153,7 +155,7 @@ function foragestone(m) {
     stone = stone + (rands * m);
     totalexp = totalexp + randint;
     truetotalexp = truetotalexp + randint;
-    currentfood = currentfood - m;
+    currentfood = currentfood - (m * foodlevel);
     update_total_exp();
     update_total_resources();
   }
@@ -350,7 +352,12 @@ document.getElementById("Cheat").onclick = function() {
   coal = coal + 50000;
 }
 
-
+document.getElementById("foragefooddown1").onclick = function() {
+	if (talentpoints >= 30 && foragefooddownlevel1 = 0) {
+		foodlevel -= .25
+		
+	}
+}
 
 
 //start our autoclickers
