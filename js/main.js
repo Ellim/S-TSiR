@@ -49,7 +49,6 @@ function update_total_resources() {
   e17.innerHTML = questdescs[questnum];
   updatefoodpersecond();
   updateui();
-  foo();
 }
 
 function update_total_exp() {   
