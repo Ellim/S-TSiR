@@ -183,8 +183,8 @@ function updatefoodpersecond() {
 }
 
 function burnwood(m) {
-  coal = coal + (1 * m);
-  totalexp = totalexp + (burnexp * m);
+  coal = coal + m;
+  totalexp = totalexp + ((burnexp * m) * (population * .1));
   update_total_exp();
   update_total_resources();
 }
@@ -273,24 +273,28 @@ document.getElementById("forage100").onclick = function() {
 document.getElementById("Burn").onclick = function() {
   if (!buy(burncost, wood, 1)) return;
   burnwood(1);
+  wood -= burncost;
   update_total_exp();
 };
 
 document.getElementById("burn10").onclick = function() {
   if (!buy(burncost, wood, 10)) return;
   burnwood(10);
+  wood -= burncost * 10;
   update_total_exp();
 };
 
 document.getElementById("burn25").onclick = function() {
   if (!buy(burncost, wood, 25)) return;
   burnwood(25);
+  wood -= burncost * 25;
   update_total_exp();
 };
 
 document.getElementById("burn100").onclick = function() {
   if (!buy(burncost, wood, 100)) return;
   burnwood(100);
+  wood -= burncost * 100;
   update_total_exp();
 };
 
