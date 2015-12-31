@@ -22,6 +22,8 @@ var saverate = 60000;
 var interval_auto; 
 var interval_autof;
 var saveinterval;
+var interval_autorp;
+var researchrate = 2000;
 
 var woodperclick = 1;
 var stoneperclick = 0;
@@ -92,6 +94,8 @@ function savegame() {
   localStorage.setItem('upgradehidden', upgradehidden);
   localStorage.setItem('questcomp', questcomp);
   localStorage.setItem('buildingshidden', buildingshidden);
+  localStorage.setItem('researchrate', researchrate);
+  
 }
 
 function loadgame() {
@@ -200,6 +204,9 @@ function loadgame() {
   if (localStorage.getItem('buildingshidden')) {
     buildingshidden = parseInt(localStorage.getItem('buildingshidden'));
 }  
+  if (localStorage.getItem('researchrate')) {
+    researchrate = parseInt(localStorage.getItem('researchrate'));
+}   
   
   updatefood();
   autosave();
