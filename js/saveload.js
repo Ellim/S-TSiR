@@ -1,24 +1,28 @@
 //variables
 var currentfood = 250; //Food will drain over time
-var totalexp = 0; //EXP goes up with each forage
-var truetotalexp = 0;
-var exptnl = 10; //EXP to next level
-var currentlevel = 1; //Level will go up with EXP gains
 var wood = 100; 
 var stone = 10;
 var coal = 1;
+var population = 1;
 var berries = 10;
 var woodpersecond = 0; //wood gain per tick
 var stonepersecond = 0; //stone **
 var autoharvestcost = 1; //the cost of this should increase exponentially
 var upgrade_speed = 0; //the level of the speed up upgrade
+
+var totalexp = 0; //EXP goes up with each forage
+var truetotalexp = 0;
+var exptnl = 10; //EXP to next level
+var currentlevel = 1; //Level will go up with EXP gains
+var talentpoints = 0;
+
 var click_rate = 1000; //ms between each autoclick
 var foodrate = 5000; //ms between food decrease
 var saverate = 60000;
-var population = 1;
 var interval_auto; 
 var interval_autof;
 var saveinterval;
+
 var woodperclick = 1;
 var stoneperclick = 0;
 var burncost = 100;
@@ -27,17 +31,23 @@ var autoharvestexp = 0;
 var woodcoalratiocost = 10;
 var berryfindlevel = 5;
 var coalrate = 1;
+
 var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
+
 var keeneyes = 0;
-var talentpoints = 0;
 var berryroast = 0;
-var questnum = 0;
+
 var researchhidden = 0;
-var tradehidden = 0;
+var upgradehidden = 0;
 var buildingshidden = 0;
+
+var questnum = 0;
 var questcomp = 0;
+var quests = ["Aquire Talent Points","Unlock Keen Eyes","Reach Level 10","Research Cooking Talents","Aquire More Talent Points","Unlock Roasted Berries","Unlock Buildings","Increase Population to 10", "Unlock Carpentry"];
+var questdescs = ["Performing actions such as Foraging or Burning Wood will award EXP.<br />Reach Level 6 and acquire 5 Talent Points.","In the Talents Menu open the Foraging Tree.<br />Spend your Talent Points to unlock 'Keen Eyes'.<br />This will allow you a chance to identify and gather edible berries while foraging.","Get to Level 10.<br />This will unlock the Research Menu.<br />Remember burning wood is a good source of early EXP.","Open the Research Menu.<br />Click the 'Next Project' button to initiate research.<br />Every time you click the button after it is initiated you will generate Research Points.<br /> Once enough RP is gained you will automatically complete the project and the next will be queued for you.","Reach Level 16 to acquire 10 additional Talent Points.","In the Talents Menu open the Cooking Tree.<br />Spend your Talent Points to unlock 'Roasted Berries'.<br />This will allow you to consume 5 Berries and a single unit of Charcoal to increase food at double the rate of eating them raw.","Unlock Buildings through Research.<br />(This will be added soon, for now it's just given at level 20.)","Gather enough raw materials to build 5 huts.<br />This will increase population to 11, allowing you to forage 10 times with a single click!"];
+
 
 function autosave() {
   clearInterval(saveinterval);
@@ -79,7 +89,7 @@ function savegame() {
   localStorage.setItem('berryroast', berryroast);
   localStorage.setItem('questnum', questnum);
   localStorage.setItem('researchhidden', researchhidden);
-  localStorage.setItem('tradehidden', tradehidden);
+  localStorage.setItem('upgradehidden', upgradehidden);
   localStorage.setItem('questcomp', questcomp);
   localStorage.setItem('buildingshidden', buildingshidden);
 }
@@ -181,8 +191,8 @@ function loadgame() {
   if (localStorage.getItem('researchhidden')) {
     researchhidden = parseInt(localStorage.getItem('researchhidden'));
 }
-  if (localStorage.getItem('tradehidden')) {
-    tradehidden = parseInt(localStorage.getItem('tradehidden'));
+  if (localStorage.getItem('upgradehidden')) {
+    upgradehidden = parseInt(localStorage.getItem('upgradehidden'));
 }
   if (localStorage.getItem('questcomp')) {
     questcomp = parseInt(localStorage.getItem('questcomp'));
@@ -232,18 +242,13 @@ document.getElementById("loadgame").onclick = function() {
   if (researchhidden > 0) {
 	$('#researchmenubutton').removeClass('hidden');
   }
-    if (tradehidden > 0) {
-	$('#trademenubutton').removeClass('hidden');
+    if (upgradehidden > 0) {
+	$('#upgrademenubutton').removeClass('hidden');
   }
     if (buildingshidden > 0) {
 	$('#buildingmenubutton').removeClass('hidden');
   }
-  
-	if (questcomp > 0) {
-	$('#questcomp').prop('disabled', false);
-	$('#questcheckmark').removeClass('text-danger');
-    $('#questcheckmark').addClass('text-success');
-	}
+
 };
 
 document.getElementById("save").onclick = function() {
