@@ -1,7 +1,3 @@
-var currentfood = 15;
-var foodmax = 150;
-var totalexp = 0;
-var fruittreecost = 25;
 
 document.getElementById("Forage").onclick = function() {
 	forage(1);   
