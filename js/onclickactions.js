@@ -7,7 +7,7 @@ document.getElementById("Forage").onclick = function() {
 };
 
 function forage(m) {
-	if (((water) - (5 * m)) > 0) {
+	if (((water) - (5 * m)) >= 0) {
 		currentfood += m;
 		totalexp += m ;
 		water -= (m * 5)
