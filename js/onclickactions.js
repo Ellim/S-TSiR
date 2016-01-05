@@ -1,6 +1,7 @@
 var currentfood = 15;
 var foodmax = 150;
 var totalexp = 0;
+var fruittreecost = 25;
 
 document.getElementById("Forage").onclick = function() {
 	forage(1);   
@@ -8,8 +9,12 @@ document.getElementById("Forage").onclick = function() {
 
 document.getElementById("fruittreebutton").onclick = function() {
 	if (currentfood >= fruittreecost) {
+		if (foodon = 0) {
+			foodon = 1;
+			updatefood();
+		}
 		currentfood -= fruittreecost;
-		fruittreecost += (2 * fruittreecost)
+		fruittreecost += (2 * fruittreecost);
 		foodrate += 0.5;
 	}
 };
