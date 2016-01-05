@@ -7,10 +7,14 @@ document.getElementById("Forage").onclick = function() {
 };
 
 function forage(m) {
-	currentfood += m;
-	totalexp += m ;
-	if (currentfood > foodmax) {currentfood = foodmax};
-  	var tempvar = document.getElementById("currentfood");
-  	tempvar.innerHTML = currentfood.toFixed(2);
-  	$('#foodbar').width(((currentfood/foodmax)* 100) + '%');
+	if (((water) - (5 * m)) > 0) {
+		currentfood += m;
+		totalexp += m ;
+		water -= (m * 5)
+		if (currentfood > foodmax) {currentfood = foodmax};
+	  	var tempvar = document.getElementById("currentfood");
+	  	tempvar.innerHTML = currentfood.toFixed(2);
+	  	$('#foodbar').width(((currentfood/foodmax)* 100) + '%');
+	}	
+
 }
