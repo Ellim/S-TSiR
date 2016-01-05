@@ -12,8 +12,13 @@ function forage(m) {
 		totalexp += m ;
 		water -= (m * 5)
 		if (currentfood > foodmax) {currentfood = foodmax};
-	  	var tempvar = document.getElementById("currentfood");
-	  	tempvar.innerHTML = currentfood.toFixed(2);
-	  	$('#foodbar').width(((currentfood/foodmax)* 100) + '%');
+		var tempvar = document.getElementById("currentfood");
+		tempvar.innerHTML = currentfood.toFixed(2);
+		var tempvar2 = document.getElementById("currentwater");
+		tempvar2.innerHTML = water;
+		var tempvar3 = document.getElementById("waterps");
+		tempvar3.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
+		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
+		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	}	
 }
