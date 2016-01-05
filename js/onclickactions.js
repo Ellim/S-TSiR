@@ -3,12 +3,17 @@ var foodmax = 150;
 var totalexp = 0;
 
 document.getElementById("Forage").onclick = function() {
-  forage(1);   
+	forage(1);   
 };
 
 document.getElementById("fruittreebutton").onclick = function() {
-	
-}
+	if (currentfood >= fruittreecost) {
+		currentfood -= fruittreecost;
+		fruittreecost += (2 * fruittreecost)
+		foodrate += 0.5;
+	}
+};
+
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
 		currentfood += m;
