@@ -6,6 +6,9 @@ document.getElementById("Forage").onclick = function() {
   forage(1);   
 };
 
+document.getElementById("fruittreebutton").onclick = function() {
+	
+}
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
 		currentfood += m;
