@@ -16,5 +16,4 @@ function forage(m) {
 	  	tempvar.innerHTML = currentfood.toFixed(2);
 	  	$('#foodbar').width(((currentfood/foodmax)* 100) + '%');
 	}	
-
 }
