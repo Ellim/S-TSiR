@@ -1,0 +1,3 @@
+.btn-food {background: rgba(97, 255, 150, 0.82); background: -webkit-linear-gradient(top, rgba(170, 237, 250, 1) 0%, rgba(97, 255, 150, 0.82) 100%); background: linear-gradient(to bottom, rgba(170, 237, 250, 1) 0%, rgba(97, 255, 150, 0.82) 100%); border-color: rgba(161, 161, 161, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
+.btn-food:hover {background: rgba(32, 224, 118, 1); border-color: rgba(173, 173, 173, 1); color: rgba(51, 51, 51, 1);}
+.btn-food:active, .btn-food:focus {background: rgba(255, 255, 255, 1); border-color: rgba(173, 173, 173, 1); color: rgba(51, 51, 51, 1);}
