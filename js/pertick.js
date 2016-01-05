@@ -33,11 +33,11 @@ function updatewater() {
 function updatefood() {
   clearInterval(foodinterval);
   foodinterval = setInterval(function() {
-	if (food < foodmax) {
-		food += foodrate;
+	if (currentfood < foodmax) {
+		currentfood += foodrate;
 	}
-	if (food > foodmax) {
-		food = foodmax;
+	if (currentfood > foodmax) {
+		currentfood = foodmax;
 	}
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = currentfood;
