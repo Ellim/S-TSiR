@@ -1,0 +1,4 @@
+.progress {background: rgba(92, 92, 92, 1); border: 2px solid rgba(0, 0, 0, 1); border-radius: 25px; height: 20px;}
+.progress-bar-food {background: rgba(65, 201, 99, 1); background: -webkit-linear-gradient(top, rgba(24, 120, 75, 0.13) 0%, rgba(65, 201, 99, 1) 100%); background: linear-gradient(to bottom, rgba(24, 120, 75, 0.13) 0%, rgba(65, 201, 99, 1) 100%);}
+.progress-bar-water {background: rgba(38, 126, 209, 1); background: -webkit-linear-gradient(top, rgba(24, 120, 75, 0.13) 0%, rgba(38, 126, 209, 1) 100%); background: linear-gradient(to bottom, rgba(24, 120, 75, 0.13) 0%, rgba(38, 126, 209, 1) 100%);}
+.progress-bar-exp {background: rgba(224, 187, 40, 1); background: -webkit-linear-gradient(top, rgba(237, 226, 73, 0.53) 0%, rgba(224, 187, 40, 1) 100%); background: linear-gradient(to bottom, rgba(237, 226, 73, 0.53) 0%, rgba(224, 187, 40, 1) 100%);}

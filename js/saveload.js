@@ -1,5 +1,6 @@
 //variables
-var currentfood = 250; //Food will drain over time
+var currentfood = 150; //Food will drain over time
+var foodmax = 1500;
 var wood = 100; 
 var stone = 10;
 var coal = 1;
@@ -10,17 +11,25 @@ var stonepersecond = 0; //stone **
 var autoharvestcost = 1; //the cost of this should increase exponentially
 var upgrade_speed = 0; //the level of the speed up upgrade
 
+var mana = 0;
+var manamax = 0;
+
 var totalexp = 0; //EXP goes up with each forage
 var truetotalexp = 0;
 var exptnl = 10; //EXP to next level
 var currentlevel = 1; //Level will go up with EXP gains
 var talentpoints = 0;
+var forageexplevel = 1;
+var rp = 200;
+var rpmax = 500;
 
 var click_rate = 1000; //ms between each autoclick
+var loggerrate = 1000;
 var foodrate = 5000; //ms between food decrease
 var saverate = 60000;
 var interval_auto; 
 var interval_autof;
+var intervallogger;
 var saveinterval;
 var interval_autorp;
 var researchrate = 2000;
@@ -37,6 +46,7 @@ var coalrate = 1;
 var hutwcost = 750;
 var hutscost = 75;
 var huts = 0;
+var logger = 0;
 
 var keeneyes = 0;
 var berryroast = 0;
@@ -95,123 +105,110 @@ function savegame() {
   localStorage.setItem('questcomp', questcomp);
   localStorage.setItem('buildingshidden', buildingshidden);
   localStorage.setItem('researchrate', researchrate);
-  
+  localStorage.setItem('loggerrate', loggerrate);  
+  localStorage.setItem('forageexplevel', forageexplevel);    
+  localStorage.setItem('foodmax', foodmax);   
+  localStorage.setItem('rp', rp);     
+  localStorage.setItem('rpmax', rpmax);     
+  localStorage.setItem('mana', mana);     
+  localStorage.setItem('manamax', manamax);     
+  localStorage.setItem('logger', logger);
 }
 
 function loadgame() {
-  	if (localStorage.getItem('currentfood')) {
-	currentfood = parseInt(localStorage.getItem('currentfood'));
-}
+  	if (localStorage.getItem('currentfood')) {	
+	currentfood = parseInt(localStorage.getItem('currentfood'));}
 	if (localStorage.getItem('totalexp')) {
-	totalexp = parseInt(localStorage.getItem('totalexp'));
-}
+		totalexp = parseInt(localStorage.getItem('totalexp'));}
 	if (localStorage.getItem('truetotalexp')) {
-	truetotalexp = parseInt(localStorage.getItem('truetotalexp'));
-}
+		truetotalexp = parseInt(localStorage.getItem('truetotalexp'));}
 	if (localStorage.getItem('exptnl')) {
-	exptnl = parseInt(localStorage.getItem('exptnl'));
-}
+		exptnl = parseInt(localStorage.getItem('exptnl'));}
 	if (localStorage.getItem('currentlevel')) {
-	currentlevel = parseInt(localStorage.getItem('currentlevel'));
-}
+		currentlevel = parseInt(localStorage.getItem('currentlevel'));}
 	if (localStorage.getItem('wood')) {
-	wood = parseInt(localStorage.getItem('wood'));
-}
+		wood = parseInt(localStorage.getItem('wood'));}
 	if (localStorage.getItem('stone')) {
-	stone = parseInt(localStorage.getItem('stone'));
-}
+		stone = parseInt(localStorage.getItem('stone'));}
 	if (localStorage.getItem('coal')) {
-	coal = parseInt(localStorage.getItem('coal'));
-}
+		coal = parseInt(localStorage.getItem('coal'));}
 	if (localStorage.getItem('berries')) {
-	berries = parseInt(localStorage.getItem('berries'));
-}
+		berries = parseInt(localStorage.getItem('berries'));}
 	if (localStorage.getItem('woodpersecond')) {
-	woodpersecond = parseInt(localStorage.getItem('woodpersecond'));
-}
-	if (localStorage.getItem('stonepersecond')) {
-	stonepersecond = parseInt(localStorage.getItem('stonepersecond'));
-}
+		woodpersecond = parseInt(localStorage.getItem('woodpersecond'));}
+	if (localStorage.getItem('stonepersecond')) {	
+		stonepersecond = parseInt(localStorage.getItem('stonepersecond'));}
 	if (localStorage.getItem('autoharvestcost')) {
-	autoharvestcost = parseInt(localStorage.getItem('autoharvestcost'));
-}
-	if (localStorage.getItem('upgrade_speed')) {
-	upgrade_speed = parseInt(localStorage.getItem('upgrade_speed'));
-}
-	if (localStorage.getItem('click_rate')) {
-	click_rate = parseInt(localStorage.getItem('click_rate'));
-}
-	if (localStorage.getItem('foodrate')) {
-	foodrate = parseInt(localStorage.getItem('foodrate'));
-}
+		autoharvestcost = parseInt(localStorage.getItem('autoharvestcost'));}
+	if (localStorage.getItem('upgrade_speed')) {	
+		upgrade_speed = parseInt(localStorage.getItem('upgrade_speed'));}
+	if (localStorage.getItem('click_rate')) {	
+		click_rate = parseInt(localStorage.getItem('click_rate'));}
+	if (localStorage.getItem('foodrate')) {	
+		foodrate = parseInt(localStorage.getItem('foodrate'));}
 	if (localStorage.getItem('woodperclick')) {
-	woodperclick = parseInt(localStorage.getItem('woodperclick'));
-}
+		woodperclick = parseInt(localStorage.getItem('woodperclick'));}
 	if (localStorage.getItem('population')) {
-	population = parseInt(localStorage.getItem('population'));
-}
+		population = parseInt(localStorage.getItem('population'));}
 	if (localStorage.getItem('stoneperclick')) {
-	stoneperclick = parseInt(localStorage.getItem('stoneperclick'));
-}
+		stoneperclick = parseInt(localStorage.getItem('stoneperclick'));}
 	if (localStorage.getItem('burncost')) {
-	burncost = parseInt(localStorage.getItem('burncost'));
-}
-	if (localStorage.getItem('burnexp')) {
-	burnexp = parseInt(localStorage.getItem('burnexp'));
-}
-	if (localStorage.getItem('autoharvestexp')) {
-	autoharvestexp = parseInt(localStorage.getItem('autoharvestexp'));
-}
+		burncost = parseInt(localStorage.getItem('burncost'));}
+	if (localStorage.getItem('burnexp')) {	
+		burnexp = parseInt(localStorage.getItem('burnexp'));}
+	if (localStorage.getItem('autoharvestexp')) {	
+		autoharvestexp = parseInt(localStorage.getItem('autoharvestexp'));}
 	if (localStorage.getItem('woodcoalratiocost')) {
-	woodcoalratiocost = parseInt(localStorage.getItem('woodcoalratiocost'));
-}
+		woodcoalratiocost = parseInt(localStorage.getItem('woodcoalratiocost'));}
 	if (localStorage.getItem('berryfindlevel')) {
-	berryfindlevel = parseInt(localStorage.getItem('berryfindlevel'));
-}
-  if (localStorage.getItem('coalrate')) {
-    coalrate = parseInt(localStorage.getItem('coalrate'));
-}
-  if (localStorage.getItem('hutwcost')) {
-    hutwcost = parseInt(localStorage.getItem('hutwcost'));
-}  
-  if (localStorage.getItem('hutscost')) {
-    hutscost = parseInt(localStorage.getItem('hutscost'));
-}  
-  if (localStorage.getItem('huts')) {
-    huts = parseInt(localStorage.getItem('huts'));
-}
-  if (localStorage.getItem('keeneyes')) {
-    keeneyes = parseInt(localStorage.getItem('keeneyes'));
-}
-  if (localStorage.getItem('talentpoints')) {
-    talentpoints = parseInt(localStorage.getItem('talentpoints'));
-}
-  if (localStorage.getItem('berryroast')) {
-    berryroast = parseInt(localStorage.getItem('berryroast'));
-}
-  if (localStorage.getItem('questnum')) {
-    questnum = parseInt(localStorage.getItem('questnum'));
-}
-  if (localStorage.getItem('researchhidden')) {
-    researchhidden = parseInt(localStorage.getItem('researchhidden'));
-}
-  if (localStorage.getItem('upgradehidden')) {
-    upgradehidden = parseInt(localStorage.getItem('upgradehidden'));
-}
-  if (localStorage.getItem('questcomp')) {
-    questcomp = parseInt(localStorage.getItem('questcomp'));
-}  
-  if (localStorage.getItem('buildingshidden')) {
-    buildingshidden = parseInt(localStorage.getItem('buildingshidden'));
-}  
-  if (localStorage.getItem('researchrate')) {
-    researchrate = parseInt(localStorage.getItem('researchrate'));
-}   
-  
-  updatefood();
-  autosave();
-  update_total_resources();
-  update_total_exp();
+		berryfindlevel = parseInt(localStorage.getItem('berryfindlevel'));}
+	if (localStorage.getItem('coalrate')) {
+		coalrate = parseInt(localStorage.getItem('coalrate'));}
+	if (localStorage.getItem('hutwcost')) {
+		hutwcost = parseInt(localStorage.getItem('hutwcost'));}  
+	if (localStorage.getItem('hutscost')) {
+		hutscost = parseInt(localStorage.getItem('hutscost'));}  
+	if (localStorage.getItem('huts')) { 
+		huts = parseInt(localStorage.getItem('huts'));}
+	if (localStorage.getItem('keeneyes')) {
+		keeneyes = parseInt(localStorage.getItem('keeneyes'));}
+	if (localStorage.getItem('talentpoints')) { 
+		talentpoints = parseInt(localStorage.getItem('talentpoints'));}
+	if (localStorage.getItem('berryroast')) { 
+		berryroast = parseInt(localStorage.getItem('berryroast'));}
+	if (localStorage.getItem('questnum')) { 
+		questnum = parseInt(localStorage.getItem('questnum'));}
+	if (localStorage.getItem('researchhidden')) { 
+		researchhidden = parseInt(localStorage.getItem('researchhidden'));}
+	if (localStorage.getItem('upgradehidden')) { 
+		upgradehidden = parseInt(localStorage.getItem('upgradehidden'));}
+	if (localStorage.getItem('questcomp')) { 
+		questcomp = parseInt(localStorage.getItem('questcomp'));} 
+	if (localStorage.getItem('buildingshidden')) {
+		buildingshidden = parseInt(localStorage.getItem('buildingshidden'));}  
+	if (localStorage.getItem('researchrate')) { 
+		researchrate = parseInt(localStorage.getItem('researchrate'));}   
+	if (localStorage.getItem('loggerrate')) { 
+		loggerrate = parseInt(localStorage.getItem('loggerrate'));}   
+	if (localStorage.getItem('forageexplevel')) { 
+		forageexplevel = parseInt(localStorage.getItem('forageexplevel'));}   	
+	if (localStorage.getItem('foodmax')) { 
+		foodmax = parseInt(localStorage.getItem('foodmax'));}   	
+	if (localStorage.getItem('rp')) {
+		rp = parseInt(localStorage.getItem('rp'));} 	
+	if (localStorage.getItem('rpmax')) {
+		rpmax = parseInt(localStorage.getItem('rpmax'));} 	
+	if (localStorage.getItem('mana')) { 
+		mana = parseInt(localStorage.getItem('mana'));} 	
+	if (localStorage.getItem('manamax')) {
+		manamax = parseInt(localStorage.getItem('manamax'));} 	
+	if (localStorage.getItem('logger')) { 
+		logger = parseInt(localStorage.getItem('logger'));} 		
+	
+	updatefood();
+	autosave();
+	update_total_resources();
+	update_total_exp();
 }
 
 function showsave() {
@@ -220,15 +217,18 @@ function showsave() {
 }
 
 document.getElementById("foodstart").onclick = function() {
-  update_workers();
   updatefood();
+  updatelogger();
   autosave();
   update_wood_per_second();
   updatestonepersecond();
+  updatelogger();
+  	update_total_resources();
+	update_total_exp();
 };
 
 document.getElementById("loadgame").onclick = function() {
-  update_workers();
+  updatelogger();
   loadgame();
   update_wood_per_second();
   updatestonepersecond();
@@ -253,9 +253,15 @@ document.getElementById("loadgame").onclick = function() {
 	$('#upgrademenubutton').removeClass('hidden');
   }
     if (buildingshidden > 0) {
-	$('#buildingmenubutton').removeClass('hidden');
-  }
 
+  }
+	if (logger > 0) {	
+	$('#buildingmenubutton').removeClass('hidden');
+	$('#rph1').removeClass('text-danger');
+	$('#rph1').addClass('text-success');
+	$('#rph1').removeClass('hex');
+	$('#rph1').addClass('hexc');
+	}
 };
 
 document.getElementById("save").onclick = function() {

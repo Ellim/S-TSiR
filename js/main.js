@@ -9,30 +9,23 @@ function foo () {
 
 function update_total_resources() {    
   var e = document.getElementById("total_wood");
-  e.innerHTML = wood.toFixed(0);
+  e.innerHTML = wood.toFixed(2);
   var e2 = document.getElementById("total_stone");
-  e2.innerHTML = stone.toFixed(0);
-  var e3 = document.getElementById("woodperclick");
-  e3.innerHTML = currentlevel;
-  var e4 = document.getElementById("stoneperclick");
-  e4.innerHTML = Math.round(currentlevel / 10).toFixed(0);
+  e2.innerHTML = stone.toFixed(2);
   var e5 = document.getElementById("total_coal");
-  e5.innerHTML = coal.toFixed(0);
+  e5.innerHTML = coal.toFixed(2);
   var e6 = document.getElementById("currentfood");
-  e6.innerHTML = currentfood.toFixed(0);
+  e6.innerHTML = currentfood.toFixed(2);
   var e7 = document.getElementById("berries");
-  e7.innerHTML = berries.toFixed(0);
-  var e8 = document.getElementById("berrychance");
-  if (keeneyes > 0) {
-  e8.innerHTML = (((6 - berryfindlevel)/6) * 100).toFixed(2) + '%';
-  } else {e8.innerHTML = 0 + '%';}
-  $('#foodbar').width((currentfood/100) + '%');
+  e7.innerHTML = berries.toFixed(2);
+  $('#foodbar').width(((currentfood/foodmax)* 100) + '%');
+  $('#rpbar').width(((rp/rpmax)* 100) + '%');
   var e9 = document.getElementById("pop");
   e9.innerHTML = population.toFixed(0);
   var h = document.getElementById("hutnum");
   h.innerHTML = huts;
   var e10 = document.getElementById("huts");
-  e10.innerHTML = hutwcost.toFixed(0) + ' Wood || ' + hutscost.toFixed(0) + ' Stone';
+  e10.innerHTML = hutwcost.toFixed(2) + ' Wood || ' + hutscost.toFixed(2) + ' Stone';
   var e11 = document.getElementById("autoharvest");
   e11.innerHTML = autoharvestcost + ' Stone';
   var e12 = document.getElementById("autoclicker_level");
@@ -47,6 +40,12 @@ function update_total_resources() {
   e16.innerHTML = quests[questnum];
   var e17 = document.getElementById("questdesc");
   e17.innerHTML = questdescs[questnum];
+  var e18 = document.getElementById("maxfood");
+  e18.innerHTML = foodmax;
+  var e19 = document.getElementById("RP");
+  e19.innerHTML = rp;
+  var e20 = document.getElementById("maxrp");
+  e20.innerHTML = rpmax;
   updatefoodpersecond();
   updateui();
 }
@@ -108,7 +107,6 @@ function update_workers() {
   clearInterval(interval_auto);
   interval_auto = setInterval(function() {
     if (currentfood > 0) {
-    wood += woodpersecond;
     stone += stonepersecond;
     update_total_resources();
     update_total_resources();  
@@ -116,6 +114,7 @@ function update_workers() {
   }}, click_rate);
 
 }
+
 
 function updatefood() {
   clearInterval(interval_autof);
@@ -131,6 +130,14 @@ function updatefood() {
   }, foodrate);
 }
 
+function forage(m) {
+	currentfood += ((1 + (currentlevel * .25)) * m);
+	totalexp += (m * forageexplevel);
+	if (currentfood > foodmax) {currentfood = foodmax};
+	rp += (m * forageexplevel);
+	update_total_exp();
+    update_total_resources();
+}
 
 
 function getRandomInt(min, max) {
@@ -249,9 +256,7 @@ document.getElementById("eatb100").onclick = function() {
 
 
 document.getElementById("Forage").onclick = function() {
-  foragestone(1);
-  update_total_exp();
-  
+  forage(1);   
 };
 
 document.getElementById("forage10").onclick = function() {
@@ -323,7 +328,6 @@ document.getElementById("harvestupgrade_speed").onclick = function() {
   stone -= upgrade_cost;
   upgrade_speed += 1;
   click_rate = click_rate * .90;
-  update_workers();
   update_total_exp();
   update_total_resources()
   update_wood_per_second();
@@ -354,6 +358,5 @@ document.getElementById("Cheat").onclick = function() {
 
 
 //start our autoclickers
-
 
 
