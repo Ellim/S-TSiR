@@ -8,6 +8,12 @@ document.getElementById("fruittreebutton").onclick = function() {
 		currentfood -= fruittreecost;
 		fruittreecost += (2 * fruittreecost);
 		foodrate += 0.5;
+		waterrate -= 5;
+		foodmax += 75;
+		var tempvar = document.getElementById("fruittreecost");
+		tempvar.innerHTML = fruittreecost.toFixed(2);
+		var tempvar2 = document.getElementById("maxfood");
+		tempvar2.innerHTML = foodmax.toFixed(2);
 	}
 };
 
