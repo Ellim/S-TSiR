@@ -31,20 +31,7 @@ function updatewater() {
 }
 	
 function updatefood() {
-  clearInterval(foodinterval);
-  foodinterval = setInterval(function() {
-	if (currentfood < foodmax) {
-		currentfood += foodrate;
-	}
-	if (currentfood > foodmax) {
-		currentfood = foodmax;
-	}
-	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood;
-	var tempvar2 = document.getElementById("foodps");
-	tempvar2.innerHTML = '+' + (foodrate/(foodtick/1000)).toFixed(2) + '/sec';
-	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
-	}, foodtick);
+alert("Hello! I am an alert box!!");
 }
 
 
