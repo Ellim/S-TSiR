@@ -5,10 +5,6 @@ document.getElementById("Forage").onclick = function() {
 
 document.getElementById("fruittreebutton").onclick = function() {
 	if (currentfood >= fruittreecost) {
-		if (foodon = 0) {
-			foodon = 1;
-			updatefood();
-		}
 		currentfood -= fruittreecost;
 		fruittreecost += (2 * fruittreecost);
 		foodrate += 0.5;
