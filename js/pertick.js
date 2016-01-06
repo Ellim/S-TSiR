@@ -23,7 +23,7 @@ function updatewater() {
 		water = watermax;
 	}
 	var tempvar = document.getElementById("currentwater");
-	tempvar.innerHTML = water;
+	tempvar.innerHTML = water.toFixed(2);
 	var tempvar2 = document.getElementById("waterps");
 	tempvar2.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
@@ -40,7 +40,7 @@ function updatefood() {
 		currentfood = foodmax;
 	}
 	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood;
+	tempvar.innerHTML = currentfood.toFixed(2);
 	var tempvar2 = document.getElementById("foodps");
 	tempvar2.innerHTML = '+' + (foodrate/(foodtick/1000)).toFixed(2) + '/sec';
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
