@@ -50,6 +50,7 @@ function updatefood() {
 
 document.getElementById("newgame").onclick = function() {
 		updatewater();
+		updatefood();
 	}
 
 	
