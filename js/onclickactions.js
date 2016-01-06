@@ -20,7 +20,7 @@ function forage(m) {
 		var tempvar = document.getElementById("currentfood");
 		tempvar.innerHTML = currentfood.toFixed(2);
 		var tempvar2 = document.getElementById("currentwater");
-		tempvar2.innerHTML = water;
+		tempvar2.innerHTML = water.toFixed(2);
 		var tempvar3 = document.getElementById("waterps");
 		tempvar3.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
 		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
