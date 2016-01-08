@@ -1,17 +1,11 @@
 
-var waterinterval;
-var foodinterval;
-var watertick = 2000;
-var foodtick = 500;
-var water = 0;
-var waterrate = 20;
-var watermax = 1000;
-var foodrate = 0;
-var foodon = 0;
-var currentfood = 15;
-var foodmax = 150;
-var totalexp = 0;
-var fruittreecost = 25;
+function autosave() {
+	clearInterval(saveinterval);
+	saveinterval = setInterval(function() {
+		savegame();
+	}, savetick);
+}
+
 
 function updatewater() {
   clearInterval(waterinterval);
@@ -51,8 +45,21 @@ function updatefood() {
 document.getElementById("newgame").onclick = function() {
 		updatewater();
 		updatefood();
-	}
+		autosave();
+		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
+		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
+}
 
+document.getElementById("loadgame").onclick = function() {
+		loadgame();
+		updatewater();
+		updatefood();
+		autosave();
+		var tempvar = document.getElementById("currentwater");
+		tempvar.innerHTML = water.toFixed(2);
+		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
+		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
+}
 	
 /*
 First water source is a stream, provides 10 water per second base.

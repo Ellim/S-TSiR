@@ -1,270 +1,121 @@
-//variables
-var currentfood = 150; //Food will drain over time
-var foodmax = 1500;
-var wood = 100; 
-var stone = 10;
-var coal = 1;
-var population = 1;
-var berries = 10;
-var woodpersecond = 0; //wood gain per tick
-var stonepersecond = 0; //stone **
-var autoharvestcost = 1; //the cost of this should increase exponentially
-var upgrade_speed = 0; //the level of the speed up upgrade
-
-var mana = 0;
-var manamax = 0;
-
-var totalexp = 0; //EXP goes up with each forage
-var truetotalexp = 0;
-var exptnl = 10; //EXP to next level
-var currentlevel = 1; //Level will go up with EXP gains
-var talentpoints = 0;
-var forageexplevel = 1;
-var rp = 200;
-var rpmax = 500;
-
-var click_rate = 1000; //ms between each autoclick
-var loggerrate = 1000;
-var foodrate = 5000; //ms between food decrease
-var saverate = 60000;
-var interval_auto; 
-var interval_autof;
-var intervallogger;
+var waterinterval;
+var foodinterval;
 var saveinterval;
-var interval_autorp;
-var researchrate = 2000;
 
-var woodperclick = 1;
-var stoneperclick = 0;
-var burncost = 100;
-var burnexp = 10;
-var autoharvestexp = 0;
-var woodcoalratiocost = 10;
-var berryfindlevel = 5;
-var coalrate = 1;
+var watertick = 2000;
+var foodtick = 500;
+var savetick = 300000;
 
-var hutwcost = 750;
-var hutscost = 75;
+var waterrate = 20;
+var foodrate = 0;
+
+var water = 250;
+var watermax = 1000;
+var currentfood = 15;
+var foodmax = 150;
+var coal = 0;
+var coalmax = 50;
+var mud = 0;
+var mudmax = 1000;
+var mana = 0;
+var steam = 0;
+var wood = 0;
+var woodmax = 250;
+var stone = 0;
+var stonemax = 200;
+
+var currentlevel = 1;
+var totalexp = 0;
+var exptnl = 10;
+var talentpoints = 0;
+
+var fruittreecost = 25;
+var fruittrees = 0;
+var riverupgradecost = 1;
+var riverlevel = 0;
+
 var huts = 0;
-var logger = 0;
+var roundhouses = 0;
+var cabins = 0;
 
-var keeneyes = 0;
-var berryroast = 0;
-
-var researchhidden = 0;
-var upgradehidden = 0;
-var buildingshidden = 0;
-
-var questnum = 0;
-var questcomp = 0;
-var quests = ["Aquire Talent Points","Unlock Keen Eyes","Reach Level 10","Research Cooking Talents","Aquire More Talent Points","Unlock Roasted Berries","Unlock Buildings","Increase Population to 10", "Unlock Carpentry"];
-var questdescs = ["Performing actions such as Foraging or Burning Wood will award EXP.<br />Reach Level 6 and acquire 5 Talent Points.","In the Talents Menu open the Foraging Tree.<br />Spend your Talent Points to unlock 'Keen Eyes'.<br />This will allow you a chance to identify and gather edible berries while foraging.","Get to Level 10.<br />This will unlock the Research Menu.<br />Remember burning wood is a good source of early EXP.","Hit level 15.<br .><i>This is a placeholder until Research is finished.</i>","Reach Level 16 to acquire 10 additional Talent Points.","In the Talents Menu open the Cooking Tree.<br />Spend your Talent Points to unlock 'Roasted Berries'.<br />This will allow you to consume 5 Berries and a single unit of Charcoal to increase food at double the rate of eating them raw.","Unlock Buildings through Research.<br />(This will be added soon, for now it's just given at level 20.)","Gather enough raw materials to build 5 huts.<br />This will increase population to 11, allowing you to forage 10 times with a single click!"];
-
-
-function autosave() {
-  clearInterval(saveinterval);
-  saveinterval = setInterval(function() {
-    savegame();
-  }, saverate);
-}
 
 function savegame() {
-  localStorage.setItem('currentfood', currentfood);
-  localStorage.setItem('totalexp', totalexp);
-  localStorage.setItem('truetotalexp', truetotalexp);
-  localStorage.setItem('exptnl', exptnl);
-  localStorage.setItem('currentlevel', currentlevel);
-  localStorage.setItem('wood', wood);
-  localStorage.setItem('stone', stone);
-  localStorage.setItem('coal', coal);
-  localStorage.setItem('berries', berries);
-  localStorage.setItem('woodpersecond', woodpersecond);
-  localStorage.setItem('stonepersecond', stonepersecond);
-  localStorage.setItem('autoharvestcost', autoharvestcost);
-  localStorage.setItem('upgrade_speed', upgrade_speed);
-  localStorage.setItem('click_rate', click_rate);
-  localStorage.setItem('foodrate', foodrate);
-  localStorage.setItem('population', population);
-  localStorage.setItem('woodperclick', woodperclick);
-  localStorage.setItem('stoneperclick', stoneperclick);
-  localStorage.setItem('burncost', burncost);
-  localStorage.setItem('burnexp', burnexp);
-  localStorage.setItem('autoharvestexp', autoharvestexp);
-  localStorage.setItem('woodcoalratiocost', woodcoalratiocost);
-  localStorage.setItem('berryfindlevel', berryfindlevel);
-  localStorage.setItem('coalrate', coalrate);
-  localStorage.setItem('hutwcost', hutwcost);
-  localStorage.setItem('hutscost', hutscost);
-  localStorage.setItem('huts', huts);
-  localStorage.setItem('keeneyes', keeneyes);
-  localStorage.setItem('talentpoints', talentpoints);
-  localStorage.setItem('berryroast', berryroast);
-  localStorage.setItem('questnum', questnum);
-  localStorage.setItem('researchhidden', researchhidden);
-  localStorage.setItem('upgradehidden', upgradehidden);
-  localStorage.setItem('questcomp', questcomp);
-  localStorage.setItem('buildingshidden', buildingshidden);
-  localStorage.setItem('researchrate', researchrate);
-  localStorage.setItem('loggerrate', loggerrate);  
-  localStorage.setItem('forageexplevel', forageexplevel);    
-  localStorage.setItem('foodmax', foodmax);   
-  localStorage.setItem('rp', rp);     
-  localStorage.setItem('rpmax', rpmax);     
-  localStorage.setItem('mana', mana);     
-  localStorage.setItem('manamax', manamax);     
-  localStorage.setItem('logger', logger);
+	var save = {
+	waterinterval: waterinterval,
+	foodinterval: foodinterval,
+	saveinterval: saveinterval,
+	
+	watertick: watertick,
+	foodtick: foodtick,
+	savetick: savetick,
+	
+	waterrate: waterrate,
+	foodrate: foodrate,
+	
+	water: water,
+	watermax: watermax,
+	currentfood: currentfood,
+	foodmax: foodmax,
+	coal: coal,
+	coalmax: coalmax,
+	mud: mud,
+	mudmax: mudmax,
+	mana: mana,
+	steam: steam,
+	wood: wood,
+	woodmax: woodmax,
+	stone: stone,
+	stonemax: stonemax,
+	
+	currentlevel: currentlevel,
+	totalexp: totalexp,
+	exptnl: exptnl,
+	
+	fruittreecost: fruittreecost,
+	fruittrees: fruittrees,
+	riverupgradecost: riverupgradecost,
+	riverlevel: riverlevel
+
+	}
+	localStorage.setItem("save",JSON.stringify(save));
 }
 
 function loadgame() {
-  	if (localStorage.getItem('currentfood')) {	
-	currentfood = parseInt(localStorage.getItem('currentfood'));}
-	if (localStorage.getItem('totalexp')) {
-		totalexp = parseInt(localStorage.getItem('totalexp'));}
-	if (localStorage.getItem('truetotalexp')) {
-		truetotalexp = parseInt(localStorage.getItem('truetotalexp'));}
-	if (localStorage.getItem('exptnl')) {
-		exptnl = parseInt(localStorage.getItem('exptnl'));}
-	if (localStorage.getItem('currentlevel')) {
-		currentlevel = parseInt(localStorage.getItem('currentlevel'));}
-	if (localStorage.getItem('wood')) {
-		wood = parseInt(localStorage.getItem('wood'));}
-	if (localStorage.getItem('stone')) {
-		stone = parseInt(localStorage.getItem('stone'));}
-	if (localStorage.getItem('coal')) {
-		coal = parseInt(localStorage.getItem('coal'));}
-	if (localStorage.getItem('berries')) {
-		berries = parseInt(localStorage.getItem('berries'));}
-	if (localStorage.getItem('woodpersecond')) {
-		woodpersecond = parseInt(localStorage.getItem('woodpersecond'));}
-	if (localStorage.getItem('stonepersecond')) {	
-		stonepersecond = parseInt(localStorage.getItem('stonepersecond'));}
-	if (localStorage.getItem('autoharvestcost')) {
-		autoharvestcost = parseInt(localStorage.getItem('autoharvestcost'));}
-	if (localStorage.getItem('upgrade_speed')) {	
-		upgrade_speed = parseInt(localStorage.getItem('upgrade_speed'));}
-	if (localStorage.getItem('click_rate')) {	
-		click_rate = parseInt(localStorage.getItem('click_rate'));}
-	if (localStorage.getItem('foodrate')) {	
-		foodrate = parseInt(localStorage.getItem('foodrate'));}
-	if (localStorage.getItem('woodperclick')) {
-		woodperclick = parseInt(localStorage.getItem('woodperclick'));}
-	if (localStorage.getItem('population')) {
-		population = parseInt(localStorage.getItem('population'));}
-	if (localStorage.getItem('stoneperclick')) {
-		stoneperclick = parseInt(localStorage.getItem('stoneperclick'));}
-	if (localStorage.getItem('burncost')) {
-		burncost = parseInt(localStorage.getItem('burncost'));}
-	if (localStorage.getItem('burnexp')) {	
-		burnexp = parseInt(localStorage.getItem('burnexp'));}
-	if (localStorage.getItem('autoharvestexp')) {	
-		autoharvestexp = parseInt(localStorage.getItem('autoharvestexp'));}
-	if (localStorage.getItem('woodcoalratiocost')) {
-		woodcoalratiocost = parseInt(localStorage.getItem('woodcoalratiocost'));}
-	if (localStorage.getItem('berryfindlevel')) {
-		berryfindlevel = parseInt(localStorage.getItem('berryfindlevel'));}
-	if (localStorage.getItem('coalrate')) {
-		coalrate = parseInt(localStorage.getItem('coalrate'));}
-	if (localStorage.getItem('hutwcost')) {
-		hutwcost = parseInt(localStorage.getItem('hutwcost'));}  
-	if (localStorage.getItem('hutscost')) {
-		hutscost = parseInt(localStorage.getItem('hutscost'));}  
-	if (localStorage.getItem('huts')) { 
-		huts = parseInt(localStorage.getItem('huts'));}
-	if (localStorage.getItem('keeneyes')) {
-		keeneyes = parseInt(localStorage.getItem('keeneyes'));}
-	if (localStorage.getItem('talentpoints')) { 
-		talentpoints = parseInt(localStorage.getItem('talentpoints'));}
-	if (localStorage.getItem('berryroast')) { 
-		berryroast = parseInt(localStorage.getItem('berryroast'));}
-	if (localStorage.getItem('questnum')) { 
-		questnum = parseInt(localStorage.getItem('questnum'));}
-	if (localStorage.getItem('researchhidden')) { 
-		researchhidden = parseInt(localStorage.getItem('researchhidden'));}
-	if (localStorage.getItem('upgradehidden')) { 
-		upgradehidden = parseInt(localStorage.getItem('upgradehidden'));}
-	if (localStorage.getItem('questcomp')) { 
-		questcomp = parseInt(localStorage.getItem('questcomp'));} 
-	if (localStorage.getItem('buildingshidden')) {
-		buildingshidden = parseInt(localStorage.getItem('buildingshidden'));}  
-	if (localStorage.getItem('researchrate')) { 
-		researchrate = parseInt(localStorage.getItem('researchrate'));}   
-	if (localStorage.getItem('loggerrate')) { 
-		loggerrate = parseInt(localStorage.getItem('loggerrate'));}   
-	if (localStorage.getItem('forageexplevel')) { 
-		forageexplevel = parseInt(localStorage.getItem('forageexplevel'));}   	
-	if (localStorage.getItem('foodmax')) { 
-		foodmax = parseInt(localStorage.getItem('foodmax'));}   	
-	if (localStorage.getItem('rp')) {
-		rp = parseInt(localStorage.getItem('rp'));} 	
-	if (localStorage.getItem('rpmax')) {
-		rpmax = parseInt(localStorage.getItem('rpmax'));} 	
-	if (localStorage.getItem('mana')) { 
-		mana = parseInt(localStorage.getItem('mana'));} 	
-	if (localStorage.getItem('manamax')) {
-		manamax = parseInt(localStorage.getItem('manamax'));} 	
-	if (localStorage.getItem('logger')) { 
-		logger = parseInt(localStorage.getItem('logger'));} 		
+	var savestring = JSON.parse(localStorage.getItem("save")); 
 	
-	updatefood();
-	autosave();
-	update_total_resources();
-	update_total_exp();
+	if (typeof savestring.watertick !== "undefined") watertick = savestring.watertick;
+	if (typeof savestring.foodtick !== "undefined") foodtick = savestring.foodtick;
+	if (typeof savestring.savetick !== "undefined") savetick = savestring.savetick;
+	
+	if (typeof savestring.waterrate !== "undefined") waterrate = savestring.waterrate;
+	if (typeof savestring.foodrate !== "undefined") foodrate = savestring.foodrate;
+	
+	if (typeof savestring.water !== "undefined") water = savestring.water;
+	if (typeof savestring.watermax !== "undefined") watermax = savestring.watermax;
+	if (typeof savestring.currentfood !== "undefined") currentfood = savestring.currentfood;
+	if (typeof savestring.foodmax !== "undefined") foodmax = savestring.foodmax;
+	if (typeof savestring.coal !== "undefined") coal = savestring.coal;
+	if (typeof savestring.coalmax !== "undefined") coalmax = savestring.coalmax;
+	if (typeof savestring.mud !== "undefined") mud = savestring.mud;
+	if (typeof savestring.mudmax !== "undefined") mudmax = savestring.mudmax;
+	if (typeof savestring.mana !== "undefined") mana = savestring.mana;
+	if (typeof savestring.steam !== "undefined") steam = savestring.steam;
+	if (typeof savestring.wood !== "undefined") wood = savestring.wood;	
+	if (typeof savestring.woodmax !== "undefined") woodmax = savestring.woodmax;	
+	if (typeof savestring.stone !== "undefined") stone = savestring.stone;	
+	if (typeof savestring.stonemax !== "undefined") stonemax = savestring.stonemax;	
+	
+	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;
+	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
+	if (typeof savestring.exptnl !== "undefined") exptnl = savestring.exptnl;
+	
+	if (typeof savestring.fruittreecost !== "undefined") fruittreecost = savestring.fruittreecost;
+	if (typeof savestring.fruittrees !== "undefined") fruittrees = savestring.fruittrees;
+	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
+	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
 }
 
 function showsave() {
   savegame();
-  alert("The game has been saved. NOTE: The game will autosave once a minute.")
-}
-
-document.getElementById("foodstart").onclick = function() {
-  updatefood();
-  updatelogger();
-  autosave();
-  update_wood_per_second();
-  updatestonepersecond();
-  updatelogger();
-  	update_total_resources();
-	update_total_exp();
-};
-
-document.getElementById("loadgame").onclick = function() {
-  updatelogger();
-  loadgame();
-  update_wood_per_second();
-  updatestonepersecond();
-    if (keeneyes > 0) {
-    $('#cookingtalentsbutton').prop('disabled', false);
-    $('#doublestoneforage').prop('disabled', false);
-    $('#foragefooddown1').prop('disabled', false);
-    $('#cookingmenubutton').removeClass('hidden');
-    $('#addberryforage').removeClass('btn-success');
-    $('#addberryforage').addClass('btn-info');
-  }
-  if (berryroast > 0) {
-    $('#roastedberries').removeClass('hidden');
-    $('#roastberriesmultibutton').removeClass('hidden');
-    $('#unlockberryroast').removeClass('btn-danger');
-    $('#unlockberryroast').addClass('btn-info');
-  }
-  if (researchhidden > 0) {
-	$('#researchmenubutton').removeClass('hidden');
-  }
-    if (upgradehidden > 0) {
-	$('#upgrademenubutton').removeClass('hidden');
-  }
-    if (buildingshidden > 0) {
-
-  }
-	if (logger > 0) {	
-	$('#buildingmenubutton').removeClass('hidden');
-	$('#rph1').removeClass('text-danger');
-	$('#rph1').addClass('text-success');
-	$('#rph1').removeClass('hex');
-	$('#rph1').addClass('hexc');
-	}
-};
-
-document.getElementById("save").onclick = function() {
-  savegame();
-  showsave();
+  alert("The game has been saved. NOTE: The game will autosave once every five minutes.")
 }
