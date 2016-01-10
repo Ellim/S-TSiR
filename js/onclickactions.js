@@ -10,17 +10,17 @@ document.getElementById("save").onclick = function() {
 document.getElementById("fruittreebutton").onclick = function() {
 	if (currentfood >= fruittreecost) {
 		currentfood -= fruittreecost;
-		fruittreecost += (2 * fruittreecost);
+		fruittreecost = (fruittreecost * 1.15);
 		fruittrees += 1;
 		foodrate += 0.5;
 		waterrate -= 5;
-		foodmax += 75;
 		var tempvar = document.getElementById("fruittreecost");
 		tempvar.innerHTML = fruittreecost.toFixed(2);
 		var tempvar2 = document.getElementById("maxfood");
 		tempvar2.innerHTML = foodmax.toFixed(2);
 		var tempvar3 = document.getElementById("fruittreenum");
 		tempvar3.innerHTML = fruittrees.toFixed(0);
+		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	}
 };
 
@@ -29,17 +29,23 @@ document.getElementById("fruittreechop").onclick = function() {
 		fruittrees -= 1;
 		foodrate -= 0.5;
 		waterrate += 5;
-		wood += 10;
+		wood += (fruittreecost/2.5);
+		currentfood += (fruittreecost * 0.25);
 		if (wood > woodmax) {
 			wood = woodmax;
 		}
-		fruittreecost -= (fruittreecost/3);
+		fruittreecost = (fruittreecost/1.15);
 		var tempvar = document.getElementById("fruittreecost");
 		tempvar.innerHTML = fruittreecost.toFixed(2);
 		var tempvar2 = document.getElementById("fruittreenum");
 		tempvar2.innerHTML = fruittrees.toFixed(0);
 		var tempvar3 = document.getElementById("total_wood");
-		tempvar3.innerHTML = wood;
+		tempvar3.innerHTML = wood.toFixed(2);
+		var tempvar4 = document.getElementById("maxfood");
+		tempvar4.innerHTML = foodmax.toFixed(2);
+		var tempvar5 = document.getElementById("currentfood");
+		tempvar5.innerHTML = currentfood.toFixed(2);
+		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	}
 }
 
@@ -55,13 +61,39 @@ document.getElementById("riverbutton").onclick = function() {
 		tempvar2.innerHTML = riverlevel;
 		var tempvar3 = document.getElementById("riverproduction");
 		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
+		var tempvar4 = document.getElementById("talentpoints");
+		tempvar4.innerHTML = talentpoints;
+		var tempvar5 = document.getElementById("waterps");
+		tempvar5.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
+	}
+};
+
+document.getElementById("hutbutton").onclick = function() {
+	if (wood >= hutcost) {
+		wood -= hutcost;
+		totalexp += hutcost;
+		hutcost += (hutcost*1.25);
+		huts += 1;
+		popmax += hutlevel;
+		var tempvar = document.getElementById("hutnum");
+		tempvar.innerHTML = huts;
+		var tempvar2 = document.getElementById("hutcost");
+		tempvar2.innerHTML = hutcost.toFixed(2);
+		var tempvar3 = document.getElementById("hutexp");
+		tempvar3.innerHTML = hutcost.toFixed(2);
+		var tempvar4 = document.getElementById("popmax");
+		tempvar4.innerHTML = popmax.toFixed(0);
+		var tempvar5 = document.getElementById("total_wood");
+		tempvar5.innerHTML = wood.toFixed(2);
+		
 	}
 };
 
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
-		currentfood += m;
-		totalexp += m ;
+		var popbonus = (m * ((population - 1) * 0.25));
+		currentfood += m + popbonus;
+		totalexp += m + popbonus;
 		water -= (m * 5)
 		if (currentfood > foodmax) {currentfood = foodmax};
 		var tempvar = document.getElementById("currentfood");
@@ -81,12 +113,12 @@ function forage(m) {
 function updatetotalexp() {   
   var exppct = totalexp/exptnl;
   var tempvar = document.getElementById("exptotal");
-  tempvar.innerHTML = totalexp;
+  tempvar.innerHTML = totalexp.toFixed(0);
   var tempvar2 = document.getElementById("exptnl");
-  tempvar2.innerHTML = exptnl;
+  tempvar2.innerHTML = exptnl.toFixed(0);
     if (totalexp > exptnl - 1) {
     totalexp = totalexp - exptnl;
-    exptnl = (exptnl * 1.05).toFixed(0);
+    exptnl = (exptnl * 1.05);
     currentlevel = currentlevel + 1;
 	if (currentlevel % 5 === 0) {
 		talentpoints += 1;
@@ -94,9 +126,9 @@ function updatetotalexp() {
     
     } 
   var tempvar3 = document.getElementById("current_level");
-  tempvar3.innerHTML = currentlevel;
+  tempvar3.innerHTML = currentlevel.toFixed(0);
   var tempvar4 = document.getElementById("exptnl")
-  tempvar4.innerHTML = exptnl;
+  tempvar4.innerHTML = exptnl.toFixed(0);
   var tempvar5 = document.getElementById("talentpoints")
-  tempvar5.innerHTML = talentpoints;
+  tempvar5.innerHTML = talentpoints.toFixed(0);
 }

@@ -11,12 +11,12 @@ var foodrate = 0;
 
 var water = 250;
 var watermax = 1000;
-var currentfood = 15;
-var foodmax = 150;
+var currentfood = 25;
+var foodmax = 350;
 var coal = 0;
 var coalmax = 50;
-var mud = 0;
-var mudmax = 1000;
+var clay = 0;
+var claymax = 1000;
 var mana = 0;
 var steam = 0;
 var wood = 0;
@@ -31,13 +31,24 @@ var talentpoints = 0;
 
 var fruittreecost = 25;
 var fruittrees = 0;
+
 var riverupgradecost = 1;
 var riverlevel = 0;
 
 var huts = 0;
-var roundhouses = 0;
-var cabins = 0;
+var hutcost = 25;
+var hutlevel = 2;
 
+var roundhouses = 0;
+var rhcost = 250;
+var rhlevel = 5;
+
+var cabins = 0;
+var cabincost = 100;
+var cabinlevel = 10;
+
+var population = 1;
+var popmax = 1;
 
 function savegame() {
 	var save = {
@@ -58,8 +69,8 @@ function savegame() {
 	foodmax: foodmax,
 	coal: coal,
 	coalmax: coalmax,
-	mud: mud,
-	mudmax: mudmax,
+	clay: clay,
+	claymax: claymax,
 	mana: mana,
 	steam: steam,
 	wood: wood,
@@ -70,11 +81,28 @@ function savegame() {
 	currentlevel: currentlevel,
 	totalexp: totalexp,
 	exptnl: exptnl,
+	talentpoints: talentpoints,
 	
 	fruittreecost: fruittreecost,
 	fruittrees: fruittrees,
+	
 	riverupgradecost: riverupgradecost,
-	riverlevel: riverlevel
+	riverlevel: riverlevel,
+	
+	huts: huts,
+	hutcost: hutcost,
+	hutlevel: hutlevel,
+	
+	roundhouses: roundhouses,
+	rhcost: rhcost,
+	rhlevel: rhlevel,
+	
+	cabins: cabins,
+	cabincost: cabincost,
+	cabinlevel: cabinlevel,
+	
+	population: population,
+	popmax: popmax
 
 	}
 	localStorage.setItem("save",JSON.stringify(save));
@@ -96,8 +124,8 @@ function loadgame() {
 	if (typeof savestring.foodmax !== "undefined") foodmax = savestring.foodmax;
 	if (typeof savestring.coal !== "undefined") coal = savestring.coal;
 	if (typeof savestring.coalmax !== "undefined") coalmax = savestring.coalmax;
-	if (typeof savestring.mud !== "undefined") mud = savestring.mud;
-	if (typeof savestring.mudmax !== "undefined") mudmax = savestring.mudmax;
+	if (typeof savestring.clay !== "undefined") clay = savestring.clay;
+	if (typeof savestring.claymax !== "undefined") claymax = savestring.claymax;
 	if (typeof savestring.mana !== "undefined") mana = savestring.mana;
 	if (typeof savestring.steam !== "undefined") steam = savestring.steam;
 	if (typeof savestring.wood !== "undefined") wood = savestring.wood;	
@@ -108,11 +136,28 @@ function loadgame() {
 	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;
 	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
 	if (typeof savestring.exptnl !== "undefined") exptnl = savestring.exptnl;
+	if (typeof savestring.talentpoints !== "undefined") talentpoints = savestring.talentpoints;
 	
 	if (typeof savestring.fruittreecost !== "undefined") fruittreecost = savestring.fruittreecost;
 	if (typeof savestring.fruittrees !== "undefined") fruittrees = savestring.fruittrees;
+	
 	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
 	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
+	
+	if (typeof savestring.huts !== "undefined") huts = savestring.huts;
+	if (typeof savestring.hutcost !== "undefined") hutcost = savestring.hutcost;
+	if (typeof savestring.hutlevel !== "undefined") hutlevel = savestring.hutlevel;
+	
+	if (typeof savestring.roundhouses !== "undefined") roundhouses = savestring.roundhouses;
+	if (typeof savestring.rhcost !== "undefined") rhcost = savestring.rhcost;
+	if (typeof savestring.rhlevel !== "undefined") rhlevel = savestring.rhlevel;
+	
+	if (typeof savestring.cabins !== "undefined") cabins = savestring.cabins;
+	if (typeof savestring.cabincost !== "undefined") cabincost = savestring.cabincost;
+	if (typeof savestring.cabinlevel !== "undefined") cabinlevel = savestring.cabinlevel;
+	
+	if (typeof savestring.population !== "undefined") population = savestring.population;
+	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
 }
 
 function showsave() {

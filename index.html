@@ -70,9 +70,9 @@ $(document).ready(function(){
   <div class="row bg-info">  
     <div class="col-xs-4">
       <h1>Vitals</h1>
-        Food: <span id="currentfood">15.00</span> / <span id="maxfood">150.00</span> (<small id="foodps">-0.00/sec</small>)<br />
+        Food: <span id="currentfood">25.00</span> / <span id="maxfood">350.00</span> (<small id="foodps">-0.00/sec</small>)<br />
         <div class="progress">
-          <div class="progress-bar progress-bar-food" id="foodbar" role="progressbar" aria-valuenow="150" aria-valuemin="0" aria-valuemax="150" style="width:10%"><span class="glyphicon glyphicon-apple"</span></div>
+          <div class="progress-bar progress-bar-food" id="foodbar" role="progressbar" aria-valuenow="150" aria-valuemin="0" aria-valuemax="150" style="width:5%"><span class="glyphicon glyphicon-apple"</span></div>
         </div>
 		        
 		Water: <span id="currentwater">0</span> / <span id="maxwater">1000</span> (<small id="waterps">+10.00/sec</small>)<br />
@@ -90,15 +90,12 @@ $(document).ready(function(){
         Talent Points: <span id="talentpoints">0</span> <br />
 		Temp: <span id="currenttemp">70°</span> (<span id="tempeffect">+0.00%</span>)<br />
         Population: <span id="pop">1</span> / <span id="popmax">1 </span><br />
-		<span id="huts">Huts: <span id="total_huts">0</span></span> (<small id="hutpop">0 /</small><small id="hutpopmax"> 0</small>)<br />
-		<span id="roundhouses">Roundhouses: <span id="total_roundhouses">0</span></span> (<small id="roundhousepop">0 /</small><small id="roundhousepopmax"> 0</small>)<br />
-		<span id="cabins">Log Cabins: <span id="total_cabins">0</span></span> (<small id="cabinpop">0 /</small><small id="cabinpopmax"> 0</small>)<br />
 		
 		<h1>Resources</h1>
         Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<span id="woodps">+0</span>)<br />
         Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<span id="stoneps">+0</span>)<br />
 		<span id="charcoalresource" class="">Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<span id="coalps">+0</span>)</span><br />
-		<span id="mudresource" class="">Mud: <span id="total_mud">0</span> / <span id="mudmax">1000</span> (<span id="mudps">+0</span>)</span><br />
+		<span id="clayresource" class="">Clay: <span id="total_clay">0</span> / <span id="claymax">1000</span> (<span id="clayps">+0</span>)</span><br />
 		<span id="manaresource" class="">Mana: <span id="total_mana">0 (<span id="manaps">+0</span>)</span></span><br />
 		<span id="steamresource" class="">Steam: <span id="total_steam">0 (<span id="steamps">-0</span>)</span></span><br />
 		<div class="progress " id="steambardiv">
@@ -150,7 +147,7 @@ $(document).ready(function(){
 		  <input type="checkbox" id="burnwood" value=""> Wood
 		</label>
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burncoal" value=""> Coal
+		  <input type="checkbox" id="burncoal" value=""> Charcoal + 250 Water
 		</label>
 		</div>
 		
@@ -159,24 +156,79 @@ $(document).ready(function(){
     </div>
 
     <div class="col-xs-4">
-	<h1>Buildings</h1>
-		<button type="button" class="btn btn-river btn-block" id="riverbutton"><span class="glyphicon glyphicon-tint"></span> River <span class="badge" id="riverlevel">0</span></button>
-		Cost: <span id="riverupgradecost">1</span> Talent Point(s).<br />
-		Increase Water Production by: +<span id="riverproduction">10.00</span> Water per second.<br />
-		<br />
+	<h1></h1>
+		<div class="panel-group" id="rightpanelaccordian" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="prodheading">
+					<h1 class="panel-title">
+						<a role="buton" data-toggle="collapse" data-parent="#rightpanelaccordian" href="#prodlist" aria-expanded="true" aria-controls="prodlist">
+						Production
+						</a>
+					</h1>
+				</div>
+				<div id="prodlist" class="panel-collapse collapse" role="tabpanel" aria-labelledby="prodheading">
+					<div class="panel-body">
+						<div class="btn-toolbar" role="toolbar">
+							<div class="btn-group" role="group">
+								<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
+							<div class="btn-group" role="group">
+								<button type="button" class="btn btn-food" id="fruittreechop" data-toggle="tooltip" data-placement="right" data-container="body" title="Chop down a Fruit Tree for 40% of the Food Cost in Wood.">Chop <span class="glyphicon glyphicon-minus"></span>
+							</div>
+						</div>
+						</div>
+						Cost: <span id="fruittreecost">25</span> Food.<br /> 
+						Produces: <span id="fruittreeproduction">+1.00</span> Food per second.<br />
+						Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br />
+						<br />
+						
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="buildingsheading">
+					<h1 class="panel-title">
+						<a role="buton" data-toggle="collapse" data-parent="#rightpanelaccordian" href="#buildingslist" aria-expanded="false" aria-controls="buildingslist">
+						Buildings
+						</a>
+					</h1>
+				</div>
+				<div id="buildingslist" class="panel-collapse collapse" role="tabpanel" aria-labelledby="buildingsheading">
+					<div class="panel-body">
+						<button type="button" class="btn btn-pop btn-block" id="hutbutton"><span class="glyphicon glyphicon-home"></span> Hut <span class="badge" id="hutnum">0</span></button>
+						Cost: <span id="hutcost">25</span> Wood.<br />
+						EXP Gain: <span id="hutexp">25</span>.<br/>
+						Increase Population Max by: <span id="hutlevel">2</span><br /><br />
+						<button type="button" class="btn btn-pop btn-block" id="rhbutton"><span class="glyphicon glyphicon-home"></span> Roundhouse <span class="badge" id="rhnum">0</span></button>
+						Cost: <span id="rhcost">250</span> Clay.<br />
+						EXP Gain: <span id="rhexp">500</span>.<br/>
+						Increase Population Max by: <span id="rhlevel">5</span><br /><br />
+						<button type="button" class="btn btn-pop btn-block" id="cabinbutton"><span class="glyphicon glyphicon-home"></span> Cabin <span class="badge" id="cabinnum">0</span></button>
+						Cost: <span id="cabincost">100</span> Logs.<br />
+						EXP Gain: <span id="rhexp">1500</span>.<br/>
+						Increase Population Max by: <span id="rhlevel">10</span><br /><br />
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="upgradesheading">
+					<h1 class="panel-title">
+						<a role="buton" data-toggle="collapse" data-parent="#rightpanelaccordian" href="#upgradeslist" aria-expanded="false" aria-controls="upgradeslist">
+						Upgrades
+						</a>
+					</h1>
+				</div>
+				<div id="upgradeslist" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="upgradesheading">
+					<div class="panel-body">
+						<button type="button" class="btn btn-river btn-block" id="riverbutton"><span class="glyphicon glyphicon-tint"></span> River <span class="badge" id="riverlevel">0</span></button>
+						Cost: <span id="riverupgradecost">1</span> Talent Point(s).<br />
+						Increase Water Production by: +<span id="riverproduction">10.00</span> Water per second.<br />
+						<br />
+					</div>
+				</div>
+			</div>
+		</div>
 		
-		<div class="btn-toolbar" role="toolbar">
-		<div class="btn-group" role="group">
-		<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
-		<div class="btn-group" role="group">
-		<button type="button" class="btn btn-food" id="fruittreechop" data-toggle="tooltip" data-placement="right" data-container="body" title="Chop down a Fruit Tree for 10 Wood."><span class="glyphicon glyphicon-minus"></span>
-		</div>
-		</div>
-		</div>
-		Cost: <span id="fruittreecost">25 Food</span><br /> 
-		Produces: <span id="fruittreeproduction">+1.00 Food per second.</span><br />
-		Consumes: <span id="fruittresswatercost">-2.50 Water per second.</span><br />
-		<br />
+		
 		
     </div>
     
