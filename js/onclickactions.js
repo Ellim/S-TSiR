@@ -29,12 +29,12 @@ document.getElementById("fruittreechop").onclick = function() {
 		fruittrees -= 1;
 		foodrate -= 0.5;
 		waterrate += 5;
+		fruittreecost = (fruittreecost/1.15);
 		wood += (fruittreecost/2.5);
 		currentfood += (fruittreecost * 0.25);
 		if (wood > woodmax) {
 			wood = woodmax;
 		}
-		fruittreecost = (fruittreecost/1.15);
 		var tempvar = document.getElementById("fruittreecost");
 		tempvar.innerHTML = fruittreecost.toFixed(2);
 		var tempvar2 = document.getElementById("fruittreenum");
