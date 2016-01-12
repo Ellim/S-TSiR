@@ -157,30 +157,29 @@ $(document).ready(function(){
 
     <div class="col-xs-4">
 	<h1></h1>
-		<div class="accordion" role="tab" id="accordianheadingone">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class = "accordion-toggle" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
-            Resource Production
-            </a>
-        </div>
-        <div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
-            <div class="accordion-inner">
-                <div class="btn-toolbar" role="toolbar">
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
+	<div class="accordion" role="tab" id="accordianheadingone">
+    		<div class="accordion-group">
+        		<div class="accordion-heading">
+            			<a class = "accordion-toggle btn btn-block" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
+            			Resource Production
+            			</a>
+        		</div>
+        		<div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
+            			<div class="accordion-inner">
+                			<div class="btn-toolbar" role="toolbar">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
 							<div class="btn-group" role="group">
 								<button type="button" class="btn btn-food" id="fruittreechop" data-toggle="tooltip" data-placement="right" data-container="body" title="Chop down a Fruit Tree for 40% of the Food Cost in Wood.">Chop <span class="glyphicon glyphicon-minus"></span>
 							</div>
 						</div>
-						</div>
-						Cost: <span id="fruittreecost">25</span> Food.<br /> 
-						Produces: <span id="fruittreeproduction">+1.00</span> Food per second.<br />
-						Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br />
-						<br />
-            </div>
-        </div>
-    </div>
+					</div>
+					Cost: <span id="fruittreecost">25</span> Food.<br /> 
+					Produces: <span id="fruittreeproduction">+1.00</span> Food per second.<br />
+					Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br /><br />
+            			</div>
+        		</div>
+    		</div>
 	
     <div class="accordion-group">
         <div class="accordion-heading" role="tab" id="accordianheadingtwo">
