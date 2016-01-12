@@ -3,6 +3,10 @@ document.getElementById("Forage").onclick = function() {
 	forage(1);   
 };
 
+document.getElementById("Burn").onclick = function() {
+	burn(1);   
+};
+
 document.getElementById("save").onclick = function() {
 	showsave();
 }
