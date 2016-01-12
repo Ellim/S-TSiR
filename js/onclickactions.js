@@ -109,6 +109,24 @@ function forage(m) {
 	}	
 }
 
+function burn(m) {
+	var popbonus = (m * ((population - 1) * 0.25));
+	if (document.getElementById('burnwood').checked) {
+		if (wood >= (m * 10)) {
+			wood -= (m * 10);
+			coal += m + popbonus;
+			if (coal >= coalmax) {
+				coal = coalmax;
+			}
+			totalexp += (m * 5) + popbonus;
+			document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+			var tempvar = document.getElementById("total_wood");
+			tempvar.innerHTML = wood.toFixed(2);
+			var tempvar2 = document.getElementById("total_coal");
+			tempvar2.innerHTML = coal.toFixed(2);
+		}
+	}
+}
 
 function updatetotalexp() {   
   var exppct = totalexp/exptnl;
