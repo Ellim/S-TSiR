@@ -14,7 +14,13 @@
 	 ga('send', 'pageview');
 
     </script>
-
+	
+	<script> 
+    	$(function(){
+      	$("#accordianheadingone").load("accordians.html"); 
+    	});
+    	</script> 
+	
   </head>
 
   <body>
@@ -157,73 +163,7 @@ $(document).ready(function(){
 
     <div class="col-xs-4">
 	<h1></h1>
-	<div class="accordion" role="tab" id="accordianheadingone">
-    		<div class="accordion-group">
-        		<div class="accordion-heading">
-            			<a class = "accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
-            			Resource Production
-            			</a>
-        		</div>
-        		<div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
-            			<div class="accordion-inner">
-            				<br />
-                			<div class="btn-toolbar" role="toolbar">
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-food" id="fruittreechop" data-toggle="tooltip" data-placement="right" data-container="body" title="Chop down a Fruit Tree for 40% of the Food Cost in Wood.">Chop <span class="glyphicon glyphicon-minus"></span>
-							</div>
-						</div>
-					</div>
-					Cost: <span id="fruittreecost">25</span> Food.<br /> 
-					Produces: <span id="fruittreeproduction">+1.00</span> Food per second.<br />
-					Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br /><br />
-            			</div>
-        		</div>
-    		</div>
-	
-    <div class="accordion-group">
-        <div class="accordion-heading" role="tab" id="accordianheadingtwo">
-            <a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
-			Construction
-            </a>
-        </div>
-        <div id="buildingcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingtwo">
-            <div class="accordion-inner">
-            	<br />
-                <button type="button" class="btn btn-pop btn-block" id="hutbutton"><span class="glyphicon glyphicon-home"></span> Hut <span class="badge" id="hutnum">0</span></button>
-						Cost: <span id="hutcost">25</span> Wood.<br />
-						EXP Gain: <span id="hutexp">25</span>.<br/>
-						Increase Population Max by: <span id="hutlevel">2</span><br /><br />
-						<button type="button" class="btn btn-pop btn-block" id="rhbutton"><span class="glyphicon glyphicon-home"></span> Roundhouse <span class="badge" id="rhnum">0</span></button>
-						Cost: <span id="rhcost">250</span> Clay.<br />
-						EXP Gain: <span id="rhexp">500</span>.<br/>
-						Increase Population Max by: <span id="rhlevel">5</span><br /><br />
-						<button type="button" class="btn btn-pop btn-block" id="cabinbutton"><span class="glyphicon glyphicon-home"></span> Cabin <span class="badge" id="cabinnum">0</span></button>
-						Cost: <span id="cabincost">100</span> Logs.<br />
-						EXP Gain: <span id="rhexp">1500</span>.<br/>
-						Increase Population Max by: <span id="rhlevel">10</span><br /><br />
-            </div>
-        </div>
-     </div>
-	 
-    <div class="accordion-group">
-        <div class="accordion-heading" role="tab" id="accordianheadingthree">
-            <a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#upgradecollapse" href="#upgradecollapse" aria-expanded="false" aria-controls="upgradecollapse">
-			Upgrades
-            </a>
-        </div>
-        <div id="upgradecollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingthree">
-            <div class="accordion-inner">
-            	<br />
-                <button type="button" class="btn btn-river btn-block" id="riverbutton"><span class="glyphicon glyphicon-tint"></span> River <span class="badge" id="riverlevel">0</span></button>
-						Cost: <span id="riverupgradecost">1</span> Talent Point(s).<br />
-						Increase Water Production by: +<span id="riverproduction">10.00</span> Water per second.<br />
-						<br />
-            </div>
-        </div>
-     </div>
-</div>
+	<div class="accordion" role="tab" id="accordianheadingone"></div>
 		
 		
 		
