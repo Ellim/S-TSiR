@@ -89,6 +89,10 @@ document.getElementById("hutbutton").onclick = function() {
 		tempvar4.innerHTML = popmax.toFixed(0);
 		var tempvar5 = document.getElementById("total_wood");
 		tempvar5.innerHTML = wood.toFixed(2);
+		if (popmax >= 10){
+			var tempvar6 = document.getElementById("forage10");
+			tempvar6.prop('disabled', false);	
+		}
 		
 	}
 };
