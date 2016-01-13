@@ -19,9 +19,9 @@ var clay = 0;
 var claymax = 1000;
 var mana = 0;
 var steam = 0;
-var wood = 176;
+var wood = 0;
 var woodmax = 250;
-var stone = 51;
+var stone = 0;
 var stonemax = 200;
 
 var currentlevel = 1;
