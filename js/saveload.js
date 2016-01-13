@@ -47,6 +47,14 @@ var cabins = 0;
 var cabincost = 100;
 var cabinlevel = 10;
 
+var granaries = 0;
+var granarywoodcost = 175;
+var granarystonecost = 50;
+
+var storehouses = 0;
+var shcost = 150;
+var shlevel = 1;
+
 var population = 1;
 var popmax = 1;
 
@@ -100,6 +108,14 @@ function savegame() {
 	cabins: cabins,
 	cabincost: cabincost,
 	cabinlevel: cabinlevel,
+	
+	granaries: granaries,
+	granarywoodcost: granarywoodcost,
+	granarystonecost: granarystonecost,
+	
+	storehouses: storehouses,
+	shcost: shcost,
+	shlevel: shlevel,
 	
 	population: population,
 	popmax: popmax
@@ -155,6 +171,14 @@ function loadgame() {
 	if (typeof savestring.cabins !== "undefined") cabins = savestring.cabins;
 	if (typeof savestring.cabincost !== "undefined") cabincost = savestring.cabincost;
 	if (typeof savestring.cabinlevel !== "undefined") cabinlevel = savestring.cabinlevel;
+	
+	if (typeof savestring.granaries !== "undefined") granaries = savestring.granaries;
+	if (typeof savestring.granarywoodcost !== "undefined") granarywoodcost = savestring.granarywoodcost;
+	if (typeof savestring.granarystonecost !== "undefined") granarystonecost = savestring.granarystonecost;
+	
+	if (typeof savestring.storehouses !== "undefined") storehouses = savestring.storehouses;
+	if (typeof savestring.shcost !== "undefined") shcost = savestring.shcost;
+	if (typeof savestring.shlevel !== "undefined") shlevel = savestring.shlevel;
 	
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
