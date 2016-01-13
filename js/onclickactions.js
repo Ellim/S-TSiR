@@ -97,6 +97,30 @@ document.getElementById("hutbutton").onclick = function() {
 	}
 };
 
+document.getElementById("granarybutton").onclick = function() {
+	if (wood >= granarywoodcost && stone >= granarystonecost) {
+		wood -= granarywoodcost;
+		stone -= granarystonecost;
+		granarywoodcost = (granarywoodcost * 1.5);
+		granarystonecost = (granarystonecost * 1.5);
+		granaries += 1;
+		foodmax += 175;
+		watermax += 100;
+		totalexp += 150;
+		var tempvar = document.getElementById("granarynum");
+		tempvar.innerHTML = granaries;
+		var tempvar2 = document.getElementById("granarywoodcost");
+		tempvar2.innerHTML = granarywoodcost;
+		var tempvar3 = document.getElementById("granarystonecost");
+		tempvar3.innerHTML = granarystonecost;
+		var tempvar4 = document.getElementById("maxfood");
+		tempvar4.innerHTML = foodmax.toFixed(2);
+		var tempvar5 = document.getElementById("maxwater");
+		tempvar5.innerHTML = watermax.toFixed(2);
+		updatetotalexp();
+	}
+}
+
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
 		var popbonus = (m * ((population - 1) * 0.25));
