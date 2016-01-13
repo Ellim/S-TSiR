@@ -110,13 +110,41 @@ document.getElementById("granarybutton").onclick = function() {
 		var tempvar = document.getElementById("granarynum");
 		tempvar.innerHTML = granaries;
 		var tempvar2 = document.getElementById("granarywoodcost");
-		tempvar2.innerHTML = granarywoodcost.toFixed(2);
+		tempvar2.innerHTML = granarywoodcost;
 		var tempvar3 = document.getElementById("granarystonecost");
-		tempvar3.innerHTML = granarystonecost.toFixed(2);
+		tempvar3.innerHTML = granarystonecost;
 		var tempvar4 = document.getElementById("maxfood");
 		tempvar4.innerHTML = foodmax.toFixed(2);
 		var tempvar5 = document.getElementById("maxwater");
 		tempvar5.innerHTML = watermax.toFixed(2);
+		updatetotalexp();
+	}
+}
+
+document.getElementById("shbutton").onclick = function() {
+	if (wood >= shcost) {
+		wood -= shcost;
+		storehouses += 1;
+		shcost = (shcost * 1.05);
+		totalexp += 15;
+		woodmax += 250;
+		stonemax += 200;
+		coalmax += 50;
+		claymax += 500;
+		var tempvar = document.getElementById("woodmax");
+		tempvar.innerHTML = woodmax.toFixed(2);
+		var tempvar2 = document.getElementById("stonemax");
+		tempvar2.innerHTML = stonemax.toFixed(2);
+		var tempvar3 = document.getElementById("coalmax");
+		tempvar3.innerHTML = coalmax.toFixed(2);
+		var tempvar4 = document.getElementById("claymax");
+		tempvar4.innerHTML = claymax.toFixed(2);
+		var tempvar5 = document.getElementById("shnum");
+		tempvar5 = storehouses;
+		var tempvar6 = document.getElementById("shcost");
+		tempvar6.innerHTML = shcost.toFixed(2);
+		var tempvar7 = document.getElementById("total_wood");
+		tempvar7.innerHTML = wood.toFixed(2);
 		updatetotalexp();
 	}
 }
