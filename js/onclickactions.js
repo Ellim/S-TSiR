@@ -204,7 +204,7 @@ function forage(m) {
 
 function mine(m) {
 	if (((water) - (25 * m)) >= 0) {
-		var popbonus = (m * ((population - 1) * 0.25));
+		var popbonus = (m * ((population - 1) * 0.1));
 		stone += m + popbonus;
 		totalexp += m + popbonus;
 		water -= (m * 25)
