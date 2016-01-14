@@ -126,28 +126,44 @@ $(document).ready(function(){
             </div>
         </div>
 		<br /><br />
+		
+		<button id="Mine" type="button" class="btn btn-mine btn-lg btn-block hidden">Mine</button>
+        <div class="btn-group" role="group">    
+            <div class="btn-group btn-group-justified">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-mine hidden" id="mine10" disabled>Mine x10</button>
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-mine hidden" id="mine25" disabled>Mine x25</button>
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-mine hidden" id="mine100" disabled>Mine x100</button>
+              </div>
+            </div>
+        </div>
+		<br /><br />
 
-		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block">Burn</button>
+		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block hidden">Burn</button>
 		<div class="btn-group" role="group">    
             <div class="btn-group btn-group-justified">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn" id="burn10" disabled>Burn x10</button>
+                <button type="button" class="btn btn-burn hidden" id="burn10" disabled>Burn x10</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn" id="burn25" disabled>Burn x25</button>
+                <button type="button" class="btn btn-burn hidden" id="burn25" disabled>Burn x25</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn" id="burn100" disabled>Burn x100</button>
+                <button type="button" class="btn btn-burn hidden" id="burn100" disabled>Burn x100</button>
               </div>
             </div>
         </div>
 		
-		<div class="checkbox">
+		<div id ="burncheckboxes" class="checkbox hidden">
 		<label class="checkbox-inline">
 		  <input type="checkbox" id="burnwood" value=""> Wood
 		</label>
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burncoal" value=""> Charcoal + 250 Water
+		  <input type="checkbox" id="burncoal" value=""> Charcoal + Water
 		</label>
 		</div>
 		
@@ -187,6 +203,19 @@ $(document).ready(function(){
 							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br /><br />
 						</div>
 					</div>
+					
+					<div class="accordion-heading text-center">
+						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
+						Basic Production
+						</a>
+					</div>
+					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
+						<div class="accordion-inner">
+							<br />
+							
+						</div>
+					</div>
+					
 				</div>
         	</div>
     	</div>
@@ -245,11 +274,11 @@ $(document).ready(function(){
 		</div>
 	 
     <div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
-				Upgrades
-				</a>
-			</div>
+		<div class="accordion-heading">
+			<a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
+			Upgrades
+			</a>
+		</div>
 			<div id="upgradescollapse" class="panel-collapse collapse in" role="tabpanel">
 				<div class="accordion-inner">
 					<div class="accordion-heading text-center">
@@ -260,7 +289,13 @@ $(document).ready(function(){
 					<div id="talentcollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
-							<button type="button" class="btn btn-river btn-block" id="riverbutton"><span class="glyphicon glyphicon-tint"></span> River <span class="badge" id="riverlevel">0</span></button>
+							<button type="button" class="btn btn-mine btn-block" id="unlockminebutton"><span class="glyphicon glyphicon-education"></span> Unlock Mine Action </button>
+							<span id="minetalent">Cost: 5 Talent Points.</span><br />
+							<br />
+							<button type="button" class="btn btn-burn btn-block" id="unlockburnbutton"><span class="glyphicon glyphicon-education"></span> Unlock Burn Action </button>
+							<span id="burntalent">Cost: 5 Talent Points.</span><br />
+							<br />
+							<button type="button" class="btn btn-river btn-block" id="riverbutton"><span class="glyphicon glyphicon-tint"></span> Expand River <span class="badge" id="riverlevel">0</span></button>
 							Cost: <span id="riverupgradecost">1</span> Talent Point(s).<br />
 							Increase Water Production by: +<span id="riverproduction">10.00</span> Water per second.<br />
 							<br />

@@ -80,6 +80,25 @@ document.getElementById("loadgame").onclick = function() {
 		updatefood();
 		autosave();
 		
+		if (burntalent > 0) {
+			$('#Burn').removeClass('hidden');
+			$('#burn10').removeClass('hidden');
+			$('#burn25').removeClass('hidden');
+			$('#burn100').removeClass('hidden'); 
+			$('#burncheckboxes').removeClass('hidden'); 
+			$('#unlockburnbutton').addClass('hidden');
+			$('#burntalent').addClass('hidden');
+		}
+		
+		if (minetalent > 0) {
+			$('#Mine').removeClass('hidden');
+			$('#mine10').removeClass('hidden');
+			$('#mine25').removeClass('hidden');
+			$('#mine100').removeClass('hidden');
+			$('#unlockminebutton').addClass('hidden');
+			$('#minetalent').addClass('hidden');
+		}
+		
 		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';

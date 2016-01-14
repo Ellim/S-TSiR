@@ -3,9 +3,14 @@ document.getElementById("Forage").onclick = function() {
 	forage(1);   
 };
 
+document.getElementById("Mine").onclick = function() {
+	mine(1);   
+};
+
 document.getElementById("Burn").onclick = function() {
 	burn(1);   
 };
+
 
 document.getElementById("save").onclick = function() {
 	showsave();
@@ -91,9 +96,41 @@ document.getElementById("hutbutton").onclick = function() {
 		tempvar5.innerHTML = wood.toFixed(2);		
 		if (population >= 10) {
 		$('#forage10').prop('disabled', false);
+		$('#mine10').prop('disabled', false);
 		}
 	}
 };
+
+document.getElementById("unlockminebutton").onclick = function() {
+	if (talentpoints >= 5) {
+		talentpoints -= 5;
+		$('#Mine').removeClass('hidden');
+		$('#mine10').removeClass('hidden');
+		$('#mine25').removeClass('hidden');
+		$('#mine100').removeClass('hidden');
+		$('#unlockminebutton').addClass('hidden');
+		$('#minetalent').addClass('hidden');
+		var tempvar = document.getElementById("talentpoints");
+		tempvar.innerHTML = talentpoints;
+		minetalent += 1;
+	}
+}
+
+document.getElementById("unlockburnbutton").onclick = function() {
+	if (talentpoints >= 5) {
+		talentpoints -= 5;
+		$('#Burn').removeClass('hidden');
+		$('#burn10').removeClass('hidden');
+		$('#burn25').removeClass('hidden');
+		$('#burn100').removeClass('hidden'); 
+		$('#burncheckboxes').removeClass('hidden'); 
+		$('#unlockburnbutton').addClass('hidden');
+		$('#burntalent').addClass('hidden');
+		var tempvar = document.getElementById("talentpoints");
+		tempvar.innerHTML = talentpoints;
+		burntalent += 1;
+	}
+}
 
 document.getElementById("granarybutton").onclick = function() {
 	if (wood >= granarywoodcost && stone >= granarystonecost) {
@@ -158,11 +195,26 @@ function forage(m) {
 		tempvar.innerHTML = currentfood.toFixed(2);
 		var tempvar2 = document.getElementById("currentwater");
 		tempvar2.innerHTML = water.toFixed(2);
-		var tempvar3 = document.getElementById("waterps");
-		tempvar3.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
 		updatetotalexp();
 		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
+		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+	}	
+}
+
+function mine(m) {
+	if (((water) - (25 * m)) >= 0) {
+		var popbonus = (m * ((population - 1) * 0.25));
+		stone += m + popbonus;
+		totalexp += m + popbonus;
+		water -= (m * 25)
+		if (stone > stonemax) {stone = stonemax};
+		var tempvar = document.getElementById("total_stone");
+		tempvar.innerHTML = stone.toFixed(2);
+		var tempvar2 = document.getElementById("currentwater");
+		tempvar2.innerHTML = water.toFixed(2);
+		updatetotalexp();
+		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
 	}	
 }

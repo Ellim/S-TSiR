@@ -58,6 +58,9 @@ var shlevel = 1;
 var population = 1;
 var popmax = 1;
 
+var minetalent = 0;
+var burntalent = 0;
+
 function savegame() {
 	var save = {
 	waterinterval: waterinterval,
@@ -118,8 +121,11 @@ function savegame() {
 	shlevel: shlevel,
 	
 	population: population,
-	popmax: popmax
-
+	popmax: popmax,
+	
+	minetalent: minetalent,
+	burntalent: burntalent
+	
 	}
 	localStorage.setItem("save",JSON.stringify(save));
 }
@@ -182,6 +188,9 @@ function loadgame() {
 	
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
+	
+	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
+	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
 }
 
 function showsave() {
