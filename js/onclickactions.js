@@ -154,6 +154,8 @@ document.getElementById("granarybutton").onclick = function() {
 		tempvar5.innerHTML = watermax.toFixed(2);
 		var tempvar6 = document.getElementById("total_stone");
 		tempvar6.innerHTML = stone.toFixed(2);
+		var tempvar7 = document.getElementById("total_wood");
+		tempvar7.innerHTML = wood.toFixed(2);
 		updatetotalexp();
 	}
 }
