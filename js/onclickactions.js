@@ -152,6 +152,8 @@ document.getElementById("granarybutton").onclick = function() {
 		tempvar4.innerHTML = foodmax.toFixed(2);
 		var tempvar5 = document.getElementById("maxwater");
 		tempvar5.innerHTML = watermax.toFixed(2);
+		var tempvar6 = document.getElementById("total_stone");
+		tempvar6.innerHTML = stone.toFixed(2);
 		updatetotalexp();
 	}
 }
