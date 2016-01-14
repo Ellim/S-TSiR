@@ -144,6 +144,30 @@ document.getElementById("loadgame").onclick = function() {
 		tempvar18.innerHTML = currentlevel.toFixed(0);
 		var tempvar19 = document.getElementById("pop");
 		tempvar19.innerHTML = population.toFixed(0);
+		var tempvar20 = document.getElementById("maxwater");
+		tempvar20.innerHTML = watermax.toFixed(2);
+		
+		var tempvar21 = document.getElementById("granarynum");
+		tempvar.innerHTML = granaries;
+		var tempvar22 = document.getElementById("granarywoodcost");
+		tempvar22.innerHTML = granarywoodcost;
+		var tempvar23 = document.getElementById("granarystonecost");
+		tempvar23.innerHTML = granarystonecost;
+		var tempvar24 = document.getElementById("woodmax");
+		tempvar24.innerHTML = woodmax.toFixed(2);
+		var tempvar25 = document.getElementById("stonemax");
+		tempvar25.innerHTML = stonemax.toFixed(2);
+		
+		var tempvar26 = document.getElementById("coalmax");
+		tempvar26.innerHTML = coalmax.toFixed(2);
+		var tempvar27 = document.getElementById("claymax");
+		tempvar27.innerHTML = claymax.toFixed(2);
+		var tempvar28 = document.getElementById("shnum");
+		tempvar28 = storehouses;
+		var tempvar29 = document.getElementById("shcost");
+		tempvar29.innerHTML = shcost.toFixed(2);
+		var tempvar30 = document.getElementById("total_stone");
+		tempvar30.innerHTML = stone.toFixed(2);
 }
 	
 /*
