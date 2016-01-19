@@ -35,6 +35,18 @@ function updatewater() {
 		}
 	}
 	
+	if (population > 1) {
+			if (water < 1) {
+				population -= 1;
+				foodrate += .75;
+				waterrate += 2;
+			}
+		}
+	
+	if (water < 0) {
+		water = 0;
+	}
+	
 	}, watertick);
 }
 	
