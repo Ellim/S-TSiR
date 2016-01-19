@@ -57,6 +57,12 @@ var shlevel = 1;
 
 var population = 1;
 var popmax = 1;
+var freeworkers = 0;
+var loggers = 0;
+var miners = 0;
+var researchers = 0;
+var warriors = 0;
+var farmers = 0;
 
 var minetalent = 0;
 var burntalent = 0;
@@ -122,6 +128,12 @@ function savegame() {
 	
 	population: population,
 	popmax: popmax,
+	freeworkers: freeworkers,
+	loggers: loggers,
+	miners: miners,
+	researchers: researchers,
+	warriors: warriors,
+	farmers: farmers,
 	
 	minetalent: minetalent,
 	burntalent: burntalent
@@ -188,6 +200,12 @@ function loadgame() {
 	
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
+	if (typeof savestring.freeworkers !== "undefined") freeworkers = savestring.freeworkers;
+	if (typeof savestring.loggers !== "undefined") loggers = savestring.loggers;
+	if (typeof savestring.miners !== "undefined") miners = savestring.miners;
+	if (typeof savestring.researchers !== "undefined") researchers = savestring.researchers;
+	if (typeof savestring.warriors !== "undefined") warriors = savestring.warriors;
+	if (typeof savestring.farmers !== "undefined") farmers = savestring.farmers;
 	
 	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
