@@ -19,3 +19,5 @@
 .btn-arrow-closed {background: rgba(20, 201, 101, 1); background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(20, 201, 101, 1) 100%); background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(20, 201, 101, 1) 100%); border-color: rgba(204, 204, 204, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
 
 .btn-arrow-open {background: rgba(255, 255, 255, 1); background: -webkit-linear-gradient(top, rgba(240, 34, 34, 1) 0%, rgba(255, 255, 255, 1) 100%); background: linear-gradient(to bottom, rgba(240, 34, 34, 1) 0%, rgba(255, 255, 255, 1) 100%); border-color: rgba(204, 204, 204, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
+
+.btn-job {background: rgba(255, 217, 0, 1); background: -webkit-linear-gradient(top, rgba(235, 148, 35, 1) 0%, rgba(255, 217, 0, 1) 100%); background: linear-gradient(to bottom, rgba(235, 148, 35, 1) 0%, rgba(255, 217, 0, 1) 100%); border-color: rgba(171, 171, 171, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
