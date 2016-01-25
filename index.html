@@ -175,24 +175,26 @@ $(document).ready(function(){
 	<h1></h1>
 	<div class="accordion bg-warning" role="tab" id="accordianheadingone">
     	<div class="accordion-group">
-        	<div class="accordion-heading">
+        	<div class="accordion-heading text-center">
+			<h4>Resource Production 
         		<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
         		<span id="resourceprodeye" class="glyphicon glyphicon-collapse-up"></span>
-        		</a>
-				Resource Production
+        		</a></h4>
+				
         	</div><br />
         	<div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
            		<div class="accordion-inner">
-					<div class="accordion-heading">
+					<div class="accordion-heading text-center">
+					Food Production 
 						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
 						<span id="foodprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-						Food Production
+						
 					</div><br />
 					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
-						<div class="accordion-inner">
+						<div class="accordion-inner text-center">
 							<br />
-							<div class="btn-toolbar" role="toolbar">
+							<div class="btn-toolbar text-center" role="toolbar">
 								<div class="btn-group" role="group">
 									<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
 									<div class="btn-group" role="group">
@@ -206,20 +208,23 @@ $(document).ready(function(){
 						</div>
 					</div>
 					
-					<div class="accordion-heading">
-						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
+					<div class="accordion-heading text-center">
+						Basic Production 
+						<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
 						<span id="foodprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-						Basic Production
+						
 					</div>
 					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner text-center">
 							<br />
-							<div class="btn-group" role="group" aria-label="...">
+							<div class="btn-group" role="group">
 							  <button type="button" class="btn btn-default glyphicon glyphicon-minus"></button>
-							  <button type="button" class="btn btn-default">Loggers </button>
+							  <button type="button" class="btn btn-default">Loggers <span id="loggernum" class="badge">0</span></button>
 							  <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
-							</div>
+							  <br />
+							  <br />
+							</div><br />
 						</div>
 					</div>
 					
