@@ -193,16 +193,21 @@ function forage(m) {
 		var popbonus = (m * ((population - 1) * 0.25));
 		currentfood += m + popbonus;
 		totalexp += m + popbonus;
-		water -= (m * 5)
+		water -= (m * 5);
+		wood += 0.25;
 		if (currentfood > foodmax) {currentfood = foodmax};
 		var tempvar = document.getElementById("currentfood");
 		tempvar.innerHTML = currentfood.toFixed(2);
 		var tempvar2 = document.getElementById("currentwater");
 		tempvar2.innerHTML = water.toFixed(2);
+		var tempvar3 = document.getElementById("total_wood");
+		tempvar3.innerHTML = wood.toFixed(2);
 		updatetotalexp();
 		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+		
+		
 	}	
 }
 
