@@ -176,17 +176,19 @@ $(document).ready(function(){
 	<div class="accordion bg-warning" role="tab" id="accordianheadingone">
     	<div class="accordion-group">
         	<div class="accordion-heading">
-        		<a class = "accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
-        		Resource Production
+        		<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
+        		<span id="resourceprodeye" class="glyphicon glyphicon-collapse-up"></span>
         		</a>
-        	</div>
+				Resource Production
+        	</div><br />
         	<div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
            		<div class="accordion-inner">
-					<div class="accordion-heading text-center">
-						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
-						Food Production
+					<div class="accordion-heading">
+						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
+						<span id="foodprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-					</div>
+						Food Production
+					</div><br />
 					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
 						<div class="accordion-inner">
 							<br />
@@ -204,15 +206,20 @@ $(document).ready(function(){
 						</div>
 					</div>
 					
-					<div class="accordion-heading text-center">
-						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
-						Basic Production
+					<div class="accordion-heading">
+						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
+						<span id="foodprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
+						Basic Production
 					</div>
 					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
+						<div class="accordion-inner text-center">
 							<br />
-							
+							<div class="btn-group" role="group" aria-label="...">
+							  <button type="button" class="btn btn-default glyphicon glyphicon-minus"></button>
+							  <button type="button" class="btn btn-default">Loggers </button>
+							  <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+							</div>
 						</div>
 					</div>
 					
