@@ -175,7 +175,7 @@ $(document).ready(function(){
 	<div class="accordion" role="tab" id="accordianheadingone">
     	<div class="accordion-group bg-warning">
         	<div class="accordion-heading">
-			<h4>Resource Production 
+			<h4>Workers 
         		<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="resprodbutton" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
         		<span id="resourceprodarrow" class="glyphicon glyphicon-collapse-up"></span>
         		</a></h4>
@@ -189,25 +189,20 @@ $(document).ready(function(){
 						<span id="foodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 						
-					</div><br />
+					</div>
 					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
 						<div class="accordion-inner">
-							<br />
-							<button type="button" class="btn btn-food btn-block" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button><br />
-							Cost: <span id="fruittreecost">25</span> Food.<br /> 
-							Produces: <span id="fruittreeproduction">+1.00</span> Food per second for <span id="fruittreetimer">50</span> seconds.<br />
-							After time expires tree will be harvested for <span id="fruittreewoodprod">10</span> Wood.<br /><br />
-							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second for <span id="fruittreetimer">50</span> seconds.<br />
 							<br />
 							<button type="button" class="btn btn-job"><span class="glyphicon glyphicon-minus"></span></button>
 							<button type="button" class="btn btn-job">Farmers <span id="farmernum" class="badge">0</span></button>
 							<button type="button" class="btn btn-job"><span class="glyphicon glyphicon-plus"></span></button>
 							<br />
+							<br />
 						</div>
 					</div>
 					
 					<div class="accordion-heading">
-						Wood Production 
+					Wood Production 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
 						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
@@ -237,12 +232,30 @@ $(document).ready(function(){
 			</div><br />
 			<div id="buildingcollapse" class="panel-collapse collapse in" role="tabpanel">
 				<div class="accordion-inner">
+				
+					<div class="accordion-heading">
+					Resource Production 
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="buildingsbutton" data-parent="#buildingcollapse" href="#resbcollapse"  aria-controls="resbcollapse">
+						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
+						</a>
+					</div>
+					<div id="resbcollapse" class="panel-collapse collapse" role="tabpanel">
+						<div class="accordion-inner">
+							<br />
+							<button type="button" class="btn btn-food btn-block" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button><br />
+							Cost: <span id="fruittreecost">25</span> Food.<br /> 
+							Produces: <span id="fruittreeproduction">+1.00</span> Food per second for <span id="fruittreetimer">50</span> seconds.<br />
+							After time expires tree will be harvested for <span id="fruittreewoodprod">10</span> Wood.<br /><br />
+							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second for <span id="fruittreetimer">50</span> seconds.<br />
+						</div>
+					</div>
+				
 					<div class="accordion-heading">
 					Housing 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
 						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-					</div><br />
+					</div>
 					<div id="housingcollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
@@ -265,7 +278,7 @@ $(document).ready(function(){
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
 						<span id="storagearrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-					</div><br />
+					</div>
 					<div id="storagecollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
