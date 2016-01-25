@@ -167,15 +167,13 @@ $(document).ready(function(){
 		</label>
 		</div>
 		
-		
-		
     </div>
 
-    <div class="col-xs-4">
+    <div class="col-xs-4 text-center">
 	<h1></h1>
 	<div class="accordion" role="tab" id="accordianheadingone">
     	<div class="accordion-group bg-warning">
-        	<div class="accordion-heading text-center">
+        	<div class="accordion-heading">
 			<h4>Resource Production 
         		<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="resprodbutton" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
         		<span id="resourceprodarrow" class="glyphicon glyphicon-collapse-up"></span>
@@ -184,7 +182,7 @@ $(document).ready(function(){
         	</div><br />
         	<div id="productioncollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordianheadingone">
            		<div class="accordion-inner">
-					<div class="accordion-heading text-center">
+					<div class="accordion-heading">
 					Food Production 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="foodprodbutton" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
 						<span id="foodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
@@ -192,30 +190,25 @@ $(document).ready(function(){
 						
 					</div><br />
 					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
-						<div class="accordion-inner text-center">
+						<div class="accordion-inner">
 							<br />
-							<div class="btn-toolbar text-center" role="toolbar">
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-food" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button>
-									<div class="btn-group" role="group">
-									<button type="button" class="btn btn-food" id="fruittreechop" data-toggle="tooltip" data-placement="right" data-container="body" title="Chop down a Fruit Tree for 40% of the Food Cost in Wood.">Chop <span class="glyphicon glyphicon-minus"></span>
-									</div>
-								</div>
-							</div>
+							<button type="button" class="btn btn-food btn-block" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button><br />
 							Cost: <span id="fruittreecost">25</span> Food.<br /> 
-							Produces: <span id="fruittreeproduction">+1.00</span> Food per second.<br />
-							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second.<br /><br />
-							<div class="btn-group" role="group">
-							  <button type="button" class="btn btn-default glyphicon glyphicon-minus"></button>
-							  <button type="button" class="btn btn-default">Farmers <span id="farmernum" class="badge">0</span></button>
-							  <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
-							  <br />
-							  <br />
-							</div><br />
+							Produces: <span id="fruittreeproduction">+1.00</span> Food per second for <span id="fruittreetimer">50</span> seconds.<br />
+							After time expires tree will be harvested for <span id="fruittreewoodprod">10</span> Wood.<br /><br />
+							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second for <span id="fruittreetimer">50</span> seconds.<br /><br />
+							
+							<button type="button" class="btn btn-food"><span class="glyphicon glyphicon-minus"></span></button>
+								
+								
+								  <button type="button" class="btn btn-food">Farmers <span id="farmernum" class="badge">0</span></button>
+								
+								  <button type="button" class="btn btn-food"><span class="glyphicon glyphicon-plus"></span></button>
+							<br />
 						</div>
 					</div>
 					
-					<div class="accordion-heading text-center">
+					<div class="accordion-heading">
 						Wood Production 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
 						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
@@ -223,7 +216,7 @@ $(document).ready(function(){
 						
 					</div>
 					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner text-center">
+						<div class="accordion-inner">
 							<br />
 							<div class="btn-group" role="group">
 							  <button type="button" class="btn btn-default glyphicon glyphicon-minus"></button>
@@ -240,7 +233,7 @@ $(document).ready(function(){
     	</div>
 	
 		<div class="accordion-group bg-warning">
-			<div class="accordion-heading text-center">
+			<div class="accordion-heading">
 			<h4>Construction 
 				<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="constructionbutton" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
 				<span id="constructionarrow" class="glyphicon glyphicon-collapse-up"></span>
@@ -248,7 +241,7 @@ $(document).ready(function(){
 			</div><br />
 			<div id="buildingcollapse" class="panel-collapse collapse in" role="tabpanel">
 				<div class="accordion-inner">
-					<div class="accordion-heading text-center">
+					<div class="accordion-heading">
 					Housing 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
 						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
@@ -271,7 +264,7 @@ $(document).ready(function(){
 							Increase Population Max by: <span id="rhlevel">10</span><br /><br />
 						</div>
 					</div>
-					<div class="accordion-heading text-center">
+					<div class="accordion-heading">
 					Storage 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
 						<span id="storagearrow" class="glyphicon glyphicon-collapse-down"></span>
@@ -296,15 +289,15 @@ $(document).ready(function(){
 		</div>
 	 
     <div class="accordion-group bg-warning">
-		<div class="accordion-heading text-center">
+		<div class="accordion-heading">
 		<h4>Upgrades 
 			<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="upgradesbutton" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
 			<span id="upgradesarrow" class="glyphicon glyphicon-collapse-up"></span>
 			</a></h4>
 		</div><br />
 			<div id="upgradescollapse" class="panel-collapse collapse in" role="tabpanel">
-				<div class="accordion-inner text-center">
-					<div class="accordion-heading text-center">
+				<div class="accordion-inner">
+					<div class="accordion-heading">
 					Talents 
 						<a class = "accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="talentsbutton" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
 						<span id="talentsarrow" class="glyphicon glyphicon-collapse-down"></span>
