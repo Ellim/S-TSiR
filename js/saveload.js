@@ -1,7 +1,9 @@
 var waterinterval;
 var foodinterval;
 var saveinterval;
+var workerinterval;
 
+var workertick = 250;
 var watertick = 2000;
 var foodtick = 500;
 var savetick = 300000;
@@ -11,17 +13,17 @@ var foodrate = 0;
 
 var water = 250;
 var watermax = 1000;
-var currentfood = 25;
+var currentfood = 250;
 var foodmax = 350;
-var coal = 0;
+var coal = 49;
 var coalmax = 50;
-var clay = 0;
+var clay = 999;
 var claymax = 1000;
-var mana = 0;
-var steam = 0;
-var wood = 0;
+var mana = 999;
+var steam = 200;
+var wood = 249;
 var woodmax = 250;
-var stone = 0;
+var stone = 199;
 var stonemax = 200;
 
 var currentlevel = 1;
@@ -64,6 +66,8 @@ var researchers = 0;
 var warriors = 0;
 var farmers = 0;
 
+var farmerrate = 0.1875;
+
 var minetalent = 0;
 var burntalent = 0;
 
@@ -72,7 +76,9 @@ function savegame() {
 	waterinterval: waterinterval,
 	foodinterval: foodinterval,
 	saveinterval: saveinterval,
+	workerinterval: workerinterval,
 	
+	workertick: workertick,
 	watertick: watertick,
 	foodtick: foodtick,
 	savetick: savetick,
@@ -135,6 +141,8 @@ function savegame() {
 	warriors: warriors,
 	farmers: farmers,
 	
+	farmerrate: farmerrate,
+	
 	minetalent: minetalent,
 	burntalent: burntalent
 	
@@ -145,6 +153,7 @@ function savegame() {
 function loadgame() {
 	var savestring = JSON.parse(localStorage.getItem("save")); 
 	
+	if (typeof savestring.workertick !== "undefined") workertick = savestring.workertick;
 	if (typeof savestring.watertick !== "undefined") watertick = savestring.watertick;
 	if (typeof savestring.foodtick !== "undefined") foodtick = savestring.foodtick;
 	if (typeof savestring.savetick !== "undefined") savetick = savestring.savetick;
@@ -206,6 +215,8 @@ function loadgame() {
 	if (typeof savestring.researchers !== "undefined") researchers = savestring.researchers;
 	if (typeof savestring.warriors !== "undefined") warriors = savestring.warriors;
 	if (typeof savestring.farmers !== "undefined") farmers = savestring.farmers;
+	
+	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
 	
 	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
