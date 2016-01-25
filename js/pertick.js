@@ -180,6 +180,15 @@ document.getElementById("loadgame").onclick = function() {
 		tempvar29.innerHTML = shcost.toFixed(2);
 		var tempvar30 = document.getElementById("total_stone");
 		tempvar30.innerHTML = stone.toFixed(2);
+		
+		var tempvar31 = document.getElementById("total_coal");
+		tempvar31.innerHTML = coal.toFixed(2);
+		var tempvar32 = document.getElementById("total_clay");
+		tempvar32.innerHTML = clay.toFixed(2);
+		var tempvar33 = document.getElementById("total_mana");
+		tempvar33.innerHTML = mana.toFixed(2);
+		var tempvar34 = document.getElementById("total_steam");
+		tempvar34.innerHTML = steam.toFixed(2);
 }
 	
 /*
