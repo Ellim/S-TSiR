@@ -33,31 +33,6 @@ document.getElementById("fruittreebutton").onclick = function() {
 	}
 };
 
-document.getElementById("fruittreechop").onclick = function() {
-	if (fruittrees >= 1) {
-		fruittrees -= 1;
-		foodrate -= 0.5;
-		waterrate += 5;
-		fruittreecost = (fruittreecost/1.15);
-		wood += (fruittreecost/2.5);
-		currentfood += (fruittreecost * 0.25);
-		if (wood > woodmax) {
-			wood = woodmax;
-		}
-		var tempvar = document.getElementById("fruittreecost");
-		tempvar.innerHTML = fruittreecost.toFixed(2);
-		var tempvar2 = document.getElementById("fruittreenum");
-		tempvar2.innerHTML = fruittrees.toFixed(0);
-		var tempvar3 = document.getElementById("total_wood");
-		tempvar3.innerHTML = wood.toFixed(2);
-		var tempvar4 = document.getElementById("maxfood");
-		tempvar4.innerHTML = foodmax.toFixed(2);
-		var tempvar5 = document.getElementById("currentfood");
-		tempvar5.innerHTML = currentfood.toFixed(2);
-		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
-	}
-}
-
 document.getElementById("riverbutton").onclick = function() {
 	if (talentpoints >= riverupgradecost) {
 		talentpoints -= riverupgradecost;
