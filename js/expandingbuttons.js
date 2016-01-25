@@ -125,3 +125,19 @@ document.getElementById("talentsbutton").onclick = function() {
 		return;
 	}
 }
+
+document.getElementById("buildingsbutton").onclick = function() {
+	if ( $('#buildingarrow').hasClass('glyphicon glyphicon-collapse-up') ) {
+		$('#buildingarrow').removeClass('glyphicon glyphicon-collapse-up');
+		$('#buildingarrow').addClass('glyphicon glyphicon-collapse-down');
+		$('#buildingsbutton').removeClass('btn btn-arrow-open');
+		$('#buildingsbutton').addClass('btn btn-arrow-closed');
+		return;
+	}else if ( $('#buildingarrow').hasClass('glyphicon glyphicon-collapse-down') ) {
+		$('#buildingarrow').removeClass('glyphicon glyphicon-collapse-down');
+		$('#buildingarrow').addClass('glyphicon glyphicon-collapse-up');
+		$('#buildingsbutton').removeClass('btn btn-arrow-closed');
+		$('#buildingsbutton').addClass('btn btn-arrow-open');
+		return;
+	}
+}
