@@ -177,7 +177,7 @@ $(document).ready(function(){
     	<div class="accordion-group bg-warning">
         	<div class="accordion-heading text-center">
 			<h4>Resource Production 
-        		<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
+        		<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="resprodbutton" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
         		<span id="resourceprodarrow" class="glyphicon glyphicon-collapse-up"></span>
         		</a></h4>
 				
@@ -186,7 +186,7 @@ $(document).ready(function(){
            		<div class="accordion-inner">
 					<div class="accordion-heading text-center">
 					Food Production 
-						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="foodprodbutton" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
 						<span id="foodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 						
@@ -217,7 +217,7 @@ $(document).ready(function(){
 					
 					<div class="accordion-heading text-center">
 						Wood Production 
-						<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
 						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 						
@@ -239,10 +239,10 @@ $(document).ready(function(){
         	</div>
     	</div>
 	
-		<div class="accordion-group bg-success">
+		<div class="accordion-group bg-warning">
 			<div class="accordion-heading text-center">
 			<h4>Construction 
-				<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
+				<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="constructionbutton" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
 				<span id="constructionarrow" class="glyphicon glyphicon-collapse-up"></span>
 				</a></h4>
 			</div><br />
@@ -250,7 +250,7 @@ $(document).ready(function(){
 				<div class="accordion-inner">
 					<div class="accordion-heading text-center">
 					Housing 
-						<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
 						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div><br />
@@ -273,7 +273,7 @@ $(document).ready(function(){
 					</div>
 					<div class="accordion-heading text-center">
 					Storage 
-						<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
 						<span id="storagearrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div><br />
@@ -295,10 +295,10 @@ $(document).ready(function(){
 			</div>
 		</div>
 	 
-    <div class="accordion-group bg-primary">
+    <div class="accordion-group bg-warning">
 		<div class="accordion-heading text-center">
 		<h4>Upgrades 
-			<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
+			<a class="accordion-toggle btn btn-arrow-open" data-toggle="collapse" id="upgradesbutton" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
 			<span id="upgradesarrow" class="glyphicon glyphicon-collapse-up"></span>
 			</a></h4>
 		</div><br />
@@ -306,7 +306,7 @@ $(document).ready(function(){
 				<div class="accordion-inner text-center">
 					<div class="accordion-heading text-center">
 					Talents 
-						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
+						<a class = "accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="talentsbutton" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
 						<span id="talentsarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div>
@@ -358,6 +358,7 @@ $(document).ready(function(){
 <script src="js/saveload.js"></script>
 <script src="js/pertick.js"></script> 
 <script src="js/onclickactions.js"></script>
+<script src="js/expandingbuttons.js"></script>
 
 
 
