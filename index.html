@@ -173,8 +173,8 @@ $(document).ready(function(){
 
     <div class="col-xs-4">
 	<h1></h1>
-	<div class="accordion bg-warning" role="tab" id="accordianheadingone">
-    	<div class="accordion-group">
+	<div class="accordion" role="tab" id="accordianheadingone">
+    	<div class="accordion-group bg-warning">
         	<div class="accordion-heading text-center">
 			<h4>Resource Production 
         		<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
@@ -232,19 +232,21 @@ $(document).ready(function(){
         	</div>
     	</div>
 	
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
-				Construction
-				</a>
-			</div>
+		<div class="accordion-group bg-success">
+			<div class="accordion-heading text-center">
+			<h4>Construction 
+				<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
+				<span id="resourceprodeye" class="glyphicon glyphicon-collapse-up"></span>
+				</a></h4>
+			</div><br />
 			<div id="buildingcollapse" class="panel-collapse collapse in" role="tabpanel">
 				<div class="accordion-inner">
 					<div class="accordion-heading text-center">
-						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
-						Housing
+					Housing 
+						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
+						<span id="resourceprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-					</div>
+					</div><br />
 					<div id="housingcollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
@@ -263,10 +265,11 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="accordion-heading text-center">
-						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
-						Storage
+					Storage 
+						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
+						<span id="resourceprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
-					</div>
+					</div><br />
 					<div id="storagecollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
@@ -285,17 +288,19 @@ $(document).ready(function(){
 			</div>
 		</div>
 	 
-    <div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle btn btn-block btn-success" data-toggle="collapse" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
-			Upgrades
-			</a>
-		</div>
+    <div class="accordion-group bg-warning">
+		<div class="accordion-heading text-center">
+		<h4>Upgrades 
+			<a class="accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
+			<span id="resourceprodeye" class="glyphicon glyphicon-collapse-up"></span>
+			</a></h4>
+		</div><br />
 			<div id="upgradescollapse" class="panel-collapse collapse in" role="tabpanel">
-				<div class="accordion-inner">
+				<div class="accordion-inner text-center">
 					<div class="accordion-heading text-center">
-						<a class = "accordion-toggle btn btn-block btn-info" data-toggle="collapse" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
-						Talents
+					Talents 
+						<a class = "accordion-toggle btn btn-warning" data-toggle="collapse" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
+						<span id="resourceprodeye" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div>
 					<div id="talentcollapse" class="panel-collapse collapse" role="tabpanel">
