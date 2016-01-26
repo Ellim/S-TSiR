@@ -16,6 +16,23 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
+document.getElementById("unlockresearcherbutton").onclick = function() {
+	if (talentpoints > 1) {
+		talentpoints -= 2;
+		freeworkers += 1;
+		if ($('#removeresearcherbutton').hasClass('hidden')) {
+			$('#removeresearcherbutton').removeClass('hidden');
+			$('#researcherbutton').removeClass('hidden');
+			$('#addresearcherbutton').removeClass('hidden');
+			$('#unlockresearcherbutton').addClass('hidden');
+			$('#researchertalent').addClass('hidden');
+			var tempvar = document.getElementById("talentpoints");
+			tempvar.innerHTML = talentpoints;
+			researchertalent += 1;
+		}
+	}
+}
+
 document.getElementById("removefarmerbutton").onclick = function() {
 	if (farmers > 0) {
 		farmers -= 1;
