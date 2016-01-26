@@ -1,7 +1,8 @@
 var waterinterval;
 var foodinterval;
 var saveinterval;
-var workerinterval;
+var farmerinterval;
+var loggerinterval;
 
 var workertick = 250;
 var watertick = 2000;
@@ -13,17 +14,17 @@ var foodrate = 0;
 
 var water = 250;
 var watermax = 1000;
-var currentfood = 250;
+var currentfood = 25;
 var foodmax = 350;
-var coal = 49;
+var coal = 0;
 var coalmax = 50;
-var clay = 999;
+var clay = 0;
 var claymax = 1000;
-var mana = 999;
-var steam = 200;
-var wood = 249;
+var mana = 0;
+var steam = 0;
+var wood = 10;
 var woodmax = 250;
-var stone = 199;
+var stone = 0;
 var stonemax = 200;
 
 var currentlevel = 1;
@@ -31,7 +32,7 @@ var totalexp = 0;
 var exptnl = 10;
 var talentpoints = 0;
 
-var fruittreecost = 25;
+var fruittreescost = 25;
 var fruittrees = 0;
 
 var riverupgradecost = 1;
@@ -66,7 +67,8 @@ var researchers = 0;
 var warriors = 0;
 var farmers = 0;
 
-var farmerrate = 0.1875;
+var farmerrate = 1.125;
+var loggerrate = 0.125;
 
 var minetalent = 0;
 var burntalent = 0;
@@ -76,7 +78,8 @@ function savegame() {
 	waterinterval: waterinterval,
 	foodinterval: foodinterval,
 	saveinterval: saveinterval,
-	workerinterval: workerinterval,
+	farmerinterval: farmerinterval,
+	loggerinterval: loggerinterval,
 	
 	workertick: workertick,
 	watertick: watertick,
@@ -106,7 +109,7 @@ function savegame() {
 	exptnl: exptnl,
 	talentpoints: talentpoints,
 	
-	fruittreecost: fruittreecost,
+	fruittreescost: fruittreescost,
 	fruittrees: fruittrees,
 	
 	riverupgradecost: riverupgradecost,
@@ -142,6 +145,7 @@ function savegame() {
 	farmers: farmers,
 	
 	farmerrate: farmerrate,
+	loggerrate: loggerrate,
 	
 	minetalent: minetalent,
 	burntalent: burntalent
@@ -181,7 +185,7 @@ function loadgame() {
 	if (typeof savestring.exptnl !== "undefined") exptnl = savestring.exptnl;
 	if (typeof savestring.talentpoints !== "undefined") talentpoints = savestring.talentpoints;
 	
-	if (typeof savestring.fruittreecost !== "undefined") fruittreecost = savestring.fruittreecost;
+	if (typeof savestring.fruittreescost !== "undefined") fruittreescost = savestring.fruittreescost;
 	if (typeof savestring.fruittrees !== "undefined") fruittrees = savestring.fruittrees;
 	
 	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
@@ -217,6 +221,7 @@ function loadgame() {
 	if (typeof savestring.farmers !== "undefined") farmers = savestring.farmers;
 	
 	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
+	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
 	
 	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;

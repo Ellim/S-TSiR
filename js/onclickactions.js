@@ -16,15 +16,60 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
+document.getElementById("removefarmerbutton").onclick = function() {
+	if (farmers > 0) {
+		farmers -= 1;
+		freeworkers += 1;
+		var tempvar = document.getElementById("farmernum");
+		tempvar.innerHTML = farmers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("addfarmerbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		farmers += 1;
+		var tempvar = document.getElementById("farmernum");
+		tempvar.innerHTML = farmers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("removeloggerbutton").onclick = function() {
+	if (loggers > 0) {
+		loggers -= 1;
+		freeworkers += 1;
+		var tempvar = document.getElementById("loggernum");
+		tempvar.innerHTML = loggers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("addloggerbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		loggers += 1;
+		var tempvar = document.getElementById("loggernum");
+		tempvar.innerHTML = loggers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+
 document.getElementById("fruittreebutton").onclick = function() {
-	if (currentfood >= fruittreecost) {
-		currentfood -= fruittreecost;
-		fruittreecost = (fruittreecost * 1.15);
+	if (currentfood >= fruittreescost) {
+		currentfood -= fruittreescost;
+		fruittreescost = (fruittreescost * 1.15);
 		fruittrees += 1;
 		foodrate += 0.5;
 		waterrate -= 5;
-		var tempvar = document.getElementById("fruittreecost");
-		tempvar.innerHTML = fruittreecost.toFixed(2);
+		var tempvar = document.getElementById("fruittreescost");
+		tempvar.innerHTML = fruittreescost.toFixed(2);
 		var tempvar2 = document.getElementById("maxfood");
 		tempvar2.innerHTML = foodmax.toFixed(2);
 		var tempvar3 = document.getElementById("fruittreenum");
@@ -170,6 +215,7 @@ function forage(m) {
 		totalexp += m + popbonus;
 		water -= (m * 5);
 		wood += 0.25;
+		if (wood > woodmax) {wood = woodmax;}
 		if (currentfood > foodmax) {currentfood = foodmax};
 		var tempvar = document.getElementById("currentfood");
 		tempvar.innerHTML = currentfood.toFixed(2);
