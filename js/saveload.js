@@ -22,7 +22,7 @@ var clay = 0;
 var claymax = 1000;
 var mana = 0;
 var steam = 0;
-var wood = 10;
+var wood = 100;
 var woodmax = 250;
 var stone = 0;
 var stonemax = 200;
@@ -31,6 +31,7 @@ var currentlevel = 1;
 var totalexp = 0;
 var exptnl = 10;
 var talentpoints = 0;
+var researchpoints = 0;
 
 var fruittreescost = 25;
 var fruittrees = 0;
@@ -108,6 +109,7 @@ function savegame() {
 	totalexp: totalexp,
 	exptnl: exptnl,
 	talentpoints: talentpoints,
+	researchpoints: researchpoints,
 	
 	fruittreescost: fruittreescost,
 	fruittrees: fruittrees,
@@ -184,6 +186,7 @@ function loadgame() {
 	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
 	if (typeof savestring.exptnl !== "undefined") exptnl = savestring.exptnl;
 	if (typeof savestring.talentpoints !== "undefined") talentpoints = savestring.talentpoints;
+	if (typeof savestring.researchpoints !== "undefined") researchpoints = savestring.researchpoints;
 	
 	if (typeof savestring.fruittreescost !== "undefined") fruittreescost = savestring.fruittreescost;
 	if (typeof savestring.fruittrees !== "undefined") fruittrees = savestring.fruittrees;
