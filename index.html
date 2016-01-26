@@ -90,7 +90,7 @@ $(document).ready(function(){
         <br />
 		Level: <span id="current_level">1</span> <br />
         Talent Points: <span id="talentpoints">0</span> <br />
-		Temp: <span id="currenttemp">70°</span> (<span id="tempeffect">+0.00%</span>)<br />
+		Research Points: <span id="total_RP">0</span><br />
         Population: <span id="pop">1</span> / <span id="popmax">1 </span><br />
         <!--Worker panel-->
 		<div class="accordion-group bg-success text-center"> 
@@ -105,7 +105,7 @@ $(document).ready(function(){
         	<div id="productioncollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
            		<div class="accordion-inner">
 					<div class="accordion-heading">
-					Food Production 
+					Assignments
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="foodprodbutton" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
 						<span id="foodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
@@ -114,11 +114,44 @@ $(document).ready(function(){
 					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
 						<div class="accordion-inner">
 							<br />
-							<button type="button" class="btn btn-job" id="removefarmerbutton"><span class="glyphicon glyphicon-minus"></span></button>
-							<button type="button" class="btn btn-job" id="farmerbutton">Farmers <span id="farmernum" class="badge">0</span></button>
-							<button type="button" class="btn btn-job" id="addfarmerbutton"><span class="glyphicon glyphicon-plus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="removeresearcherbutton"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="researcherbutton">Researchers <span id="researchernum" class="badge">0</span></button>
+							<button type="button" class="btn btn-job hidden" id="addresearcherbutton"><span class="glyphicon glyphicon-plus"></span></button>
 							<br />
 							<br />
+							<button type="button" class="btn btn-job hidden" id="removefarmerbutton"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="farmerbutton">Farmers <span id="farmernum" class="badge">0</span></button>
+							<button type="button" class="btn btn-job hidden" id="addfarmerbutton"><span class="glyphicon glyphicon-plus"></span></button>
+							<br />
+							<br />
+							<button type="button" class="btn btn-job hidden" id="removeloggerbutton"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="loggerbutton">Lumberjacks <span id="loggernum" class="badge">0</span></button>
+							<button type="button" class="btn btn-job hidden" id="addloggerbutton"><span class="glyphicon glyphicon-plus"></span></button>
+							<br />
+							<br />
+							<button type="button" class="btn btn-job hidden" id="removeminerbutton"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="minerbutton">Miners <span id="minernum" class="badge">0</span></button>
+							<button type="button" class="btn btn-job hidden" id="addminerbutton"><span class="glyphicon glyphicon-plus"></span></button>
+							<br />
+							<br />
+							<button type="button" class="btn btn-job hidden" id="removewarriorbutton"><span class="glyphicon glyphicon-minus"></span></button>
+							<button type="button" class="btn btn-job hidden" id="warriorbutton">Warriors <span id="warriornum" class="badge">0</span></button>
+							<button type="button" class="btn btn-job hidden" id="addwarriorbutton"><span class="glyphicon glyphicon-plus"></span></button>
+							<br />
+							<br />
+						</div>
+					</div>
+					
+					<div class="accordion-heading">
+					Activated Abilities
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
+						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
+						</a>
+						
+					</div>
+					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
+						<div class="accordion-inner">
+						
 							<div class="hidden" id="fruittreediv">
 							<br />
 							<button type="button" class="btn btn-food btn-block" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button><br />
@@ -132,25 +165,9 @@ $(document).ready(function(){
 							  <span class="glyphicon glyphicon-time"</span>
 							  </div>
 							</div><br />
-						</div>
-						</div>
-					</div>
-					
-					<div class="accordion-heading">
-					Wood Production 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
-						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-						
-					</div>
-					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-							<br />
-							<button type="button" class="btn btn-job"id="removeloggerbutton"><span class="glyphicon glyphicon-minus"></span></button>
-							<button type="button" class="btn btn-job">Loggers <span id="loggernum" class="badge">0</span></button>
-							<button type="button" class="btn btn-job"id="addloggerbutton"><span class="glyphicon glyphicon-plus"></span></button>
-							<br />
-							<br />
+							</div>
+							
+							
 						</div>
 					</div>
 					
@@ -293,7 +310,7 @@ $(document).ready(function(){
 							EXP Gain: <span id="granaryexp">150</span>.<br/>
 							Increase Food Max by: <span id="granaryfoodlimit">175</span><br />
 							Increase Water Max by: <span id="granarywaterlimit">100</span><br /><br />
-							<button type="button" class="btn btn-pop btn-block" id="shbutton"><span class="glyphicon glyphicon-scale"></span> Storehouse <span class="badge" id="shnum">0</span></button>
+							<button type="button" class="btn btn-pop btn-block" id="shbutton"><span class="glyphicon glyphicon-scale"></span><span> Storehouse</span> <span class="badge" id="sthnum">0</span></button>
 							Cost: <span id="shcost">150</span> Wood.<br />
 							EXP Gain: <span id="shexp">15</span>.<br/>
 							Increase Max Wood, Stone, Coal, Clay, and more.<br /><br />
@@ -321,6 +338,9 @@ $(document).ready(function(){
 					<div id="talentcollapse" class="panel-collapse collapse" role="tabpanel">
 						<div class="accordion-inner">
 							<br />
+							<button type="button" class="btn btn-job btn-block" id="unlockresearcherbutton"><span class="glyphicon glyphicon-education"></span> Unlock Researchers </button>
+							<span>Cost: 2 Talent Points.</span><br />
+							<br />
 							<button type="button" class="btn btn-mine btn-block" id="unlockminebutton"><span class="glyphicon glyphicon-education"></span> Unlock Mine Action </button>
 							<span id="minetalent">Cost: 5 Talent Points.</span><br />
 							<br />
@@ -340,7 +360,16 @@ $(document).ready(function(){
 						</a>
 					</div>
 					<div id="resbcollapse" class="panel-collapse collapse" role="tabpanel">
-						
+						<div class="accordion-inner">
+							<br />
+							<button type="button" class="btn btn-job btn-block" id="unlockfarmerbutton"><span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers </button>
+							<span>Cost: 100 Research Points.</span><br />
+							<br />
+							<br />
+							<button type="button" class="btn btn-job btn-block" id="unlockloggerbutton"><span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks </button>
+							<span>Cost: 150 Research Points.</span><br />
+							<br />
+						</div>
 					</div>
 					
 				</div>
