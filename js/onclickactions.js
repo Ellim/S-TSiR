@@ -35,6 +35,11 @@ document.getElementById("addfarmerbutton").onclick = function() {
 		tempvar.innerHTML = farmers;
 		var tempvar2 = document.getElementById("freeloaders");
 		tempvar2.innerHTML = freeworkers;
+		if (farmers > 1) {
+			if ($('#fruittreediv').hasClass('hidden')) {
+				$('#fruittreediv').removeClass('hidden');
+			}
+		}
 	}
 }
 
@@ -55,6 +60,72 @@ document.getElementById("addloggerbutton").onclick = function() {
 		loggers += 1;
 		var tempvar = document.getElementById("loggernum");
 		tempvar.innerHTML = loggers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("removeminerbutton").onclick = function() {
+	if (miners > 0) {
+		miners -= 1;
+		freeworkers += 1;
+		var tempvar = document.getElementById("minernum");
+		tempvar.innerHTML = miners;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("addminerbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		miners += 1;
+		var tempvar = document.getElementById("minernum");
+		tempvar.innerHTML = miners;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("removeresearcherbutton").onclick = function() {
+	if (researchers > 0) {
+		researchers -= 1;
+		freeworkers += 1;
+		var tempvar = document.getElementById("researchernum");
+		tempvar.innerHTML = researchers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("addresearcherbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		researchers += 1;
+		var tempvar = document.getElementById("researchernum");
+		tempvar.innerHTML = researchers;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("removewarriorbutton").onclick = function() {
+	if (warriors > 0) {
+		warriors -= 1;
+		freeworkers += 1;
+		var tempvar = document.getElementById("warriornum");
+		tempvar.innerHTML = warriors;
+		var tempvar2 = document.getElementById("freeloaders");
+		tempvar2.innerHTML = freeworkers;
+	}
+}
+
+document.getElementById("addwarriorbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		warriors += 1;
+		var tempvar = document.getElementById("warriornum");
+		tempvar.innerHTML = warriors;
 		var tempvar2 = document.getElementById("freeloaders");
 		tempvar2.innerHTML = freeworkers;
 	}
