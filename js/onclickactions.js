@@ -262,7 +262,7 @@ document.getElementById("shbutton").onclick = function() {
 		coalmax += 50;
 		claymax += 500;
 		var tempvar = document.getElementById("sthnum");
-		tempvar = storehouses;
+		tempvar.innerHTML = storehouses;
 		var tempvar2 = document.getElementById("stonemax");
 		tempvar2.innerHTML = stonemax.toFixed(2);
 		var tempvar3 = document.getElementById("coalmax");
@@ -275,8 +275,10 @@ document.getElementById("shbutton").onclick = function() {
 		tempvar6.innerHTML = shcost.toFixed(2);
 		var tempvar7 = document.getElementById("total_wood");
 		tempvar7.innerHTML = wood.toFixed(2);
+		
 		updatetotalexp();
 	}
+	
 }
 
 function forage(m) {
