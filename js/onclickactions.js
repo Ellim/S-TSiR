@@ -288,7 +288,7 @@ function forage(m) {
 		totalexp += m + popbonus;
 		water -= (m * 5);
 		wood += 0.25;
-		if (wood > woodmax) {wood = woodmax;}
+		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		var tempvar = document.getElementById("currentfood");
 		tempvar.innerHTML = currentfood.toFixed(2);
