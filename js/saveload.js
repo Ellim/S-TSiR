@@ -3,6 +3,7 @@ var foodinterval;
 var saveinterval;
 var farmerinterval;
 var loggerinterval;
+var researcherinterval;
 
 var workertick = 250;
 var watertick = 2000;
@@ -70,6 +71,7 @@ var farmers = 0;
 
 var farmerrate = 1.125;
 var loggerrate = 0.125;
+var researcherrate = 0.375;
 
 var researchertalent = 0;
 var farmertalent = 0;
@@ -83,6 +85,7 @@ function savegame() {
 	saveinterval: saveinterval,
 	farmerinterval: farmerinterval,
 	loggerinterval: loggerinterval,
+	researcherinterval: researcherinterval,
 	
 	workertick: workertick,
 	watertick: watertick,
@@ -150,6 +153,7 @@ function savegame() {
 	
 	farmerrate: farmerrate,
 	loggerrate: loggerrate,
+	researcherrate: researcherrate,
 	
 	researchertalent: researchertalent,
 	farmertalent: farmertalent,
@@ -229,6 +233,7 @@ function loadgame() {
 	
 	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
 	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
+	if (typeof savestring.researcherrate !== "undefined") researcherrate = savestring.researcherrate;
 	
 	if (typeof savestring.researchertalent !== "undefined") researchertalent = savestring.researchertalent;
 	if (typeof savestring.farmertalent !== "undefined") farmertalent = savestring.farmertalent;
