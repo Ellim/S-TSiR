@@ -39,6 +39,25 @@ function updatelogger() {
 	}, workertick);
 }
 
+function updateminer() {
+  clearInterval(minerinterval);
+  minerinterval = setInterval(function() {
+	if (miners > 0) {
+		stone += (minerrate * miners);
+		if (stone > stonemax) {
+			stone = stonemax;
+		}
+	}
+	
+	var tempvar = document.getElementById("total_stone");
+	tempvar.innerHTML = stone.toFixed(2);
+	var tempvar2 = document.getElementById("stoneps");
+	var tempvar3 = (miners * (minerrate*4)); 
+	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	
+	}, workertick);
+}
+
 function updateresearcher() {
   clearInterval(researcherinterval);
   researcherinterval = setInterval(function() {
