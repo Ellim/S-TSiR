@@ -38,3 +38,16 @@ function updatelogger() {
 	
 	}, workertick);
 }
+
+function updateresearcher() {
+  clearInterval(researcherinterval);
+  researcherinterval = setInterval(function() {
+	if (researchers > 0) {
+		researchpoints += (researcherrate * researchers);
+	}
+	
+	var tempvar = document.getElementById("total_RP");
+	tempvar.innerHTML = researchpoints.toFixed(0);
+
+	}, workertick);
+}
