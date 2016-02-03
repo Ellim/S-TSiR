@@ -23,16 +23,16 @@ var clay = 0;
 var claymax = 1000;
 var mana = 0;
 var steam = 0;
-var wood = 190;
+var wood = 0;
 var woodmax = 250;
-var stone = 100;
+var stone = 0;
 var stonemax = 200;
 
 var currentlevel = 1;
 var totalexp = 0;
 var exptnl = 10;
 var talentpoints = 0;
-var researchpoints = 100;
+var researchpoints = 0;
 
 var fruittreescost = 25;
 var fruittrees = 0;
