@@ -72,6 +72,7 @@ var farmerrate = 1.125;
 var loggerrate = 0.125;
 
 var researchertalent = 0;
+var farmertalent = 0;
 var minetalent = 0;
 var burntalent = 0;
 
@@ -151,6 +152,7 @@ function savegame() {
 	loggerrate: loggerrate,
 	
 	researchertalent: researchertalent,
+	farmertalent: farmertalent,
 	minetalent: minetalent,
 	burntalent: burntalent
 	
@@ -229,6 +231,7 @@ function loadgame() {
 	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
 	
 	if (typeof savestring.researchertalent !== "undefined") researchertalent = savestring.researchertalent;
+	if (typeof savestring.farmertalent !== "undefined") farmertalent = savestring.farmertalent;
 	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
 }
