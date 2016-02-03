@@ -19,7 +19,6 @@ document.getElementById("save").onclick = function() {
 document.getElementById("unlockresearcherbutton").onclick = function() {
 	if (talentpoints > 1) {
 		talentpoints -= 2;
-		freeworkers += 1;
 		if ($('#removeresearcherbutton').hasClass('hidden')) {
 			$('#removeresearcherbutton').removeClass('hidden');
 			$('#researcherbutton').removeClass('hidden');
@@ -29,6 +28,22 @@ document.getElementById("unlockresearcherbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			researchertalent += 1;
+		}
+	}
+}
+
+document.getElementById("unlockfarmerbutton").onclick = function() {
+	if (researchpoints > 99) {
+		researchpoints -= 100;
+		if ($('#removefarmerbutton').hasClass('hidden')) {
+			$('#removefarmerbutton').removeClass('hidden');
+			$('#farmerbutton').removeClass('hidden');
+			$('#addfarmerbutton').removeClass('hidden');
+			$('#unlockfarmerbutton').addClass('hidden');
+			$('#farmertalent').addClass('hidden');
+			var tempvar = document.getElementById("talentpoints");
+			tempvar.innerHTML = talentpoints;
+			farmertalent += 1;
 		}
 	}
 }
