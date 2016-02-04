@@ -220,7 +220,7 @@ document.getElementById("hutbutton").onclick = function() {
 };
 
 document.getElementById("unlockminebutton").onclick = function() {
-	if (talentpoints >= 5) {
+	if (talentpoints >= 0) {
 		talentpoints -= 5;
 		$('#minebuttondiv').removeClass('hidden');
 		$('#unlockminebutton').addClass('hidden');
