@@ -320,12 +320,7 @@ function forage(m) {
 		mana += ((m + popbonus) * 0.20);
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
-		var tempvar = document.getElementById("currentfood");
-		tempvar.innerHTML = currentfood.toFixed(2);
-		var tempvar2 = document.getElementById("currentwater");
-		tempvar2.innerHTML = water.toFixed(2);
-		var tempvar3 = document.getElementById("total_wood");
-		tempvar3.innerHTML = wood.toFixed(2);
+		updateresources();
 		updatetotalexp();
 		
 		
