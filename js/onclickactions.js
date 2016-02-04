@@ -165,7 +165,6 @@ document.getElementById("addwarriorbutton").onclick = function() {
 	}
 }
 
-
 document.getElementById("fruittreebutton").onclick = function() {
 	if (currentfood >= fruittreescost) {
 		currentfood -= fruittreescost;
