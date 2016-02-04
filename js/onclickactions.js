@@ -372,7 +372,7 @@ function burn(m) {
 				coal = coalmax;
 			}
 			totalexp += (m * 5) + popbonus;
-			
+			updatetotalexp();
 			var tempvar = document.getElementById("total_wood");
 			tempvar.innerHTML = wood.toFixed(2);
 			var tempvar2 = document.getElementById("total_coal");
