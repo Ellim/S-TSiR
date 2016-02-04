@@ -224,7 +224,6 @@ document.getElementById("unlockminebutton").onclick = function() {
 		talentpoints -= 5;
 		$('#minebuttondiv').removeClass('hidden');
 		$('#unlockminebutton').addClass('hidden');
-		$('#minetalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints;
 		minetalent += 1;
@@ -234,13 +233,8 @@ document.getElementById("unlockminebutton").onclick = function() {
 document.getElementById("unlockburnbutton").onclick = function() {
 	if (talentpoints >= 5) {
 		talentpoints -= 5;
-		$('#Burn').removeClass('hidden');
-		$('#burn10').removeClass('hidden');
-		$('#burn25').removeClass('hidden');
-		$('#burn100').removeClass('hidden'); 
-		$('#burncheckboxes').removeClass('hidden'); 
+		$('#burnbuttondiv').removeClass('hidden');
 		$('#unlockburnbutton').addClass('hidden');
-		$('#burntalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints;
 		burntalent += 1;
