@@ -274,19 +274,9 @@ document.getElementById("shbutton").onclick = function() {
 		claymax += 500;
 		var tempvar = document.getElementById("sthnum");
 		tempvar.innerHTML = storehouses;
-		var tempvar2 = document.getElementById("stonemax");
-		tempvar2.innerHTML = stonemax.toFixed(2);
-		var tempvar3 = document.getElementById("coalmax");
-		tempvar3.innerHTML = coalmax.toFixed(2);
-		var tempvar4 = document.getElementById("claymax");
-		tempvar4.innerHTML = claymax.toFixed(2);
-		var tempvar5 = document.getElementById("woodmax");
-		tempvar5.innerHTML = woodmax.toFixed(2);
 		var tempvar6 = document.getElementById("shcost");
 		tempvar6.innerHTML = shcost.toFixed(2);
-		var tempvar7 = document.getElementById("total_wood");
-		tempvar7.innerHTML = wood.toFixed(2);
-		
+		updateresources();		
 		updatetotalexp();
 	}
 	
@@ -316,13 +306,8 @@ function mine(m) {
 		totalexp += m + popbonus;
 		water -= (m * 25)
 		if (stone > stonemax) {stone = stonemax};
-		var tempvar = document.getElementById("total_stone");
-		tempvar.innerHTML = stone.toFixed(2);
-		var tempvar2 = document.getElementById("currentwater");
-		tempvar2.innerHTML = water.toFixed(2);
+		updateresources();
 		updatetotalexp();
-		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
-		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
 	}	
 }
 
@@ -337,10 +322,7 @@ function burn(m) {
 			}
 			totalexp += (m * 5) + popbonus;
 			updatetotalexp();
-			var tempvar = document.getElementById("total_wood");
-			tempvar.innerHTML = wood.toFixed(2);
-			var tempvar2 = document.getElementById("total_coal");
-			tempvar2.innerHTML = coal.toFixed(2);
+			updateresources();
 		}
 	}
 }
