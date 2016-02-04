@@ -3,6 +3,18 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+02/04/16 - Major Revision Update 0.0.6
+
+Dramatically decreased lines of code in a number of JS files by consolidating repeated code into a single function.
+Resources are all updated from a single function which at present is called by a few buttons, will be transitioning away from this and just updating all resources every 250ms along with the worker updates.
+
+Worker and action button sets have been contained in divs with hidden classes to allow the page to have a more structured layout. Before the individual buttons were hidden/revealed which left gaps in the page when hidden. Now that they are in <div>'s they no longer appear to exist until revealed.
+
+Also added the Miner and Warrior unlock buttons through research. Miners should work as expected while Warriors do nothing at the moment.
+
+Next class to add is going to be carpenter to refine wood into logs and open the Cabin building for further worker production.
+
+
 01/25/16 - 0.1.3
 
 Workers added, many UI changes.
