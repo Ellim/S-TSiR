@@ -175,11 +175,8 @@ document.getElementById("fruittreebutton").onclick = function() {
 		waterrate -= 5;
 		var tempvar = document.getElementById("fruittreescost");
 		tempvar.innerHTML = fruittreescost.toFixed(2);
-		var tempvar2 = document.getElementById("maxfood");
-		tempvar2.innerHTML = foodmax.toFixed(2);
-		var tempvar3 = document.getElementById("fruittreenum");
-		tempvar3.innerHTML = fruittrees.toFixed(0);
-		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
+		updateresources();
+		updateworkers();
 	}
 };
 
@@ -197,8 +194,6 @@ document.getElementById("riverbutton").onclick = function() {
 		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
 		var tempvar4 = document.getElementById("talentpoints");
 		tempvar4.innerHTML = talentpoints;
-		var tempvar5 = document.getElementById("waterps");
-		tempvar5.innerHTML = '+' + (waterrate/(watertick/1000)).toFixed(2) + '/sec';
 	}
 };
 
@@ -215,13 +210,11 @@ document.getElementById("hutbutton").onclick = function() {
 		tempvar2.innerHTML = hutcost.toFixed(2);
 		var tempvar3 = document.getElementById("hutexp");
 		tempvar3.innerHTML = hutcost.toFixed(2);
-		var tempvar4 = document.getElementById("popmax");
-		tempvar4.innerHTML = popmax.toFixed(0);
-		var tempvar5 = document.getElementById("total_wood");
-		tempvar5.innerHTML = wood.toFixed(2);		
-		if (population >= 10) {
+		updateresources();		
+		if (popmax >= 10) {
 		$('#forage10').prop('disabled', false);
 		$('#mine10').prop('disabled', false);
+		$('#burn10').prop('disabled', false);
 		}
 	}
 };
@@ -229,10 +222,7 @@ document.getElementById("hutbutton").onclick = function() {
 document.getElementById("unlockminebutton").onclick = function() {
 	if (talentpoints >= 5) {
 		talentpoints -= 5;
-		$('#Mine').removeClass('hidden');
-		$('#mine10').removeClass('hidden');
-		$('#mine25').removeClass('hidden');
-		$('#mine100').removeClass('hidden');
+		$('#minebuttondiv').removeClass('hidden');
 		$('#unlockminebutton').addClass('hidden');
 		$('#minetalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
