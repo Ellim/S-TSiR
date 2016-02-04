@@ -19,12 +19,9 @@ document.getElementById("save").onclick = function() {
 document.getElementById("unlockresearcherbutton").onclick = function() {
 	if (talentpoints > 1) {
 		talentpoints -= 2;
-		if ($('#removeresearcherbutton').hasClass('hidden')) {
-			$('#removeresearcherbutton').removeClass('hidden');
-			$('#researcherbutton').removeClass('hidden');
-			$('#addresearcherbutton').removeClass('hidden');
+		if ($('#researchdiv').hasClass('hidden')) {
+			$('#researchdiv').removeClass('hidden');
 			$('#unlockresearcherbutton').addClass('hidden');
-			$('#researchertalent').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			researchertalent += 1;
@@ -35,15 +32,25 @@ document.getElementById("unlockresearcherbutton").onclick = function() {
 document.getElementById("unlockfarmerbutton").onclick = function() {
 	if (researchpoints > 99) {
 		researchpoints -= 100;
-		if ($('#removefarmerbutton').hasClass('hidden')) {
-			$('#removefarmerbutton').removeClass('hidden');
-			$('#farmerbutton').removeClass('hidden');
-			$('#addfarmerbutton').removeClass('hidden');
+		if ($('#farmerdiv').hasClass('hidden')) {
+			$('#farmerdiv').removeClass('hidden');
 			$('#unlockfarmerbutton').addClass('hidden');
-			$('#farmertalent').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			farmertalent += 1;
+		}
+	}
+}
+
+document.getElementById("unlockloggerbutton").onclick = function() {
+	if (researchpoints > 149) {
+		researchpoints -= 150;
+		if ($('#loggerdiv').hasClass('hidden')) {
+			$('#loggerdiv').removeClass('hidden');
+			$('#unlockloggerbutton').addClass('hidden');
+			var tempvar = document.getElementById("talentpoints");
+			tempvar.innerHTML = talentpoints;
+			loggertalent += 1;
 		}
 	}
 }
@@ -316,10 +323,13 @@ document.getElementById("shbutton").onclick = function() {
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
 		var popbonus = (m * ((population - 1) * 0.25));
-		currentfood += m + popbonus;
 		totalexp += m + popbonus;
 		water -= (m * 5);
-		wood += 0.25;
+		currentfood += m + popbonus;
+		if (getRandomInt(0,100) >= 75) { wood += ((m + popbonus) * 0.25) };
+		if (getRandomInt(0,100) >= 85) { stone += ((m + popbonus) * 0.10) };
+		clay += ((m + popbonus) * 0.05);
+		mana += ((m + popbonus) * 0.20);
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		var tempvar = document.getElementById("currentfood");
@@ -329,9 +339,7 @@ function forage(m) {
 		var tempvar3 = document.getElementById("total_wood");
 		tempvar3.innerHTML = wood.toFixed(2);
 		updatetotalexp();
-		document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
-		document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
-		document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+		
 		
 		
 	}	
@@ -364,7 +372,7 @@ function burn(m) {
 				coal = coalmax;
 			}
 			totalexp += (m * 5) + popbonus;
-			document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+			
 			var tempvar = document.getElementById("total_wood");
 			tempvar.innerHTML = wood.toFixed(2);
 			var tempvar2 = document.getElementById("total_coal");
@@ -383,10 +391,10 @@ function updatetotalexp() {
     totalexp = totalexp - exptnl;
     exptnl = (exptnl * 1.05);
     currentlevel = currentlevel + 1;
-	if (currentlevel % 5 === 0) {
-		talentpoints += 1;
-	}
-    
+		if (currentlevel % 5 === 0) {
+			talentpoints += 1;
+		}
+ 
     } 
   var tempvar3 = document.getElementById("current_level");
   tempvar3.innerHTML = currentlevel.toFixed(0);
@@ -394,4 +402,60 @@ function updatetotalexp() {
   tempvar4.innerHTML = exptnl.toFixed(0);
   var tempvar5 = document.getElementById("talentpoints")
   tempvar5.innerHTML = talentpoints.toFixed(0);
+  document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+}
+
+function updatepage() {
+	
+	var tempvar7 = document.getElementById("freeworkers");
+	tempvar7.innerHTML = freeworkers.toFixed(0);
+	var tempvar8 = document.getElementById("researchernum");
+	tempvar8.innerHTML = researchers.toFixed(0);
+	var tempvar9 = document.getElementById("farmernum");
+	tempvar9.innerHTML = farmers.toFixed(0);
+	var tempvar10 = document.getElementById("loggernum");
+	tempvar10.innerHTML = loggers.toFixed(0);
+	var tempvar11 = document.getElementById("minernum");
+	tempvar11.innerHTML = miners.toFixed(0);
+	var tempvar12 = document.getElementById("warriornum");
+	tempvar12.innerHTML = warriors.toFixed(0);
+	var tempvar13 = document.getElementById("fruittreenum");
+	tempvar13 = fruittrees.toFixed(0);
+	
+	
+}
+
+function updateresources() {
+	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
+	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
+	document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+	var tempvar4 = document.getElementById("total_RP");
+	tempvar4.innerHTML = researchpoints.toFixed(0);
+	var tempvar5 = document.getElementById("pop");
+	tempvar5.innerHTML = population.toFixed(0);
+	var tempvar6 = document.getElementById("popmax");
+	tempvar6.innerHTML = popmax.toFixed(0);
+	var tempvar7 = document.getElementById("total_wood");
+	tempvar7.innerHTML = wood.toFixed(2);
+	var tempvar8 = document.getElementById("woodmax");
+	tempvar8.innerHTML = woodmax.toFixed(0);
+	var tempvar9 = document.getElementById("total_stone");
+	tempvar9.innerHTML = stone.toFixed(2);
+	var tempvar10 = document.getElementById("stonemax");
+	tempvar10.innerHTML = stonemax.toFixed(0);
+	var tempvar11 = document.getElementById("total_coal");
+	tempvar11.innerHTML = coal.toFixed(2);
+	var tempvar12 = document.getElementById("coalmax");
+	tempvar12.innerHTML = coalmax.toFixed(0);
+	var tempvar13 = document.getElementById("total_clay");
+	tempvar13.innerHTML = clay.toFixed(2);
+	var tempvar14 = document.getElementById("claymax");
+	tempvar14.innerHTML = claymax.toFixed(0);
+	var tempvar15 = document.getElementById("total_mana");
+	tempvar15.innerHTML = mana.toFixed(0);
+	
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
