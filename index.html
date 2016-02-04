@@ -279,11 +279,11 @@ $(document).ready(function(){
 							Unlocks the Researcher Class<br />
 							Generates Research Points
 							</button></span>
-							
+							<span id="minetalent">
 							<button type="button" class="btn btn-talent" id="unlockminebutton">
 							<span class="glyphicon glyphicon-education"></span> Unlock Mine Action <br />
-							<span id="minetalent">Cost: 5 Talent Points.</span>
-							</button>
+							Cost: 5 Talent Points.
+							</button></span>
 							
 							<button type="button" class="btn btn-talent" id="unlockburnbutton">
 							<span class="glyphicon glyphicon-education"></span> Unlock Burn Action <br />
@@ -374,21 +374,22 @@ $(document).ready(function(){
         </div>
 		<br /><br />
 		
-		<button id="Mine" type="button" class="btn btn-mine btn-lg btn-block hidden">Mine</button>
+		<div id="minebuttondiv" class="hidden">
+		<button id="Mine" type="button" class="btn btn-mine btn-lg btn-block">Mine</button>
         <div class="btn-group" role="group">    
             <div class="btn-group btn-group-justified">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine hidden" id="mine10" disabled>Mine x10</button>
+                <button type="button" class="btn btn-mine" id="mine10" disabled>Mine x10</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine hidden" id="mine25" disabled>Mine x25</button>
+                <button type="button" class="btn btn-mine" id="mine25" disabled>Mine x25</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine hidden" id="mine100" disabled>Mine x100</button>
+                <button type="button" class="btn btn-mine" id="mine100" disabled>Mine x100</button>
               </div>
             </div>
         </div>
-		<br /><br />
+		</div><br />
 
 		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block hidden">Burn</button>
 		<div class="btn-group" role="group">    
