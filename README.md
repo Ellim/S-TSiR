@@ -8,7 +8,7 @@ Clicker game made in an attempt to learn some JavaScript.
 Dramatically decreased lines of code in a number of JS files by consolidating repeated code into a single function.
 Resources are all updated from a single function which at present is called by a few buttons, will be transitioning away from this and just updating all resources every 250ms along with the worker updates.
 
-Worker and action button sets have been contained in divs with hidden classes to allow the page to have a more structured layout. Before the individual buttons were hidden/revealed which left gaps in the page when hidden. Now that they are in <div>'s they no longer appear to exist until revealed.
+Worker and action button sets have been contained in divs with hidden classes to allow the page to have a more structured layout. Before the individual buttons were hidden/revealed which left gaps in the page when hidden. Now that they are in divs they no longer appear to exist until revealed.
 
 Also added the Miner and Warrior unlock buttons through research. Miners should work as expected while Warriors do nothing at the moment.
 
