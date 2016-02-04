@@ -390,21 +390,23 @@ $(document).ready(function(){
             </div>
         </div>
 		</div><br />
-
-		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block hidden">Burn</button>
+		
+		<div id="burnbuttondiv" class="hidden">
+		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block">Burn</button>
 		<div class="btn-group" role="group">    
             <div class="btn-group btn-group-justified">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn hidden" id="burn10" disabled>Burn x10</button>
+                <button type="button" class="btn btn-burn" id="burn10" disabled>Burn x10</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn hidden" id="burn25" disabled>Burn x25</button>
+                <button type="button" class="btn btn-burn" id="burn25" disabled>Burn x25</button>
               </div>
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-burn hidden" id="burn100" disabled>Burn x100</button>
+                <button type="button" class="btn btn-burn" id="burn100" disabled>Burn x100</button>
               </div>
             </div>
         </div>
+		<br />
 		
 		<div id ="burncheckboxes" class="checkbox hidden">
 		<label class="checkbox-inline">
@@ -414,7 +416,7 @@ $(document).ready(function(){
 		  <input type="checkbox" id="burncoal" value=""> Charcoal + Water
 		</label>
 		</div>
-		
+		</div>
     </div>
     
   </div>
