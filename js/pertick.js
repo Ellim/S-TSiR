@@ -67,14 +67,20 @@ function updatewater() {
 				}
 				if (miners > 0) {
 					miners -= 1;
+					var tempvar4 = document.getElementById("minernum");
+					tempvar4.innerHTML = miners;
 					return;
 				}
 				if (researchers > 0) {
 					researchers -= 1;
+					var tempvar5 = document.getElementById("researchernum");
+					tempvar5.innerHTML = researchers;
 					return;
 				}
 				if (warriors > 0) {
 					warriors -= 1;
+					var tempvar6 = document.getElementById("warriornum");
+					tempvar6.innerHTML = warriors;
 					return;
 				}
 				if (freeworkers > 0) {
@@ -130,14 +136,20 @@ function updatefood() {
 				}
 				if (miners > 0) {
 					miners -= 1;
+					var tempvar4 = document.getElementById("minernum");
+					tempvar4.innerHTML = miners;
 					return;
 				}
 				if (researchers > 0) {
 					researchers -= 1;
+					var tempvar5 = document.getElementById("researchernum");
+					tempvar5.innerHTML = researchers;
 					return;
 				}
 				if (warriors > 0) {
 					warriors -= 1;
+					var tempvar6 = document.getElementById("warriornum");
+					tempvar6.innerHTML = warriors;
 					return;
 				}
 				if (freeworkers > 0) {
