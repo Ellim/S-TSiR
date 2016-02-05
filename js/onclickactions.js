@@ -276,7 +276,7 @@ function forage(m) {
 		if (getRandomInt(0,100) >= 75) { wood += ((m + popbonus) * 0.25) };
 		if (getRandomInt(0,100) >= 85) { stone += ((m + popbonus) * 0.10) };
 		if (getRandomInt(0,100) >= 90) { clay += ((m + popbonus) * 0.05) };
-		if (getRandomInt(0,100) >= 90) { mana += ((m + popbonus) * 0.15) };
+		if (getRandomInt(0,100) >= 99) { mana += ((m + popbonus) * 0.5) };
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		updateresources();
