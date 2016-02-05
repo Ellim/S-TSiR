@@ -165,20 +165,6 @@ document.getElementById("addwarriorbutton").onclick = function() {
 	}
 }
 
-document.getElementById("fruittreebutton").onclick = function() {
-	if (currentfood >= fruittreescost) {
-		currentfood -= fruittreescost;
-		fruittreescost = (fruittreescost * 1.15);
-		fruittrees += 1;
-		foodrate += 0.5;
-		waterrate -= 5;
-		var tempvar = document.getElementById("fruittreescost");
-		tempvar.innerHTML = fruittreescost.toFixed(2);
-		updateresources();
-		updateworkers();
-	}
-};
-
 document.getElementById("riverbutton").onclick = function() {
 	if (talentpoints >= riverupgradecost) {
 		talentpoints -= riverupgradecost;
