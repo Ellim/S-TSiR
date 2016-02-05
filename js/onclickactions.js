@@ -290,7 +290,11 @@ function mine(m) {
 		stone += m + popbonus;
 		totalexp += m + popbonus;
 		water -= (m * 25)
+		if (getRandomInt(0,100) >= 50) { clay += ((m + popbonus) * 0.25) };
+		if (getRandomInt(0,100) >= 90) { coal += ((m + popbonus) * 0.10) };
 		if (stone > stonemax) {stone = stonemax};
+		if (clay > claymax) {clay = claymax};
+		if (coal > coalmax) {coal = coalmax};
 		updateresources();
 		updatetotalexp();
 	}	
