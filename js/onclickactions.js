@@ -338,31 +338,6 @@ function burn(m) {
 	}
 }
 
-function updatetotalexp() {   
-  var exppct = totalexp/exptnl;
-  var tempvar = document.getElementById("exptotal");
-  tempvar.innerHTML = totalexp.toFixed(0);
-  var tempvar2 = document.getElementById("exptnl");
-  tempvar2.innerHTML = exptnl.toFixed(0);
-    if (totalexp > exptnl - 1) {
-    totalexp = totalexp - exptnl;
-    exptnl = (exptnl * 1.05);
-    currentlevel = currentlevel + 1;
-		if (currentlevel % 5 === 0) {
-			talentpoints += 1;
-		}
-    } 
-  var tempvar3 = document.getElementById("current_level");
-  tempvar3.innerHTML = currentlevel.toFixed(0);
-  var tempvar4 = document.getElementById("exptnl")
-  tempvar4.innerHTML = exptnl.toFixed(0);
-  var tempvar5 = document.getElementById("talentpoints")
-  tempvar5.innerHTML = talentpoints.toFixed(0);
-  document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
-}
-
-
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
