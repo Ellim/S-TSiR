@@ -158,7 +158,7 @@ function updatewater() {
 			}
 		}
 	}
-	
+	updateworkers();
 	}, watertick);
 }
 	
