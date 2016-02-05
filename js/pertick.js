@@ -1,3 +1,26 @@
+function updatetotalexp() {   
+  var exppct = totalexp/exptnl;
+  var tempvar = document.getElementById("exptotal");
+  tempvar.innerHTML = totalexp.toFixed(0);
+  var tempvar2 = document.getElementById("exptnl");
+  tempvar2.innerHTML = exptnl.toFixed(0);
+    if (totalexp > exptnl - 1) {
+    totalexp = totalexp - exptnl;
+    exptnl = (exptnl * 1.05);
+    currentlevel = currentlevel + 1;
+		if (currentlevel % 5 === 0) {
+			talentpoints += 1;
+		}
+    } 
+  var tempvar3 = document.getElementById("current_level");
+  tempvar3.innerHTML = currentlevel.toFixed(0);
+  var tempvar4 = document.getElementById("exptnl")
+  tempvar4.innerHTML = exptnl.toFixed(0);
+  var tempvar5 = document.getElementById("talentpoints")
+  tempvar5.innerHTML = talentpoints.toFixed(0);
+  document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
+}
+
 function updateworkers() {
 	var tempvar = document.getElementById("freeworkers");
 	tempvar.innerHTML = freeworkers.toFixed(0);
@@ -40,7 +63,6 @@ function updateresources() {
 	var tempvar14 = document.getElementById("claymax");
 	tempvar14.innerHTML = claymax.toFixed(0);
 	var tempvar15 = document.getElementById("total_mana");
-	tempvar15.innerHTML = mana.toFixed(0);
 }
 
 function autosave() {
@@ -230,8 +252,7 @@ document.getElementById("loadgame").onclick = function() {
 		updateminer();
 		updateresearcher();
 		autosave();
-		updateresources();
-		updateworkers();
+		
 		
 		if (burntalent > 0) {
 			$('#minebuttondiv').removeClass('hidden');
@@ -242,33 +263,73 @@ document.getElementById("loadgame").onclick = function() {
 			$('#burnbuttondiv').removeClass('hidden');
 			$('#burntalent').addClass('hidden');
 		}
-
-		var tempvar6 = document.getElementById("riverupgradecost");
-		tempvar6.innerHTML = riverupgradecost.toFixed(0);
-		var tempvar7 = document.getElementById("riverlevel");
-		tempvar7.innerHTML = riverlevel;
-		var tempvar8 = document.getElementById("riverproduction");
-		tempvar8.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
 		
-		var tempvar11 = document.getElementById("hutnum");
-		tempvar11.innerHTML = huts;
-		var tempvar12 = document.getElementById("hutcost");
-		tempvar12.innerHTML = hutcost.toFixed(2);
-		var tempvar13 = document.getElementById("hutexp");
-		tempvar13.innerHTML = hutcost.toFixed(2);
+		if (researchertalent > 0) {
+			$('#researchdiv').removeClass('hidden');
+			$('#unlockresearcherbutton').addClass('hidden');
+		}
 		
-		var tempvar21 = document.getElementById("granarynum");
-		tempvar.innerHTML = granaries;
-		var tempvar22 = document.getElementById("granarywoodcost");
-		tempvar22.innerHTML = granarywoodcost;
-		var tempvar23 = document.getElementById("granarystonecost");
-		tempvar23.innerHTML = granarystonecost;
+		if (farmertalent > 0) {
+			$('#farmerdiv').removeClass('hidden');
+			$('#unlockfarmerbutton').addClass('hidden');
+		}
+		
+		if (loggertalent > 0) {
+			$('#loggerdiv').removeClass('hidden');
+			$('#unlockloggerbutton').addClass('hidden');
+		}
+		
+		if (minertalent > 0) {
+			$('#minerdiv').removeClass('hidden');
+			$('#unlockminerbutton').addClass('hidden');
+		}
+		
+		if (warriortalent > 0) {
+			$('#warriordiv').removeClass('hidden');
+			$('#unlockwarriorbutton').addClass('hidden');
+		}
 
-		var tempvar28 = document.getElementById("shnum");
-		tempvar28 = storehouses;
-		var tempvar29 = document.getElementById("shcost");
-		tempvar29.innerHTML = shcost.toFixed(2);
+		var tempvar = document.getElementById("riverupgradecost");
+		tempvar.innerHTML = riverupgradecost.toFixed(0);
+		var tempvar2 = document.getElementById("riverlevel");
+		tempvar2.innerHTML = riverlevel;
+		var tempvar3 = document.getElementById("riverproduction");
+		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
+		
+		var tempvar4 = document.getElementById("hutnum");
+		tempvar4.innerHTML = huts;
+		var tempvar5 = document.getElementById("hutcost");
+		tempvar5.innerHTML = hutcost.toFixed(2);
+		var tempvar6 = document.getElementById("hutexp");
+		tempvar6.innerHTML = hutcost.toFixed(2);
+		
+		var tempvar7 = document.getElementById("rhnum");
+		tempvar7.innerHTML = roundhouses;
+		var tempvar8 = document.getElementById("rhcost");
+		tempvar8.innerHTML = rhcost.toFixed(2);
+		var tempvar9 = document.getElementById("rhexp");
+		tempvar9.innerHTML = (rhcost/2).toFixed(2);
+		
+		var tempvar10 = document.getElementById("granarynum");
+		tempvar10.innerHTML = granaries;
+		var tempvar11 = document.getElementById("granarywoodcost");
+		tempvar11.innerHTML = granarywoodcost;
+		var tempvar12 = document.getElementById("granarystonecost");
+		tempvar12.innerHTML = granarystonecost;
 
+		var tempvar13 = document.getElementById("shnum");
+		tempvar13 = storehouses;
+		var tempvar14 = document.getElementById("shcost");
+		tempvar14.innerHTML = shcost.toFixed(2);
+		
+		updateresources();
+		updateworkers();
+		updatetotalexp();
+		if (popmax >= 10) {
+		$('#forage10').prop('disabled', false);
+		$('#mine10').prop('disabled', false);
+		$('#burn10').prop('disabled', false);
+		}
 }
 	
 /*
