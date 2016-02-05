@@ -94,30 +94,22 @@ $(document).ready(function(){
         Talent Points: <span id="talentpoints">0</span> <br />
 		Research Points: <span id="total_RP">0</span><br />
         Population: <span id="pop">1</span> / <span id="popmax">1 </span><br />
-        <!--Worker panel-->
-		<div class="accordion-group text-center"> 
 		
-        	<div class="accordion-heading">
-			<h4>Available Workers: <span id="freeworkers">0</span>
-        		<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="resprodbutton" data-parent="#productioncollapse" href="#productioncollapse"  aria-controls="productioncollapse">
-        		<span id="resourceprodarrow" class="glyphicon glyphicon-collapse-down"></span>
-        		</a></h4>
-				
-        	</div>
-        	<div id="productioncollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
-           		<div class="accordion-inner">
-					<div class="accordion-heading">
-					Assignments
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="foodprodbutton" data-parent="#foodcollapse" href="#foodcollapse"  aria-controls="foodcollapse">
-						<span id="foodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-						
-					</div>
-					<div id="foodcollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordianheadingone">
-						<div class="accordion-inner">
-							<br />
-							
-							<div id="researchdiv" class="hidden">
+		
+		<div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab">Workers</a></li>
+				<li role="presentation"><a href="#consttab" aria-controls="consttab" role="tab" data-toggle="tab">Construction</a></li>
+				<li role="presentation"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab">Talents</a></li>
+				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab">Research</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade" id="workertab">
+					<div id="researchdiv" class="hidden">
 							<button type="button" class="btn btn-job2" id="removeresearcherbutton"><span class="glyphicon glyphicon-minus"></span></button>
 							<button type="button" class="btn btn-job" id="researcherbutton">Researchers <span id="researchernum" class="badge">0</span></button>
 							<button type="button" class="btn btn-job2" id="addresearcherbutton"><span class="glyphicon glyphicon-plus"></span></button>
@@ -145,59 +137,10 @@ $(document).ready(function(){
 							<button type="button" class="btn btn-job2" id="removewarriorbutton"><span class="glyphicon glyphicon-minus"></span></button>
 							<button type="button" class="btn btn-job" id="warriorbutton">Warriors <span id="warriornum" class="badge">0</span></button>
 							<button type="button" class="btn btn-job2" id="addwarriorbutton"><span class="glyphicon glyphicon-plus"></span></button>
-							</div>
-							
 						</div>
-					</div>
-					
-					<div class="accordion-heading">
-					Activated Abilities
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="woodprodbutton" data-parent="#basicccollapse" href="#basicccollapse"  aria-controls="basicccollapse">
-						<span id="woodprodarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-						
-					</div>
-					<div id="basicccollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-						
-							<div class="hidden" id="fruittreediv">
-							<br />
-							<button type="button" class="btn btn-food btn-block" id="fruittreebutton"><span class="glyphicon glyphicon-tree-deciduous"></span> Fruit Tree <span class="badge" id="fruittreenum">0</span></button><br />
-							Cost: <span id="fruittreescost">25</span> Food and <span id="fruittreetimer">50</span> seconds.<br /> 
-							Produces: <span id="fruittreeproduction">+1.00</span> Food per second for <span id="fruittreetimer2">50</span> seconds.<br />
-							After time expires tree will be harvested for <span id="fruittreewoodprod">10</span> Mana.<br /><br />
-							Consumes: <span id="fruittresswatercost">-2.50</span> Water per second for <span id="fruittreetimer3">50</span> seconds.<br />
-							
-							<div class="progress" id="treetimebar">
-							  <div class="progress-bar progress-bar-treetimer" id="treebar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="50" style="width:100%">
-							  <span class="glyphicon glyphicon-time"</span>
-							  </div>
-							</div><br />
-							</div>
-							
-							
-						</div>
-					</div>
-					
 				</div>
-        	</div>
-    	</div>
-		
-		<div class="accordion text-center" role="tab" id="accordianheadingone">
-    	
-	
-		<div class="accordion-group">
-			<div class="accordion-heading">
-			<h4>Construction 
-				<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="constructionbutton" data-parent="#buildingcollapse" href="#buildingcollapse" aria-expanded="false" aria-controls="buildingcollapse">
-				<span id="constructionarrow" class="glyphicon glyphicon-collapse-down"></span>
-				</a></h4>
-			</div>
-			<div id="buildingcollapse" class="panel-collapse collapse" role="tabpanel">
-				<div class="accordion-inner">
 				
-					
-				
+				<div role="tabpanel" class="tab-pane fade text-center" id="consttab">
 					<div class="accordion-heading">
 					Housing 
 						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
@@ -252,28 +195,9 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	 
-    <div class="accordion-group">
-		<div class="accordion-heading">
-		<h4>Upgrades 
-			<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="upgradesbutton" data-parent="#upgradescollapse" href="#upgradescollapse" aria-expanded="false" aria-controls="upgradescollapse">
-			<span id="upgradesarrow" class="glyphicon glyphicon-collapse-down"></span>
-			</a></h4>
-		</div>
-			<div id="upgradescollapse" class="panel-collapse collapse" role="tabpanel">
-				<div class="accordion-inner">
-					<div class="accordion-heading">
-					Talents 
-						<a class = "accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="talentsbutton" data-parent="#talentcollapse" href="#talentcollapse"  aria-controls="talentcollapse">
-						<span id="talentsarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-					</div>
-					<div id="talentcollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-							<br />
-							<span id="researchertalent"><button type="button" class="btn btn-talent" id="unlockresearcherbutton">
+				
+				<div role="tabpanel" class="tab-pane fade in active" id="talenttab">
+					<span id="researchertalent"><button type="button" class="btn btn-talent" id="unlockresearcherbutton">
 							<span class="glyphicon glyphicon-education"></span> Discovery <br />
 							Cost: 2 Talent Points.<br />
 							Unlocks the Researcher Class<br />
@@ -297,47 +221,33 @@ $(document).ready(function(){
 							Increase Water Production by<br />
 							<span id="riverproduction">10.00</span> Water/sec.							
 							</button>
-							
-						</div>
-					</div>
-					<div class="accordion-heading">
-					Research
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="buildingsbutton" data-parent="#buildingcollapse" href="#resbcollapse"  aria-controls="resbcollapse">
-						<span id="buildingarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-					</div>
-					<div id="resbcollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-							<br />
-							<button type="button" class="btn btn-research" id="unlockfarmerbutton">
-							<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
-							<span id="farmertalent">Cost: 100 Research Points.</span>
-							</button>
-							
-							<button type="button" class="btn btn-research" id="unlockloggerbutton">
-							<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks <br />
-							<span>Cost: 150 Research Points.</span>
-							</button>
-							
-							<button type="button" class="btn btn-research" id="unlockminerbutton">
-							<span class="fa fa-diamond"></span> Unlock Miners <br />
-							<span>Cost: 1000 Research Points.</span>
-							</button>
-							
-							<button type="button" class="btn btn-research" id="unlockwarriorbutton">
-							<span class="fa fa-gavel"></span> Unlock Warriors <br />
-							<span>Cost: 2000 Research Points.</span>
-							</button>
-						</div>
-					</div>
-					
 				</div>
+				
+				<div role="tabpanel" class="tab-pane fade" id="researchtab">
+					<button type="button" class="btn btn-research" id="unlockfarmerbutton">
+					<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
+					<span id="farmertalent">Cost: 100 Research Points.</span>
+					</button>
+							
+					<button type="button" class="btn btn-research" id="unlockloggerbutton">
+					<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks <br />
+					<span>Cost: 150 Research Points.</span>
+					</button>
+							
+					<button type="button" class="btn btn-research" id="unlockminerbutton">
+					<span class="fa fa-diamond"></span> Unlock Miners <br />
+					<span>Cost: 1000 Research Points.</span>
+					</button>
+							
+					<button type="button" class="btn btn-research" id="unlockwarriorbutton">
+					<span class="fa fa-gavel"></span> Unlock Warriors <br />
+					<span>Cost: 2000 Research Points.</span>
+					</button>
+				</div>
+				
 			</div>
+
 		</div>
-</div>
-		  
-		
-		
 		
     </div>
 	
