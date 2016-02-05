@@ -32,7 +32,7 @@ function updatewater() {
 				waterrate -= 2;
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = population.toFixed(0);
-				var tempvar2 = document.getElementById("freeloaders");
+				var tempvar2 = document.getElementById("freeworkers");
 				tempvar2.innerHTML = freeworkers;
 			}
 		}
@@ -79,7 +79,7 @@ function updatewater() {
 				}
 				if (freeworkers > 0) {
 					freeworkers -= 1;
-					var tempvar7 = document.getElementById("freeloaders");
+					var tempvar7 = document.getElementById("freeworkers");
 					tempvar7.innerHTML = freeworkers;
 					return;
 				}
@@ -142,7 +142,7 @@ function updatefood() {
 				}
 				if (freeworkers > 0) {
 					freeworkers -= 1;
-					var tempvar7 = document.getElementById("freeloaders");
+					var tempvar7 = document.getElementById("freeworkers");
 					tempvar7.innerHTML = freeworkers;
 					return;
 				}
