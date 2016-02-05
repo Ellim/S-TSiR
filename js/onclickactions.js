@@ -204,6 +204,28 @@ document.getElementById("hutbutton").onclick = function() {
 	}
 };
 
+document.getElementById("rhbutton").onclick = function() {
+	if (clay >= rhcost) {
+		clay -= rhcost;
+		totalexp += rhcost/2;
+		rhcost += (rhcost^0.85);
+		roundhouses += 1;
+		popmax += rhlevel;
+		var tempvar = document.getElementById("rhnum");
+		tempvar.innerHTML = roundhouses;
+		var tempvar2 = document.getElementById("rhcost");
+		tempvar2.innerHTML = rhcost.toFixed(2);
+		var tempvar3 = document.getElementById("rhexp");
+		tempvar3.innerHTML = (rhcost/2).toFixed(2);
+		updateresources();		
+		if (popmax >= 10) {
+		$('#forage10').prop('disabled', false);
+		$('#mine10').prop('disabled', false);
+		$('#burn10').prop('disabled', false);
+		}
+	}
+};
+
 document.getElementById("unlockminebutton").onclick = function() {
 	if (talentpoints >= 5) {
 		talentpoints -= 5;
