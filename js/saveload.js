@@ -42,7 +42,7 @@ var riverupgradecost = 1;
 var riverlevel = 0;
 
 var huts = 0;
-var hutcost = 25;
+var hutcost = 10;
 var hutlevel = 2;
 
 var roundhouses = 0;
