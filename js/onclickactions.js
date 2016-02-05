@@ -3,12 +3,24 @@ document.getElementById("Forage").onclick = function() {
 	forage(1);   
 };
 
+document.getElementById("forage10").onclick = function() {
+	forage(10);   
+};
+
 document.getElementById("Mine").onclick = function() {
 	mine(1);   
 };
 
+document.getElementById("mine10").onclick = function() {
+	mine(10);   
+};
+
 document.getElementById("Burn").onclick = function() {
 	burn(1);   
+};
+
+document.getElementById("burn10").onclick = function() {
+	burn(10);   
 };
 
 document.getElementById("save").onclick = function() {
