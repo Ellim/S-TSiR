@@ -80,6 +80,8 @@ var farmertalent = 0;
 var loggertalent = 0;
 var minetalent = 0;
 var burntalent = 0;
+var minertalent = 0;
+var warriortalent = 0;
 
 function savegame() {
 	var save = {
@@ -164,7 +166,9 @@ function savegame() {
 	farmertalent: farmertalent,
 	loggertalent: loggertalent,
 	minetalent: minetalent,
-	burntalent: burntalent
+	burntalent: burntalent,
+	minertalent: minertalent,
+	warriortalent: warriortalent
 	
 	}
 	localStorage.setItem("save",JSON.stringify(save));
@@ -247,6 +251,8 @@ function loadgame() {
 	if (typeof savestring.loggertalent !== "undefined") loggertalent = savestring.loggertalent;
 	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
+	if (typeof savestring.minertalent !== "undefined") minertalent = savestring.minertalent;
+	if (typeof savestring.warriortalent !== "undefined") warriortalent = savestring.warriortalent;
 }
 
 function showsave() {

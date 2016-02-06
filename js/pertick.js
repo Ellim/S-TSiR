@@ -288,7 +288,13 @@ document.getElementById("loadgame").onclick = function() {
 			$('#warriordiv').removeClass('hidden');
 			$('#unlockwarriorbutton').addClass('hidden');
 		}
-
+		
+		if (popmax >= 10) {
+		$('#forage10').prop('disabled', false);
+		$('#mine10').prop('disabled', false);
+		$('#burn10').prop('disabled', false);
+		}
+		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = riverupgradecost.toFixed(0);
 		var tempvar2 = document.getElementById("riverlevel");
@@ -325,11 +331,7 @@ document.getElementById("loadgame").onclick = function() {
 		updateresources();
 		updateworkers();
 		updatetotalexp();
-		if (popmax >= 10) {
-		$('#forage10').prop('disabled', false);
-		$('#mine10').prop('disabled', false);
-		$('#burn10').prop('disabled', false);
-		}
+		
 }
 	
 /*
