@@ -81,12 +81,13 @@ function autosave() {
 function updatewater() {
   clearInterval(waterinterval);
   waterinterval = setInterval(function() {
+	if (water >= watermax) {
+		water = watermax - 0.001;
+	}
 	if (water <= watermax) {
 		water += waterrate;
 	}
-	if (water > watermax) {
-		water = watermax - 0.001;
-	}
+	
 	var tempvar = document.getElementById("currentwater");
 	tempvar.innerHTML = water.toFixed(2);
 	var tempvar2 = document.getElementById("waterps");
@@ -170,11 +171,12 @@ function updatewater() {
 function updatefood() {
   clearInterval(foodinterval);
   foodinterval = setInterval(function() {
+	
+	if (currentfood >= foodmax) {
+		currentfood = foodmax - 0.001;
+	}
 	if (currentfood <= foodmax) {
 		currentfood += foodrate;
-	}
-	if (currentfood > foodmax) {
-		currentfood = foodmax - 0.001;
 	}
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = currentfood.toFixed(2);
@@ -246,6 +248,7 @@ document.getElementById("newgame").onclick = function() {
 		autosave();
 		updateresources();
 		updateworkers();
+		
 }
 
 document.getElementById("loadgame").onclick = function() {
@@ -298,6 +301,18 @@ document.getElementById("loadgame").onclick = function() {
 		$('#forage10').prop('disabled', false);
 		$('#mine10').prop('disabled', false);
 		$('#burn10').prop('disabled', false);
+		}
+		
+		if (popmax >= 25) {
+		$('#forage25').prop('disabled', false);
+		$('#mine25').prop('disabled', false);
+		$('#burn25').prop('disabled', false);
+		}
+		
+		if (popmax >= 100) {
+		$('#forage100').prop('disabled', false);
+		$('#mine100').prop('disabled', false);
+		$('#burn100').prop('disabled', false);
 		}
 		
 		var tempvar = document.getElementById("riverupgradecost");
