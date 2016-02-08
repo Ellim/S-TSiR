@@ -260,13 +260,13 @@ document.getElementById("loadgame").onclick = function() {
 		
 		
 		if (burntalent > 0) {
-			$('#minebuttondiv').removeClass('hidden');
-			$('#minetalent').addClass('hidden');
+			$('#burnbuttondiv').removeClass('hidden');
+			$('#burntalent').addClass('hidden');
 		}
 		
 		if (minetalent > 0) {
-			$('#burnbuttondiv').removeClass('hidden');
-			$('#burntalent').addClass('hidden');
+			$('#minebuttondiv').removeClass('hidden');
+			$('#minetalent').addClass('hidden');
 		}
 		
 		if (researchertalent > 0) {
