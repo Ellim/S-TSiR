@@ -63,6 +63,11 @@ function updateresources() {
 	var tempvar14 = document.getElementById("claymax");
 	tempvar14.innerHTML = claymax.toFixed(0);
 	var tempvar15 = document.getElementById("total_mana");
+	tempvar15.innerHTML = mana.toFixed(0);
+	var tempvar16 = document.getElementById("maxfood");
+	tempvar16.innerHTML = foodmax.toFixed(2);
+	var tempvar17 = document.getElementById("maxwater");
+	tempvar17.innerHTML = watermax.toFixed(2)
 }
 
 function autosave() {
@@ -80,7 +85,7 @@ function updatewater() {
 		water += waterrate;
 	}
 	if (water > watermax) {
-		water = watermax - 0.01;
+		water = watermax - 0.001;
 	}
 	var tempvar = document.getElementById("currentwater");
 	tempvar.innerHTML = water.toFixed(2);
@@ -169,7 +174,7 @@ function updatefood() {
 		currentfood += foodrate;
 	}
 	if (currentfood > foodmax) {
-		currentfood = foodmax;
+		currentfood = foodmax - 0.001;
 	}
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = currentfood.toFixed(2);
