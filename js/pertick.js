@@ -81,7 +81,7 @@ function autosave() {
 function updatewater() {
   clearInterval(waterinterval);
   waterinterval = setInterval(function() {
-	if (water < watermax) {
+	if (water <= watermax) {
 		water += waterrate;
 	}
 	if (water > watermax) {
@@ -170,7 +170,7 @@ function updatewater() {
 function updatefood() {
   clearInterval(foodinterval);
   foodinterval = setInterval(function() {
-	if (currentfood < foodmax) {
+	if (currentfood <= foodmax) {
 		currentfood += foodrate;
 	}
 	if (currentfood > foodmax) {
