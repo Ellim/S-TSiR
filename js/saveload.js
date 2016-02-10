@@ -35,7 +35,7 @@ var currentlevel = 1;
 var totalexp = 0;
 var exptnl = 10;
 var talentpoints = 0;
-var researchpoints = 1000;
+var researchpoints = 0;
 
 var fruittreescost = 25;
 var fruittrees = 0;
