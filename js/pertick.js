@@ -8,7 +8,7 @@ function updatetotalexp() {
     totalexp = totalexp - exptnl;
     exptnl = (exptnl * 1.05);
     currentlevel = currentlevel + 1;
-		if (currentlevel % 5 === 0) {
+		if (currentlevel % 3 === 0) {
 			talentpoints += 1;
 		}
     } 
@@ -67,7 +67,51 @@ function updateresources() {
 	var tempvar16 = document.getElementById("maxfood");
 	tempvar16.innerHTML = foodmax.toFixed(2);
 	var tempvar17 = document.getElementById("maxwater");
-	tempvar17.innerHTML = watermax.toFixed(2)
+	tempvar17.innerHTML = watermax.toFixed(2);
+	var tempvar18 = document.getElementById("total_logs");
+	tempvar18.innerHTML = logs.toFixed(0);
+}
+
+function updatebuildings() {
+		var tempvar = document.getElementById("cabinnum");
+		tempvar.innerHTML = cabins.toFixed(0);
+		var tempvar2 = document.getElementById("cabincost");
+		tempvar2.innerHTML = cabincost.toFixed(2);
+		var tempvar3 = document.getElementById("cabinexp");
+		tempvar3.innerHTML = (cabincost*30).toFixed(0);
+		
+		var tempvar4 = document.getElementById("hutnum");
+		tempvar4.innerHTML = huts.toFixed(0);
+		var tempvar5 = document.getElementById("hutcost");
+		tempvar5.innerHTML = hutcost.toFixed(2);
+		var tempvar6 = document.getElementById("hutexp");
+		tempvar6.innerHTML = hutcost.toFixed(2);
+		
+		var tempvar7 = document.getElementById("rhnum");
+		tempvar7.innerHTML = roundhouses.toFixed(0);
+		var tempvar8 = document.getElementById("rhcost");
+		tempvar8.innerHTML = rhcost.toFixed(2);
+		var tempvar9 = document.getElementById("rhexp");
+		tempvar9.innerHTML = (rhcost/2).toFixed(2);
+		
+		var tempvar10 = document.getElementById("granarynum");
+		tempvar10.innerHTML = granaries.toFixed(0);
+		var tempvar11 = document.getElementById("granarywoodcost");
+		tempvar11.innerHTML = granarywoodcost.toFixed(2);
+		var tempvar12 = document.getElementById("granarystonecost");
+		tempvar12.innerHTML = granarystonecost.toFixed(2);
+
+		var tempvar13 = document.getElementById("sthnum");
+		tempvar13.innerHTML = storehouses.toFixed(0);
+		var tempvar14 = document.getElementById("shcost");
+		tempvar14.innerHTML = shcost.toFixed(2);
+		
+		var tempvar15 = document.getElementById("rtowernum");
+		tempvar15.innerHTML = rtowers.toFixed(0);
+		var tempvar16 = document.getElementById("rtowercost");
+		tempvar16.innerHTML = rtowercost.toFixed(2);
+		
+		
 }
 
 function autosave() {
@@ -84,14 +128,14 @@ function updatewater() {
 	if (water >= watermax) {
 		water = watermax - 0.001;
 	}
-	if (water <= watermax) {
+	if (water < watermax - 0.001) {
 		water += waterrate;
 	}
 	
 	var tempvar = document.getElementById("currentwater");
 	tempvar.innerHTML = water.toFixed(2);
 	var tempvar2 = document.getElementById("waterps");
-	tempvar2.innerHTML = (waterrate/(watertick/1000)).toFixed(2) + '/sec';
+	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(2) + '/sec';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	
 	if (popmax > 1 && currentfood > (popmax * 2)) {
@@ -100,8 +144,8 @@ function updatewater() {
 			if (rand > 14) {
 				population += 1;
 				freeworkers += 1;
-				foodrate -= .75;
-				waterrate -= 2;
+				foodrate -= .375;
+				waterrate -= .25;
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = population.toFixed(0);
 				var tempvar2 = document.getElementById("freeworkers");
@@ -121,9 +165,9 @@ function updatewater() {
 				population -= 1;
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = population.toFixed(0);
-				foodrate += .75;
+				foodrate += .375;
 				
-				waterrate += 2;
+				waterrate += .25;
 				
 				if (farmers > 0) {
 					farmers -= 1;
@@ -165,7 +209,7 @@ function updatewater() {
 		}
 	}
 	updateworkers();
-	}, watertick);
+	}, workertick);
 }
 	
 function updatefood() {
@@ -191,9 +235,9 @@ function updatefood() {
 				population -= 1;
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = population.toFixed(0);
-				foodrate += .75;
+				foodrate += .375;
 				
-				waterrate += 2;
+				waterrate += .25;
 				
 				if (farmers > 0) {
 					farmers -= 1;
@@ -234,7 +278,7 @@ function updatefood() {
 			}
 		}
 	}
-	}, foodtick);
+	}, workertick);
 }
 
 
@@ -297,6 +341,32 @@ document.getElementById("loadgame").onclick = function() {
 			$('#unlockwarriorbutton').addClass('hidden');
 		}
 		
+		if (constructiontalent > 0) {
+			$('#consttalent').removeClass('hidden');
+		}
+		
+		if (workertalent > 0) {
+			$('#workertalent').removeClass('hidden');
+		}
+		
+		if (researchtalent > 0) {
+			$('#researchtalent').removeClass('hidden');
+		}
+		
+		if (craftingtalent > 0) {
+			$('#craftingtalent').removeClass('hidden');
+			$('#crafttalentbutton').addClass('hidden');
+		}
+		
+		if (logtalent > 0) {
+			$('#logspan').removeClass('hidden');
+			$('#unlocklogdiv').addClass('hidden');
+		}
+		
+		if (logs > 0) {
+			$('#logdiv').removeClass('hidden');
+		}
+		
 		if (popmax >= 10) {
 		$('#forage10').prop('disabled', false);
 		$('#mine10').prop('disabled', false);
@@ -322,31 +392,7 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar3 = document.getElementById("riverproduction");
 		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
 		
-		var tempvar4 = document.getElementById("hutnum");
-		tempvar4.innerHTML = huts;
-		var tempvar5 = document.getElementById("hutcost");
-		tempvar5.innerHTML = hutcost.toFixed(2);
-		var tempvar6 = document.getElementById("hutexp");
-		tempvar6.innerHTML = hutcost.toFixed(2);
-		
-		var tempvar7 = document.getElementById("rhnum");
-		tempvar7.innerHTML = roundhouses;
-		var tempvar8 = document.getElementById("rhcost");
-		tempvar8.innerHTML = rhcost.toFixed(2);
-		var tempvar9 = document.getElementById("rhexp");
-		tempvar9.innerHTML = (rhcost/2).toFixed(2);
-		
-		var tempvar10 = document.getElementById("granarynum");
-		tempvar10.innerHTML = granaries;
-		var tempvar11 = document.getElementById("granarywoodcost");
-		tempvar11.innerHTML = granarywoodcost;
-		var tempvar12 = document.getElementById("granarystonecost");
-		tempvar12.innerHTML = granarystonecost;
-
-		var tempvar13 = document.getElementById("shnum");
-		tempvar13 = storehouses;
-		var tempvar14 = document.getElementById("shcost");
-		tempvar14.innerHTML = shcost.toFixed(2);
+		updatebuildings();
 		
 		updateresources();
 		updateworkers();

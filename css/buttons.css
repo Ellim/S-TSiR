@@ -26,5 +26,6 @@
 
 .btn-research {background: rgba(255, 217, 0, 1); background: -webkit-linear-gradient(top, rgba(235, 148, 35, 1) 0%, rgba(255, 217, 0, 1) 100%); background: linear-gradient(to bottom, rgba(235, 148, 35, 1) 0%, rgba(255, 217, 0, 1) 100%); border-color: rgba(171, 171, 171, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}
 
-.foodtest {width: 15%;}
-.foodtest2 {width: 70;}
+.btn-craft {background: rgba(255, 229, 242, 1); background: -webkit-linear-gradient(top, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); background: linear-gradient(to bottom, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); border-color: rgba(156, 156, 156, 1); color: rgba(0, 0, 0, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
+
+.btn-craft2 {background: rgba(255, 229, 242, 1); background: -webkit-linear-gradient(top, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); background: linear-gradient(to bottom, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); border-color: rgba(156, 156, 156, 1); color: rgba(0, 0, 0, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}

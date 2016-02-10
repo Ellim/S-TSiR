@@ -1,6 +1,15 @@
 
 document.getElementById("Forage").onclick = function() {
-	forage(1);   
+	forage(1); 
+	
+	if ($('#consttalent').hasClass('hidden')) {
+		if (wood >= 10) {
+		$('#consttalent').removeClass('hidden');
+		$('#consttalent').addClass('btn-danger');
+		constructiontalent += 1;
+		} 
+	}
+	
 };
 
 document.getElementById("forage10").onclick = function() {
@@ -27,15 +36,63 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
-document.getElementById("unlockresearcherbutton").onclick = function() {
-	if (talentpoints > 1) {
-		talentpoints -= 2;
-		if ($('#researchdiv').hasClass('hidden')) {
-			$('#researchdiv').removeClass('hidden');
-			$('#unlockresearcherbutton').addClass('hidden');
+document.getElementById("consttalent").onclick = function() {
+	if ($('#consttalent').hasClass('btn-danger')) {
+		$('#consttalent').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("workertalent").onclick = function() {
+	if ($('#workertalent').hasClass('btn-danger')) {
+		$('#workertalent').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("researchtalent").onclick = function() {
+	if ($('#researchtalent').hasClass('btn-danger')) {
+		$('#researchtalent').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("craftingtalent").onclick = function() {
+	if ($('#craftingtalent').hasClass('btn-danger')) {
+		$('#craftingtalent').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("craftingbutton").onclick = function() {
+	if (talentpoints > 4) {
+		talentpoints -= 5;
+		if ($('#craftingtalent').hasClass('hidden')) {
+			$('#craftingtalent').removeClass('hidden');
+			$('#craftingtalent').addClass('btn-danger');
+			$('#crafttalentbutton').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
-			researchertalent += 1;
+			craftingtalent += 1;
+		}
+	}
+}
+
+document.getElementById("logbutton").onclick = function() {
+	if (wood >= woodlogcost) {
+		wood -= woodlogcost;
+		logs += 1;
+		if ($('#logdiv').hasClass('hidden')) {
+		$('#logdiv').removeClass('hidden');
+	}  
+	updateresources();
+	}
+}
+
+document.getElementById("unlocklogbutton").onclick = function() {
+	if (researchpoints > 999) {
+		researchpoints -= 1000;
+		if ($('#logspan').hasClass('hidden')) {
+			$('#logspan').removeClass('hidden');
+			$('#unlocklogdiv').addClass('hidden');
+			logtalent += 1;
+			$('#craftingtalent').addClass('btn-danger');
 		}
 	}
 }
@@ -158,6 +215,11 @@ document.getElementById("addresearcherbutton").onclick = function() {
 		freeworkers -= 1;
 		researchers += 1;
 		updateworkers();
+		if ($('#researchtalent').hasClass('hidden')) {
+		$('#researchtalent').removeClass('hidden');
+		$('#researchtalent').addClass('btn-danger');
+		researchtalent += 1;
+	}
 	}
 }
 
@@ -180,7 +242,7 @@ document.getElementById("addwarriorbutton").onclick = function() {
 document.getElementById("riverbutton").onclick = function() {
 	if (talentpoints >= riverupgradecost) {
 		talentpoints -= riverupgradecost;
-		waterrate += riverupgradecost * 20;
+		waterrate += riverupgradecost * 2.5;
 		riverupgradecost += riverupgradecost;
 		riverlevel += 1;
 		var tempvar = document.getElementById("riverupgradecost");
@@ -213,6 +275,50 @@ document.getElementById("hutbutton").onclick = function() {
 		$('#mine10').prop('disabled', false);
 		$('#burn10').prop('disabled', false);
 		}
+		if (popmax >= 25) {
+		$('#forage25').prop('disabled', false);
+		$('#mine25').prop('disabled', false);
+		$('#burn25').prop('disabled', false);
+		}
+		if (popmax >= 100) {
+		$('#forage100').prop('disabled', false);
+		$('#mine100').prop('disabled', false);
+		$('#burn100').prop('disabled', false);
+		}
+		if ($('#workertalent').hasClass('hidden')) {
+		if (popmax > 1) {
+		$('#workertalent').removeClass('hidden');
+		$('#workertalent').addClass('btn-danger');
+		workertalent += 1;
+		} 
+	}
+	}
+};
+
+document.getElementById("cabinbutton").onclick = function() {
+	if (logs >= cabincost) {
+		logs -= cabincost;
+		totalexp += cabincost * 30;
+		cabincost = (cabincost*1.33);
+		cabins += 1;
+		popmax += cabinlevel;
+		updatebuildings();
+		updateresources();		
+		if (popmax >= 10) {
+		$('#forage10').prop('disabled', false);
+		$('#mine10').prop('disabled', false);
+		$('#burn10').prop('disabled', false);
+		}
+		if (popmax >= 25) {
+		$('#forage25').prop('disabled', false);
+		$('#mine25').prop('disabled', false);
+		$('#burn25').prop('disabled', false);
+		}
+		if (popmax >= 100) {
+		$('#forage100').prop('disabled', false);
+		$('#mine100').prop('disabled', false);
+		$('#burn100').prop('disabled', false);
+		}
 	}
 };
 
@@ -234,6 +340,16 @@ document.getElementById("rhbutton").onclick = function() {
 		$('#forage10').prop('disabled', false);
 		$('#mine10').prop('disabled', false);
 		$('#burn10').prop('disabled', false);
+		}
+		if (popmax >= 25) {
+		$('#forage25').prop('disabled', false);
+		$('#mine25').prop('disabled', false);
+		$('#burn25').prop('disabled', false);
+		}
+		if (popmax >= 100) {
+		$('#forage100').prop('disabled', false);
+		$('#mine100').prop('disabled', false);
+		$('#burn100').prop('disabled', false);
 		}
 	}
 };
@@ -286,7 +402,7 @@ document.getElementById("shbutton").onclick = function() {
 		wood -= shcost;
 		storehouses += 1;
 		shcost = (shcost * 1.05);
-		totalexp += 15;
+		totalexp += 75;
 		woodmax += 250;
 		stonemax += 200;
 		coalmax += 50;
@@ -295,6 +411,23 @@ document.getElementById("shbutton").onclick = function() {
 		tempvar.innerHTML = storehouses;
 		var tempvar6 = document.getElementById("shcost");
 		tempvar6.innerHTML = shcost.toFixed(2);
+		updateresources();		
+		updatetotalexp();
+	}
+	
+}
+
+document.getElementById("rtowerbutton").onclick = function() {
+	if (stone >= rtowercost) {
+		stone -= rtowercost;
+		rtowers += 1;
+		rtowercost = (rtowercost * 1.55);
+		totalexp += 25;
+		researcherrate = (researcherrate * 1.165);
+		var tempvar = document.getElementById("rtowernum");
+		tempvar.innerHTML = rtowers;
+		var tempvar2 = document.getElementById("rtowercost");
+		tempvar2.innerHTML = rtowercost.toFixed(2);
 		updateresources();		
 		updatetotalexp();
 	}

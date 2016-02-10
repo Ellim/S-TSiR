@@ -11,7 +11,7 @@ var watertick = 2000;
 var foodtick = 500;
 var savetick = 300000;
 
-var waterrate = 20;
+var waterrate = 2.5;
 var foodrate = 0;
 
 var water = 250;
@@ -24,16 +24,18 @@ var clay = 0;
 var claymax = 1000;
 var mana = 0;
 var steam = 0;
-var wood = 0;
+var wood = 250;
 var woodmax = 250;
-var stone = 0;
+var stone = 200;
 var stonemax = 200;
+var logs = 0;
+var woodlogcost = 50;
 
 var currentlevel = 1;
 var totalexp = 0;
 var exptnl = 10;
-var talentpoints = 0;
-var researchpoints = 0;
+var talentpoints = 5;
+var researchpoints = 1000;
 
 var fruittreescost = 25;
 var fruittrees = 0;
@@ -50,7 +52,7 @@ var rhcost = 250;
 var rhlevel = 5;
 
 var cabins = 0;
-var cabincost = 100;
+var cabincost = 50;
 var cabinlevel = 10;
 
 var granaries = 0;
@@ -60,6 +62,9 @@ var granarystonecost = 50;
 var storehouses = 0;
 var shcost = 150;
 var shlevel = 1;
+
+var rtowers = 0;
+var rtowercost = 100;
 
 var population = 1;
 var popmax = 1;
@@ -82,6 +87,11 @@ var minetalent = 0;
 var burntalent = 0;
 var minertalent = 0;
 var warriortalent = 0;
+var constructiontalent = 0;
+var workertalent = 0;
+var researchtalent = 0;
+var craftingtalent = 0;
+var logtalent = 0;
 
 function savegame() {
 	var save = {
@@ -115,6 +125,8 @@ function savegame() {
 	woodmax: woodmax,
 	stone: stone,
 	stonemax: stonemax,
+	logs: logs,
+	woodlogcost: woodlogcost,
 	
 	currentlevel: currentlevel,
 	totalexp: totalexp,
@@ -148,6 +160,9 @@ function savegame() {
 	shcost: shcost,
 	shlevel: shlevel,
 	
+	rtowers: rtowers,
+	rtowercost: rtowercost,
+	
 	population: population,
 	popmax: popmax,
 	freeworkers: freeworkers,
@@ -168,7 +183,12 @@ function savegame() {
 	minetalent: minetalent,
 	burntalent: burntalent,
 	minertalent: minertalent,
-	warriortalent: warriortalent
+	warriortalent: warriortalent,
+	constructiontalent: constructiontalent,
+	workertalent: workertalent,
+	researchtalent: researchtalent,
+	craftingtalent: craftingtalent,
+	logtalent: logtalent
 	
 	}
 	localStorage.setItem("save",JSON.stringify(save));
@@ -199,6 +219,8 @@ function loadgame() {
 	if (typeof savestring.woodmax !== "undefined") woodmax = savestring.woodmax;	
 	if (typeof savestring.stone !== "undefined") stone = savestring.stone;	
 	if (typeof savestring.stonemax !== "undefined") stonemax = savestring.stonemax;	
+	if (typeof savestring.logs !== "undefined") logs = savestring.logs;	
+	if (typeof savestring.woodlogcost !== "undefined") woodlogcost = savestring.woodlogcost;	
 	
 	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;
 	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
@@ -232,6 +254,9 @@ function loadgame() {
 	if (typeof savestring.shcost !== "undefined") shcost = savestring.shcost;
 	if (typeof savestring.shlevel !== "undefined") shlevel = savestring.shlevel;
 	
+	if (typeof savestring.rtowers !== "undefined") rtowers = savestring.rtowers;
+	if (typeof savestring.rtowercost !== "undefined") rtowercost = savestring.rtowercost;
+	
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
 	if (typeof savestring.freeworkers !== "undefined") freeworkers = savestring.freeworkers;
@@ -253,9 +278,17 @@ function loadgame() {
 	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
 	if (typeof savestring.minertalent !== "undefined") minertalent = savestring.minertalent;
 	if (typeof savestring.warriortalent !== "undefined") warriortalent = savestring.warriortalent;
+	if (typeof savestring.constructiontalent !== "undefined") constructiontalent = savestring.constructiontalent;
+	if (typeof savestring.workertalent !== "undefined") workertalent = savestring.workertalent;
+	if (typeof savestring.researchtalent !== "undefined") researchtalent = savestring.researchtalent;
+	if (typeof savestring.craftingtalent !== "undefined") craftingtalent = savestring.craftingtalent;
+	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
+	
+	
 }
 
 function showsave() {
   savegame();
-  alert("The game has been saved. NOTE: The game will autosave once every five minutes.")
+  alert("The game has been saved. NOTE: The game will autosave once every five minutes.");
+  
 }

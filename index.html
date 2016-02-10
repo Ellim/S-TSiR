@@ -100,16 +100,17 @@ $(document).ready(function(){
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab">Workers <span class="badge" id="freeworkers">0</span></a></li>
-				<li role="presentation"><a href="#consttab" aria-controls="consttab" role="tab" data-toggle="tab">Construction</a></li>
+				<li role="presentation"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab"class="hidden" id="workertalent">Workers <span class="badge" id="freeworkers">0</span></a></li>
+				<li role="presentation"><a href="#consttab" aria-controls="consttab" role="tab" data-toggle="tab" class="hidden" id="consttalent">Construction</a></li>
 				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab">Talents</a></li>
-				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab">Research</a></li>
+				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
+				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane fade" id="workertab">
-					<div id="researchdiv" class="hidden">
+				<div role="tabpanel" class="text-center tab-pane fade" id="workertab">
+					<div id="researchdiv" class="">
 							<button type="button" class="btn btn-job2" id="removeresearcherbutton"><span class="glyphicon glyphicon-minus"></span></button>
 							<button type="button" class="btn btn-job" id="researcherbutton">Researchers <span id="researchernum" class="badge">0</span></button>
 							<button type="button" class="btn btn-job2" id="addresearcherbutton"><span class="glyphicon glyphicon-plus"></span></button>
@@ -142,8 +143,8 @@ $(document).ready(function(){
 				
 				<div role="tabpanel" class="tab-pane fade text-center" id="consttab">
 					<div class="accordion-heading">
-					Housing 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">
+					 
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">Housing
 						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div>
@@ -163,16 +164,16 @@ $(document).ready(function(){
 							</button>
 							
 							<button type="button" class="btn btn-pop" id="cabinbutton"><span class="glyphicon glyphicon-home"></span> Cabin <span class="badge" id="cabinnum">0</span><br />
-							Cost: <span id="cabincost">100</span> Logs.<br />
-							EXP Gain: <span id="rhexp">1500</span>.<br/>
-							Increase Population Max by: <span id="rhlevel">10</span>
+							Cost: <span id="cabincost">50</span> Logs.<br />
+							EXP Gain: <span id="cabinexp">1500</span>.<br/>
+							Increase Population Max by: <span id="cabinlevel">10</span>
 							</button>
 							
 						</div>
 					</div>
 					<div class="accordion-heading">
-					Storage 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">
+					 
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">Storage
 						<span id="storagearrow" class="glyphicon glyphicon-collapse-down"></span>
 						</a>
 					</div>
@@ -188,22 +189,22 @@ $(document).ready(function(){
 							
 							<button type="button" class="btn btn-pop" id="shbutton"><span class="glyphicon glyphicon-scale"></span> Storehouse <span class="badge" id="sthnum">0</span><br />
 							Cost: <span id="shcost">150</span> Wood.<br />
-							EXP Gain: <span id="shexp">15</span>.<br/>
+							EXP Gain: <span id="shexp">75</span>.<br/>
 							Increase Max Resource Capacity.
+							</button>
+							
+							<button type="button" class="btn btn-pop" id="rtowerbutton"><span class="fa fa-lightbulb-o"></span> Research Tower <span class="badge" id="rtowernum">0</span><br />
+							Cost: <span id="rtowercost">100</span> Stone.<br />
+							EXP Gain: <span id="shexp">25</span>.<br />
+							Increase Research Rate.<br />
 							</button>
 							
 						</div>
 					</div>
 				</div>
 				
-				<div role="tabpanel" class="tab-pane fade in active" id="talenttab">
-					<span id="researchertalent"><button type="button" class="btn btn-talent" id="unlockresearcherbutton">
-							<span class="glyphicon glyphicon-education"></span> Discovery <br />
-							Cost: 2 Talent Points.<br />
-							Unlocks the Researcher Class<br />
-							Generates Research Points
-							</button></span>
-							
+				<div role="tabpanel" class="text-center tab-pane fade in active" id="talenttab">
+						
 							<span id="minetalent">
 							<button type="button" class="btn btn-talent" id="unlockminebutton">
 							<span class="glyphicon glyphicon-education"></span> Unlock Mine Action <br />
@@ -223,9 +224,26 @@ $(document).ready(function(){
 							Increase Water Production by<br />
 							<span id="riverproduction">10.00</span> Water/sec.							
 							</button>
+							
+							<span id="crafttalentbutton">
+							<button type="button" class="btn btn-talent" id="craftingbutton">
+							<span class="fa fa-gear"></span> Workshops
+							<br />
+							Cost: 5 Talent Point(s).<br />
+							Unlocks Crafting Menu.							
+							</button></span>
+							
 				</div>
 				
-				<div role="tabpanel" class="tab-pane fade" id="researchtab">
+				<div role="tabpanel" class="tab-pane fade text-center" id="researchtab">
+				<div class="accordion-heading">
+					 
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="classbutton" data-parent="#classcollapse" href="#classcollapse"  aria-controls="classcollapse">Worker Classes
+						<span id="classarrow" class="glyphicon glyphicon-collapse-down"></span>
+						</a>
+					</div>
+					<div id="classcollapse" class="panel-collapse collapse" role="tabpanel">
+						<div class="accordion-inner">
 					<button type="button" class="btn btn-research" id="unlockfarmerbutton">
 					<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
 					<span id="farmertalent">Cost: 100 Research Points.</span>
@@ -246,6 +264,37 @@ $(document).ready(function(){
 					<span>Cost: 2000 Research Points.</span>
 					</button>
 				</div>
+				</div>
+				
+				<div class="accordion-heading">
+					 
+						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="craftsbutton" data-parent="#craftcollapse" href="#craftcollapse"  aria-controls="craftcollapse">Crafts
+						<span id="craftarrow" class="glyphicon glyphicon-collapse-down"></span>
+						</a>
+					</div>
+					<div id="craftcollapse" class="panel-collapse collapse" role="tabpanel">
+						<div class="accordion-inner">
+						
+					<span id="unlocklogdiv">
+					<button type="button" class="btn btn-craft2" id="unlocklogbutton">
+					<span class="fa fa-gear"></span> Carpentry <br />
+					Cost: 1000 Research Points.<br />
+					Allows the creation of Logs.
+					</button></span>
+						
+				</div>
+				</div>
+				</div>
+				
+			<div role="tabpanel" class="text-center tab-pane fade" id="craftingtab">
+				
+				<span id="logspan" class="hidden">
+				<button type="button" class="btn btn-craft" id="logbutton">
+				<span class="fa fa-gear"></span> Craft Log <br />
+				50 Wood <span class="fa fa-exchange"></span> 1 Log
+				</button></span>
+			
+			</div>
 				
 			</div>
 
@@ -264,9 +313,9 @@ $(document).ready(function(){
 		<span id="charcoalresource" class="">Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<span id="coalps">+0</span>)</span><br />
 		<span id="manaresource" class="">Mana: <span id="total_mana">0 (<span id="manaps">+0</span>)</span></span><br />
 		<span id="steamresource" class="">Steam: <span id="total_steam">0 (<span id="steamps">-0</span>)</span></span><br />
-		<div class="progress hidden" id="steambardiv">
-          	<div class="progress-bar progress-bar-steam" id="steambar" role="progressbar" aria-valuenow="150" aria-valuemin="0" aria-valuemax="150" style="width:10%"><span class="glyphicon glyphicon-fire"</span></div>
-        	</div>
+		<div id="logdiv" class="hidden">
+		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
+		</div>
 		</div>
 		<br />
 	
@@ -354,9 +403,9 @@ $(document).ready(function(){
 
 
 <script src="js/saveload.js"></script>
-
-<script src="js/pertick.js"></script> 
 <script src="js/workers.js"></script>
+<script src="js/pertick.js"></script> 
+
 <script src="js/onclickactions.js"></script>
 <script src="js/expandingbuttons.js"></script>
 
