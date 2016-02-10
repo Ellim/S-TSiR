@@ -3,6 +3,10 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+02/10/16 - 0.0.9
+
+Added alerts when new features are added. Crafting menu created, first craft implemented: 1000 RP to unlock logs. 50 wood to one log, ratio to be improved later. Miners now add clay at 1/5th the rate they gather stone. Added research tower building for stone, increase rate of RP gain.
+
 02/04/16 - Major Revision Update 0.0.6
 
 Dramatically decreased lines of code in a number of JS files by consolidating repeated code into a single function.
