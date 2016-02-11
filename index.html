@@ -151,16 +151,15 @@ $(document).ready(function(){
 						</div>
 				</div>
 				
-				<div role="tabpanel" class="tab-pane fade text-center" id="consttab">
-					<div class="accordion-heading">
-					 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="housingbutton" data-parent="#housingcollapse" href="#housingcollapse"  aria-controls="housingcollapse">Housing
-						<span id="housingarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-					</div>
-					<div id="housingcollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-							<br />
+				<div role="tabpanel" class="text-center tab-pane fade" id="consttab">
+				
+				<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href="#housingtab" aria-controls="housingtab" role="tab" data-toggle="tab" class="active" id="housetab">Housing </a></li>
+				<li role="presentation"><a href="#storagetab" aria-controls="storagetab" role="tab" data-toggle="tab" class="" id="storetab">Storage</a></li>
+				</ul>
+				<div class="tab-content">
+				<div role="tabpanel" class="text-center tab-pane fade" id="housingtab">
+					<br />
 							<button type="button" class="btn btn-pop" id="hutbutton"><span class="glyphicon glyphicon-home"></span> Hut <span class="badge" id="hutnum">0</span><br />
 							Cost: <span id="hutcost">10</span> Wood.<br />
 							EXP Gain: <span id="hutexp">10</span>.<br />
@@ -178,18 +177,10 @@ $(document).ready(function(){
 							EXP Gain: <span id="cabinexp">1500</span>.<br/>
 							Increase Population Max by: <span id="cabinlevel">10</span>
 							</button>
-							
-						</div>
-					</div>
-					<div class="accordion-heading">
-					 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="storagebutton" data-parent="#storagecollapse" href="#storagecollapse"  aria-controls="storagecollapse">Storage
-						<span id="storagearrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
-					</div>
-					<div id="storagecollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-							<br />
+				</div>
+				
+				<div role="tabpanel" class="text-center tab-pane fade" id="storagetab">
+						<br />
 							<button type="button" class="btn btn-pop" id="granarybutton"><span class="glyphicon glyphicon-grain"></span> Granary <span class="badge" id="granarynum">0</span><br />
 							Cost: <span id="granarywoodcost">175</span> Wood & <span id="granarystonecost">50</span> Stone.<br />
 							EXP Gain: <span id="granaryexp">150</span>.<br/>
@@ -208,10 +199,11 @@ $(document).ready(function(){
 							EXP Gain: <span id="shexp">25</span>.<br />
 							Increase Research Rate.<br />
 							</button>
-							
-						</div>
-					</div>
 				</div>
+				</div>
+				</div>
+				
+				
 				
 				<div role="tabpanel" class="text-center tab-pane fade in active" id="talenttab">
 						
