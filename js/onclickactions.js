@@ -16,6 +16,14 @@ document.getElementById("forage10").onclick = function() {
 	forage(10);   
 };
 
+document.getElementById("forage25").onclick = function() {
+	forage(25);   
+};
+
+document.getElementById("forage100").onclick = function() {
+	forage(100);   
+};
+
 document.getElementById("Mine").onclick = function() {
 	mine(1);   
 };
@@ -24,12 +32,28 @@ document.getElementById("mine10").onclick = function() {
 	mine(10);   
 };
 
+document.getElementById("mine25").onclick = function() {
+	mine(25);   
+};
+
+document.getElementById("mine100").onclick = function() {
+	mine(100);   
+};
+
 document.getElementById("Burn").onclick = function() {
 	burn(1);   
 };
 
 document.getElementById("burn10").onclick = function() {
 	burn(10);   
+};
+
+document.getElementById("burn25").onclick = function() {
+	burn(25);   
+};
+
+document.getElementById("burn100").onclick = function() {
+	burn(100);   
 };
 
 document.getElementById("save").onclick = function() {
