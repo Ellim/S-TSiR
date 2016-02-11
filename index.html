@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
-  <body>
+<body>
   
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   
@@ -50,14 +50,22 @@ $(document).ready(function(){
     $(window).load(function(){
         $('#warningmodal').modal('show');
     });
+	$(document).ready(function() {
+      windowHeight = ($(window).height())-85;
+      $('.leftdiv').height(windowHeight);
+      $('.rightdiv').height(windowHeight);
+  });
 </script>
 
 
 
 <!--Main Container-->
 
-<div class="container">  
 
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
 	<div class="row bg-success">
 		<div class="col-xs-8">
 			  <h1>Survive: <small>The struggle is real</small></h1><br />
@@ -68,11 +76,13 @@ $(document).ready(function(){
 			<br /><span class="glyphicon glyphicon-btc"></span> 1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV
 		</div>
 	</div>
-	
+	</div>
+</nav>
 
+<div class="container main">  
 
   <div class="row">  
-    <div class="col-xs-6">
+    <div class="col-xs-6 leftdiv">
       <h1>Vitals</h1>
         Food: <span id="currentfood">25.00</span> / <span id="maxfood">350.00</span> (<small id="foodps">-0.00/sec</small>)<br />
         <div class="progress">
@@ -303,7 +313,7 @@ $(document).ready(function(){
     </div>
 	
   
-    <div class="col-xs-6">
+    <div class="col-xs-6 leftdiv">
 	
 		<h1>Resources</h1>
 		<div id="resourcesdiv">
@@ -317,7 +327,6 @@ $(document).ready(function(){
 		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
 		</div>
 		</div>
-		<br />
 	
 		<h1>Actions</h1>
 		<button id="Forage" type="button" class="btn btn-forage btn-lg btn-block">Forage</button>
@@ -399,7 +408,7 @@ $(document).ready(function(){
   
   
 </div>
-</div>
+
 
 
 <script src="js/saveload.js"></script>
