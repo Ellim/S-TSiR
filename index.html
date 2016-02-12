@@ -238,55 +238,44 @@ $(document).ready(function(){
 				</div>
 				
 				<div role="tabpanel" class="tab-pane fade text-center" id="researchtab">
-				<div class="accordion-heading">
-					 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="classbutton" data-parent="#classcollapse" href="#classcollapse"  aria-controls="classcollapse">Worker Classes
-						<span id="classarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
+					<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation"><a href="#classtab" aria-controls="classtab" role="tab" data-toggle="tab" class="active" id="clastab">Worker Classes </a></li>
+					<li role="presentation"><a href="#crafttab" aria-controls="crafttab" role="tab" data-toggle="tab" class="" id="craftab">Crafts </a></li>
+					</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="text-center tab-pane fade" id="classtab">
+						<button type="button" class="btn btn-research" id="unlockfarmerbutton">
+						<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
+						<span id="farmertalent">Cost: 100 Research Points.</span>
+						</button>
+								
+						<button type="button" class="btn btn-research" id="unlockloggerbutton">
+						<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks <br />
+						<span>Cost: 150 Research Points.</span>
+						</button>
+								
+						<button type="button" class="btn btn-research" id="unlockminerbutton">
+						<span class="fa fa-diamond"></span> Unlock Miners <br />
+						<span>Cost: 1000 Research Points.</span>
+						</button>
+								
+						<button type="button" class="btn btn-research" id="unlockwarriorbutton">
+						<span class="fa fa-gavel"></span> Unlock Warriors <br />
+						<span>Cost: 2000 Research Points.</span>
+						</button>
 					</div>
-					<div id="classcollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-					<button type="button" class="btn btn-research" id="unlockfarmerbutton">
-					<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
-					<span id="farmertalent">Cost: 100 Research Points.</span>
-					</button>
-							
-					<button type="button" class="btn btn-research" id="unlockloggerbutton">
-					<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks <br />
-					<span>Cost: 150 Research Points.</span>
-					</button>
-							
-					<button type="button" class="btn btn-research" id="unlockminerbutton">
-					<span class="fa fa-diamond"></span> Unlock Miners <br />
-					<span>Cost: 1000 Research Points.</span>
-					</button>
-							
-					<button type="button" class="btn btn-research" id="unlockwarriorbutton">
-					<span class="fa fa-gavel"></span> Unlock Warriors <br />
-					<span>Cost: 2000 Research Points.</span>
-					</button>
-				</div>
-				</div>
-				
-				<div class="accordion-heading">
-					 
-						<a class="accordion-toggle btn btn-arrow-closed" data-toggle="collapse" id="craftsbutton" data-parent="#craftcollapse" href="#craftcollapse"  aria-controls="craftcollapse">Crafts
-						<span id="craftarrow" class="glyphicon glyphicon-collapse-down"></span>
-						</a>
+					
+					<div role="tabpanel" class="text-center tab-pane fade" id="crafttab">
+						<span id="unlocklogdiv">
+						<button type="button" class="btn btn-craft2" id="unlocklogbutton">
+						<span class="fa fa-gear"></span> Carpentry <br />
+						Cost: 1000 Research Points.<br />
+						Allows the creation of Logs.
+						</button></span>
 					</div>
-					<div id="craftcollapse" class="panel-collapse collapse" role="tabpanel">
-						<div class="accordion-inner">
-						
-					<span id="unlocklogdiv">
-					<button type="button" class="btn btn-craft2" id="unlocklogbutton">
-					<span class="fa fa-gear"></span> Carpentry <br />
-					Cost: 1000 Research Points.<br />
-					Allows the creation of Logs.
-					</button></span>
-						
 				</div>
 				</div>
-				</div>
+			
 				
 			<div role="tabpanel" class="text-center tab-pane fade" id="craftingtab">
 				
