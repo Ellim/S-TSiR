@@ -73,7 +73,8 @@ $(document).ready(function(){
 		<div class="col-xs-4">
 			<br /><button id="save" type="button" class="btn btn-info">Save</button>    
 			<br /> Latest Update: 10 Feb 2016
-			<br /><span class="glyphicon glyphicon-btc"></span> 1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV
+			<br /><span class="glyphicon glyphicon-btc"></span> <a href="https://blockchain.info/qr?data=1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV&size=200" target="_blank">1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV</a>
+			
 		</div>
 	</div>
 	</div>
@@ -101,8 +102,6 @@ $(document).ready(function(){
 		
         <br />
 		Level: <span id="current_level">1</span> <br />
-        Talent Points: <span id="talentpoints">0</span> <br />
-		Research Points: <span id="total_RP">0</span><br />
         Population: <span id="pop">1</span> / <span id="popmax">1 </span><br />
 		
 		
@@ -185,7 +184,7 @@ $(document).ready(function(){
 							Cost: <span id="granarywoodcost">175</span> Wood & <span id="granarystonecost">50</span> Stone.<br />
 							EXP Gain: <span id="granaryexp">150</span>.<br/>
 							Increase Food Max by: <span id="granaryfoodlimit">175</span><br />
-							Increase Water Max by: <span id="granarywaterlimit">100</span>
+							Increase Water Max by: <span id="granarywaterlimit">500</span>
 							</button>
 							
 							<button type="button" class="btn btn-pop" id="shbutton"><span class="glyphicon glyphicon-scale"></span> Storehouse <span class="badge" id="sthnum">0</span><br />
@@ -209,20 +208,26 @@ $(document).ready(function(){
 						
 							<span id="minetalent">
 							<button type="button" class="btn btn-talent" id="unlockminebutton">
-							<span class="glyphicon glyphicon-education"></span> Unlock Mine Action <br />
-							Cost: 5 Talent Points.
+							<span class="glyphicon glyphicon-education"></span> Rudimentary Tools <br />
+							Cost: <span class="text-success">5</span> Talent Points.<br />
+							Unlocks Mine Action.<br />
+							Allows the extraction of various <br />
+							resources from the earth.
 							</button></span>
 							
 							<span id="burntalent">
 							<button type="button" class="btn btn-talent" id="unlockburnbutton">
-							<span class="glyphicon glyphicon-education"></span> Unlock Burn Action <br />
-							Cost: 5 Talent Points.
+							<span class="glyphicon glyphicon-education"></span> Harness Fire <br />
+							Cost: <span class="text-success">5</span> Talent Points.<br />
+							Unlocks Burn Action.<br />
+							Allows transformation of some <br />
+							resources into others.
 							</button></span>
 							
 							<button type="button" class="btn btn-talent" id="riverbutton">
 							<span class="glyphicon glyphicon-tint"></span> Expand River
 							<span class="badge" id="riverlevel">0</span><br />
-							Cost: <span id="riverupgradecost">1</span> Talent Point(s).<br />
+							Cost: <span id="riverupgradecost" class="text-success">1</span> Talent Point(s).<br />
 							Increase Water Production by<br />
 							<span id="riverproduction">10.00</span> Water/sec.							
 							</button>
@@ -231,8 +236,10 @@ $(document).ready(function(){
 							<button type="button" class="btn btn-talent" id="craftingbutton">
 							<span class="fa fa-gear"></span> Workshops
 							<br />
-							Cost: 5 Talent Point(s).<br />
-							Unlocks Crafting Menu.							
+							Cost: <span class="text-success">5</span> Talent Point(s).<br />
+							Unlocks Crafting Menu.<br />
+							Allows the creation of <br />
+							advanced resources.
 							</button></span>
 							
 				</div>
@@ -298,7 +305,9 @@ $(document).ready(function(){
 	
 		<h1>Resources</h1>
 		<div id="resourcesdiv">
-        	Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<span id="woodps">+0</span>)</span><br />
+		Talent Points: <span id="talentpoints">0</span> <br />
+		Research Points: <span id="total_RP">0</span><br />
+        Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<span id="woodps">+0</span>)</span><br />
 		Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<span id="stoneps">+0</span>)<br />
 		<span id="clayresource" class="">Clay: <span id="total_clay">0</span> / <span id="claymax">1000</span> (<span id="clayps">+0</span>)</span><br />
 		<span id="charcoalresource" class="">Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<span id="coalps">+0</span>)</span><br />
@@ -362,10 +371,10 @@ $(document).ready(function(){
 		
 		<div id ="burncheckboxes" class="checkbox">
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burnwood" value=""> Wood
+		  <input type="checkbox" id="burnwood" value=""> 10x Wood
 		</label>
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burncoal" value=""> Charcoal + Water
+		  <input type="checkbox" id="burncoal" value=""> 1x Charcoal + 500x Water
 		</label>
 		</div>
 		</div>
