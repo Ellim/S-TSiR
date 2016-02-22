@@ -66,7 +66,7 @@ function updateresearcher() {
 	}
 	
 	var tempvar = document.getElementById("total_RP");
-	tempvar.innerHTML = researchpoints.toFixed(0);
+	tempvar.innerHTML = researchpoints.toFixed(2);
 
 	}, workertick);
 }
