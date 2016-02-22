@@ -107,6 +107,12 @@ document.getElementById("craftingtalent").onclick = function() {
 	}   
 };
 
+document.getElementById("tradetalent").onclick = function() {
+	if ($('#tradetalent').hasClass('btn-danger')) {
+		$('#tradetalent').removeClass('btn-danger');
+	}   
+};
+
 document.getElementById("craftingbutton").onclick = function() {
 	if (talentpoints > 4) {
 		talentpoints -= 5;
@@ -205,6 +211,8 @@ document.getElementById("unlocktraderbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			tradertalent += 1;
+			$('#tradetalent').removeClass('hidden');
+			$('#tradetalent').addClass('btn btn-danger');
 		}
 	}
 }
