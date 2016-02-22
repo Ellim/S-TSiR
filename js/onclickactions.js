@@ -60,10 +60,6 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
-document.getElementById("foodbtcmax").onclick = function() {
-	
-}
-
 document.getElementById("foodbtcinput").onblur = function() {
 	var tempvar = document.getElementById("foodbtcinput").value;
 	document.getElementById("foodbtcbtc").innerHTML = (tempvar * exchangerates.foodbtc).toFixed(4);
@@ -72,6 +68,9 @@ document.getElementById("foodbtcinput").onblur = function() {
 document.getElementById("tradetalent").onclick = function() {
 	document.getElementById("foodbtcinput").value = "";
 	document.getElementById("foodbtcbtc").innerHTML = (0).toFixed(4);
+	if ($('#tradetalent').hasClass('btn-danger')) {
+		$('#tradetalent').removeClass('btn-danger');
+	} 
 }
 
 document.getElementById("foodbtctrade").onclick = function() {
