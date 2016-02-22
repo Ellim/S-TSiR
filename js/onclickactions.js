@@ -60,6 +60,22 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
+document.getElementById("foodbtcmax").onclick = function() {
+	document.getElementById("exampleInputAmount").value = (currentfood * exchangerates.foodbtc);
+}
+
+document.getElementById("exampleInputAmount").onblur = function() {
+	
+}
+
+
+document.getElementById("tradetest").onclick = function() {
+	currentfood -= document.getElementById("exampleInputAmount").value * 2000;
+	btc += document.getElementById("exampleInputAmount").value;
+	document.getElementById("exampleInputAmount").value = "";
+	alert("BTC total:" + btc);
+}
+
 document.getElementById("consttalent").onclick = function() {
 	if ($('#consttalent').hasClass('btn-danger')) {
 		$('#consttalent').removeClass('btn-danger');
@@ -135,8 +151,8 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 }
 
 document.getElementById("unlockloggerbutton").onclick = function() {
-	if (researchpoints > 149) {
-		researchpoints -= 150;
+	if (researchpoints > 249) {
+		researchpoints -= 250;
 		if ($('#loggerdiv').hasClass('hidden')) {
 			$('#loggerdiv').removeClass('hidden');
 			$('#unlockloggerbutton').addClass('hidden');
@@ -148,8 +164,8 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 }
 
 document.getElementById("unlockminerbutton").onclick = function() {
-	if (researchpoints > 999) {
-		researchpoints -= 1000;
+	if (researchpoints > 499) {
+		researchpoints -= 500;
 		if ($('#minerdiv').hasClass('hidden')) {
 			$('#minerdiv').removeClass('hidden');
 			$('#unlockminerbutton').addClass('hidden');
@@ -161,14 +177,27 @@ document.getElementById("unlockminerbutton").onclick = function() {
 }
 
 document.getElementById("unlockwarriorbutton").onclick = function() {
-	if (researchpoints > 1999) {
-		researchpoints -= 2000;
+	if (researchpoints > 749) {
+		researchpoints -= 750;
 		if ($('#warriordiv').hasClass('hidden')) {
 			$('#warriordiv').removeClass('hidden');
 			$('#unlockwarriorbutton').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			warriortalent += 1;
+		}
+	}
+}
+
+document.getElementById("unlocktraderbutton").onclick = function() {
+	if (researchpoints > 1499) {
+		researchpoints -= 1500;
+		if ($('#traderdiv').hasClass('hidden')) {
+			$('#traderdiv').removeClass('hidden');
+			$('#unlocktraderbutton').addClass('hidden');
+			var tempvar = document.getElementById("talentpoints");
+			tempvar.innerHTML = talentpoints;
+			tradertalent += 1;
 		}
 	}
 }
@@ -244,6 +273,22 @@ document.getElementById("addresearcherbutton").onclick = function() {
 		$('#researchtalent').addClass('btn-danger');
 		researchtalent += 1;
 	}
+	}
+}
+
+document.getElementById("removetraderbutton").onclick = function() {
+	if (traders > 0) {
+		traders -= 1;
+		freeworkers += 1;
+		updateworkers();
+	}
+}
+
+document.getElementById("addtraderbutton").onclick = function() {
+	if (freeworkers > 0) {
+		freeworkers -= 1;
+		traders += 1;
+		updateworkers();
 	}
 }
 

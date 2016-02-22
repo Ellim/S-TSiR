@@ -22,95 +22,35 @@ function updatetotalexp() {
 }
 
 function updateworkers() {
-	var tempvar = document.getElementById("freeworkers");
-	tempvar.innerHTML = freeworkers.toFixed(0);
-	var tempvar2 = document.getElementById("researchernum");
-	tempvar2.innerHTML = researchers.toFixed(0);
-	var tempvar3 = document.getElementById("farmernum");
-	tempvar3.innerHTML = farmers.toFixed(0);
-	var tempvar4 = document.getElementById("loggernum");
-	tempvar4.innerHTML = loggers.toFixed(0);
-	var tempvar5 = document.getElementById("minernum");
-	tempvar5.innerHTML = miners.toFixed(0);
-	var tempvar6 = document.getElementById("warriornum");
-	tempvar6.innerHTML = warriors.toFixed(0);	
+	var arrClass = ["freeworkers","researchernum","farmernum","loggernum","minernum","warriornum","tradernum"];
+	var arrClassDiv = [freeworkers,researchers,farmers,loggers,miners,warriors,traders]
+	for (i = 0; i < arrClass.length; i++) {
+		var tempvar = document.getElementById(arrClass[i]);
+		tempvar.innerHTML = arrClassDiv[i].toFixed(0);
+	}	
 }
 
 function updateresources() {
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs"]
+	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs]
+	
+	for (i = 0; i < arrResources.length; i++) {
+		var tempvar = document.getElementById(arrResources[i]);
+		tempvar.innerHTML = arrResourceDiv[i].toFixed(2);
+	}
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
-	var tempvar4 = document.getElementById("total_RP");
-	tempvar4.innerHTML = researchpoints.toFixed(0);
-	var tempvar5 = document.getElementById("pop");
-	tempvar5.innerHTML = population.toFixed(0);
-	var tempvar6 = document.getElementById("popmax");
-	tempvar6.innerHTML = popmax.toFixed(0);
-	var tempvar7 = document.getElementById("total_wood");
-	tempvar7.innerHTML = wood.toFixed(2);
-	var tempvar8 = document.getElementById("woodmax");
-	tempvar8.innerHTML = woodmax.toFixed(0);
-	var tempvar9 = document.getElementById("total_stone");
-	tempvar9.innerHTML = stone.toFixed(2);
-	var tempvar10 = document.getElementById("stonemax");
-	tempvar10.innerHTML = stonemax.toFixed(0);
-	var tempvar11 = document.getElementById("total_coal");
-	tempvar11.innerHTML = coal.toFixed(2);
-	var tempvar12 = document.getElementById("coalmax");
-	tempvar12.innerHTML = coalmax.toFixed(0);
-	var tempvar13 = document.getElementById("total_clay");
-	tempvar13.innerHTML = clay.toFixed(2);
-	var tempvar14 = document.getElementById("claymax");
-	tempvar14.innerHTML = claymax.toFixed(0);
-	var tempvar15 = document.getElementById("total_mana");
-	tempvar15.innerHTML = mana.toFixed(0);
-	var tempvar16 = document.getElementById("maxfood");
-	tempvar16.innerHTML = foodmax.toFixed(2);
-	var tempvar17 = document.getElementById("maxwater");
-	tempvar17.innerHTML = watermax.toFixed(2);
-	var tempvar18 = document.getElementById("total_logs");
-	tempvar18.innerHTML = logs.toFixed(0);
 }
 
 function updatebuildings() {
-		var tempvar = document.getElementById("cabinnum");
-		tempvar.innerHTML = cabins.toFixed(0);
-		var tempvar2 = document.getElementById("cabincost");
-		tempvar2.innerHTML = cabincost.toFixed(2);
-		var tempvar3 = document.getElementById("cabinexp");
-		tempvar3.innerHTML = (cabincost*30).toFixed(0);
-		
-		var tempvar4 = document.getElementById("hutnum");
-		tempvar4.innerHTML = huts.toFixed(0);
-		var tempvar5 = document.getElementById("hutcost");
-		tempvar5.innerHTML = hutcost.toFixed(2);
-		var tempvar6 = document.getElementById("hutexp");
-		tempvar6.innerHTML = hutcost.toFixed(2);
-		
-		var tempvar7 = document.getElementById("rhnum");
-		tempvar7.innerHTML = roundhouses.toFixed(0);
-		var tempvar8 = document.getElementById("rhcost");
-		tempvar8.innerHTML = rhcost.toFixed(2);
-		var tempvar9 = document.getElementById("rhexp");
-		tempvar9.innerHTML = (rhcost/2).toFixed(2);
-		
-		var tempvar10 = document.getElementById("granarynum");
-		tempvar10.innerHTML = granaries.toFixed(0);
-		var tempvar11 = document.getElementById("granarywoodcost");
-		tempvar11.innerHTML = granarywoodcost.toFixed(2);
-		var tempvar12 = document.getElementById("granarystonecost");
-		tempvar12.innerHTML = granarystonecost.toFixed(2);
-
-		var tempvar13 = document.getElementById("sthnum");
-		tempvar13.innerHTML = storehouses.toFixed(0);
-		var tempvar14 = document.getElementById("shcost");
-		tempvar14.innerHTML = shcost.toFixed(2);
-		
-		var tempvar15 = document.getElementById("rtowernum");
-		tempvar15.innerHTML = rtowers.toFixed(0);
-		var tempvar16 = document.getElementById("rtowercost");
-		tempvar16.innerHTML = rtowercost.toFixed(2);
-		
+	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost"]
+	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost]
+	
+	for (i = 0; i < arrBuilding.length; i++) {
+		var tempvar = document.getElementById(arrBuilding[i]);
+		tempvar.innerHTML = arrBuildingDiv[i].toFixed(2);
+	}
 		
 }
 

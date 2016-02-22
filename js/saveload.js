@@ -74,6 +74,7 @@ var miners = 0;
 var researchers = 0;
 var warriors = 0;
 var farmers = 0;
+var traders = 0;
 
 var farmerrate = 1.125;
 var loggerrate = 0.125;
@@ -92,6 +93,12 @@ var workertalent = 0;
 var researchtalent = 0;
 var craftingtalent = 0;
 var logtalent = 0;
+var tradertalent = 0;
+
+var exchangerates = {
+	foodbtc:0.0005
+}
+var btc = 0;
 
 function savegame() {
 	var save = {
@@ -171,6 +178,7 @@ function savegame() {
 	researchers: researchers,
 	warriors: warriors,
 	farmers: farmers,
+	traders: traders,
 	
 	farmerrate: farmerrate,
 	loggerrate: loggerrate,
@@ -188,7 +196,11 @@ function savegame() {
 	workertalent: workertalent,
 	researchtalent: researchtalent,
 	craftingtalent: craftingtalent,
-	logtalent: logtalent
+	logtalent: logtalent,
+	tradertalent: tradertalent,
+	
+	exchangerates: exchangerates,
+	btc: btc
 	
 	}
 	localStorage.setItem("save",JSON.stringify(save));
@@ -265,6 +277,7 @@ function loadgame() {
 	if (typeof savestring.researchers !== "undefined") researchers = savestring.researchers;
 	if (typeof savestring.warriors !== "undefined") warriors = savestring.warriors;
 	if (typeof savestring.farmers !== "undefined") farmers = savestring.farmers;
+	if (typeof savestring.traders !== "undefined") traders = savestring.traders;
 	
 	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
 	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
@@ -283,8 +296,10 @@ function loadgame() {
 	if (typeof savestring.researchtalent !== "undefined") researchtalent = savestring.researchtalent;
 	if (typeof savestring.craftingtalent !== "undefined") craftingtalent = savestring.craftingtalent;
 	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
+	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
 	
-	
+	if (typeof savestring.exchangerates !== "undefined") exchangerates = savestring.exchangerates;
+	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
 }
 
 function showsave() {
