@@ -64,6 +64,7 @@ document.getElementById("tradetalent").onclick = function() {
 	if ($('#tradetalent').hasClass('btn-danger')) {
 		$('#tradetalent').removeClass('btn-danger');
 	} 
+	alert("test");
 }
 
 document.getElementById("consttalent").onclick = function() {
