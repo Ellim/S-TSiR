@@ -70,9 +70,6 @@ document.getElementById("foodbtcinput").onblur = function() {
 }
 
 document.getElementById("tradetalent").onclick = function() {
-	if ($('#tradetalent').hasClass('btn-danger')) {
-		$('#tradetalent').removeClass('btn-danger');
-	} 
 	document.getElementById("foodbtcinput").value = "";
 	document.getElementById("foodbtcbtc").innerHTML = (0).toFixed(4);
 }
