@@ -189,7 +189,7 @@ document.getElementById("unlocktraderbutton").onclick = function() {
 			tempvar.innerHTML = talentpoints;
 			tradertalent += 1;
 			$('#tradetalent').removeClass('hidden');
-			$('#tradetalent').addClass('btn btn-danger');
+			$('#tradetalent').addClass('btn-danger');
 		}
 	}
 }
