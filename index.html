@@ -114,7 +114,7 @@ $(document).ready(function(){
 				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab">Talents</a></li>
 				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
 				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
-				<li role="presentation"><a href="#tradetab" aria-controls="tradetab" role="tab" data-toggle="tab" class="" id="tradetalent">Trade</a></li>
+				<li role="presentation"><a href="#tradetab" aria-controls="tradetab" role="tab" data-toggle="tab" class="hidden" id="tradetalent">Trade</a></li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -310,20 +310,17 @@ $(document).ready(function(){
 				
 			<div role="tabpanel" class="text-center tab-pane fade" id="tradetab">
 			
-				<form class="form-inline">
-					<button type="button" id="foodbtcswap" class="btn btn-primary"><span class="glyphicon glyphicon-btc" id="foodbtcl"></span> <span class="fa fa-exchange"></span> <span class="glyphicon glyphicon-apple" id="foodbtcr"></span></button>
-					<div class="form-group">
-						<label class="sr-only" for="exampleInputAmount">Amount</label>
-						<div class="input-group">
-						<input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-						</div>
-					</div>
-				  <button type="button" id="foodbtcmax" class="btn btn-primary">Max</button>
-				</form>
+				<div class="">
+					<button type="button" id="btcfoodswap" class="btn btn-primary"><div class="label label-success"><span class="glyphicon glyphicon-btc"></span> <span id="foodbtcbtc">0.0000</span></div></button>
+					<button type="button" id="foodbtcswap" class="btn btn-primary"><div class="label label-success"><span class="glyphicon glyphicon-apple"></span> <span id="foodbtcfood">0.00</span></div></button>
+				  <button type="button" id="foodbtctrade" class="btn btn-primary">Trade</button>
+				</div>
 				
-				<button type="button" class="btn btn-craft" id="tradetest">
-				<span class="fa fa-gear"></span> Trade Food
-				</button>
+				<div class="">
+					<button type="button" id="btcwoodswap" class="btn btn-primary"><div class="label label-success"><span class="glyphicon glyphicon-btc"></span> <span id="foodbtcbtc">0.0000</span></div></button>
+					<button type="button" id="woodbtcswap" class="btn btn-primary"><div class="label label-success"><span class="fa fa-tree"></span> <span id="foodbtcfood">0.00</span></div></button>
+				  <button type="button" id="woodbtctrade" class="btn btn-primary">Trade</button>
+				</div>
 				
 			</div>
 			
@@ -347,6 +344,9 @@ $(document).ready(function(){
 		<span id="charcoalresource" class="">Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<span id="coalps">+0</span>)</span><br />
 		<span id="manaresource" class="">Mana: <span id="total_mana">0 (<span id="manaps">+0</span>)</span></span><br />
 		<span id="steamresource" class="">Steam: <span id="total_steam">0 (<span id="steamps">-0</span>)</span></span><br />
+		<div id="btcdiv" class="hidden">
+		<span id="btcresource" class="text-success glyphicon glyphicon-btc"></span>: <span id="total_btc">0</span>
+		</div>
 		<div id="logdiv" class="hidden">
 		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
 		</div>

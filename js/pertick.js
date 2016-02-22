@@ -31,8 +31,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs"]
-	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_btc"]
+	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,btc]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -301,6 +301,12 @@ document.getElementById("loadgame").onclick = function() {
 		if (logtalent > 0) {
 			$('#logspan').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
+		}
+		
+		if (tradertalent > 0) {
+			$('#btcdiv').removeClass('hidden');
+			$('#tradetalent').removeClass('hidden');
+			$('#unlocktraderbutton').addClass('hidden');
 		}
 		
 		if (logs > 0) {

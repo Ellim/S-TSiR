@@ -61,19 +61,26 @@ document.getElementById("save").onclick = function() {
 }
 
 document.getElementById("foodbtcmax").onclick = function() {
-	document.getElementById("exampleInputAmount").value = (currentfood * exchangerates.foodbtc);
-}
-
-document.getElementById("exampleInputAmount").onblur = function() {
 	
 }
 
+document.getElementById("foodbtcinput").onblur = function() {
+	var tempvar = document.getElementById("foodbtcinput").value;
+	document.getElementById("foodbtcbtc").innerHTML = (tempvar * exchangerates.foodbtc).toFixed(4);
+}
 
-document.getElementById("tradetest").onclick = function() {
-	currentfood -= document.getElementById("exampleInputAmount").value * 2000;
-	btc += document.getElementById("exampleInputAmount").value;
-	document.getElementById("exampleInputAmount").value = "";
-	alert("BTC total:" + btc);
+document.getElementById("tradetalent").onclick = function() {
+	document.getElementById("foodbtcinput").value = "";
+	document.getElementById("foodbtcbtc").innerHTML = (0).toFixed(4);
+}
+
+document.getElementById("foodbtctrade").onclick = function() {
+	currentfood -= document.getElementById("foodbtcinput").value * 2000;
+	btc += document.getElementById("foodbtcinput").value * 1;
+	document.getElementById("foodbtcinput").value = "";
+	var tempvar = document.getElementById("foodbtcinput").value;
+	document.getElementById("foodbtcbtc").innerHTML = (tempvar * exchangerates.foodbtc).toFixed(4);
+	updateresources();
 }
 
 document.getElementById("consttalent").onclick = function() {
