@@ -61,8 +61,6 @@ document.getElementById("save").onclick = function() {
 }
 
 document.getElementById("tradetalent").onclick = function() {
-	document.getElementById("foodbtcinput").value = "";
-	document.getElementById("foodbtcbtc").innerHTML = (0).toFixed(4);
 	if ($('#tradetalent').hasClass('btn-danger')) {
 		$('#tradetalent').removeClass('btn-danger');
 	} 
