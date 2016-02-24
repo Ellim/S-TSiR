@@ -13,10 +13,7 @@ document.getElementById("Forage").onclick = function() {
 };
 
 $(".zodb").click(function(){
-  if document.getElementById("cnq1").hasClass('collapse.in') {
-		document.getElementById("cnq1").removeClass('collapse.in');
-		document.getElementById("cnq1").addClass('collapse')
-	}
+  alert("test")
 });
 
 document.getElementById("forage10").onclick = function() {
