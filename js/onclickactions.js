@@ -12,6 +12,13 @@ document.getElementById("Forage").onclick = function() {
 	
 };
 
+document.getElementsByClassName("zodb").onclick = function() {
+	if document.getElementById("cnq1").hasClass('collapse.in') {
+		document.getElementById("cnq1").removeClass('collapse.in');
+		document.getElementById("cnq1").addClass('collapse')
+	}
+}
+
 document.getElementById("forage10").onclick = function() {
 	forage(10);   
 };
