@@ -13,7 +13,7 @@ document.getElementById("Forage").onclick = function() {
 };
 
 document.getElementById("zodb").onclick = function() {
-	document.getElementById("cnq1").collapse("toggle");
+	alert('test')
 }
 
 document.getElementById("forage10").onclick = function() {
