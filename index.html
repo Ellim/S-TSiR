@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Survive: The struggle is real 0.0.9 Pre Alpha</title>
+    <title>Survive: The struggle is real 0.0.11 Pre Alpha</title>
     
     <script>
   	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -72,8 +72,9 @@ $(document).ready(function(){
 		</div>
 		<div class="col-xs-4">
 			<br /><button id="save" type="button" class="btn btn-info">Save</button>    
-			<br /> Latest Update: 10 Feb 2016
+			<br /> Latest Update: 24 Feb 2016
 			<br /><span class="glyphicon glyphicon-btc"></span> <a href="img/qr.png" target="_blank">1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV</a>
+			<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>
 			
 		</div>
 	</div>
@@ -419,12 +420,113 @@ $(document).ready(function(){
   
 		<!--Modals-->
 		<div class="modal fade" id="warningmodal" data-backdrop="static">
-		  <div class="modal-dialog modal=lg">
+		  <div class="modal-dialog">
 			<div class="modal-content">
 			  <h3 align="center">Welcome! This game is in the earliest stages of creation. Bugs are bound to happen, please let me know about them. I am <a href="https://twitter.com/SeifertTyrinDal" target="_blank">@SeifertTyrinDal</a> on Twitter.</h3><br />
 			  
 			  <button type="button" id ="newgame" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">New Game</button><br /><br />
 			  <button type="button" id ="loadgame" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">Load Game</button><br /><br />
+			</div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="cnqm" data-backdrop="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			
+				<div class="collapse.in" id="cnq1">
+					<div class="well text-center">
+						<h3>Choose your Zodiac sign.</h3>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Aries
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Libra
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Taurus
+						</a><br />
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Scorpio
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Gemini
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Sagittarius
+						</a><br />
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Cancer
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Capricorn
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Leo
+						</a><br />
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Aquarius
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Virgo
+						</a>
+						<a class="btn btn-job2 zodb" role="button" data-toggle="collapse" href="#cnq2" aria-expanded="false" aria-controls="cnq2">
+						Pisces
+						</a><br />
+					</div>
+				</div>
+				
+				<div class="collapse" id="cnq2">
+					<div class="well text-center">
+						<h3>Choose your favorite color.</h3>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Red
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Blue
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Orange
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Purple
+						</a><br />
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Yellow
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Pink
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Green
+						</a>
+						<a class="btn btn-job2 colb" role="button" data-toggle="collapse" href="#cnq3" aria-expanded="false" aria-controls="cnq3">
+						Brown
+						</a><br />
+					</div>
+				</div>
+				
+				<div class="collapse" id="cnq3">
+					<div class="well text-center">
+						<h3>Last pick the letter with which your first name begins.</h3>
+						<select class="form-control">
+						  <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+						  <option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
+						  <option>K</option><option>L</option><option>M</option><option>N</option><option>O</option>
+						  <option>P</option><option>Q</option><option>R</option><option>S</option><option>T</option>
+						  <option>U</option><option>V</option><option>W</option><option>X</option><option>Y</option>
+						  <option>Z</option>
+						</select><a class="btn btn-job2" role="button" data-toggle="collapse" href="#cnq4" aria-expanded="false" aria-controls="cnq4">Get your "Cosmic Name"</a>
+					</div>
+				</div>
+				
+				<div class="collapse" id="cnq4">
+					<div class="well text-center">
+						<h3>Last pick the letter with which your first name begins.</h3><br />
+						Your "Cosmic Name" is <span class="text-danger">NOTHING</span>
+					</div>
+				</div>
+				
 			</div>
 		  </div>
 		</div>
