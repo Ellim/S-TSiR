@@ -12,9 +12,6 @@ document.getElementById("Forage").onclick = function() {
 	
 };
 
-$(".zodb").click(function(){
-  alert("test")
-});
 
 document.getElementById("forage10").onclick = function() {
 	forage(10);   
