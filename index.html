@@ -524,7 +524,8 @@ $(document).ready(function(){
 				
 				<div class="collapse" id="cnq4">
 					<div class="well text-center">
-						<h3>Your "Cosmic Name" is <span class="text-danger" id="cosmicname">NOTHING</span></h3><br />
+						<h3>Last pick the letter with which your first name begins.</h3><br />
+						Your "Cosmic Name" is <span class="text-danger">NOTHING</span>
 					</div>
 				</div>
 				
@@ -540,7 +541,13 @@ $(document).ready(function(){
 <script src="js/onclickactions.js"></script>
 <script src="js/expandingbuttons.js"></script>
 
-
+<script>
+	$('#cnq1').on("click", ".zodb", function() {
+		if ($('#cnq1').hasClass('collapse.in') {
+		$('#cnq1').removeClass('collapse.in');
+		$('#cnq1').addClass('collapse');
+	}
+</script>
 
 
 
