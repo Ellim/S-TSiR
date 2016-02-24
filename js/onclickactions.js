@@ -12,8 +12,9 @@ document.getElementById("Forage").onclick = function() {
 	
 };
 
-document.getElementById("zodb").onclick = function() {
-	alert('test')
+document.getElementById("cnqcollapsebutton").onclick = function() {
+	$("#cnq1").collapse('toggle');
+	$("#cnqcollapsebutton").addClass("hidden");
 }
 
 document.getElementById("forage10").onclick = function() {
@@ -64,11 +65,11 @@ document.getElementById("save").onclick = function() {
 	showsave();
 }
 
-document.getElementById("tradetalent").onclick = function() {
-	if ($('#tradetalent').hasClass('btn-danger')) {
-		$('#tradetalent').removeClass('btn-danger');
-	} 
+document.getElementById("foodbtcmax").onclick = function() {
+	
 }
+
+
 
 document.getElementById("consttalent").onclick = function() {
 	if ($('#consttalent').hasClass('btn-danger')) {
@@ -192,8 +193,6 @@ document.getElementById("unlocktraderbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			tradertalent += 1;
-			$('#tradetalent').removeClass('hidden');
-			$('#tradetalent').addClass('btn-danger');
 		}
 	}
 }
