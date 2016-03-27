@@ -71,6 +71,14 @@ function updateresearcher() {
 	
 	var tempvar = document.getElementById("total_RP");
 	tempvar.innerHTML = researchpoints.toFixed(2);
+	if (!$('#researchtab').hasClass('in')) {
+		if (researchpoints >= researchmin) {
+			$('#researchtalent').addClass('btn-danger');
+		}
+	}
+	if ($('#researchtab').hasClass('in')) {
+		$('#researchtalent').removeClass('btn-danger');
+	}
 
 	}, workertick);
 }

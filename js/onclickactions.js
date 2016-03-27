@@ -68,7 +68,7 @@ document.getElementById("workertalent").onclick = function() {
 document.getElementById("researchtalent").onclick = function() {
 	if ($('#researchtalent').hasClass('btn-danger')) {
 		$('#researchtalent').removeClass('btn-danger');
-	}   
+	}
 };
 
 document.getElementById("craftingtalent").onclick = function() {
@@ -102,6 +102,20 @@ document.getElementById("logbutton").onclick = function() {
 	}
 }
 
+document.getElementById("blockbutton").onclick = function() {
+	if (stone >= stoneblockscost) {
+		if (clay >= stoneblockccost) {
+			stone -= stoneblockscost;
+			clay -= stoneblockccost
+			stoneblocks += 1;
+			if ($('#blockdiv').hasClass('hidden')) {
+			$('#blockdiv').removeClass('hidden');
+		}
+	}  
+	updateresources();
+	}
+}
+
 document.getElementById("unlocklogbutton").onclick = function() {
 	if (researchpoints > 999) {
 		researchpoints -= 1000;
@@ -109,6 +123,19 @@ document.getElementById("unlocklogbutton").onclick = function() {
 			$('#logspan').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
 			logtalent += 1;
+			$('#craftingtalent').addClass('btn-danger');
+			researchmin = 1500;
+		}
+	}
+}
+
+document.getElementById("unlockblockbutton").onclick = function() {
+	if (researchpoints > 3332) {
+		researchpoints -= 3333;
+		if ($('#blockspan').hasClass('hidden')) {
+			$('#blockspan').removeClass('hidden');
+			$('#unlockblockdiv').addClass('hidden');
+			blocktalent += 1;
 			$('#craftingtalent').addClass('btn-danger');
 		}
 	}
@@ -123,6 +150,7 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			farmertalent += 1;
+			researchmin = 250;
 		}
 	}
 }
@@ -136,6 +164,7 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			loggertalent += 1;
+			researchmin = 500;
 		}
 	}
 }
@@ -149,6 +178,7 @@ document.getElementById("unlockminerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			minertalent += 1;
+			researchmin = 750;
 		}
 	}
 }
@@ -162,6 +192,7 @@ document.getElementById("unlockwarriorbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			warriortalent += 1;
+			researchmin = 1000;
 		}
 	}
 }
@@ -175,6 +206,7 @@ document.getElementById("unlocktraderbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints;
 			tradertalent += 1;
+			researchmin = 3333;
 		}
 	}
 }

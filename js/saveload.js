@@ -30,6 +30,11 @@ var stone = 0;
 var stonemax = 200;
 var logs = 0;
 var woodlogcost = 50;
+var stoneblocks = 0;
+var stoneblockscost = 100;
+var stoneblockccost = 25;
+
+var researchmin = 100;
 
 var currentlevel = 1;
 var totalexp = 0;
@@ -98,6 +103,7 @@ var researchtalent = 0;
 var craftingtalent = 0;
 var logtalent = 0;
 var tradertalent = 0;
+var blocktalent = 0;
 
 var btc = 0;
 
@@ -135,6 +141,11 @@ function savegame() {
 	stonemax: stonemax,
 	logs: logs,
 	woodlogcost: woodlogcost,
+	stoneblocks: stoneblocks,
+	stoneblockscost: stoneblockscost,
+	stoneblockccost: stoneblockccost,
+	
+	researchmin: researchmin,
 	
 	currentlevel: currentlevel,
 	totalexp: totalexp,
@@ -203,6 +214,7 @@ function savegame() {
 	craftingtalent: craftingtalent,
 	logtalent: logtalent,
 	tradertalent: tradertalent,
+	blocktalent: blocktalent,
 	
 	btc: btc
 	
@@ -236,7 +248,12 @@ function loadgame() {
 	if (typeof savestring.stone !== "undefined") stone = savestring.stone;	
 	if (typeof savestring.stonemax !== "undefined") stonemax = savestring.stonemax;	
 	if (typeof savestring.logs !== "undefined") logs = savestring.logs;	
-	if (typeof savestring.woodlogcost !== "undefined") woodlogcost = savestring.woodlogcost;	
+	if (typeof savestring.woodlogcost !== "undefined") woodlogcost = savestring.woodlogcost;
+	if (typeof savestring.stoneblocks !== "undefined") stoneblocks = savestring.stoneblocks;
+	if (typeof savestring.stoneblockscost !== "undefined") stoneblockscost = savestring.stoneblockscost;
+	if (typeof savestring.stoneblockccost !== "undefined") stoneblockccost = savestring.stoneblockccost;
+	
+	if (typeof savestring.researchmin !== "undefined") researchmin = savestring.researchmin;
 	
 	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;
 	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
@@ -305,6 +322,7 @@ function loadgame() {
 	if (typeof savestring.craftingtalent !== "undefined") craftingtalent = savestring.craftingtalent;
 	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
 	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
+	if (typeof savestring.blocktalent !== "undefined") blocktalent = savestring.blocktalent;
 	
 	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
 }

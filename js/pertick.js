@@ -31,8 +31,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs"]
-	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks"]
+	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -44,12 +44,12 @@ function updateresources() {
 }
 
 function updatebuildings() {
-	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost"]
-	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost]
+	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost"]
+	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
-		tempvar.innerHTML = arrBuildingDiv[i].toFixed(2);
+		tempvar.innerHTML = arrBuildingDiv[i].toFixed(0);
 	}
 		
 }
@@ -302,6 +302,12 @@ document.getElementById("loadgame").onclick = function() {
 			$('#logspan').removeClass('hidden');
 			$('#logdiv').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
+		}
+		
+		if (blocktalent > 0) {
+			$('#blockspan').removeClass('hidden');
+			$('#blockdiv').removeClass('hidden');
+			$('#unlockblockdiv').addClass('hidden');
 		}
 		
 		if (tradertalent > 0) {

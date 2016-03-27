@@ -69,7 +69,7 @@ $(document).ready(function(){
 			<br /><button id="save" type="button" class="btn btn-info">Save</button>    
 			<br /> Latest Update: 24 Feb 2016
 			<br /><span class="glyphicon glyphicon-btc"></span> <a href="img/qr.png" target="_blank">1CAz76u9RKN2UXzawgq7qsgdJ385QSszpV</a>
-			<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>
+			<!--<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>-->
 			
 		</div>
 	</div>
@@ -158,7 +158,7 @@ $(document).ready(function(){
 				
 				<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation"><a href="#housingtab" aria-controls="housingtab" role="tab" data-toggle="tab" class="active" id="housetab">Housing </a></li>
-				<li role="presentation"><a href="#storagetab" aria-controls="storagetab" role="tab" data-toggle="tab" class="" id="storetab">Storage</a></li>
+				<li role="presentation"><a href="#storagetab" aria-controls="storagetab" role="tab" data-toggle="tab" class="" id="storetab">Production</a></li>
 				</ul>
 				<div class="tab-content">
 				<div role="tabpanel" class="text-center tab-pane fade" id="housingtab">
@@ -208,7 +208,10 @@ $(document).ready(function(){
 							EXP Gain: <span id="smexp">25</span>.<br />
 							Increase Lumberjack Rate.<br />
 							</button>
+							
 				</div>
+				
+				
 				</div>
 				</div>
 				
@@ -294,6 +297,12 @@ $(document).ready(function(){
 						Cost: <span class="text-danger">1000</span> Research Points.<br />
 						Allows the creation of Logs.
 						</button></span>
+						<span id="unlockblockdiv">
+						<button type="button" class="btn btn-craft2" id="unlockblockbutton">
+						<span class="fa fa-gear"></span> Masonry <br />
+						Cost: <span class="text-danger">3333</span> Research Points.<br />
+						Allows the creation of Stone Blocks.
+						</button></span>
 					</div>
 				</div>
 				</div>
@@ -304,7 +313,13 @@ $(document).ready(function(){
 				<span id="logspan" class="hidden">
 				<button type="button" class="btn btn-craft" id="logbutton">
 				<span class="fa fa-gear"></span> Craft Log <br />
-				50 Wood <span class="fa fa-exchange"></span> 1 Log
+				50 Wood <br /><span class="fa fa-exchange"></span> 1 Log
+				</button></span>
+				
+				<span id="blockspan" class="hidden">
+				<button type="button" class="btn btn-craft" id="blockbutton">
+				<span class="fa fa-gear"></span> Craft Stone Block <br />
+				100 Stone & 25 Clay <br /><span class="fa fa-exchange"></span> 1 Stone Block
 				</button></span>
 			
 			</div>
@@ -329,6 +344,9 @@ $(document).ready(function(){
 		<div id="logdiv" class="hidden">
 		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
 		</div>
+		<div id="blockdiv" class="hidden">
+		<span id="blockresource" class="text-muted">Stone Blocks</span>: <span id="total_blocks">0</span>
+		</div><br />
 		</div>
 	
 		<h1>Actions</h1>
