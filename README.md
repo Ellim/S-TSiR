@@ -3,6 +3,21 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+03/27/16
+
+ASAP Todo:
+* ~~Stone building that increases lumberjack output.~~
+ * Added Sawmill which increases all lumberjack production by 10% for each sawmill. Requires Clay.
+* Martial Prowess stat - determined by warriors.
+* Use Traders to send food with different reward outcomes - more MP opens more routes.
+* Class bonuses and more crafts to buy with RP.
+ * Added Stone Block resource. Uses Stone and Clay, requires 3333 RP to research.
+* ~~Adjust Storehouse cost scale.~~
+ * Increased from 5% gain to 75% gain. Now after a few purchases a new storage building will need to be unlocked.
+* New storage building.
+* Clay production from Mine button.
+
+
 03/26/16
 
 ASAP Todo:
