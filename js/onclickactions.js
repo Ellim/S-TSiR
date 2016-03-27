@@ -45,9 +45,9 @@ document.getElementById("mine100").onclick = function() {
 	mine(100);   
 };
 
-//document.getElementById("Burn").onclick = function() {
-//	burn(1);   
-//};
+document.getElementById("Burn").onclick = function() {
+	burn(1);   
+};
 
 document.getElementById("save").onclick = function() {
 	showsave();
@@ -465,7 +465,7 @@ document.getElementById("shbutton").onclick = function() {
 	if (wood >= shcost) {
 		wood -= shcost;
 		storehouses += 1;
-		shcost = (shcost * 1.05);
+		shcost = (shcost * 1.75);
 		totalexp += 75;
 		woodmax += 250;
 		stonemax += 200;
