@@ -5,17 +5,26 @@ Clicker game made in an attempt to learn some JavaScript.
 
 03/27/16
 
+Multiple improvements to guide progression done. 
+Talents are now color coded based on available Talent Points. 
+Icon change for crafting/Burning. 
+All innerHTML now have 0 decimal places. 
+Added Steam to resource update function. 
+
 ASAP Todo:
 * ~~Stone building that increases lumberjack output.~~
- * Added Sawmill which increases all lumberjack production by 10% for each sawmill. Requires Clay.
-* Martial Prowess stat - determined by warriors.
-* Use Traders to send food with different reward outcomes - more MP opens more routes.
+ * Added Sawmill which increases all Lumberjack production by 10% for each. Requires Clay to build.
+ * Sawmill is hidden until Lumberjacks are researched.
+* Martial Prowess (MP) stat - determined by warriors.
+* Ability to send Traders using food with different reward outcomes - more MP opens more routes.
 * Class bonuses and more crafts to buy with RP.
  * Added Stone Block resource. Uses Stone and Clay, requires 3333 RP to research.
 * ~~Adjust Storehouse cost scale.~~
- * Increased from 5% gain to 75% gain. Now after a few purchases a new storage building will need to be unlocked.
-* New storage building.
-* Clay production from Mine button.
+ * Increased from 5% growth to 75% growth. Now a new storage building will need to be unlocked after a few purchases.
+* New resource storage building.
+* ~~Reduce Clay production from Mine button.~~
+ * Dramatically reduced Clay production.
+ * Also reduced Coal production from Mining by 50%.
 
 
 03/26/16

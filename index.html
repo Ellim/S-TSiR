@@ -99,6 +99,7 @@ $(document).ready(function(){
         <br />
 		Level: <span id="current_level">1</span> <br />
         Population: <span id="pop">1</span> / <span id="popmax">1 </span><br />
+		RP: <span id="total_RP" class="badge">0</span>
 		
 		
 		<div>
@@ -169,27 +170,33 @@ $(document).ready(function(){
 							Increase Population Max by: <span id="hutlevel">2</span>
 							</button>
 							
+							<span id="rhspan" class="hidden">
 							<button type="button" class="btn btn-pop" id="rhbutton"><span class="glyphicon glyphicon-home"></span> Roundhouse <span class="badge" id="rhnum">0</span><br />
 							Cost: <span id="rhcost" class="">250</span> Clay.<br />
 							EXP Gain: <span id="rhexp">500</span>.<br/>
 							Increase Population Max by: <span id="rhlevel">5</span>
 							</button>
+							</span>
 							
+							<span id="cabinspan" class="hidden">
 							<button type="button" class="btn btn-pop" id="cabinbutton"><span class="glyphicon glyphicon-home"></span> Cabin <span class="badge" id="cabinnum">0</span><br />
 							Cost: <span id="cabincost" class="">50</span> Logs.<br />
 							EXP Gain: <span id="cabinexp">1500</span>.<br/>
 							Increase Population Max by: <span id="cabinlevel">10</span>
 							</button>
+							</span>
 				</div>
 				
 				<div role="tabpanel" class="text-center tab-pane fade" id="storagetab">
 						<br />
+							<span id="granaryspan" class="hidden">
 							<button type="button" class="btn btn-pop" id="granarybutton"><span class="glyphicon glyphicon-grain"></span> Granary <span class="badge" id="granarynum">0</span><br />
 							Cost: <span id="granarywoodcost" class="">175</span> Wood & <span id="granarystonecost" class="">50</span> Stone.<br />
 							EXP Gain: <span id="granaryexp">150</span>.<br/>
 							Increase Food Max by: <span id="granaryfoodlimit">175</span><br />
 							Increase Water Max by: <span id="granarywaterlimit">500</span>
 							</button>
+							</span>
 							
 							<button type="button" class="btn btn-pop" id="shbutton"><span class="glyphicon glyphicon-scale"></span> Storehouse <span class="badge" id="sthnum">0</span><br />
 							Cost: <span id="shcost" class="">150</span> Wood.<br />
@@ -203,12 +210,13 @@ $(document).ready(function(){
 							Increase Research Rate.<br />
 							</button>
 							
+							<span id="sawmillspan" class="hidden">
 							<button type="button" class="btn btn-pop" id="sawmillbutton"><span class="fa fa-lightbulb-o"></span> Sawmill <span class="badge" id="sawmillnum">0</span><br />
 							Cost: <span id="sawmillstonecost" class="">25</span> Stone & <span id="sawmillclaycost" class="">1</span> Clay.<br />
 							EXP Gain: <span id="smexp">25</span>.<br />
 							Increase Lumberjack Rate.<br />
 							</button>
-							
+							</span>
 				</div>
 				
 				
@@ -219,10 +227,17 @@ $(document).ready(function(){
 				
 				<div role="tabpanel" class="text-center tab-pane fade in active" id="talenttab">
 						
+							<button type="button" class="btn btn-talent" id="riverbutton">
+							<span class="glyphicon glyphicon-tint"></span> Expand River<br />
+							Cost: <span id="riverupgradecost" class="badge text-danger">1</span> Talent Point(s).<br />
+							Increase Water Production by<br />
+							<span id="riverproduction">10.00</span> Water/sec.							
+							</button>
+						
 							<span id="minetalent">
 							<button type="button" class="btn btn-talent" id="unlockminebutton">
 							<span class="glyphicon glyphicon-education"></span> Rudimentary Tools <br />
-							Cost: <span class="">5</span> Talent Points.<br />
+							Cost: <span id="minetalentcost" class="badge text-danger">5</span> Talent Points.<br />
 							Unlocks Mine Action.<br />
 							Allows the extraction of various <br />
 							resources from the earth.
@@ -231,25 +246,17 @@ $(document).ready(function(){
 							<span id="burntalent">
 							<button type="button" class="btn btn-talent" id="unlockburnbutton">
 							<span class="glyphicon glyphicon-education"></span> Harness Fire <br />
-							Cost: <span class="">5</span> Talent Points.<br />
+							Cost: <span id="burntalentcost" class="badge text-danger">5</span> Talent Points.<br />
 							Unlocks Burn Action.<br />
 							Allows transformation of some <br />
 							resources into others.
 							</button></span>
-							
-							<button type="button" class="btn btn-talent" id="riverbutton">
-							<span class="glyphicon glyphicon-tint"></span> Expand River
-							<span class="badge" id="riverlevel">0</span><br />
-							Cost: <span id="riverupgradecost" class="">1</span> Talent Point(s).<br />
-							Increase Water Production by<br />
-							<span id="riverproduction">10.00</span> Water/sec.							
-							</button>
-							
+																					
 							<span id="crafttalentbutton">
 							<button type="button" class="btn btn-talent" id="craftingbutton">
 							<span class="fa fa-gear"></span>Create Workshops
 							<br />
-							Cost: <span class="">5</span> Talent Point(s).<br />
+							Cost: <span id="crafttalentcost" class="badge text-danger">5</span> Talent Point(s).<br />
 							Unlocks Crafting Menu.<br />
 							Allows the creation of <br />
 							advanced resources.
@@ -257,36 +264,36 @@ $(document).ready(function(){
 							
 				</div>
 				
-				<div role="tabpanel" class="tab-pane fade text-center" id="researchtab">RP: <span id="total_RP" class="badge">0</span>
+				<div role="tabpanel" class="tab-pane fade text-center" id="researchtab">
 					<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation"><a href="#classtab" aria-controls="classtab" role="tab" data-toggle="tab" class="active" id="clastab">Worker Classes </a></li>
-					<li role="presentation"><a href="#crafttab" aria-controls="crafttab" role="tab" data-toggle="tab" class="" id="craftab">Crafts </a></li>
+					<li role="presentation"><a href="#crafttab" aria-controls="crafttab" role="tab" data-toggle="tab" class="hidden" id="craftab">Crafts </a></li>
 					</ul>
 				<div class="tab-content">
 					<div role="tabpanel" class="text-center tab-pane fade" id="classtab">
 						<button type="button" class="btn btn-research" id="unlockfarmerbutton">
 						<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers <br />
-						<span id="farmertalent">Cost: <span class="text-danger">100</span> Research Points.</span>
+						<span id="farmertalent">Cost: <span>100</span> Research Points.</span>
 						</button>
 								
 						<button type="button" class="btn btn-research" id="unlockloggerbutton">
 						<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks <br />
-						<span>Cost: <span class="text-danger">250</span> Research Points.</span>
+						<span>Cost: <span>250</span> Research Points.</span>
 						</button>
 								
 						<button type="button" class="btn btn-research" id="unlockminerbutton">
 						<span class="fa fa-diamond"></span> Unlock Miners <br />
-						<span>Cost: <span class="text-danger">500</span> Research Points.</span>
+						<span>Cost: <span>500</span> Research Points.</span>
 						</button>
 								
 						<button type="button" class="btn btn-research" id="unlockwarriorbutton">
 						<span class="fa fa-gavel"></span> Unlock Warriors <br />
-						<span>Cost: <span class="text-danger">750</span> Research Points.</span>
+						<span>Cost: <span>750</span> Research Points.</span>
 						</button>
 						
 						<button type="button" class="btn btn-research" id="unlocktraderbutton">
 						<span class="fa fa-money"></span> Unlock Traders <br />
-						<span>Cost: <span class="text-danger">1500</span> Research Points.</span>
+						<span>Cost: <span>1500</span> Research Points.</span>
 						</button>
 					</div>
 					
@@ -294,13 +301,13 @@ $(document).ready(function(){
 						<span id="unlocklogdiv">
 						<button type="button" class="btn btn-craft2" id="unlocklogbutton">
 						<span class="fa fa-gear"></span> Carpentry <br />
-						Cost: <span class="text-danger">1000</span> Research Points.<br />
+						Cost: <span>1000</span> Research Points.<br />
 						Allows the creation of Logs.
 						</button></span>
 						<span id="unlockblockdiv">
 						<button type="button" class="btn btn-craft2" id="unlockblockbutton">
 						<span class="fa fa-gear"></span> Masonry <br />
-						Cost: <span class="text-danger">3333</span> Research Points.<br />
+						Cost: <span>3333</span> Research Points.<br />
 						Allows the creation of Stone Blocks.
 						</button></span>
 					</div>
@@ -313,13 +320,13 @@ $(document).ready(function(){
 				<span id="logspan" class="hidden">
 				<button type="button" class="btn btn-craft" id="logbutton">
 				<span class="fa fa-gear"></span> Craft Log <br />
-				50 Wood <br /><span class="fa fa-exchange"></span> 1 Log
+				50 Wood <span class="fa fa-long-arrow-right"></span> 1 Log
 				</button></span>
 				
 				<span id="blockspan" class="hidden">
 				<button type="button" class="btn btn-craft" id="blockbutton">
 				<span class="fa fa-gear"></span> Craft Stone Block <br />
-				100 Stone & 25 Clay <br /><span class="fa fa-exchange"></span> 1 Stone Block
+				100 Stone & 25 Clay <span class="fa fa-long-arrow-right"></span> 1 Stone Block
 				</button></span>
 			
 			</div>
@@ -340,7 +347,7 @@ $(document).ready(function(){
 		<span id="clayresource" class="">Clay: <span id="total_clay">0</span> / <span id="claymax">1000</span> (<span id="clayps">+0</span>)</span><br />
 		<span id="charcoalresource" class="">Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<span id="coalps">+0</span>)</span><br />
 		<span id="manaresource" class="">Mana: <span id="total_mana">0 (<span id="manaps">+0</span>)</span></span><br />
-		<span id="steamresource" class="">Steam: <span id="total_steam">0 (<span id="steamps">-0</span>)</span></span><br />
+		<span id="steamresource" class="">Steam: <span id="total_steam">0</span> (<span id="steamps">-0</span>)</span><br />
 		<div id="logdiv" class="hidden">
 		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
 		</div>
@@ -389,10 +396,10 @@ $(document).ready(function(){
 		
 		<div id ="burncheckboxes" class="checkbox">
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burnwood" value=""> 10x Wood
-		</label>
+		  <input type="checkbox" id="burnwood" value=""> 10x Wood <span class="fa fa-long-arrow-right"></span> 1 Charcoal
+		</label><br />
 		<label class="checkbox-inline">
-		  <input type="checkbox" id="burncoal" value=""> 1x Charcoal + 500x Water
+		  <input type="checkbox" id="burncoal" value=""> 1x Charcoal + 500x Water <span class="fa fa-long-arrow-right"></span> <span id="burnsteam">50</span> Steam
 		</label>
 		</div>
 		</div>

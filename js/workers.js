@@ -6,10 +6,10 @@ function updatefarmer() {
 	}
 	
 	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood.toFixed(2);
+	tempvar.innerHTML = currentfood.toFixed(0);
 	var tempvar2 = document.getElementById("foodps");
 	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = tempvar3.toFixed(0) + '/sec';
 	
 
 
@@ -29,10 +29,10 @@ function updatelogger() {
 	}
 	
 	var tempvar = document.getElementById("total_wood");
-	tempvar.innerHTML = wood.toFixed(2);
+	tempvar.innerHTML = wood.toFixed(0);
 	var tempvar2 = document.getElementById("woodps");
 	var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = tempvar3.toFixed(0) + '/sec';
 	
 	}, workertick);
 }
@@ -53,12 +53,42 @@ function updateminer() {
 	updateresources();
 	var tempvar2 = document.getElementById("stoneps");
 	var tempvar3 = (miners * (minerrate*4)); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = tempvar3.toFixed(0) + '/sec';
 	
 	var tempvar4 = document.getElementById("clayps");
 	var tempvar5 = (miners * ((minerrate/5)*4)); 
-	tempvar4.innerHTML = tempvar5.toFixed(2) + '/sec';
+	tempvar4.innerHTML = tempvar5.toFixed(0) + '/sec';
 	
+	}, workertick);
+}
+
+function updatetalents() {
+	clearInterval(talentinterval);
+	talentinterval = setInterval(function() {
+		
+			var arrTalents = ['#riverupgradecost','#minetalentcost','#burntalentcost','#crafttalentcost'];
+			var arrTalents1 = ["riverupgradecost","minetalentcost","burntalentcost","crafttalentcost"];
+			for (i = 0; i < arrTalents.length; i++) {
+				var tempvar = document.getElementById(arrTalents1[i]);
+				if (tempvar.innerHTML <= talentpoints) {
+
+					$(arrTalents[i]).removeClass('text-danger');
+					$(arrTalents[i]).addClass('text-success');
+
+				}
+			}
+			
+			for (i = 0; i < arrTalents.length; i++) {
+				var tempvar = document.getElementById(arrTalents1[i]);
+				if (tempvar.innerHTML > talentpoints) {
+
+					$(arrTalents[i]).removeClass('text-success');
+					$(arrTalents[i]).addClass('text-danger');
+
+				}
+			}
+			
+			
 	}, workertick);
 }
 
@@ -70,7 +100,7 @@ function updateresearcher() {
 	}
 	
 	var tempvar = document.getElementById("total_RP");
-	tempvar.innerHTML = researchpoints.toFixed(2);
+	tempvar.innerHTML = researchpoints.toFixed(0);
 	if (!$('#researchtab').hasClass('in')) {
 		if (researchpoints >= researchmin) {
 			$('#researchtalent').addClass('btn-danger');
@@ -79,6 +109,8 @@ function updateresearcher() {
 	if ($('#researchtab').hasClass('in')) {
 		$('#researchtalent').removeClass('btn-danger');
 	}
-
+	if (steam > 0) {
+		steam -= 1;
+	}
 	}, workertick);
 }

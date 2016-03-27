@@ -5,6 +5,7 @@ var farmerinterval;
 var loggerinterval;
 var researcherinterval;
 var minerinterval;
+var talentinterval;
 
 var workertick = 250;
 var watertick = 2000;
@@ -104,6 +105,7 @@ var craftingtalent = 0;
 var logtalent = 0;
 var tradertalent = 0;
 var blocktalent = 0;
+var granarytalent = 0;
 
 var btc = 0;
 
@@ -116,6 +118,7 @@ function savegame() {
 	loggerinterval: loggerinterval,
 	researcherinterval: researcherinterval,
 	minerinterval: minerinterval,
+	talentinterval: talentinterval,
 	
 	workertick: workertick,
 	watertick: watertick,
@@ -215,6 +218,7 @@ function savegame() {
 	logtalent: logtalent,
 	tradertalent: tradertalent,
 	blocktalent: blocktalent,
+	granarytalent: granarytalent,
 	
 	btc: btc
 	
@@ -323,6 +327,7 @@ function loadgame() {
 	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
 	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
 	if (typeof savestring.blocktalent !== "undefined") blocktalent = savestring.blocktalent;
+	if (typeof savestring.granarytalent !== "undefined") granarytalent = savestring.granarytalent;
 	
 	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
 }

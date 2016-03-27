@@ -31,12 +31,12 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks"]
-	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam"]
+	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
-		tempvar.innerHTML = arrResourceDiv[i].toFixed(2);
+		tempvar.innerHTML = arrResourceDiv[i].toFixed(0);
 	}
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
@@ -73,9 +73,9 @@ function updatewater() {
 	}
 	
 	var tempvar = document.getElementById("currentwater");
-	tempvar.innerHTML = water.toFixed(2);
+	tempvar.innerHTML = water.toFixed(0);
 	var tempvar2 = document.getElementById("waterps");
-	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(2) + '/sec';
+	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(0) + '/sec';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	
 	if (popmax > 1 && currentfood > (popmax * 2)) {
@@ -89,7 +89,7 @@ function updatewater() {
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = population.toFixed(0);
 				var tempvar2 = document.getElementById("freeworkers");
-				tempvar2.innerHTML = freeworkers;
+				tempvar2.innerHTML = freeworkers.toFixed(0);
 			}
 		}
 	}
@@ -112,37 +112,37 @@ function updatewater() {
 				if (farmers > 0) {
 					farmers -= 1;
 					var tempvar2 = document.getElementById("farmernum");
-					tempvar2.innerHTML = farmers;
+					tempvar2.innerHTML = farmers.toFixed(0);
 					return;
 				}
 				if (loggers > 0) {
 					loggers -= 1;
 					var tempvar3 = document.getElementById("loggernum");
-					tempvar3.innerHTML = loggers;
+					tempvar3.innerHTML = loggers.toFixed(0);
 					return;
 				}
 				if (miners > 0) {
 					miners -= 1;
 					var tempvar4 = document.getElementById("minernum");
-					tempvar4.innerHTML = miners;
+					tempvar4.innerHTML = miners.toFixed(0);
 					return;
 				}
 				if (researchers > 0) {
 					researchers -= 1;
 					var tempvar5 = document.getElementById("researchernum");
-					tempvar5.innerHTML = researchers;
+					tempvar5.innerHTML = researchers.toFixed(0);
 					return;
 				}
 				if (warriors > 0) {
 					warriors -= 1;
 					var tempvar6 = document.getElementById("warriornum");
-					tempvar6.innerHTML = warriors;
+					tempvar6.innerHTML = warriors.toFixed(0);
 					return;
 				}
 				if (freeworkers > 0) {
 					freeworkers -= 1;
 					var tempvar7 = document.getElementById("freeworkers");
-					tempvar7.innerHTML = freeworkers;
+					tempvar7.innerHTML = freeworkers.toFixed(0);
 					return;
 				}
 			}
@@ -163,7 +163,7 @@ function updatefood() {
 		currentfood += foodrate;
 	}
 	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood.toFixed(2);
+	tempvar.innerHTML = currentfood.toFixed(0);
 	
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	
@@ -182,37 +182,37 @@ function updatefood() {
 				if (farmers > 0) {
 					farmers -= 1;
 					var tempvar2 = document.getElementById("farmernum");
-					tempvar2.innerHTML = farmers;
+					tempvar2.innerHTML = farmers.toFixed(0);
 					return;
 				}
 				if (loggers > 0) {
 					loggers -= 1;
 					var tempvar3 = document.getElementById("loggernum");
-					tempvar3.innerHTML = loggers;
+					tempvar3.innerHTML = loggers.toFixed(0);
 					return;
 				}
 				if (miners > 0) {
 					miners -= 1;
 					var tempvar4 = document.getElementById("minernum");
-					tempvar4.innerHTML = miners;
+					tempvar4.innerHTML = miners.toFixed(0);
 					return;
 				}
 				if (researchers > 0) {
 					researchers -= 1;
 					var tempvar5 = document.getElementById("researchernum");
-					tempvar5.innerHTML = researchers;
+					tempvar5.innerHTML = researchers.toFixed(0);
 					return;
 				}
 				if (warriors > 0) {
 					warriors -= 1;
 					var tempvar6 = document.getElementById("warriornum");
-					tempvar6.innerHTML = warriors;
+					tempvar6.innerHTML = warriors.toFixed(0);
 					return;
 				}
 				if (freeworkers > 0) {
 					freeworkers -= 1;
 					var tempvar7 = document.getElementById("freeworkers");
-					tempvar7.innerHTML = freeworkers;
+					tempvar7.innerHTML = freeworkers.toFixed(0);
 					return;
 				}
 			}
@@ -232,7 +232,13 @@ document.getElementById("newgame").onclick = function() {
 		autosave();
 		updateresources();
 		updateworkers();
+		updatetalents();
+		updatetotalexp();
+		updatebuildings();
 		
+		updateresources();
+		updateworkers();
+		updatetotalexp();
 }
 
 document.getElementById("loadgame").onclick = function() {
@@ -243,8 +249,14 @@ document.getElementById("loadgame").onclick = function() {
 		updatelogger();
 		updateminer();
 		updateresearcher();
+		updatetalents();
 		autosave();
+		updatetotalexp();
+		updatebuildings();
 		
+		updateresources();
+		updateworkers();
+		updatetotalexp();
 		
 		if (burntalent > 0) {
 			$('#burnbuttondiv').removeClass('hidden');
@@ -269,11 +281,13 @@ document.getElementById("loadgame").onclick = function() {
 		if (loggertalent > 0) {
 			$('#loggerdiv').removeClass('hidden');
 			$('#unlockloggerbutton').addClass('hidden');
+			$('#sawmillspan').removeClass('hidden');
 		}
 		
 		if (minertalent > 0) {
 			$('#minerdiv').removeClass('hidden');
 			$('#unlockminerbutton').addClass('hidden');
+			$('#rhspan').removeClass('hidden');
 		}
 		
 		if (warriortalent > 0) {
@@ -296,12 +310,14 @@ document.getElementById("loadgame").onclick = function() {
 		if (craftingtalent > 0) {
 			$('#craftingtalent').removeClass('hidden');
 			$('#crafttalentbutton').addClass('hidden');
+			$('#craftab').removeClass('hidden');
 		}
 		
 		if (logtalent > 0) {
 			$('#logspan').removeClass('hidden');
 			$('#logdiv').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
+			$('#cabinspan').removeClass('hidden');
 		}
 		
 		if (blocktalent > 0) {
@@ -312,6 +328,10 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (tradertalent > 0) {
 			$('#unlocktraderbutton').addClass('hidden');
+		}
+		
+		if (granarytalent > 0) {
+			$('#granaryspan').removeClass('hidden');
 		}
 		
 		if (farmers >= 10) {
@@ -339,9 +359,9 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = riverupgradecost.toFixed(0);
 		var tempvar2 = document.getElementById("riverlevel");
-		tempvar2.innerHTML = riverlevel;
+		tempvar2.innerHTML = riverlevel.toFixed(0);
 		var tempvar3 = document.getElementById("riverproduction");
-		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
+		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
 		
 		updatebuildings();
 		
