@@ -15,7 +15,7 @@ document.getElementById("Forage").onclick = function() {
 document.getElementById("cnqcollapsebutton").onclick = function() {
 	$("#cnq1").collapse('toggle');
 	$("#cnqcollapsebutton").addClass("hidden");
-}
+};
 
 document.getElementById("forage10").onclick = function() {
 	forage(10);   
@@ -45,31 +45,13 @@ document.getElementById("mine100").onclick = function() {
 	mine(100);   
 };
 
-document.getElementById("Burn").onclick = function() {
-	burn(1);   
-};
-
-document.getElementById("burn10").onclick = function() {
-	burn(10);   
-};
-
-document.getElementById("burn25").onclick = function() {
-	burn(25);   
-};
-
-document.getElementById("burn100").onclick = function() {
-	burn(100);   
-};
+//document.getElementById("Burn").onclick = function() {
+//	burn(1);   
+//};
 
 document.getElementById("save").onclick = function() {
 	showsave();
 }
-
-document.getElementById("foodbtcmax").onclick = function() {
-	
-}
-
-
 
 document.getElementById("consttalent").onclick = function() {
 	if ($('#consttalent').hasClass('btn-danger')) {
@@ -202,6 +184,15 @@ document.getElementById("removefarmerbutton").onclick = function() {
 		farmers -= 1;
 		freeworkers += 1;
 		updateworkers();
+		if (farmers < 10) {
+		$('#forage10').prop('disabled', true);
+		}
+		if (farmers < 25) {
+		$('#forage25').prop('disabled', true);
+		}
+		if (farmers < 100) {
+		$('#forage100').prop('disabled', true);
+		}
 	}
 }
 
@@ -210,10 +201,14 @@ document.getElementById("addfarmerbutton").onclick = function() {
 		freeworkers -= 1;
 		farmers += 1;
 		updateworkers();
-		if (farmers > 1) {
-			if ($('#fruittreediv').hasClass('hidden')) {
-				$('#fruittreediv').removeClass('hidden');
-			}
+		if (farmers >= 10) {
+		$('#forage10').prop('disabled', false);
+		}
+		if (farmers >= 25) {
+		$('#forage25').prop('disabled', false);
+		}
+		if (farmers >= 100) {
+		$('#forage100').prop('disabled', false);
 		}
 	}
 }
@@ -239,6 +234,15 @@ document.getElementById("removeminerbutton").onclick = function() {
 		miners -= 1;
 		freeworkers += 1;
 		updateworkers();
+		if (miners < 10) {
+		$('#mine10').prop('disabled', true);
+		}
+		if (miners < 25) {
+		$('#mine25').prop('disabled', true);
+		}
+		if (miners < 100) {
+		$('#mine100').prop('disabled', true);
+		}
 	}
 }
 
@@ -247,6 +251,15 @@ document.getElementById("addminerbutton").onclick = function() {
 		freeworkers -= 1;
 		miners += 1;
 		updateworkers();
+		if (miners >= 10) {
+		$('#mine10').prop('disabled', false);
+		}
+		if (miners >= 25) {
+		$('#mine25').prop('disabled', false);
+		}
+		if (miners >= 100) {
+		$('#mine100').prop('disabled', false);
+		}
 	}
 }
 
@@ -334,21 +347,6 @@ document.getElementById("hutbutton").onclick = function() {
 		var tempvar3 = document.getElementById("hutexp");
 		tempvar3.innerHTML = hutcost.toFixed(2);
 		updateresources();		
-		if (popmax >= 10) {
-		$('#forage10').prop('disabled', false);
-		$('#mine10').prop('disabled', false);
-		$('#burn10').prop('disabled', false);
-		}
-		if (popmax >= 25) {
-		$('#forage25').prop('disabled', false);
-		$('#mine25').prop('disabled', false);
-		$('#burn25').prop('disabled', false);
-		}
-		if (popmax >= 100) {
-		$('#forage100').prop('disabled', false);
-		$('#mine100').prop('disabled', false);
-		$('#burn100').prop('disabled', false);
-		}
 		if ($('#workertalent').hasClass('hidden')) {
 		if (popmax > 1) {
 		$('#workertalent').removeClass('hidden');
@@ -368,21 +366,6 @@ document.getElementById("cabinbutton").onclick = function() {
 		popmax += cabinlevel;
 		updatebuildings();
 		updateresources();		
-		if (popmax >= 10) {
-		$('#forage10').prop('disabled', false);
-		$('#mine10').prop('disabled', false);
-		$('#burn10').prop('disabled', false);
-		}
-		if (popmax >= 25) {
-		$('#forage25').prop('disabled', false);
-		$('#mine25').prop('disabled', false);
-		$('#burn25').prop('disabled', false);
-		}
-		if (popmax >= 100) {
-		$('#forage100').prop('disabled', false);
-		$('#mine100').prop('disabled', false);
-		$('#burn100').prop('disabled', false);
-		}
 	}
 };
 
@@ -400,21 +383,6 @@ document.getElementById("rhbutton").onclick = function() {
 		var tempvar3 = document.getElementById("rhexp");
 		tempvar3.innerHTML = (rhcost/2).toFixed(2);
 		updateresources();		
-		if (popmax >= 10) {
-		$('#forage10').prop('disabled', false);
-		$('#mine10').prop('disabled', false);
-		$('#burn10').prop('disabled', false);
-		}
-		if (popmax >= 25) {
-		$('#forage25').prop('disabled', false);
-		$('#mine25').prop('disabled', false);
-		$('#burn25').prop('disabled', false);
-		}
-		if (popmax >= 100) {
-		$('#forage100').prop('disabled', false);
-		$('#mine100').prop('disabled', false);
-		$('#burn100').prop('disabled', false);
-		}
 	}
 };
 
@@ -453,9 +421,9 @@ document.getElementById("granarybutton").onclick = function() {
 		var tempvar = document.getElementById("granarynum");
 		tempvar.innerHTML = granaries;
 		var tempvar2 = document.getElementById("granarywoodcost");
-		tempvar2.innerHTML = granarywoodcost;
+		tempvar2.innerHTML = granarywoodcost.toFixed(0);
 		var tempvar3 = document.getElementById("granarystonecost");
-		tempvar3.innerHTML = granarystonecost;
+		tempvar3.innerHTML = granarystonecost.toFixed(0);
 		updateresources();
 		updatetotalexp();
 	}
@@ -470,11 +438,11 @@ document.getElementById("shbutton").onclick = function() {
 		woodmax += 250;
 		stonemax += 200;
 		coalmax += 50;
-		claymax += 500;
+		claymax += 25;
 		var tempvar = document.getElementById("sthnum");
 		tempvar.innerHTML = storehouses;
 		var tempvar6 = document.getElementById("shcost");
-		tempvar6.innerHTML = shcost.toFixed(2);
+		tempvar6.innerHTML = shcost.toFixed(0);
 		updateresources();		
 		updatetotalexp();
 	}
@@ -491,11 +459,31 @@ document.getElementById("rtowerbutton").onclick = function() {
 		var tempvar = document.getElementById("rtowernum");
 		tempvar.innerHTML = rtowers;
 		var tempvar2 = document.getElementById("rtowercost");
-		tempvar2.innerHTML = rtowercost.toFixed(2);
+		tempvar2.innerHTML = rtowercost.toFixed(0);
 		updateresources();		
 		updatetotalexp();
 	}
-	
+}
+
+document.getElementById("sawmillbutton").onclick = function() {
+	if (stone >= smscost) {
+		if (clay >= smccost) {
+			stone -= smscost;
+			clay -= smccost;
+			sawmills += 1;
+			smscost = (smscost * 2);
+			smccost = (smccost * 2);
+			totalexp += (25*sawmills);
+			var tempvar = document.getElementById("sawmillnum");
+			tempvar.innerHTML = sawmills;
+			var tempvar2 = document.getElementById("sawmillstonecost");
+			tempvar2.innerHTML = smscost.toFixed(0);
+			var tempvar3 = document.getElementById("sawmillclaycost");
+			tempvar3.innerHTML = smccost.toFixed(0);
+			updateresources();		
+			updatetotalexp();
+		}
+	}
 }
 
 function forage(m) {
@@ -517,7 +505,7 @@ function forage(m) {
 
 function mine(m) {
 	if (((water) - (25 * m)) >= 0) {
-		var popbonus = (m * ((population - 1) * 0.1));
+		var popbonus = (m * ((population - 1) * 0.25));
 		stone += m + popbonus;
 		totalexp += m + popbonus;
 		water -= (m * 25)
@@ -532,7 +520,7 @@ function mine(m) {
 }
 
 function burn(m) {
-	var popbonus = (m * ((population - 1) * 0.25));
+	var popbonus = (m * ((population - 1) * 0.15));
 	if (document.getElementById('burnwood').checked) {
 		if (wood >= (m * 10)) {
 			wood -= (m * 10);

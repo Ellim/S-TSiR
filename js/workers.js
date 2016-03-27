@@ -22,7 +22,7 @@ function updatelogger() {
   clearInterval(loggerinterval);
   loggerinterval = setInterval(function() {
 	if (loggers > 0) {
-		wood += (loggerrate * loggers);
+		wood += (loggerrate * loggers) * (1 + (sawmills * 0.10));
 		if (wood > woodmax) {
 			wood = woodmax;
 		}
@@ -31,7 +31,7 @@ function updatelogger() {
 	var tempvar = document.getElementById("total_wood");
 	tempvar.innerHTML = wood.toFixed(2);
 	var tempvar2 = document.getElementById("woodps");
-	var tempvar3 = (loggers * (loggerrate*4)); 
+	var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
 	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
 	
 	}, workertick);
@@ -54,6 +54,10 @@ function updateminer() {
 	var tempvar2 = document.getElementById("stoneps");
 	var tempvar3 = (miners * (minerrate*4)); 
 	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	
+	var tempvar4 = document.getElementById("clayps");
+	var tempvar5 = (miners * ((minerrate/5)*4)); 
+	tempvar4.innerHTML = tempvar5.toFixed(2) + '/sec';
 	
 	}, workertick);
 }

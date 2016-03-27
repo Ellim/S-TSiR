@@ -66,6 +66,10 @@ var shlevel = 1;
 var rtowers = 0;
 var rtowercost = 100;
 
+var sawmills = 0;
+var smscost = 25;
+var smccost = 1;
+
 var population = 1;
 var popmax = 1;
 var freeworkers = 0;
@@ -95,9 +99,6 @@ var craftingtalent = 0;
 var logtalent = 0;
 var tradertalent = 0;
 
-var exchangerates = {
-	foodbtc:0.0005
-}
 var btc = 0;
 
 function savegame() {
@@ -169,6 +170,10 @@ function savegame() {
 	
 	rtowers: rtowers,
 	rtowercost: rtowercost,
+
+	sawmills: sawmills,
+	smscost: smscost,
+	smccost: smccost,
 	
 	population: population,
 	popmax: popmax,
@@ -199,7 +204,6 @@ function savegame() {
 	logtalent: logtalent,
 	tradertalent: tradertalent,
 	
-	exchangerates: exchangerates,
 	btc: btc
 	
 	}
@@ -269,6 +273,10 @@ function loadgame() {
 	if (typeof savestring.rtowers !== "undefined") rtowers = savestring.rtowers;
 	if (typeof savestring.rtowercost !== "undefined") rtowercost = savestring.rtowercost;
 	
+	if (typeof savestring.sawmills !== "undefined") sawmills = savestring.sawmills;
+	if (typeof savestring.smscost !== "undefined") smscost = savestring.smscost;
+	if (typeof savestring.smccost !== "undefined") smccost = savestring.smccost;
+	
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
 	if (typeof savestring.freeworkers !== "undefined") freeworkers = savestring.freeworkers;
@@ -298,7 +306,6 @@ function loadgame() {
 	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
 	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
 	
-	if (typeof savestring.exchangerates !== "undefined") exchangerates = savestring.exchangerates;
 	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
 }
 

@@ -3,6 +3,15 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+03/26/16
+
+ASAP Todo:
+* ~~Stone building that increases lumberjack output~~
+* Martial Prowess stat - determined by warriors
+* Use Traders to send food with different reward outcomes - more MP opens more routes
+* Class bonuses and more crafts to buy with RP
+
+
 02/10/16 - 0.0.9
 
 Added alerts when new features are added. Crafting menu created, first craft implemented: 1000 RP to unlock logs. 50 wood to one log, ratio to be improved later. Miners now add clay at 1/5th the rate they gather stone. Added research tower building for stone, increase rate of RP gain.

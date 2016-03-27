@@ -31,8 +31,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_btc"]
-	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,btc]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs"]
+	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -300,36 +300,35 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (logtalent > 0) {
 			$('#logspan').removeClass('hidden');
+			$('#logdiv').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
 		}
 		
 		if (tradertalent > 0) {
-			$('#btcdiv').removeClass('hidden');
-			$('#tradetalent').removeClass('hidden');
 			$('#unlocktraderbutton').addClass('hidden');
 		}
 		
-		if (logs > 0) {
-			$('#logdiv').removeClass('hidden');
+		if (farmers >= 10) {
+			$('#forage10').prop('disabled', false);
+		}
+		if (miners >= 10) {
+			$('#mine10').prop('disabled', false);
 		}
 		
-		if (popmax >= 10) {
-		$('#forage10').prop('disabled', false);
-		$('#mine10').prop('disabled', false);
-		$('#burn10').prop('disabled', false);
+		if (farmers >= 25) {
+			$('#forage25').prop('disabled', false);
+		}
+		if (miners >= 25) {
+			$('#mine25').prop('disabled', false);
 		}
 		
-		if (popmax >= 25) {
-		$('#forage25').prop('disabled', false);
-		$('#mine25').prop('disabled', false);
-		$('#burn25').prop('disabled', false);
+		if (farmers >= 100) {
+			$('#forage100').prop('disabled', false);
 		}
-		
-		if (popmax >= 100) {
-		$('#forage100').prop('disabled', false);
-		$('#mine100').prop('disabled', false);
-		$('#burn100').prop('disabled', false);
+		if (miners >= 100) {
+			$('#mine100').prop('disabled', false);
 		}
+
 		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = riverupgradecost.toFixed(0);
