@@ -32,11 +32,12 @@ function updateworkers() {
 
 function updateresources() {
 	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam"]
-	var arrResourceDiv = [researchpoints,population,popmax,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
+	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
+	var arrResourceDigits = [2,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
-		tempvar.innerHTML = arrResourceDiv[i].toFixed(0);
+		tempvar.innerHTML = arrResourceDiv[i].toFixed(arrResourceDigits[i]);
 	}
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
@@ -44,8 +45,8 @@ function updateresources() {
 }
 
 function updatebuildings() {
-	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost"]
-	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost]
+	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost"]
+	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
@@ -73,9 +74,9 @@ function updatewater() {
 	}
 	
 	var tempvar = document.getElementById("currentwater");
-	tempvar.innerHTML = water.toFixed(0);
+	tempvar.innerHTML = water.toFixed(2);
 	var tempvar2 = document.getElementById("waterps");
-	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(0) + '/sec';
+	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(2) + '/sec';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	
 	if (popmax > 1 && currentfood > (popmax * 2)) {
@@ -87,7 +88,7 @@ function updatewater() {
 				foodrate -= .375;
 				waterrate -= .25;
 				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = population.toFixed(0);
+				tempvar.innerHTML = (population - 1).toFixed(0);
 				var tempvar2 = document.getElementById("freeworkers");
 				tempvar2.innerHTML = freeworkers.toFixed(0);
 			}
@@ -104,7 +105,7 @@ function updatewater() {
 			if (water < 1) {
 				population -= 1;
 				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = population.toFixed(0);
+				tempvar.innerHTML = (population - 1).toFixed(0);
 				foodrate += .375;
 				
 				waterrate += .25;
@@ -163,7 +164,7 @@ function updatefood() {
 		currentfood += foodrate;
 	}
 	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood.toFixed(0);
+	tempvar.innerHTML = currentfood.toFixed(2);
 	
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	
@@ -174,7 +175,7 @@ function updatefood() {
 			if (currentfood < 1) {
 				population -= 1;
 				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = population.toFixed(0);
+				tempvar.innerHTML = (population - 1).toFixed(0);
 				foodrate += .375;
 				
 				waterrate += .25;
@@ -261,16 +262,20 @@ document.getElementById("loadgame").onclick = function() {
 		if (burntalent > 0) {
 			$('#burnbuttondiv').removeClass('hidden');
 			$('#burntalent').addClass('hidden');
+			$('#coaldiv').removeClass('hidden');
+			$('#steamdiv').removeClass('hidden');
 		}
 		
 		if (minetalent > 0) {
 			$('#minebuttondiv').removeClass('hidden');
 			$('#minetalent').addClass('hidden');
+			$('#coaldiv').removeClass('hidden');
 		}
 		
 		if (researchertalent > 0) {
 			$('#researchdiv').removeClass('hidden');
 			$('#unlockresearcherbutton').addClass('hidden');
+			$('#rpdiv').removeClass('hidden');
 		}
 		
 		if (farmertalent > 0) {
@@ -324,10 +329,7 @@ document.getElementById("loadgame").onclick = function() {
 			$('#blockspan').removeClass('hidden');
 			$('#blockdiv').removeClass('hidden');
 			$('#unlockblockdiv').addClass('hidden');
-		}
-		
-		if (tradertalent > 0) {
-			$('#unlocktraderbutton').addClass('hidden');
+			$('#apartmentspan').removeClass('hidden');
 		}
 		
 		if (granarytalent > 0) {
@@ -361,7 +363,7 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar2 = document.getElementById("riverlevel");
 		tempvar2.innerHTML = riverlevel.toFixed(0);
 		var tempvar3 = document.getElementById("riverproduction");
-		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
+		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
 		
 		updatebuildings();
 		

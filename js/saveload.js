@@ -22,7 +22,7 @@ var foodmax = 350;
 var coal = 0;
 var coalmax = 50;
 var clay = 0;
-var claymax = 1000;
+var claymax = 25;
 var mana = 0;
 var steam = 0;
 var wood = 0;
@@ -54,16 +54,20 @@ var hutcost = 10;
 var hutlevel = 2;
 
 var roundhouses = 0;
-var rhcost = 250;
+var rhcost = 100;
 var rhlevel = 5;
 
 var cabins = 0;
 var cabincost = 50;
 var cabinlevel = 10;
 
+var apartments = 0;
+var aptcost = 75;
+var aptlevel = 25;
+
 var granaries = 0;
-var granarywoodcost = 175;
-var granarystonecost = 50;
+var granarywoodcost = 50;
+var granarystonecost = 75;
 
 var storehouses = 0;
 var shcost = 150;
@@ -174,6 +178,10 @@ function savegame() {
 	cabincost: cabincost,
 	cabinlevel: cabinlevel,
 	
+	apartments: apartments,
+	aptcost: aptcost,
+	aptlevel: aptlevel,
+	
 	granaries: granaries,
 	granarywoodcost: granarywoodcost,
 	granarystonecost: granarystonecost,
@@ -282,6 +290,10 @@ function loadgame() {
 	if (typeof savestring.cabins !== "undefined") cabins = savestring.cabins;
 	if (typeof savestring.cabincost !== "undefined") cabincost = savestring.cabincost;
 	if (typeof savestring.cabinlevel !== "undefined") cabinlevel = savestring.cabinlevel;
+	
+	if (typeof savestring.apartments !== "undefined") apartments = savestring.apartments;
+	if (typeof savestring.aptcost !== "undefined") aptcost = savestring.aptcost;
+	if (typeof savestring.aptlevel !== "undefined") aptlevel = savestring.aptlevel;
 	
 	if (typeof savestring.granaries !== "undefined") granaries = savestring.granaries;
 	if (typeof savestring.granarywoodcost !== "undefined") granarywoodcost = savestring.granarywoodcost;

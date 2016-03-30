@@ -96,13 +96,26 @@ document.getElementById("clastab").onclick = function() {
 	}   
 };
 
+document.getElementById("prodtab").onclick = function() {
+	if ($('#prodtab').hasClass('btn-danger')) {
+		$('#prodtab').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("craftab").onclick = function() {
+	if ($('#craftab').hasClass('btn-danger')) {
+		$('#craftab').removeClass('btn-danger');
+	}   
+};
+
 document.getElementById("craftingbutton").onclick = function() {
 	if (talentpoints > 4) {
 		talentpoints -= 5;
 		if ($('#craftingtalent').hasClass('hidden')) {
 			$('#craftingtalent').removeClass('hidden');
 			$('#craftab').removeClass('hidden');
-			$('#craftingtalent').addClass('btn-danger');
+			$('#craftab').addClass('btn-danger');
+			$('#researchtalent').addClass('btn-danger');
 			$('#crafttalentbutton').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
@@ -147,7 +160,6 @@ document.getElementById("unlocklogbutton").onclick = function() {
 			$('#craftingtalent').addClass('btn-danger');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
-			researchmin = 1500;
 		}
 	}
 }
@@ -160,6 +172,9 @@ document.getElementById("unlockblockbutton").onclick = function() {
 			$('#unlockblockdiv').addClass('hidden');
 			blocktalent += 1;
 			$('#craftingtalent').addClass('btn-danger');
+			$('#apartmentspan').removeClass('hidden');
+			$('#consttalent').addClass('btn-danger');
+			$('#housetab').addClass('btn-danger');
 		}
 	}
 }
@@ -173,7 +188,6 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			farmertalent += 1;
-			researchmin = 250;
 		}
 	}
 }
@@ -187,9 +201,8 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			loggertalent += 1;
-			researchmin = 500;
 			$('#consttalent').addClass('btn-danger');
-			$('#storetab').addClass('btn-danger');
+			$('#prodtab').addClass('btn-danger');
 			$('#sawmillspan').removeClass('hidden');
 		}
 	}
@@ -204,7 +217,6 @@ document.getElementById("unlockminerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			minertalent += 1;
-			researchmin = 750;
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
 			$('#rhspan').removeClass('hidden');
@@ -213,29 +225,14 @@ document.getElementById("unlockminerbutton").onclick = function() {
 }
 
 document.getElementById("unlockwarriorbutton").onclick = function() {
-	if (researchpoints > 749) {
-		researchpoints -= 750;
+	if (researchpoints > 1749) {
+		researchpoints -= 1750;
 		if ($('#warriordiv').hasClass('hidden')) {
 			$('#warriordiv').removeClass('hidden');
 			$('#unlockwarriorbutton').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			warriortalent += 1;
-			researchmin = 1000;
-		}
-	}
-}
-
-document.getElementById("unlocktraderbutton").onclick = function() {
-	if (researchpoints > 1499) {
-		researchpoints -= 1500;
-		if ($('#traderdiv').hasClass('hidden')) {
-			$('#traderdiv').removeClass('hidden');
-			$('#unlocktraderbutton').addClass('hidden');
-			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			tradertalent += 1;
-			researchmin = 3333;
 		}
 	}
 }
@@ -245,13 +242,13 @@ document.getElementById("removefarmerbutton").onclick = function() {
 		farmers -= 1;
 		freeworkers += 1;
 		updateworkers();
-		if (farmers < 10) {
+		if ((farmers + loggers) < 15) {
 		$('#forage10').prop('disabled', true);
 		}
-		if (farmers < 25) {
+		if ((farmers + loggers) < 35) {
 		$('#forage25').prop('disabled', true);
 		}
-		if (farmers < 100) {
+		if ((farmers + loggers) < 125) {
 		$('#forage100').prop('disabled', true);
 		}
 	}
@@ -262,13 +259,13 @@ document.getElementById("addfarmerbutton").onclick = function() {
 		freeworkers -= 1;
 		farmers += 1;
 		updateworkers();
-		if (farmers >= 10) {
+		if ((farmers + loggers) >= 15) {
 		$('#forage10').prop('disabled', false);
 		}
-		if (farmers >= 25) {
+		if ((farmers + loggers) >= 35) {
 		$('#forage25').prop('disabled', false);
 		}
-		if (farmers >= 100) {
+		if ((farmers + loggers) >= 125) {
 		$('#forage100').prop('disabled', false);
 		}
 	}
@@ -279,6 +276,15 @@ document.getElementById("removeloggerbutton").onclick = function() {
 		loggers -= 1;
 		freeworkers += 1;
 		updateworkers();
+		if ((farmers + loggers) < 15) {
+		$('#forage10').prop('disabled', true);
+		}
+		if ((farmers + loggers) < 35) {
+		$('#forage25').prop('disabled', true);
+		}
+		if ((farmers + loggers) < 125) {
+		$('#forage100').prop('disabled', true);
+		}
 	}
 }
 
@@ -287,6 +293,15 @@ document.getElementById("addloggerbutton").onclick = function() {
 		freeworkers -= 1;
 		loggers += 1;
 		updateworkers();
+		if ((farmers + loggers) >= 15) {
+		$('#forage10').prop('disabled', false);
+		}
+		if ((farmers + loggers) >= 35) {
+		$('#forage25').prop('disabled', false);
+		}
+		if ((farmers + loggers) >= 125) {
+		$('#forage100').prop('disabled', false);
+		}
 	}
 }
 
@@ -342,6 +357,7 @@ document.getElementById("addresearcherbutton").onclick = function() {
 		$('#researchtalent').addClass('btn-danger');
 		$('#clastab').addClass('btn-danger');
 		researchtalent += 1;
+		$('#rpdiv').removeClass('hidden');
 	}
 	}
 }
@@ -454,6 +470,7 @@ document.getElementById("unlockminebutton").onclick = function() {
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints.toFixed(0);
 		minetalent += 1;
+		$('#coaldiv').removeClass('hidden');
 	}
 }
 
@@ -465,6 +482,8 @@ document.getElementById("unlockburnbutton").onclick = function() {
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints.toFixed(0);
 		burntalent += 1;
+		$('#coaldiv').removeClass('hidden');
+		$('#steamdiv').removeClass('hidden');
 	}
 }
 
@@ -472,8 +491,8 @@ document.getElementById("granarybutton").onclick = function() {
 	if (wood >= granarywoodcost && stone >= granarystonecost) {
 		wood -= granarywoodcost;
 		stone -= granarystonecost;
-		granarywoodcost = (granarywoodcost * 1.5);
-		granarystonecost = (granarystonecost * 1.5);
+		granarywoodcost = (granarywoodcost * 1.85);
+		granarystonecost = (granarystonecost * 1.65);
 		granaries += 1;
 		foodmax += 175;
 		watermax += 500;
@@ -505,9 +524,11 @@ document.getElementById("shbutton").onclick = function() {
 		tempvar6.innerHTML = shcost.toFixed(0);
 		updateresources();		
 		updatetotalexp();
+		
+		if (storehouses > 1) {
 		$('#granaryspan').removeClass('hidden');
 		granarytalent += 1;
-
+		}
 	}
 	
 }
@@ -558,7 +579,6 @@ function forage(m) {
 		if (getRandomInt(0,100) >= 75) { wood += ((m + popbonus) * 0.25) };
 		if (getRandomInt(0,100) >= 85) { stone += ((m + popbonus) * 0.10) };
 		if (getRandomInt(0,100) >= 90) { clay += ((m + popbonus) * 0.05) };
-		if (getRandomInt(0,100) >= 99) { mana += ((m + popbonus) * 0.5) };
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		updateresources();

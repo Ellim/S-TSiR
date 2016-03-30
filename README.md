@@ -3,6 +3,36 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+03/29/16
+
+UI Changes:
+* Changed versioning system to date-based
+* Removed green navbar at the top of the screen, replaced with grey.
+* Made most resources display two significant digits, population is the current exception.
+* Seperated resource storage and production buildings into two tabs.
+* Made nearly all aspects of the game hidden until specific criteria are met.
+ * _I would like to tie these into achievements, complete with alerts and tracking. Long term goal._
+* More indicators of new unlocks via red highlight on tabs.
+* Population no longer counts the "Player Character"
+ 
+Buildings:
+* Added new housing building: Apartments.
+ * Costs Stone Blocks to construct and adds 25 to max population, button exists and unlocks with Stone Blocks but has no functionality yet.
+* Granary cost adjusted from 175 Wood and 50 Stone to 50 Wood and 75 Stone. Cost scaling upped from 150%/150% to 185%/165%.
+* Granaries are locked until a second Storehouse is purchased.
+* Roundhouse cost reduced from 250 to 100 Clay.
+ 
+Classes: 
+* Removed Trader class.
+ * Functionality to be merged with Warriors, build up MP over time, send warriors on trade missions once the Trade research is complete.
+* Adjusted RP requirements for Warriors.
+* Upon reaching a combined 15 Farmers/Lumberjacks the Forage x10 button will be unlocked. (35 for x25, 125 for x100)
+* Upon reaching 10 Miners the Mine x10 button will be unlocked. (25 for x25, 100 for x100)
+
+Other Changes:
+* Clay Max reduced from 1000 to 25.
+
+
 03/27/16
 
 Multiple improvements to guide progression done. 
