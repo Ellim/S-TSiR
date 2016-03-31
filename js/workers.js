@@ -66,8 +66,8 @@ function updatetalents() {
 	clearInterval(talentinterval);
 	talentinterval = setInterval(function() {
 		
-			var arrTalents = ['#riverupgradecost','#minetalentcost','#burntalentcost','#crafttalentcost'];
-			var arrTalents1 = ["riverupgradecost","minetalentcost","burntalentcost","crafttalentcost"];
+			var arrTalents = ['#riverupgradecost','#minetalentcost','#burntalentcost','#crafttalentcost','#keeneyecost'];
+			var arrTalents1 = ["riverupgradecost","minetalentcost","burntalentcost","crafttalentcost","keeneyecost"];
 			for (i = 0; i < arrTalents.length; i++) {
 				var tempvar = document.getElementById(arrTalents1[i]);
 				if (tempvar.innerHTML <= talentpoints) {

@@ -407,10 +407,18 @@ document.getElementById("riverbutton").onclick = function() {
 		tempvar.innerHTML = riverupgradecost.toFixed(0);
 		var tempvar3 = document.getElementById("riverproduction");
 		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
-		var tempvar4 = document.getElementById("talentpoints");
-		tempvar4.innerHTML = talentpoints.toFixed(0);
 	}
 };
+
+document.getElementById("keeneyes").onclick = function() {
+	if (talentpoints >= keeneyescost) {
+		talentpoints -= keeneyescost;
+		keeneyelevel += 1;
+		keeneyescost = keeneyescost * 2;
+		var tempvar = document.getElementById("keeneyecost");
+		tempvar.innerHTML = keeneyescost.toFixed(0);
+	}
+}
 
 document.getElementById("hutbutton").onclick = function() {
 	if (wood >= hutcost) {
@@ -594,13 +602,13 @@ document.getElementById("sawmillbutton").onclick = function() {
 
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
-		var popbonus = (m * ((population - 1) * 0.25));
+		var popbonus = (m * ((population - 1) * 0.05));
 		totalexp += m + popbonus;
 		water -= (m * 5);
-		currentfood += m + popbonus;
-		if (getRandomInt(0,100) >= 75) { wood += ((m + popbonus) * 0.25) };
-		if (getRandomInt(0,100) >= 85) { stone += ((m + popbonus) * 0.10) };
-		if (getRandomInt(0,100) >= 90) { clay += ((m + popbonus) * 0.05) };
+		currentfood += ((m + popbonus) * (keeneyelevel));
+		if (getRandomInt(0,100) >= 75) { wood += (((m + popbonus) * 0.25) * (keeneyelevel)) };
+		if (getRandomInt(0,100) >= 85) { stone += (((m + popbonus) * 0.10) * (keeneyelevel)) };
+		if (getRandomInt(0,100) >= 90) { clay += (((m + popbonus) * 0.05) * (keeneyelevel)) };
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		updateresources();
@@ -610,7 +618,7 @@ function forage(m) {
 
 function mine(m) {
 	if (((water) - (25 * m)) >= 0) {
-		var popbonus = (m * ((population - 1) * 0.25));
+		var popbonus = (m * ((population - 1) * 0.05));
 		stone += m + popbonus;
 		totalexp += m + popbonus;
 		water -= (m * 25)
@@ -625,7 +633,7 @@ function mine(m) {
 }
 
 function burn(m) {
-	var popbonus = (m * ((population - 1) * 0.15));
+	var popbonus = (m * ((population - 1) * 0.025));
 	if (document.getElementById('burnwood').checked) {
 		if (wood >= (m * 10)) {
 			wood -= (m * 10);

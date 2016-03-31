@@ -21,7 +21,7 @@ var currentfood = 0;
 var foodmax = 350;
 var coal = 0;
 var coalmax = 50;
-var clay = 100;
+var clay = 0;
 var claymax = 25;
 var mana = 0;
 var steam = 0;
@@ -49,6 +49,9 @@ var fieldlevel = 1;
 
 var riverupgradecost = 1;
 var riverlevel = 0;
+
+var keeneyescost = 2;
+var keeneyelevel = 1;
 
 var huts = 0;
 var hutcost = 10;
@@ -169,6 +172,9 @@ function savegame() {
 	riverupgradecost: riverupgradecost,
 	riverlevel: riverlevel,
 	
+	keeneyelevel: keeneyelevel,
+	keeneyescost: keeneyescost,
+	
 	huts: huts,
 	hutcost: hutcost,
 	hutlevel: hutlevel,
@@ -283,6 +289,9 @@ function loadgame() {
 	
 	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
 	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
+	
+	if (typeof savestring.keeneyelevel !== "undefined") keeneyelevel = savestring.keeneyelevel;
+	if (typeof savestring.keeneyescost !== "undefined") keeneyescost = savestring.keeneyescost;
 	
 	if (typeof savestring.huts !== "undefined") huts = savestring.huts;
 	if (typeof savestring.hutcost !== "undefined") hutcost = savestring.hutcost;
