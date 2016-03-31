@@ -239,35 +239,59 @@ $(document).ready(function(){
 				
 				<div role="tabpanel" class="text-center tab-pane fade in active" id="talenttab">
 					<br />
+				
 					<div class="buttonBox boxDiv3 col-xs-4">
-					<button type="button" class="btn btn-primary btn-block" id="riverbutton">
+					<div class="btn-group open">
+					<button type="button" class="btn btn-primary" id="riverbutton">
 					<span class="glyphicon glyphicon-tint"></span> Expand River</button>
-					Cost: <span id="riverupgradecost" class="text-danger">1</span> Talent Point(s).<br />
-					Increase Water Production by <span id="riverproduction">10</span> Water/sec.							
+					<button id="riverinfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
 					</div>
-										
-					<div class="buttonBox boxDiv3 col-xs-4" id="minetalent">
-
-					<button type="button" class="btn btn-primary btn-block" id="unlockminebutton">
-					<span class="glyphicon glyphicon-education"></span> Rudimentary Tools</button>
-					Cost: <span id="minetalentcost" class="text-danger">5</span> Talent Points.<br />
-					Allows the extraction of various
-					resources from the earth.
+					Cost: <span id="riverupgradecost" class="text-danger">1</span> Talent Point(s).<br />
+					Increase Water Production. <!--by <span id="riverproduction">10</span> Water/sec.-->			
 					</div>
 					
+					<div class="buttonBox boxDiv3 col-xs-4" id="minetalent">
+					<div class="btn-group open" id="minetalentlv1">
+					<button type="button" class="btn btn-primary" id="unlockminebutton">
+					<span class="glyphicon glyphicon-education"></span> Basic Tools</button>
+					<button id="mineactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+					</div>
+					
+					<div class="btn-group open hidden" id="minetalentlv2">
+					<button type="button" class="btn btn-primary" id="upgrademinebutton">
+					<span class="glyphicon glyphicon-education"></span> Iron Tools</button>
+					<button id="mineactioninfolv2" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+					</div>
+					
+					<div id="minetalentlv1desc">
+					Cost: <span id="minetalentcost" class="text-danger">5</span> Talent Points.<br />
+					Unlocks Mine Action.
+					</div>
+					
+					<div id="minetalentlv2desc" class="hidden">
+					Cost: <span id="minetalentcost" class="text-danger">10</span> Iron.<br />
+					Doubles resources gained from Mine Action.
+					</div>
+					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4" id="burntalent">
-					<button type="button" class="btn btn-primary btn-block" id="unlockburnbutton">
+					<div class="btn-group open">
+					<button type="button" class="btn btn-primary" id="unlockburnbutton">
 					<span class="glyphicon glyphicon-education"></span> Harness Fire</button>
+					<button id="burnactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+					</div>
 					Cost: <span id="burntalentcost" class="text-danger">5</span> Talent Points.<br />
 					Allows transformation of some resources into others.
 					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4" id="crafttalentbutton">
-					<button type="button" class="btn btn-primary btn-block" id="craftingbutton">
-					<span class="fa fa-gear"></span>Create Workshops</button>
+					<div class="btn-group open">
+					<button type="button" class="btn btn-primary" id="craftingbutton">
+					<span class="fa fa-gear"></span>Workshops</button>
+					<button id="craftactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+					</div>
 					Cost: <span id="crafttalentcost" class="text-danger">5</span> Talent Point(s).<br />
-					Allows the creation of advanced resources.
+					Unlocks the creation of advanced resources.
 					</div>
 					
 				</div>
