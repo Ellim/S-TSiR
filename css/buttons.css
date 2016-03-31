@@ -2,7 +2,6 @@
 .btn-food:hover {background: rgba(32, 224, 118, 1); border-color: rgba(173, 173, 173, 1); color: rgba(51, 51, 51, 1);}
 
 .btn-talent {background: rgba(136, 132, 224, 1); background: -webkit-linear-gradient(top, rgba(94, 200, 235, 0.61) 0%, rgba(136, 132, 224, 1) 100%); background: linear-gradient(to bottom, rgba(94, 200, 235, 0.61) 0%, rgba(136, 132, 224, 1) 100%); border-color: rgba(173, 173, 173, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}
-.btn-talent:hover {background: rgba(112, 132, 214, 1); border-color: rgba(173, 173, 173, 1); color: rgba(51, 51, 51, 1);}
 
 .btn-forage {background: rgba(18, 148, 66, 1); background: -webkit-linear-gradient(top, rgba(250, 229, 205, 1) 0%, rgba(18, 148, 66, 1) 100%); background: linear-gradient(to bottom, rgba(250, 229, 205, 1) 0%, rgba(18, 148, 66, 1) 100%); border-color: rgba(168, 168, 168, 1); color: rgba(51, 51, 51, 1); font-size: 14px; border-radius: 15px; border-width: 4px;}
 .btn-forage:hover {background: rgba(91, 163, 115, 1); border-color: rgba(161, 161, 161, 1); color: rgba(51, 51, 51, 1);}
@@ -30,7 +29,31 @@
 
 .btn-craft2 {background: rgba(255, 229, 242, 1); background: -webkit-linear-gradient(top, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); background: linear-gradient(to bottom, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); border-color: rgba(156, 156, 156, 1); color: rgba(0, 0, 0, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}
 
-body { padding-top: 85px; }
+.botBar {
+	height: 4.5vh;
+}
+
+.actionDiv {
+	height: 62.2%; overflow-y: auto;
+}
+
+.buttonBox {height: 120px;}
+
+.boxDiv {
+	outline: 2px solid grey; outline-offset: 4px;
+}
+
+.boxDiv2 {
+	outline: 2px solid grey; outline-offset: -5px;
+}
+
+.boxDiv3 {
+	outline: 2px solid white; outline-offset: -1px; padding: 2px;
+}
+
+.resDiv {
+	height: 33.3%; overflow-y: auto; padding: 10px;
+}
 
 .leftdiv { overflow: auto; }
 .rightdiv { overflow: auto; }

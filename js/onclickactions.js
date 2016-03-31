@@ -3,20 +3,23 @@ document.getElementById("Forage").onclick = function() {
 	forage(1); 
 	
 	if ($('#consttalent').hasClass('hidden')) {
-		if (wood >= 10) {
+		if (currentfood >= 35) {
 		$('#consttalent').removeClass('hidden');
 		$('#consttalent').addClass('btn-danger');
-		$('#housetab').addClass('btn-danger');
+		$('#prodtab').addClass('btn-danger');
 		constructiontalent += 1;
 		} 
 	}
-	
+	if ($('#housetab').hasClass('hidden')) {
+		if (wood >= 10) {
+			$('#housetab').removeClass('hidden');
+			$('#consttalent').addClass('btn-danger');
+			$('#housetab').addClass('btn-danger');
+			housetalent += 1;
+		}
+	}
 };
 
-document.getElementById("cnqcollapsebutton").onclick = function() {
-	$("#cnq1").collapse('toggle');
-	$("#cnqcollapsebutton").addClass("hidden");
-};
 
 document.getElementById("forage10").onclick = function() {
 	forage(10);   
@@ -184,7 +187,7 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 		researchpoints -= 100;
 		if ($('#farmerdiv').hasClass('hidden')) {
 			$('#farmerdiv').removeClass('hidden');
-			$('#unlockfarmerbutton').addClass('hidden');
+			$('#unlockfarmerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			farmertalent += 1;
@@ -197,7 +200,7 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 		researchpoints -= 250;
 		if ($('#loggerdiv').hasClass('hidden')) {
 			$('#loggerdiv').removeClass('hidden');
-			$('#unlockloggerbutton').addClass('hidden');
+			$('#unlockloggerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			loggertalent += 1;
@@ -213,7 +216,7 @@ document.getElementById("unlockminerbutton").onclick = function() {
 		researchpoints -= 500;
 		if ($('#minerdiv').hasClass('hidden')) {
 			$('#minerdiv').removeClass('hidden');
-			$('#unlockminerbutton').addClass('hidden');
+			$('#unlockminerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			minertalent += 1;
@@ -229,7 +232,7 @@ document.getElementById("unlockwarriorbutton").onclick = function() {
 		researchpoints -= 1750;
 		if ($('#warriordiv').hasClass('hidden')) {
 			$('#warriordiv').removeClass('hidden');
-			$('#unlockwarriorbutton').addClass('hidden');
+			$('#unlockwarriordiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			warriortalent += 1;
@@ -433,6 +436,18 @@ document.getElementById("hutbutton").onclick = function() {
 	}
 };
 
+document.getElementById("apartmentbutton").onclick = function() {
+	if (stoneblocks >= aptcost) {
+		stoneblocks -= aptcost;
+		totalexp += 2000;
+		aptcost = (aptcost*1.2);
+		apartments += 1;
+		popmax += aptlevel;
+		updatebuildings();
+		updateresources();
+	}
+}
+
 document.getElementById("cabinbutton").onclick = function() {
 	if (logs >= cabincost) {
 		logs -= cabincost;
@@ -452,21 +467,28 @@ document.getElementById("rhbutton").onclick = function() {
 		rhcost = (rhcost + (Math.pow(rhcost, 0.85)));
 		roundhouses += 1;
 		popmax += rhlevel;
-		var tempvar = document.getElementById("rhnum");
-		tempvar.innerHTML = roundhouses.toFixed(0);
-		var tempvar2 = document.getElementById("rhcost");
-		tempvar2.innerHTML = rhcost.toFixed(0);
-		var tempvar3 = document.getElementById("rhexp");
-		tempvar3.innerHTML = (rhcost/2).toFixed(0);
-		updateresources();		
+		updatebuildings();
+		updateresources();			
 	}
 };
+
+document.getElementById("fieldbutton").onclick = function() {
+	if (currentfood >= fieldcost) {
+		currentfood -= fieldcost;
+		fields += 1;
+		totalexp += (fields * 5);
+		fieldcost = (fieldcost * 1.44);
+		foodrate += (.125 * (fieldlevel));
+		updatebuildings();
+		updateresources();	
+	}
+}
 
 document.getElementById("unlockminebutton").onclick = function() {
 	if (talentpoints >= 5) {
 		talentpoints -= 5;
 		$('#minebuttondiv').removeClass('hidden');
-		$('#unlockminebutton').addClass('hidden');
+		$('#minetalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints.toFixed(0);
 		minetalent += 1;
@@ -478,7 +500,7 @@ document.getElementById("unlockburnbutton").onclick = function() {
 	if (talentpoints >= 5) {
 		talentpoints -= 5;
 		$('#burnbuttondiv').removeClass('hidden');
-		$('#unlockburnbutton').addClass('hidden');
+		$('#burntalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
 		tempvar.innerHTML = talentpoints.toFixed(0);
 		burntalent += 1;

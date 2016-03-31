@@ -22,8 +22,8 @@ function updatetotalexp() {
 }
 
 function updateworkers() {
-	var arrClass = ["freeworkers","researchernum","farmernum","loggernum","minernum","warriornum","tradernum"];
-	var arrClassDiv = [freeworkers,researchers,farmers,loggers,miners,warriors,traders]
+	var arrClass = ["freeworkers","researchernum","farmernum","loggernum","minernum","warriornum"];
+	var arrClassDiv = [freeworkers,researchers,farmers,loggers,miners,warriors]
 	for (i = 0; i < arrClass.length; i++) {
 		var tempvar = document.getElementById(arrClass[i]);
 		tempvar.innerHTML = arrClassDiv[i].toFixed(0);
@@ -45,8 +45,8 @@ function updateresources() {
 }
 
 function updatebuildings() {
-	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost"]
-	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost]
+	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","fieldnum","fieldcost","fieldexp"]
+	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,fields,fieldcost,((fields + 1) * 5)]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
@@ -280,28 +280,32 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (farmertalent > 0) {
 			$('#farmerdiv').removeClass('hidden');
-			$('#unlockfarmerbutton').addClass('hidden');
+			$('#unlockfarmerdiv').addClass('hidden');
 		}
 		
 		if (loggertalent > 0) {
 			$('#loggerdiv').removeClass('hidden');
-			$('#unlockloggerbutton').addClass('hidden');
+			$('#unlockloggerdiv').addClass('hidden');
 			$('#sawmillspan').removeClass('hidden');
 		}
 		
 		if (minertalent > 0) {
 			$('#minerdiv').removeClass('hidden');
-			$('#unlockminerbutton').addClass('hidden');
+			$('#unlockminerdiv').addClass('hidden');
 			$('#rhspan').removeClass('hidden');
 		}
 		
 		if (warriortalent > 0) {
 			$('#warriordiv').removeClass('hidden');
-			$('#unlockwarriorbutton').addClass('hidden');
+			$('#unlockwarriordiv').addClass('hidden');
 		}
 		
 		if (constructiontalent > 0) {
 			$('#consttalent').removeClass('hidden');
+		}
+		
+		if (housetalent > 0) {
+			$('#housetab').removeClass('hidden');
 		}
 		
 		if (workertalent > 0) {
@@ -310,6 +314,7 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (researchtalent > 0) {
 			$('#researchtalent').removeClass('hidden');
+			$('#rpdiv').removeClass('hidden');
 		}
 		
 		if (craftingtalent > 0) {

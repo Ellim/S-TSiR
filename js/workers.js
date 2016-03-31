@@ -97,6 +97,30 @@ function updateresearcher() {
   researcherinterval = setInterval(function() {
 	if (researchers > 0) {
 		researchpoints += (researcherrate * researchers);
+		
+		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost'];
+		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost"];
+
+			for (i = 0; i < arrRPproj.length; i++) {
+				var tempvar = document.getElementById(arrRPproj1[i]);
+
+					if (tempvar.innerHTML <= researchpoints) {
+
+						$(arrRPproj[i]).removeClass('text-danger');
+						$(arrRPproj[i]).addClass('text-success');
+					}
+
+			}
+			
+			for (i = 0; i < arrRPproj.length; i++) {
+				var tempvar = document.getElementById(arrRPproj1[i]);
+				if (tempvar.innerHTML > researchpoints) {
+					
+					$(arrRPproj[i]).removeClass('text-success');
+					$(arrRPproj[i]).addClass('text-danger');
+
+				}
+			}
 	}
 	if (steam > 0) {
 		steam -= 1;

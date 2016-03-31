@@ -3,6 +3,18 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+03/30/16
+
+UI Changes:
+* Complete rework of buttons and layout.
+* Changed first progression unlock to Field instead of Hut.
+* Research Projects costs now are green when affordable and red otherwise.
+
+Buildings:
+* Added new production building: Field.
+ * Fields generate a small amount of food per second, upgradeable eventually through RP.
+
+
 03/29/16
 
 UI Changes:

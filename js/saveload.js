@@ -15,13 +15,13 @@ var savetick = 300000;
 var waterrate = 2.5;
 var foodrate = 0;
 
-var water = 250;
+var water = 50;
 var watermax = 1000;
-var currentfood = 25;
+var currentfood = 0;
 var foodmax = 350;
 var coal = 0;
 var coalmax = 50;
-var clay = 0;
+var clay = 100;
 var claymax = 25;
 var mana = 0;
 var steam = 0;
@@ -43,8 +43,9 @@ var exptnl = 10;
 var talentpoints = 0;
 var researchpoints = 0;
 
-var fruittreescost = 25;
-var fruittrees = 0;
+var fields = 0;
+var fieldcost = 50;
+var fieldlevel = 1;
 
 var riverupgradecost = 1;
 var riverlevel = 0;
@@ -92,7 +93,7 @@ var traders = 0;
 
 var farmerrate = 1.125;
 var loggerrate = 0.125;
-var researcherrate = 0.375;
+var researcherrate = .0375;
 var minerrate = 0.25;
 
 var researchertalent = 0;
@@ -103,6 +104,7 @@ var burntalent = 0;
 var minertalent = 0;
 var warriortalent = 0;
 var constructiontalent = 0;
+var housetalent = 0;
 var workertalent = 0;
 var researchtalent = 0;
 var craftingtalent = 0;
@@ -160,8 +162,9 @@ function savegame() {
 	talentpoints: talentpoints,
 	researchpoints: researchpoints,
 	
-	fruittreescost: fruittreescost,
-	fruittrees: fruittrees,
+	fields: fields,
+	fieldcost: fieldcost,
+	fieldlevel: fieldlevel,
 	
 	riverupgradecost: riverupgradecost,
 	riverlevel: riverlevel,
@@ -220,6 +223,7 @@ function savegame() {
 	minertalent: minertalent,
 	warriortalent: warriortalent,
 	constructiontalent: constructiontalent,
+	housetalent: housetalent,
 	workertalent: workertalent,
 	researchtalent: researchtalent,
 	craftingtalent: craftingtalent,
@@ -273,8 +277,9 @@ function loadgame() {
 	if (typeof savestring.talentpoints !== "undefined") talentpoints = savestring.talentpoints;
 	if (typeof savestring.researchpoints !== "undefined") researchpoints = savestring.researchpoints;
 	
-	if (typeof savestring.fruittreescost !== "undefined") fruittreescost = savestring.fruittreescost;
-	if (typeof savestring.fruittrees !== "undefined") fruittrees = savestring.fruittrees;
+	if (typeof savestring.fields !== "undefined") fields = savestring.fields;
+	if (typeof savestring.fieldcost !== "undefined") fieldcost = savestring.fieldcost;
+	if (typeof savestring.fieldlevel !== "undefined") fieldlevel = savestring.fieldlevel;
 	
 	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
 	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
@@ -333,6 +338,7 @@ function loadgame() {
 	if (typeof savestring.minertalent !== "undefined") minertalent = savestring.minertalent;
 	if (typeof savestring.warriortalent !== "undefined") warriortalent = savestring.warriortalent;
 	if (typeof savestring.constructiontalent !== "undefined") constructiontalent = savestring.constructiontalent;
+	if (typeof savestring.housetalent !== "undefined") housetalent = savestring.housetalent;
 	if (typeof savestring.workertalent !== "undefined") workertalent = savestring.workertalent;
 	if (typeof savestring.researchtalent !== "undefined") researchtalent = savestring.researchtalent;
 	if (typeof savestring.craftingtalent !== "undefined") craftingtalent = savestring.craftingtalent;
