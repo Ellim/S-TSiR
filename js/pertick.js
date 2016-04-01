@@ -149,8 +149,12 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (minetalent > 0) {
 			$('#minebuttondiv').removeClass('hidden');
-			$('#minetalent').addClass('hidden');
+			$('#minetalentlv2').removeClass('hidden');
+			$('#minetalentlv1').addClass('hidden');
+			$('#minetalentlv1desc').addClass('hidden');
+			$('#minetalentlv2desc').removeClass('hidden');
 			$('#coaldiv').removeClass('hidden');
+			$('#crafttalentbutton').removeClass('hidden');
 		}
 		
 		if (researchertalent > 0) {
@@ -202,6 +206,7 @@ document.getElementById("loadgame").onclick = function() {
 			$('#craftingtalent').removeClass('hidden');
 			$('#crafttalentbutton').addClass('hidden');
 			$('#craftab').removeClass('hidden');
+			$('#burntalent').removeClass('hidden');
 		}
 		
 		if (logtalent > 0) {

@@ -102,11 +102,11 @@ function updateresearcher() {
 		
 		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost'];
 		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost"];
-
+		var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost]
 			for (i = 0; i < arrRPproj.length; i++) {
 				var tempvar = document.getElementById(arrRPproj1[i]);
 
-					if (tempvar.innerHTML <= researchpoints) {
+					if (arrRPprojC[i] <= researchpoints) {
 
 						$(arrRPproj[i]).removeClass('text-danger');
 						$(arrRPproj[i]).addClass('text-success');
@@ -116,7 +116,7 @@ function updateresearcher() {
 			
 			for (i = 0; i < arrRPproj.length; i++) {
 				var tempvar = document.getElementById(arrRPproj1[i]);
-				if (tempvar.innerHTML > researchpoints) {
+				if (arrRPprojC[i] > researchpoints) {
 					
 					$(arrRPproj[i]).removeClass('text-success');
 					$(arrRPproj[i]).addClass('text-danger');

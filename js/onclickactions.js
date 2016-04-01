@@ -116,12 +116,65 @@ document.getElementById("talenttalent").onclick = function() {
 	}   
 };
 
+document.getElementById("unlockminebutton").onclick = function() {
+	if (talentpoints >= 5) {
+		talentpoints -= 5;
+		$('#minebuttondiv').removeClass('hidden');
+		$('#minetalentlv2').removeClass('hidden');
+		$('#minetalentlv1').addClass('hidden');
+		$('#minetalentlv1desc').addClass('hidden');
+		$('#minetalentlv2desc').removeClass('hidden');
+		$('#crafttalentbutton').removeClass('hidden');
+		updatetotalexp();
+		minetalent += 1;
+		$('#coaldiv').removeClass('hidden');
+		
+	}
+}
+
+document.getElementById("unlockburnbutton").onclick = function() {
+	if (talentpoints >= 5) {
+		talentpoints -= 5;
+		$('#burnbuttondiv').removeClass('hidden');
+		$('#burntalent').addClass('hidden');
+		var tempvar = document.getElementById("talentpoints");
+		tempvar.innerHTML = talentpoints.toFixed(0);
+		burntalent += 1;
+		$('#coaldiv').removeClass('hidden');
+		$('#steamdiv').removeClass('hidden');
+	}
+}
+
+document.getElementById("riverbutton").onclick = function() {
+	if (talentpoints >= riverupgradecost) {
+		talentpoints -= riverupgradecost;
+		waterrate += riverupgradecost * 2.5;
+		riverupgradecost += riverupgradecost;
+		riverlevel += 1;
+		var tempvar = document.getElementById("riverupgradecost");
+		tempvar.innerHTML = riverupgradecost.toFixed(0);
+		var tempvar3 = document.getElementById("riverproduction");
+		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
+	}
+};
+
+document.getElementById("keeneyes").onclick = function() {
+	if (talentpoints >= keeneyescost) {
+		talentpoints -= keeneyescost;
+		keeneyelevel += 1;
+		keeneyescost = keeneyescost * 2;
+		var tempvar = document.getElementById("keeneyecost");
+		tempvar.innerHTML = keeneyescost.toFixed(0);
+	}
+}
+
 document.getElementById("craftingbutton").onclick = function() {
 	if (talentpoints > 4) {
 		talentpoints -= 5;
 		if ($('#craftingtalent').hasClass('hidden')) {
 			$('#craftingtalent').removeClass('hidden');
 			$('#craftab').removeClass('hidden');
+			$('#burntalent').removeClass('hidden');
 			$('#craftab').addClass('btn-danger');
 			$('#researchtalent').addClass('btn-danger');
 			$('#crafttalentbutton').addClass('hidden');
@@ -461,28 +514,7 @@ document.getElementById("addwarriorbutton").onclick = function() {
 	}
 }
 
-document.getElementById("riverbutton").onclick = function() {
-	if (talentpoints >= riverupgradecost) {
-		talentpoints -= riverupgradecost;
-		waterrate += riverupgradecost * 2.5;
-		riverupgradecost += riverupgradecost;
-		riverlevel += 1;
-		var tempvar = document.getElementById("riverupgradecost");
-		tempvar.innerHTML = riverupgradecost.toFixed(0);
-		var tempvar3 = document.getElementById("riverproduction");
-		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
-	}
-};
 
-document.getElementById("keeneyes").onclick = function() {
-	if (talentpoints >= keeneyescost) {
-		talentpoints -= keeneyescost;
-		keeneyelevel += 1;
-		keeneyescost = keeneyescost * 2;
-		var tempvar = document.getElementById("keeneyecost");
-		tempvar.innerHTML = keeneyescost.toFixed(0);
-	}
-}
 
 document.getElementById("hutbutton").onclick = function() {
 	if (wood >= hutcost) {
@@ -561,30 +593,7 @@ document.getElementById("fieldbutton").onclick = function() {
 	}
 }
 
-document.getElementById("unlockminebutton").onclick = function() {
-	if (talentpoints >= 5) {
-		talentpoints -= 5;
-		$('#minebuttondiv').removeClass('hidden');
-		$('#minetalent').addClass('hidden');
-		var tempvar = document.getElementById("talentpoints");
-		tempvar.innerHTML = talentpoints.toFixed(0);
-		minetalent += 1;
-		$('#coaldiv').removeClass('hidden');
-	}
-}
 
-document.getElementById("unlockburnbutton").onclick = function() {
-	if (talentpoints >= 5) {
-		talentpoints -= 5;
-		$('#burnbuttondiv').removeClass('hidden');
-		$('#burntalent').addClass('hidden');
-		var tempvar = document.getElementById("talentpoints");
-		tempvar.innerHTML = talentpoints.toFixed(0);
-		burntalent += 1;
-		$('#coaldiv').removeClass('hidden');
-		$('#steamdiv').removeClass('hidden');
-	}
-}
 
 document.getElementById("granarybutton").onclick = function() {
 	if (wood >= granarywoodcost && stone >= granarystonecost) {
