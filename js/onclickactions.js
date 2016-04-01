@@ -143,6 +143,40 @@ document.getElementById("logbutton").onclick = function() {
 	}
 }
 
+document.getElementById("log10").onclick = function() {
+	if (wood >= woodlogcost * 10) {
+		wood -= woodlogcost * 10;
+		logs += 10;
+		if ($('#logdiv').hasClass('hidden')) {
+		$('#logdiv').removeClass('hidden');
+	}  
+	updateresources();
+	}
+}
+
+document.getElementById("log25").onclick = function() {
+	if (wood >= woodlogcost * 25) {
+		wood -= woodlogcost * 25;
+		logs += 25;
+		if ($('#logdiv').hasClass('hidden')) {
+		$('#logdiv').removeClass('hidden');
+	}  
+	updateresources();
+	}
+}
+
+document.getElementById("log100").onclick = function() {
+	if (wood >= woodlogcost * 100) {
+		wood -= woodlogcost * 100;
+		logs += 100;
+		if ($('#logdiv').hasClass('hidden')) {
+		$('#logdiv').removeClass('hidden');
+	}  
+	updateresources();
+	}
+}
+
+
 document.getElementById("blockbutton").onclick = function() {
 	if (stone >= stoneblockscost) {
 		if (clay >= stoneblockccost) {
@@ -184,6 +218,31 @@ document.getElementById("unlockblockbutton").onclick = function() {
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
 		}
+	}
+}
+
+document.getElementById("upgradeshbutton").onclick = function() {
+	if (researchpoints >= shrpcost) {
+		researchpoints -= shrpcost;
+		shlevel += 1;
+		shrpcost = shrpcost * 1.75;
+		woodmax += 250 * storehouses;
+		stonemax += 200 * storehouses;
+		coalmax += 50 * storehouses;
+		claymax += 25 * storehouses;
+		var tempvar = document.getElementById("upgradeshcost");
+		tempvar.innerHTML = prettify(shrpcost);
+	}
+}
+
+document.getElementById("fieldirrigationbutton").onclick = function() {
+	if (researchpoints >= fieldrpcost) {
+		researchpoints -= fieldrpcost;
+		fieldlevel += 1;
+		fieldrpcost = fieldrpcost * 1.1;
+		waterrate += .125 * fields;
+		var tempvar = document.getElementById("fieldirrigationcost");
+		tempvar.innerHTML = prettify(fieldrpcost);
 	}
 }
 
@@ -493,6 +552,7 @@ document.getElementById("fieldbutton").onclick = function() {
 		ofieldcost = fieldcost;
 		fieldcost = (fieldcost * 1.44);
 		foodrate += (.125 * (fieldlevel));
+		waterrate += (.125 * (fieldlevel-1));
 		updatebuildings();
 		updateresources();	
 		message("");
@@ -552,11 +612,11 @@ document.getElementById("shbutton").onclick = function() {
 		wood -= shcost;
 		storehouses += 1;
 		shcost = (shcost * 1.75);
-		totalexp += 75;
-		woodmax += 250;
-		stonemax += 200;
-		coalmax += 50;
-		claymax += 25;
+		totalexp += 75 * shlevel;
+		woodmax += 250 * shlevel;
+		stonemax += 200 * shlevel;
+		coalmax += 50 * shlevel;
+		claymax += 25 * shlevel;
 		var tempvar = document.getElementById("sthnum");
 		tempvar.innerHTML = storehouses.toFixed(0);
 		var tempvar6 = document.getElementById("shcost");
@@ -571,6 +631,8 @@ document.getElementById("shbutton").onclick = function() {
 	}
 	
 }
+
+
 
 document.getElementById("rtowerbutton").onclick = function() {
 	if (stone >= rtowercost) {
@@ -630,6 +692,9 @@ function forage(m) {
 		};
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
+		if (stone > stonemax) {stone = stonemax};
+		if (clay > claymax) {clay = claymax};
+		if (coal > coalmax) {coal = coalmax};
 		updateresources();
 		updatetotalexp();
 		if (wg > 0 && sg > 0 && cg > 0) {

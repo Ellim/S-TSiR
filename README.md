@@ -3,6 +3,17 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+03/31/16
+
+UI Changes:
+* Moved Navbar back to the top.
+* Changed Crafting button layouts to have x10, x25, and x100 options.
+
+Buildings:
+* Storehouses now can be upgraded to increase their base resource amounts.
+* Added an RP upgrade to Fields that increase food generation and adds water generation.
+
+
 03/30/16
 
 UI Changes:

@@ -100,8 +100,8 @@ function updateresearcher() {
 	if (researchers > 0) {
 		researchpoints += (researcherrate * researchers);
 		
-		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost'];
-		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost"];
+		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost'];
+		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost"];
 
 			for (i = 0; i < arrRPproj.length; i++) {
 				var tempvar = document.getElementById(arrRPproj1[i]);

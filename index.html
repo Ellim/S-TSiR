@@ -61,6 +61,25 @@ $(document).ready(function(){
 
 <div class="container main">  <!--Main Container-->
 
+<div class="navbar navbar-default navbar-fixed-top botBar"> <!--Bottom Navbar-->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4">
+				<h5>Survive: <small>The struggle is real
+				<button id="save" type="button" class="btn btn-info">Save</button></small></h5>
+			</div>
+			<div class="col-xs-4">
+				<br /> Latest Update: 30 Mar 2016
+			</div>
+			<div class="col-xs-4">
+				<br /><span class="glyphicon glyphicon-btc"></span> <a href="img/qr.png" target="_blank">Donate BTC</a>
+				<!--<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+
   <div class="row">  
     <div class="col-xs-6 leftdiv">
 	<br />
@@ -310,7 +329,9 @@ $(document).ready(function(){
 					<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation"><a href="#classtab" aria-controls="classtab" role="tab" data-toggle="tab" class="active" id="clastab">Worker Classes </a></li>
 					<li role="presentation"><a href="#crafttab" aria-controls="crafttab" role="tab" data-toggle="tab" class="hidden" id="craftab">Crafts </a></li>
+					<li role="presentation"><a href="#buildRPtab" aria-controls="buildRPtab" role="tab" data-toggle="tab" class="" id="buildtab">Building Upgrades </a></li>
 					</ul>
+					
 				<div class="tab-content">
 					<div role="tabpanel" class="text-center tab-pane fade" id="classtab">
 					<br />
@@ -358,22 +379,64 @@ $(document).ready(function(){
 						Allows the creation of Stone Blocks.
 						</div>
 					</div>
+					
+					<div role="tabpanel" class="text-center tab-pane fade" id="buildRPtab">
+					<br />
+						
+						<div class="buttonBox boxDiv3 col-xs-4" id="upgradeshdiv">
+							<div class="btn-group open">
+								<button type="button" class="btn btn-primary" id="upgradeshbutton">
+								<span class="glyphicon glyphicon-scale"></span> Storehouses</button>
+								<button id="upgradeshinfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+							</div><br />
+						Cost: <span id="upgradeshcost" class="text-danger">1500</span> Research Points.<br />
+						Increases base resource storage of Storehouses by 100%.
+						</div>
+						
+						<div class="buttonBox boxDiv3 col-xs-4" id="fieldirrigationdiv">
+							<div class="btn-group open">
+								<button type="button" class="btn btn-primary" id="fieldirrigationbutton">
+								<span class="fa fa-leaf"></span> Fields</button>
+								<button id="fieldirrigationinfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
+							</div><br />
+						Cost: <span id="fieldirrigationcost" class="text-danger">1750</span> Research Points.<br />
+						Increases food production of Fields by 100%.
+						Fields now provide Water per second.
+						</div>
+						
+						
+						
+					</div>
+					
 				</div>
 				</div>
 			
 				
 			<div role="tabpanel" class="text-center tab-pane fade" id="craftingtab">
 				<br />
+				
 				<div id="logspan" class="buttonBox boxDiv3 col-xs-4 hidden">
-				<button type="button" class="btn btn-primary btn-block" id="logbutton">
-				<span class="fa fa-gear"></span> Craft Log</button>
-				<br />50 Wood <span class="fa fa-long-arrow-right"></span> 1 Log
+					<button type="button" class="btn btn-primary btn-block" id="logbutton">
+					50 Wood <br /><span class="fa fa-long-arrow-right"></span> 1 Log</button>
+					<br />
+					
+					<div class="btn-group open">
+						<button type="button" class="btn btn-primary" id="log10">x10</button>
+						<button type="button" class="btn btn-primary" id="log25">x25</button>
+						<button type="button" class="btn btn-primary" id="log100">x100</button>
+					</div>
 				</div>
 				
 				<div id="blockspan" class="buttonBox boxDiv3 col-xs-4 hidden">
-				<button type="button" class="btn btn-primary btn-block" id="blockbutton">
-				<span class="fa fa-gear"></span> Craft Stone Block</button>
-				<br />100 Stone & 25 Clay <span class="fa fa-long-arrow-right"></span> 1 Stone Block
+					<button type="button" class="btn btn-primary btn-block" id="blockbutton">
+					100 Stone & 25 Clay <br /><span class="fa fa-long-arrow-right"></span> 1 Stone Block</button>
+					<br />
+					
+					<div class="btn-group open">
+						<button type="button" class="btn btn-primary" id="sb10">x10</button>
+						<button type="button" class="btn btn-primary" id="sb25">x25</button>
+						<button type="button" class="btn btn-primary" id="sb100">x100</button>
+					</div>
 				</div>
 			
 			</div>
@@ -469,29 +532,7 @@ $(document).ready(function(){
     </div>
     
   </div>
-  
-  <div class="navbar navbar-default navbar-fixed-bottom botBar"> <!--Bottom Navbar-->
-	<div class="container">
-	<div class="row">
-		<div class="col-xs-4">
-			  <h5>Survive: <small>The struggle is real
-			  <button id="save" type="button" class="btn btn-info">Save</button></small></h5>
-		</div>
-		<div class="col-xs-4">
-			    
-			<br /> Latest Update: 30 Mar 2016
-		</div>
-		<div class="col-xs-4">
-			<br /><span class="glyphicon glyphicon-btc"></span> <a href="img/qr.png" target="_blank">Donate BTC</a>
-			<!--<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>-->
-			
-		</div>
-	</div>
-	</div>
-</div>
-
-
-  
+ 
   
 </div>
 

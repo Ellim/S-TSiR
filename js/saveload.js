@@ -46,6 +46,7 @@ var researchpoints = 0;
 var fields = 0;
 var fieldcost = 50;
 var fieldlevel = 1;
+var fieldrpcost = 1750;
 
 var riverupgradecost = 1;
 var riverlevel = 0;
@@ -76,6 +77,7 @@ var granarystonecost = 75;
 var storehouses = 0;
 var shcost = 150;
 var shlevel = 1;
+var shrpcost = 1500;
 
 var rtowers = 0;
 var rtowercost = 100;
@@ -168,6 +170,7 @@ function savegame() {
 	fields: fields,
 	fieldcost: fieldcost,
 	fieldlevel: fieldlevel,
+	fieldrpcost: fieldrpcost,
 	
 	riverupgradecost: riverupgradecost,
 	riverlevel: riverlevel,
@@ -198,6 +201,7 @@ function savegame() {
 	storehouses: storehouses,
 	shcost: shcost,
 	shlevel: shlevel,
+	shrpcost: shrpcost,
 	
 	rtowers: rtowers,
 	rtowercost: rtowercost,
@@ -286,6 +290,7 @@ function loadgame() {
 	if (typeof savestring.fields !== "undefined") fields = savestring.fields;
 	if (typeof savestring.fieldcost !== "undefined") fieldcost = savestring.fieldcost;
 	if (typeof savestring.fieldlevel !== "undefined") fieldlevel = savestring.fieldlevel;
+	if (typeof savestring.fieldrpcost !== "undefined") fieldrpcost = savestring.fieldrpcost;
 	
 	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
 	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
@@ -316,6 +321,7 @@ function loadgame() {
 	if (typeof savestring.storehouses !== "undefined") storehouses = savestring.storehouses;
 	if (typeof savestring.shcost !== "undefined") shcost = savestring.shcost;
 	if (typeof savestring.shlevel !== "undefined") shlevel = savestring.shlevel;
+	if (typeof savestring.shrpcost !== "undefined") shrpcost = savestring.shrpcost;
 	
 	if (typeof savestring.rtowers !== "undefined") rtowers = savestring.rtowers;
 	if (typeof savestring.rtowercost !== "undefined") rtowercost = savestring.rtowercost;

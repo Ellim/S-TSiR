@@ -85,7 +85,6 @@ function updatewater() {
 			if (rand > 14) {
 				population += 1;
 				freeworkers += 1;
-				foodrate -= .375;
 				waterrate -= .25;
 				var tempvar = document.getElementById("pop");
 				tempvar.innerHTML = prettify((population - 1));
