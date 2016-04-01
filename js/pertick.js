@@ -242,11 +242,19 @@ document.getElementById("loadgame").onclick = function() {
 		if (miners >= 100) {
 			$('#mine100').prop('disabled', false);
 		}
+		
+		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = prettify(riverupgradecost);
 		
 		var tempvar2 = document.getElementById("keeneyecost");
 		tempvar2.innerHTML = prettify(keeneyescost);
+		
+		var tempvar3 = doctype.getElementById("upgradeshcost");
+		tempvar3.innerHTML = prettify(shrpcost);
+		
+		var tempvar3 = doctype.getElementById("fieldirrigationcost");
+		tempvar3.innerHTML = prettify(fieldrpcost);
 		
 		message("Welcome back!");
 		
