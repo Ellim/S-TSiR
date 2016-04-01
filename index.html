@@ -95,7 +95,7 @@ $(document).ready(function(){
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab"class="hidden" id="workertalent">Workers <span class="badge" id="freeworkers">0</span></a></li>
 				<li role="presentation"><a href="#consttab" aria-controls="consttab" role="tab" data-toggle="tab" class="hidden" id="consttalent">Construction</a></li>
-				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab">Talents</a></li>
+				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab" id="talenttalent">Talents</a></li>
 				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
 				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
 			</ul>
@@ -415,7 +415,11 @@ $(document).ready(function(){
 		</div>
 		
 		</div>
-	
+		
+		<div id="eventlog" class="elog boxDiv4 bg-primary">
+			
+		</div>
+		
 		<h1>Actions</h1>
 		<button id="Forage" type="button" class="btn btn-forage btn-lg btn-block">Forage</button>
         <div class="btn-group" role="group">    
@@ -508,9 +512,11 @@ $(document).ready(function(){
 </div>
 
 <script src="js/saveload.js"></script>
+<script src="js/main.js"></script>
 <script src="js/workers.js"></script>
 <script src="js/pertick.js"></script> 
 <script src="js/onclickactions.js"></script>
 <script src="js/dragscroll.js"></script>
+
 
 </body>

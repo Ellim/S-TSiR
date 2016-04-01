@@ -1,9 +1,9 @@
 function updatetotalexp() {   
   var exppct = totalexp/exptnl;
   var tempvar = document.getElementById("exptotal");
-  tempvar.innerHTML = totalexp.toFixed(0);
+  tempvar.innerHTML = prettify(totalexp);
   var tempvar2 = document.getElementById("exptnl");
-  tempvar2.innerHTML = exptnl.toFixed(0);
+  tempvar2.innerHTML = prettify(exptnl);
     if (totalexp > exptnl - 1) {
     totalexp = totalexp - exptnl;
     exptnl = (exptnl * 1.05);
@@ -13,11 +13,11 @@ function updatetotalexp() {
 		}
     } 
   var tempvar3 = document.getElementById("current_level");
-  tempvar3.innerHTML = currentlevel.toFixed(0);
+  tempvar3.innerHTML = prettify(currentlevel);
   var tempvar4 = document.getElementById("exptnl")
-  tempvar4.innerHTML = exptnl.toFixed(0);
+  tempvar4.innerHTML = prettify(exptnl);
   var tempvar5 = document.getElementById("talentpoints")
-  tempvar5.innerHTML = talentpoints.toFixed(0);
+  tempvar5.innerHTML = prettify(talentpoints);
   document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
 }
 
@@ -26,7 +26,7 @@ function updateworkers() {
 	var arrClassDiv = [freeworkers,researchers,farmers,loggers,miners,warriors]
 	for (i = 0; i < arrClass.length; i++) {
 		var tempvar = document.getElementById(arrClass[i]);
-		tempvar.innerHTML = arrClassDiv[i].toFixed(0);
+		tempvar.innerHTML = prettify(arrClassDiv[i]);
 	}	
 }
 
@@ -37,7 +37,7 @@ function updateresources() {
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
-		tempvar.innerHTML = arrResourceDiv[i].toFixed(arrResourceDigits[i]);
+		tempvar.innerHTML = prettify(arrResourceDiv[i]);
 	}
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
@@ -50,7 +50,7 @@ function updatebuildings() {
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
-		tempvar.innerHTML = arrBuildingDiv[i].toFixed(0);
+		tempvar.innerHTML = prettify(arrBuildingDiv[i]);
 	}
 		
 }
@@ -74,9 +74,9 @@ function updatewater() {
 	}
 	
 	var tempvar = document.getElementById("currentwater");
-	tempvar.innerHTML = water.toFixed(2);
+	tempvar.innerHTML = prettify(water);
 	var tempvar2 = document.getElementById("waterps");
-	tempvar2.innerHTML = (waterrate/(workertick/1000)).toFixed(2) + '/sec';
+	tempvar2.innerHTML = prettify((waterrate/(workertick/1000))) + '/sec';
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	
 	if (popmax > 1 && currentfood > (popmax * 2)) {
@@ -88,144 +88,23 @@ function updatewater() {
 				foodrate -= .375;
 				waterrate -= .25;
 				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = (population - 1).toFixed(0);
+				tempvar.innerHTML = prettify((population - 1));
 				var tempvar2 = document.getElementById("freeworkers");
-				tempvar2.innerHTML = freeworkers.toFixed(0);
+				tempvar2.innerHTML = prettify(freeworkers);
 			}
 		}
 	}
 		
 	if (water < 0) {
 		water = 0;
-		
-		/*Need to improve this with a for loop and making jobs an array
-	or possibly through an object*/
-	
-	if (population > 1) {
-			if (water < 1) {
-				population -= 1;
-				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = (population - 1).toFixed(0);
-				foodrate += .375;
-				
-				waterrate += .25;
-				
-				if (farmers > 0) {
-					farmers -= 1;
-					var tempvar2 = document.getElementById("farmernum");
-					tempvar2.innerHTML = farmers.toFixed(0);
-					return;
-				}
-				if (loggers > 0) {
-					loggers -= 1;
-					var tempvar3 = document.getElementById("loggernum");
-					tempvar3.innerHTML = loggers.toFixed(0);
-					return;
-				}
-				if (miners > 0) {
-					miners -= 1;
-					var tempvar4 = document.getElementById("minernum");
-					tempvar4.innerHTML = miners.toFixed(0);
-					return;
-				}
-				if (researchers > 0) {
-					researchers -= 1;
-					var tempvar5 = document.getElementById("researchernum");
-					tempvar5.innerHTML = researchers.toFixed(0);
-					return;
-				}
-				if (warriors > 0) {
-					warriors -= 1;
-					var tempvar6 = document.getElementById("warriornum");
-					tempvar6.innerHTML = warriors.toFixed(0);
-					return;
-				}
-				if (freeworkers > 0) {
-					freeworkers -= 1;
-					var tempvar7 = document.getElementById("freeworkers");
-					tempvar7.innerHTML = freeworkers.toFixed(0);
-					return;
-				}
-			}
-		}
 	}
 	updateworkers();
-	}, workertick);
-}
-	
-function updatefood() {
-  clearInterval(foodinterval);
-  foodinterval = setInterval(function() {
-	
-	if (currentfood >= foodmax) {
-		currentfood = foodmax - 0.001;
-	}
-	if (currentfood <= foodmax) {
-		currentfood += foodrate;
-	}
-	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood.toFixed(2);
-	
-	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
-	
-	if (currentfood < 0) {
-		currentfood = 0;
-		
-		if (population > 1) {
-			if (currentfood < 1) {
-				population -= 1;
-				var tempvar = document.getElementById("pop");
-				tempvar.innerHTML = (population - 1).toFixed(0);
-				foodrate += .375;
-				
-				waterrate += .25;
-				
-				if (farmers > 0) {
-					farmers -= 1;
-					var tempvar2 = document.getElementById("farmernum");
-					tempvar2.innerHTML = farmers.toFixed(0);
-					return;
-				}
-				if (loggers > 0) {
-					loggers -= 1;
-					var tempvar3 = document.getElementById("loggernum");
-					tempvar3.innerHTML = loggers.toFixed(0);
-					return;
-				}
-				if (miners > 0) {
-					miners -= 1;
-					var tempvar4 = document.getElementById("minernum");
-					tempvar4.innerHTML = miners.toFixed(0);
-					return;
-				}
-				if (researchers > 0) {
-					researchers -= 1;
-					var tempvar5 = document.getElementById("researchernum");
-					tempvar5.innerHTML = researchers.toFixed(0);
-					return;
-				}
-				if (warriors > 0) {
-					warriors -= 1;
-					var tempvar6 = document.getElementById("warriornum");
-					tempvar6.innerHTML = warriors.toFixed(0);
-					return;
-				}
-				if (freeworkers > 0) {
-					freeworkers -= 1;
-					var tempvar7 = document.getElementById("freeworkers");
-					tempvar7.innerHTML = freeworkers.toFixed(0);
-					return;
-				}
-			}
-		}
-	}
 	}, workertick);
 }
 
 
 document.getElementById("newgame").onclick = function() {
 		updatewater();
-		updatefood();
 		updatefarmer();
 		updatelogger();
 		updateminer();
@@ -240,12 +119,15 @@ document.getElementById("newgame").onclick = function() {
 		updateresources();
 		updateworkers();
 		updatetotalexp();
+		message("You wake up with a splitting headache. Your stomach growls with hunger.");
+		message("Luckily there is a River nearby giving you access to clean water.")
+		message("Better look around for something to eat.");
+		
 }
 
 document.getElementById("loadgame").onclick = function() {
 		loadgame();
 		updatewater();
-		updatefood();
 		updatefarmer();
 		updatelogger();
 		updateminer();
@@ -361,20 +243,15 @@ document.getElementById("loadgame").onclick = function() {
 		if (miners >= 100) {
 			$('#mine100').prop('disabled', false);
 		}
-
+		message("Welcome back!");
 		
-		var tempvar = document.getElementById("riverupgradecost");
-		tempvar.innerHTML = riverupgradecost.toFixed(0);
-		var tempvar2 = document.getElementById("riverlevel");
-		tempvar2.innerHTML = riverlevel.toFixed(0);
-		var tempvar3 = document.getElementById("riverproduction");
-		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(2);
 		
 		updatebuildings();
 		
 		updateresources();
 		updateworkers();
 		updatetotalexp();
+		
 		
 }
 	

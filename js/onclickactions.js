@@ -1,7 +1,6 @@
 
 document.getElementById("Forage").onclick = function() {
 	forage(1); 
-	
 	if ($('#consttalent').hasClass('hidden')) {
 		if (currentfood >= 35) {
 		$('#consttalent').removeClass('hidden');
@@ -108,6 +107,12 @@ document.getElementById("prodtab").onclick = function() {
 document.getElementById("craftab").onclick = function() {
 	if ($('#craftab').hasClass('btn-danger')) {
 		$('#craftab').removeClass('btn-danger');
+	}   
+};
+
+document.getElementById("talenttalent").onclick = function() {
+	if ($('#talenttalent').hasClass('btn-danger')) {
+		$('#talenttalent').removeClass('btn-danger');
 	}   
 };
 
@@ -485,10 +490,14 @@ document.getElementById("fieldbutton").onclick = function() {
 		currentfood -= fieldcost;
 		fields += 1;
 		totalexp += (fields * 5);
+		ofieldcost = fieldcost;
 		fieldcost = (fieldcost * 1.44);
 		foodrate += (.125 * (fieldlevel));
 		updatebuildings();
 		updateresources();	
+		message("");
+		message("Bought a Field for " + prettify(ofieldcost) + " Food and gained " + prettify((fields * 5)) + " EXP.");
+		message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food per second.");
 	}
 }
 
@@ -606,13 +615,48 @@ function forage(m) {
 		totalexp += m + popbonus;
 		water -= (m * 5);
 		currentfood += ((m + popbonus) * (keeneyelevel));
-		if (getRandomInt(0,100) >= 75) { wood += (((m + popbonus) * 0.25) * (keeneyelevel)) };
-		if (getRandomInt(0,100) >= 85) { stone += (((m + popbonus) * 0.10) * (keeneyelevel)) };
-		if (getRandomInt(0,100) >= 90) { clay += (((m + popbonus) * 0.05) * (keeneyelevel)) };
+		var fg = ((m + popbonus) * (keeneyelevel));
+		if (getRandomInt(0,100) >= 75) {
+			wood += (((m + popbonus) * 0.25) * (keeneyelevel));
+			var wg = (((m + popbonus) * 0.25) * (keeneyelevel));
+		};
+		if (getRandomInt(0,100) >= 85) {
+			stone += (((m + popbonus) * 0.10) * (keeneyelevel));
+			var sg = (((m + popbonus) * 0.10) * (keeneyelevel));
+		};
+		if (getRandomInt(0,100) >= 90) {
+			clay += (((m + popbonus) * 0.05) * (keeneyelevel));
+			var cg = (((m + popbonus) * 0.05) * (keeneyelevel));
+		};
 		if (wood > woodmax) {wood = woodmax};
 		if (currentfood > foodmax) {currentfood = foodmax};
 		updateresources();
 		updatetotalexp();
+		if (wg > 0 && sg > 0 && cg > 0) {
+			message("Foraged " + prettify(wg) + " Wood, " + prettify(sg) + " Stone, " + prettify(cg) + " Clay.")
+			return;
+		}
+		if (wg > 0 && sg > 0) {
+			message("Foraged " + prettify(wg) + " Wood, " + prettify(sg) + " Stone.")
+			return;
+		}
+		if (wg > 0 && cg > 0) {
+			message("Foraged " + prettify(wg) + " Wood, " + prettify(cg) + " Clay.")
+			return;
+		}
+		if (sg > 0 && cg > 0) {
+			message("Foraged " + prettify(sg) + " Stone, " + prettify(cg) + " Clay.")
+			return;
+		}
+		if (wg > 0) {
+			message("Foraged " + prettify(wg) + " Wood.")
+		}
+		if (sg > 0) {
+			message("Foraged " + prettify(sg) + " Stone.")
+		}
+		if (cg > 0) {
+			message("Foraged " + prettify(cg) + " Clay.")
+		}
 	}	
 }
 

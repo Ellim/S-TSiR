@@ -1,18 +1,20 @@
 function updatefarmer() {
   clearInterval(farmerinterval);
   farmerinterval = setInterval(function() {
-	if (farmers > 0) {
-		currentfood += (farmerrate * farmers);
+	currentfood += ((farmerrate * farmers) + (foodrate));
+	if (currentfood >= foodmax) {
+		currentfood = foodmax - 0.001;
 	}
-	
+
 	var tempvar = document.getElementById("currentfood");
-	tempvar.innerHTML = currentfood.toFixed(2);
+	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
 	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = prettify(tempvar3) + '/sec';
 	
-
-
+	if (currentfood < 0) {
+		currentfood = 0;
+	}
 	
 	document.getElementById("foodbar").style.width = ((currentfood/foodmax)* 100) + '%';
 	}, workertick);
