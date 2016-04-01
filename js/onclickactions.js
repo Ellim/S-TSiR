@@ -726,11 +726,11 @@ function forage(m) {
 }
 
 function mine(m) {
-	if (((water) - (25 * m)) >= 0 && ((currentfood) - (10 * m)) >= 0 ) {
+	if (((water) - (7.5 * m)) >= 0 && ((currentfood) - (10 * m)) >= 0 ) {
 		var popbonus = (m * ((population - 1) * 0.05));
 		stone += m + popbonus;
 		totalexp += m + popbonus;
-		water -= (m * 25);
+		water -= (m * 7.5);
 		currentfood -= (m * 10);
 		if (getRandomInt(0,100) >= 50) { clay += ((m + popbonus) * 0.03125) };
 		if (getRandomInt(0,100) >= 90) { coal += ((m + popbonus) * 0.05) };
