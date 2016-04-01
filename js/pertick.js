@@ -94,8 +94,8 @@ function updatewater() {
 		}
 	}
 		
-	if (water < 0) {
-		water = 0;
+	if (water <= 0) {
+		water = 1;
 	}
 	updateworkers();
 	}, workertick);
