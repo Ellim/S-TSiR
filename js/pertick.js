@@ -253,8 +253,8 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar3 = doctype.getElementById("upgradeshcost");
 		tempvar3.innerHTML = prettify(shrpcost);
 		
-		var tempvar3 = doctype.getElementById("fieldirrigationcost");
-		tempvar3.innerHTML = prettify(fieldrpcost);
+		var tempvar4 = doctype.getElementById("fieldirrigationcost");
+		tempvar4.innerHTML = prettify(fieldrpcost);
 		
 		message("Welcome back!");
 		
