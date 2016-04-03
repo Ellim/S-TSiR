@@ -99,6 +99,7 @@ var traders = 0;
 var farmerrate = 1.125;
 var loggerrate = 0.125;
 var researcherrate = .0375;
+var researcherlevel = 1;
 var minerrate = 0.25;
 
 var researchertalent = 0;
@@ -223,6 +224,7 @@ function savegame() {
 	farmerrate: farmerrate,
 	loggerrate: loggerrate,
 	researcherrate: researcherrate,
+	researcherlevel: researcherlevel,
 	minerrate: minerrate,
 	
 	researchertalent: researchertalent,
@@ -343,6 +345,7 @@ function loadgame() {
 	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
 	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
 	if (typeof savestring.researcherrate !== "undefined") researcherrate = savestring.researcherrate;
+	if (typeof savestring.researcherlevel !== "undefined") researcherlevel = savestring.researcherlevel;
 	if (typeof savestring.minerrate !== "undefined") minerrate = savestring.minerrate;
 	
 	if (typeof savestring.researchertalent !== "undefined") researchertalent = savestring.researchertalent;

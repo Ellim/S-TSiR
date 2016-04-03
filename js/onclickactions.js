@@ -189,10 +189,14 @@ document.getElementById("logbutton").onclick = function() {
 	if (wood >= woodlogcost) {
 		wood -= woodlogcost;
 		logs += 1;
+		var tempexp = (50 * (popmax/100));
+		totalexp += tempexp;
+		message("Crafted 1 Log using " + prettify(woodlogcost) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
 	updateresources();
+	updatetotalexp();
 	}
 }
 
@@ -200,10 +204,14 @@ document.getElementById("log10").onclick = function() {
 	if (wood >= woodlogcost * 10) {
 		wood -= woodlogcost * 10;
 		logs += 10;
+		var tempexp = ((50 * (popmax/100)) * 10);
+		totalexp += tempexp;
+		message("Crafted 10 Logs using " + prettify(woodlogcost*10) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
 	updateresources();
+	updatetotalexp();
 	}
 }
 
@@ -211,10 +219,14 @@ document.getElementById("log25").onclick = function() {
 	if (wood >= woodlogcost * 25) {
 		wood -= woodlogcost * 25;
 		logs += 25;
+		var tempexp = ((50 * (popmax/100)) * 25);
+		totalexp += tempexp;
+		message("Crafted 25 Logs using " + prettify(woodlogcost*25) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
 	updateresources();
+	updatetotalexp();
 	}
 }
 
@@ -222,10 +234,14 @@ document.getElementById("log100").onclick = function() {
 	if (wood >= woodlogcost * 100) {
 		wood -= woodlogcost * 100;
 		logs += 100;
+		var tempexp = ((50 * (popmax/100)) * 100);
+		totalexp += tempexp;
+		message("Crafted 100 Logs using " + prettify(woodlogcost*100) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
 	updateresources();
+	updatetotalexp();
 	}
 }
 
@@ -236,11 +252,69 @@ document.getElementById("blockbutton").onclick = function() {
 			stone -= stoneblockscost;
 			clay -= stoneblockccost
 			stoneblocks += 1;
+			var tempexp = (50 * (popmax/100));
+			totalexp += tempexp;
+			message("Crafted 1 Stone Block using " + prettify(stoneblockscost) + " Stone and " + prettify(stoneblockccost) + " Clay, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
 	}  
 	updateresources();
+	updatetotalexp();
+	}
+}
+
+document.getElementById("sb10").onclick = function() {
+	if (stone >= stoneblockscost*10) {
+		if (clay >= stoneblockccost*10) {
+			stone -= stoneblockscost*10;
+			clay -= stoneblockccost*10
+			stoneblocks += 10;
+			var tempexp = ((50 * (popmax/100)) * 10);
+			totalexp += tempexp;
+			message("Crafted 10 Stone Blocks using " + prettify(stoneblockscost*10) + " Stone and " + prettify(stoneblockccost*10) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			if ($('#blockdiv').hasClass('hidden')) {
+			$('#blockdiv').removeClass('hidden');
+		}
+	}  
+	updateresources();
+	updatetotalexp();
+	}
+}
+
+document.getElementById("sb25").onclick = function() {
+	if (stone >= stoneblockscost*25) {
+		if (clay >= stoneblockccost*25) {
+			stone -= stoneblockscost*25;
+			clay -= stoneblockccost*25
+			stoneblocks += 25;
+			var tempexp = ((50 * (popmax/100)) * 25);
+			totalexp += tempexp;
+			message("Crafted 25 Stone Blocks using " + prettify(stoneblockscost*25) + " Stone and " + prettify(stoneblockccost*25) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			if ($('#blockdiv').hasClass('hidden')) {
+			$('#blockdiv').removeClass('hidden');
+		}
+	}  
+	updateresources();
+	updatetotalexp();
+	}
+}
+
+document.getElementById("sb100").onclick = function() {
+	if (stone >= stoneblockscost*100) {
+		if (clay >= stoneblockccost*100) {
+			stone -= stoneblockscost*100;
+			clay -= stoneblockccost*100
+			stoneblocks += 100;
+			var tempexp = ((50 * (popmax/100)) * 100);
+			totalexp += tempexp;
+			message("Crafted 100 Stone Blocks using " + prettify(stoneblockscost*100) + " Stone and " + prettify(stoneblockccost*100) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			if ($('#blockdiv').hasClass('hidden')) {
+			$('#blockdiv').removeClass('hidden');
+		}
+	}  
+	updateresources();
+	updatetotalexp();
 	}
 }
 
@@ -255,7 +329,17 @@ document.getElementById("unlocklogbutton").onclick = function() {
 			$('#craftingtalent').addClass('btn-danger');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
+			message("You now know how to craft Logs! Check out the Crafting Tab.");
 		}
+	}
+}
+
+document.getElementById("upgradeRPbutton").onclick = function() {
+	if (researchpoints > ((researcherlevel * 1500)*researcherlevel)) {
+		researchpoints -= ((researcherlevel * 1500)*researcherlevel);
+		researcherlevel += 1;
+		var tempvar = document.getElementById("RPupcost");
+		tempvar.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
 	}
 }
 
@@ -270,6 +354,7 @@ document.getElementById("unlockblockbutton").onclick = function() {
 			$('#apartmentspan').removeClass('hidden');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
+			message("You now know how to craft Stone Blocks! Check out the Crafting Tab.");
 		}
 	}
 }
@@ -285,6 +370,7 @@ document.getElementById("upgradeshbutton").onclick = function() {
 		claymax += 25 * storehouses;
 		var tempvar = document.getElementById("upgradeshcost");
 		tempvar.innerHTML = prettify(shrpcost);
+		message("Storehouses now each hold " + prettify(250 * shlevel) + " Wood, " + prettify(200 * shlevel) + " Stone, " + prettify(50 * shlevel) + " Charcoal, " + prettify(25 * shlevel) + " Clay.");
 	}
 }
 
@@ -293,9 +379,11 @@ document.getElementById("fieldirrigationbutton").onclick = function() {
 		researchpoints -= fieldrpcost;
 		fieldlevel += 1;
 		fieldrpcost = fieldrpcost * 1.1;
-		waterrate += .125 * fields;
+		waterrate += .125 * fields; 
+		foodrate += .125 * fields;
 		var tempvar = document.getElementById("fieldirrigationcost");
 		tempvar.innerHTML = prettify(fieldrpcost);
+		message("Fields now generate " + prettify(foodrate*4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
 	}
 }
 
@@ -482,22 +570,6 @@ document.getElementById("addresearcherbutton").onclick = function() {
 	}
 }
 
-document.getElementById("removetraderbutton").onclick = function() {
-	if (traders > 0) {
-		traders -= 1;
-		freeworkers += 1;
-		updateworkers();
-	}
-}
-
-document.getElementById("addtraderbutton").onclick = function() {
-	if (freeworkers > 0) {
-		freeworkers -= 1;
-		traders += 1;
-		updateworkers();
-	}
-}
-
 document.getElementById("removewarriorbutton").onclick = function() {
 	if (warriors > 0) {
 		warriors -= 1;
@@ -520,16 +592,15 @@ document.getElementById("hutbutton").onclick = function() {
 	if (wood >= hutcost) {
 		wood -= hutcost;
 		totalexp += hutcost;
-		hutcost += (hutcost*1.25);
+		oHutCost = hutcost;
+		hutcost += (hutcost*1.2);
 		huts += 1;
 		popmax += hutlevel;
-		var tempvar = document.getElementById("hutnum");
-		tempvar.innerHTML = huts.toFixed(0);
-		var tempvar2 = document.getElementById("hutcost");
-		tempvar2.innerHTML = hutcost.toFixed(0);
-		var tempvar3 = document.getElementById("hutexp");
-		tempvar3.innerHTML = hutcost.toFixed(0);
-		updateresources();		
+		updatebuildings();
+		updateresources();	
+		message("");
+		message("Built a Hut for " + prettify(oHutCost) + " Wood and gained " + prettify(oHutCost) + " EXP.");
+		message("This brings you to a total of " + prettify(huts) + " Huts; Housing " + prettify(huts * hutlevel) + ".");
 		if ($('#workertalent').hasClass('hidden')) {
 		if (popmax > 1) {
 		$('#workertalent').removeClass('hidden');
@@ -543,12 +614,16 @@ document.getElementById("hutbutton").onclick = function() {
 document.getElementById("apartmentbutton").onclick = function() {
 	if (stoneblocks >= aptcost) {
 		stoneblocks -= aptcost;
-		totalexp += 2000;
-		aptcost = (aptcost*1.2);
+		totalexp += (2000 * apartments);
+		oAptCost = aptcost;
+		aptcost = (aptcost*1.3);
 		apartments += 1;
 		popmax += aptlevel;
 		updatebuildings();
 		updateresources();
+		message("");
+		message("Built an Apartment Building for " + prettify(oAptCost) + " Stone Blocks and gained " + prettify(2000 * (apartments - 1)) + " EXP.");
+		message("This brings you to a total of " + prettify(apartments) + " Apartments; Housing " + prettify(apartments * aptlevel) + ".");
 	}
 }
 
@@ -556,23 +631,31 @@ document.getElementById("cabinbutton").onclick = function() {
 	if (logs >= cabincost) {
 		logs -= cabincost;
 		totalexp += cabincost * 30;
-		cabincost = (cabincost*1.33);
+		oCabinCost = cabincost;
+		cabincost = (cabincost*1.44);
 		cabins += 1;
 		popmax += cabinlevel;
 		updatebuildings();
-		updateresources();		
+		updateresources();
+		message("");
+		message("Built a Cabin for " + prettify(oCabinCost) + " Logs and gained " + prettify(oCabinCost * 30) + " EXP.");
+		message("This brings you to a total of " + prettify(cabins) + " Cabins; Housing " + prettify(cabins * cabinlevel) + ".");		
 	}
 };
 
 document.getElementById("rhbutton").onclick = function() {
 	if (clay >= rhcost) {
 		clay -= rhcost;
-		totalexp += rhcost/2;
-		rhcost = (rhcost + (Math.pow(rhcost, 0.85)));
+		totalexp += rhcost*2;
+		oRhCost = rhcost;
+		rhcost = (rhcost*1.33);
 		roundhouses += 1;
 		popmax += rhlevel;
 		updatebuildings();
-		updateresources();			
+		updateresources();	
+		message("");
+		message("Built a Roundhouse for " + prettify(oRhCost) + " Clay and gained " + prettify(oRhCost * 2) + " EXP.");
+		message("This brings you to a total of " + prettify(roundhouses) + " Roundhouses; Housing " + prettify(roundhouses * rhlevel) + ".");		
 	}
 };
 
@@ -582,14 +665,28 @@ document.getElementById("fieldbutton").onclick = function() {
 		fields += 1;
 		totalexp += (fields * 5);
 		ofieldcost = fieldcost;
-		fieldcost = (fieldcost * 1.44);
+		fieldcost = (fieldcost * 1.24);
 		foodrate += (.125 * (fieldlevel));
 		waterrate += (.125 * (fieldlevel-1));
 		updatebuildings();
 		updateresources();	
 		message("");
-		message("Bought a Field for " + prettify(ofieldcost) + " Food and gained " + prettify((fields * 5)) + " EXP.");
-		message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food per second.");
+		message("Tilled a Field at the expense of " + prettify(ofieldcost) + " Food and gained " + prettify((fields * 5)) + " EXP.");
+		if (fieldlevel < 2) {
+			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food per second.");
+		}
+		if (fieldlevel > 1) {
+			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
+		}
+		if ($('#granaryspan').hasClass('hidden')) {
+			if (fields > 5) {
+				message("");
+				message("Granary Unlocked!");
+				$('#granaryspan').removeClass('hidden');
+				$('#storetab').addClass('btn-danger');
+				granarytalent += 1;
+			}
+		}
 	}
 }
 
@@ -599,20 +696,20 @@ document.getElementById("granarybutton").onclick = function() {
 	if (wood >= granarywoodcost && stone >= granarystonecost) {
 		wood -= granarywoodcost;
 		stone -= granarystonecost;
-		granarywoodcost = (granarywoodcost * 1.85);
-		granarystonecost = (granarystonecost * 1.65);
+		oGranaryWoodCost = granarywoodcost;
+		oGranaryStoneCost = granarystonecost;
+		granarywoodcost = (granarywoodcost * 1.65);
+		granarystonecost = (granarystonecost * 1.45);
 		granaries += 1;
 		foodmax += 175;
 		watermax += 500;
-		totalexp += 150;
-		var tempvar = document.getElementById("granarynum");
-		tempvar.innerHTML = granaries.toFixed(0);
-		var tempvar2 = document.getElementById("granarywoodcost");
-		tempvar2.innerHTML = granarywoodcost.toFixed(0);
-		var tempvar3 = document.getElementById("granarystonecost");
-		tempvar3.innerHTML = granarystonecost.toFixed(0);
+		totalexp += (150*granaries);
+		updatebuildings();
 		updateresources();
 		updatetotalexp();
+		message("");
+		message("Built a Granary at the expense of " + prettify(oGranaryWoodCost) + " Wood and " + prettify(oGranaryStoneCost) + " Stone and gained " + prettify((granaries * 150)) + " EXP.");
+		message("This brings you to a total of " + prettify(granaries) + " Granaries.");
 	}
 }
 
@@ -620,23 +717,21 @@ document.getElementById("shbutton").onclick = function() {
 	if (wood >= shcost) {
 		wood -= shcost;
 		storehouses += 1;
-		shcost = (shcost * 1.75);
-		totalexp += 75 * shlevel;
+		oShCost = shcost;
+		shcost = (shcost * 1.55);
+		totalexp += (75*storehouses) * shlevel;
 		woodmax += 250 * shlevel;
 		stonemax += 200 * shlevel;
 		coalmax += 50 * shlevel;
 		claymax += 25 * shlevel;
-		var tempvar = document.getElementById("sthnum");
-		tempvar.innerHTML = storehouses.toFixed(0);
-		var tempvar6 = document.getElementById("shcost");
-		tempvar6.innerHTML = shcost.toFixed(0);
-		updateresources();		
+		updatebuildings();
+		updateresources();	
 		updatetotalexp();
-		
-		if (storehouses > 1) {
-		$('#granaryspan').removeClass('hidden');
-		granarytalent += 1;
-		}
+		message("");
+		message("Built a Storehouse at the expense of " + prettify(oShCost) + " Wood and gained " + prettify((75*storehouses) * shlevel) + " EXP.");
+		message("This brings you to a total of " + prettify(storehouses) + " Storehouses.");
+		message("Storehouses capacity is now " + prettify((250 * shlevel)*storehouses) + " Wood, " + prettify((200 * shlevel)*storehouses) + " Stone, " + prettify((50 * shlevel)*storehouses) + " Charcoal, " + prettify((25 * shlevel)*storehouses) + " Clay.");
+
 	}
 	
 }
@@ -647,15 +742,17 @@ document.getElementById("rtowerbutton").onclick = function() {
 	if (stone >= rtowercost) {
 		stone -= rtowercost;
 		rtowers += 1;
-		rtowercost = (rtowercost * 1.55);
-		totalexp += 25;
+		oRTowerCost = rtowercost;
+		rtowercost = (rtowercost * 1.45);
+		totalexp += (25*rtowers);
 		researcherrate = (researcherrate * 1.165);
-		var tempvar = document.getElementById("rtowernum");
-		tempvar.innerHTML = rtowers.toFixed(0);
-		var tempvar2 = document.getElementById("rtowercost");
-		tempvar2.innerHTML = rtowercost.toFixed(0);
+		updatebuildings();
 		updateresources();		
 		updatetotalexp();
+		message("");
+		message("Built a Research Tower at the expense of " + prettify(oRTowerCost) + " Stone and gained " + prettify(25*rtowers) + " EXP.");
+		message("This brings you to a total of " + prettify(rtowers) + " Research Towers.");
+		message("Each Researcher now produces " + prettify((researcherrate*4)*researcherlevel) + " Research Points per second.")
 	}
 }
 
@@ -665,17 +762,19 @@ document.getElementById("sawmillbutton").onclick = function() {
 			stone -= smscost;
 			clay -= smccost;
 			sawmills += 1;
-			smscost = (smscost * 2);
-			smccost = (smccost * 2);
+			oSmSCost = smscost;
+			oSmCCost = smccost;
+			smscost = (smscost * 1.75);
+			smccost = (smccost * 1.75);
 			totalexp += (25*sawmills);
-			var tempvar = document.getElementById("sawmillnum");
-			tempvar.innerHTML = sawmills.toFixed(0);
-			var tempvar2 = document.getElementById("sawmillstonecost");
-			tempvar2.innerHTML = smscost.toFixed(0);
-			var tempvar3 = document.getElementById("sawmillclaycost");
-			tempvar3.innerHTML = smccost.toFixed(0);
+			updatebuildings();
 			updateresources();		
 			updatetotalexp();
+			message("");
+			message("Built a Sawmill at the expense of " + prettify(oSmSCost) + " Stone and " + prettify(oSmCCost) + " Clay and gained " + prettify((sawmills * 25)) + " EXP.");
+			message("This brings you to a total of " + prettify(sawmills) + " Sawmills.");
+			message("Each Lumberjack now produces " + prettify((loggerrate*4) * (1 + (sawmills * 0.10))) + " Wood per second.");
+			
 		}
 	}
 }
@@ -705,7 +804,7 @@ function forage(m) {
 		if (clay > claymax) {clay = claymax};
 		if (coal > coalmax) {coal = coalmax};
 		updateresources();
-		updatetotalexp();
+		updatetotalexp();/*
 		if (wg > 0 && sg > 0 && cg > 0) {
 			message("Foraged " + prettify(wg) + " Wood, " + prettify(sg) + " Stone, " + prettify(cg) + " Clay.")
 			return;
@@ -730,17 +829,17 @@ function forage(m) {
 		}
 		if (cg > 0) {
 			message("Foraged " + prettify(cg) + " Clay.")
-		}
+		}*/
 	}	
 }
 
 function mine(m) {
-	if (((water) - (7.5 * m)) >= 0 && ((currentfood) - (10 * m)) >= 0 ) {
+	if (((water) - (15 * m)) >= 0 && ((currentfood) - (7.5 * m)) >= 0 ) {
 		var popbonus = (m * ((population - 1) * 0.05));
 		stone += m + popbonus;
 		totalexp += m + popbonus;
-		water -= (m * 7.5);
-		currentfood -= (m * 10);
+		water -= (m * 15);
+		currentfood -= (m * 7.5);
 		if (getRandomInt(0,100) >= 50) { clay += ((m + popbonus) * 0.03125) };
 		if (getRandomInt(0,100) >= 90) { coal += ((m + popbonus) * 0.05) };
 		if (stone > stonemax) {stone = stonemax};

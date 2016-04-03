@@ -10,7 +10,7 @@ function updatefarmer() {
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
 	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4); 
-	tempvar2.innerHTML = prettify(tempvar3) + '/sec';
+	tempvar2.innerHTML = prettify(tempvar3);
 	
 	if (currentfood < 0) {
 		currentfood = 0;
@@ -31,10 +31,10 @@ function updatelogger() {
 	}
 	
 	var tempvar = document.getElementById("total_wood");
-	tempvar.innerHTML = wood.toFixed(2);
+	tempvar.innerHTML = prettify(wood);
 	var tempvar2 = document.getElementById("woodps");
 	var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = prettify(tempvar3);
 	
 	}, workertick);
 }
@@ -55,11 +55,11 @@ function updateminer() {
 	updateresources();
 	var tempvar2 = document.getElementById("stoneps");
 	var tempvar3 = (miners * (minerrate*4)); 
-	tempvar2.innerHTML = tempvar3.toFixed(2) + '/sec';
+	tempvar2.innerHTML = prettify(tempvar3);
 	
 	var tempvar4 = document.getElementById("clayps");
 	var tempvar5 = (miners * ((minerrate/5)*4)); 
-	tempvar4.innerHTML = tempvar5.toFixed(2) + '/sec';
+	tempvar4.innerHTML = prettify(tempvar5);
 	
 	}, workertick);
 }
@@ -98,11 +98,11 @@ function updateresearcher() {
   clearInterval(researcherinterval);
   researcherinterval = setInterval(function() {
 	if (researchers > 0) {
-		researchpoints += (researcherrate * researchers);
-		
-		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost'];
-		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost"];
-		var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost]
+		researchpoints += ((researcherrate * researchers)*researcherlevel);
+		var rpupcost = (((researcherlevel * 1500) * researcherlevel));
+		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost'];
+		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost"];
+		var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost,rpupcost]
 			for (i = 0; i < arrRPproj.length; i++) {
 				var tempvar = document.getElementById(arrRPproj1[i]);
 

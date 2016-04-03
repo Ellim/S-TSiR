@@ -31,9 +31,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam"]
-	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
-	var arrResourceDigits = [2,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam","rpps"]
+	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam,(((researcherrate*researchers)*4)*researcherlevel)]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -45,8 +44,8 @@ function updateresources() {
 }
 
 function updatebuildings() {
-	var arrBuilding = ["cabinnum","cabincost","cabinexp","hutnum","hutcost","hutexp","rhnum","rhcost","rhexp","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","fieldnum","fieldcost","fieldexp"]
-	var arrBuildingDiv = [cabins,cabincost,(cabincost*30),huts,hutcost,hutcost,roundhouses,rhcost,(rhcost/2),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,fields,fieldcost,((fields + 1) * 5)]
+	var arrBuilding = ["cabinnum","cabincost","hutnum","hutcost","rhnum","rhcost","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","fieldnum","fieldcost"]
+	var arrBuildingDiv = [cabins,cabincost,huts,hutcost,roundhouses,rhcost,granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,fields,fieldcost]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
@@ -76,7 +75,7 @@ function updatewater() {
 	var tempvar = document.getElementById("currentwater");
 	tempvar.innerHTML = prettify(water);
 	var tempvar2 = document.getElementById("waterps");
-	tempvar2.innerHTML = prettify((waterrate/(workertick/1000))) + '/sec';
+	tempvar2.innerHTML = prettify((waterrate/(workertick/1000)));
 	document.getElementById("waterbar").style.width = ((water/watermax) * 100) + '%';
 	
 	if (popmax > 1 && currentfood > (popmax * 2)) {
@@ -206,7 +205,10 @@ document.getElementById("loadgame").onclick = function() {
 			$('#craftingtalent').removeClass('hidden');
 			$('#crafttalentbutton').addClass('hidden');
 			$('#craftab').removeClass('hidden');
-			$('#burntalent').removeClass('hidden');
+			if (burntalent < 1) {
+				$('#burntalent').removeClass('hidden');
+			}
+			
 		}
 		
 		if (logtalent > 0) {
@@ -255,11 +257,14 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar2 = document.getElementById("keeneyecost");
 		tempvar2.innerHTML = prettify(keeneyescost);
 		
-		var tempvar3 = doctype.getElementById("upgradeshcost");
+		var tempvar3 = document.getElementById("upgradeshcost");
 		tempvar3.innerHTML = prettify(shrpcost);
 		
-		var tempvar4 = doctype.getElementById("fieldirrigationcost");
+		var tempvar4 = document.getElementById("fieldirrigationcost");
 		tempvar4.innerHTML = prettify(fieldrpcost);
+		
+		var tempvar5 = document.getElementById("RPupcost");
+		tempvar5.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
 		
 		message("Welcome back!");
 		
