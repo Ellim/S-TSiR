@@ -29,9 +29,9 @@
 
 .btn-craft2 {background: rgba(255, 229, 242, 1); background: -webkit-linear-gradient(top, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); background: linear-gradient(to bottom, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); border-color: rgba(156, 156, 156, 1); color: rgba(0, 0, 0, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}
 
-body {padding-top: 6.5vh}
 
-.elog {height: 20%; overflow-y: auto;}
+
+.elog {height: 15.5vh; overflow-y: auto;}
 
 .botBar {height: 4.5vh;}
 
@@ -39,14 +39,20 @@ body {padding-top: 6.5vh}
 
 .buttonBox {height: 120px;}
 
+.buttonBox2 {height: 91px;}
+
 .boxDiv {outline: 2px solid grey; outline-offset: 4px;}
 
 .boxDiv2 {outline: 2px solid grey; outline-offset: -5px;}
 
-.boxDiv3 {outline: 2px solid white; outline-offset: -1px; padding: 2px;}
+.boxDiv3 {outline: 2px solid grey; outline-offset: -1px; padding: 2px;}
 
-.boxDiv4 {outline: 2px solid grey; outline-offset: 1px;}
+.boxDiv4 {outline: 1px solid grey;}
 
-.resDiv {height: 33.3%; overflow-y: auto; padding: 10px;}
+.boxDiv5 {outline: 1px solid grey; background: #e9e2c8;}
+
+
+
+.resDiv {height: 90vh; overflow-y: auto;}
 
 .main { overflow: auto; }

@@ -22,13 +22,13 @@
 <div id="scripting">  <!--Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   
-<!-- Latest compiled and minified CSS 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Optional theme
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
 
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/slate/bootstrap.min.css" rel="stylesheet" integrity="sha256-purz3wKA8uL+3JryAuYkSkIZL1CHBSzJ2UwvxAOmYmM= sha512-ge9yLSNqO8D9q8z+kLuUnluXxJTVKdLCwzYBS9rZ3eDW7oJK+mLjRsQa4995TpGINC4GWYi4S2ocDssunh1q3g==" crossorigin="anonymous">
+<!-- Slate theme<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/slate/bootstrap.min.css" rel="stylesheet" integrity="sha256-purz3wKA8uL+3JryAuYkSkIZL1CHBSzJ2UwvxAOmYmM= sha512-ge9yLSNqO8D9q8z+kLuUnluXxJTVKdLCwzYBS9rZ3eDW7oJK+mLjRsQa4995TpGINC4GWYi4S2ocDssunh1q3g==" crossorigin="anonymous"> -->
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -59,11 +59,10 @@ $(document).ready(function(){
 </script>
 </div>
 
-<div class="container main">  <!--Main Container-->
+  <!--Main Container-->
 
-<div class="navbar navbar-default navbar-fixed-top botBar"> <!--Bottom Navbar-->
-	<div class="container">
-		<div class="row">
+<div class="container-fluid">
+		<div class="row" style="height:vh5">
 			<div class="col-xs-4">
 				<h5>Survive: <small>The struggle is real
 				<button id="save" type="button" class="btn btn-info">Save</button></small></h5>
@@ -76,18 +75,18 @@ $(document).ready(function(){
 				<!--<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>-->
 			</div>
 		</div>
-	</div>
 </div>
 
 
+
+<div class="container-fluid">
   <div class="row">  
-    <div class="col-xs-6 leftdiv">
+    <div class="col-xs-5">
 	<br />
-	
-	<div class="boxDiv">
+
         Food: <span id="currentfood">0</span> / <span id="maxfood">350</span> (<small id="foodps">0</small>)<br />
         <div class="progress">
-          <div class="progress-bar progress-bar-food" id="foodbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"><span class="glyphicon glyphicon-apple"</span></div>
+          <div class="progress-bar progress-bar-food" id="foodbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"><span class="glyphicon glyphicon-apple"></span></div>
         </div>
 		        
 		Water: <span id="currentwater">50</span> / <span id="maxwater">1000</span> (<small id="waterps">0</small>)<br />
@@ -106,10 +105,10 @@ $(document).ready(function(){
 		<div id="rpdiv" class="hidden">
 		Research Points: <span id="total_RP" class="">0</span> (<small id="rpps">0</small>)
 		</div>
+	
+	<div id="eventlog" class="elog boxDiv4 bg-primary">
+			
 	</div>
-		<br />
-		<div class="">
-		
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab"class="hidden" id="workertalent">Workers <span class="badge" id="freeworkers">0</span></a></li>
@@ -117,6 +116,8 @@ $(document).ready(function(){
 				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab" id="talenttalent">Talents</a></li>
 				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
 				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
+				<li role="presentation"><a href="#actiontab" aria-controls="actiontab" role="tab" data-toggle="tab" class="" id="actiontalent">Actions</a></li>
+				
 			</ul>
 
 			<!-- Tab panes -->
@@ -161,6 +162,8 @@ $(document).ready(function(){
 					
 				</div>
 				
+				
+				
 				<div role="tabpanel" class="text-center tab-pane fade" id="consttab">
 				
 				<ul class="nav nav-tabs" role="tablist">
@@ -168,6 +171,8 @@ $(document).ready(function(){
 				<li role="presentation"><a href="#storagetab" aria-controls="storagetab" role="tab" data-toggle="tab" class="" id="storetab">Storage</a></li>
 				<li role="presentation"><a href="#productiontab" aria-controls="productiontab" role="tab" data-toggle="tab" class="active" id="prodtab">Production</a></li>
 				</ul>
+				
+				
 				
 				<div class="tab-content">
 				
@@ -189,14 +194,14 @@ $(document).ready(function(){
 					
 					<div id="cabinspan" class="buttonBox boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="cabinbutton"><span class="glyphicon glyphicon-home"></span> Cabin <span class="badge" id="cabinnum">0</span></button>
-					Cost: <span id="cabincost" class="">50</span> Logs.<br />
+					Cost: <span id="cabincost" class="">50</span> Planks.<br />
 					Increase Population by: <span id="cabinlevel">10</span>
 					
 					</div>
 					
 					<div id="apartmentspan" class="buttonBox boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="apartmentbutton"><span class="glyphicon glyphicon-home"></span> Apartment Building<span class="badge" id="apartmentnum">0</span></button>
-					Cost: <span id="apartmentcost" class="">75</span> Stone Blocks.<br />
+					Cost: <span id="apartmentcost" class="">75</span> Concrete Blocks.<br />
 					Increase Population by: <span id="apartmentlevel">25</span>
 					
 					</div>
@@ -412,126 +417,124 @@ $(document).ready(function(){
 			<div role="tabpanel" class="text-center tab-pane fade" id="craftingtab">
 				<br />
 				
-				<div id="logspan" class="buttonBox boxDiv3 col-xs-4 hidden">
+				<div id="logspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="logbutton">
-					50 Wood <br /><span class="fa fa-long-arrow-right"></span> 1 Log</button>
-					<br />
+					50 Wood <br /><span class="fa fa-long-arrow-right"></span> 1 Plank</button>
 					
-					<div class="btn-group open">
-						<button type="button" class="btn btn-primary" id="log10">x10</button>
-						<button type="button" class="btn btn-primary" id="log25">x25</button>
-						<button type="button" class="btn btn-primary" id="log100">x100</button>
+					
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="log10">x10</button>
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="log25">x25</button>
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="log100">x100</button>
 					</div>
 				</div>
 				
-				<div id="blockspan" class="buttonBox boxDiv3 col-xs-4 hidden">
+				<div id="blockspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="blockbutton">
-					100 Stone & 25 Clay <br /><span class="fa fa-long-arrow-right"></span> 1 Stone Block</button>
-					<br />
+					100 Stone & 25 Clay <br /><span class="fa fa-long-arrow-right"></span> 1 Concrete</button>
 					
-					<div class="btn-group open">
-						<button type="button" class="btn btn-primary" id="sb10">x10</button>
-						<button type="button" class="btn btn-primary" id="sb25">x25</button>
-						<button type="button" class="btn btn-primary" id="sb100">x100</button>
+					
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="sb10">x10</button>
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="sb25">x25</button>
+						<button type="button" class="btn btn-primary" style="width:33.3%" id="sb100">x100</button>
 					</div>
 				</div>
 			
 			</div>
+			
+			<div role="tabpanel" class="text-center tab-pane fade" id="actiontab">
+				<br />
+				<div id="foragespan" class="buttonBox2 boxDiv3 col-xs-4">
+					<button data-toggle="tooltip" title="10 Water" data-placement="bottom" type="button" class="btn btn-success btn-block" id="forage">
+					Forage<br /> <span class="fa fa-apple"></span> Gather simple resources.</button>
+					
+					
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-success" style="width:33.3%" id="forage10" disabled>x10</button>
+						<button type="button" class="btn btn-success" style="width:33.3%" id="forage25" disabled>x25</button>
+						<button type="button" class="btn btn-success" style="width:33.3%" id="forage100" disabled>x100</button>
+					</div>
+				</div>
+				
+				<div id="minespan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+					<button data-toggle="tooltip" title="5 Food 15 Water" data-placement="bottom" type="button" class="btn btn-warning btn-block" id="mine">
+					Mine<br /> <span class="fa fa-gear"></span> Dig into the ground.</button>
+					
+					
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-warning" style="width:33.3%" id="mine10" disabled>x10</button>
+						<button type="button" class="btn btn-warning" style="width:33.3%" id="mine25" disabled>x25</button>
+						<button type="button" class="btn btn-warning" style="width:33.3%" id="mine100" disabled>x100</button>
+					</div>
+				</div>
+				
+				<div id="burnspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+					<button data-toggle="tooltip" title="Toggle below." data-placement="bottom" type="button" class="btn btn-danger btn-block" id="burn">
+					Smelt<br /> <span class="fa fa-fire"></span> Refine resources.</button>
+					
+					
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal">Coal</button>
+						<button type="button" class="btn btn-danger" style="width:33.3%" id="burnwater">Water</button>
+						<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay" disabled>Clay</button>
+					</div>
+				</div>
+			
+			</div>
+			
 
 			</div>
-
-		</div>
-		
     </div>
 	
   
-    <div class="col-xs-6 leftdiv">
+    <div class="col-xs-7">
 		
-		<div id="resourcesdiv" class="boxDiv2 resDiv">
+		<div class="text-center">
 		<h1>Resources</h1>
-		
-        Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<small id="woodps">0</small>)<br />
-		Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<small id="stoneps">0</small>)<br />
-		<span id="clayresource" class="">Clay: <span id="total_clay">0</span> / <span id="claymax">25</span> (<small id="clayps">0</small>)</span><br />
-		
-		<div id="coaldiv" class="hidden">
-		<span id="charcoalresource" class="">Charcoal:</span> <span id="total_coal">0</span> / <span id="coalmax">50</span> (<small id="coalps">0</small>)<br />
 		</div>
 		
-		<div id="steamdiv" class="hidden">
-		<span id="steamresource" class="">Steam:</span> <span id="total_steam">0</span> (<small id="steamps">-0</small>)<br />
+		<div id="resourcesdiv" class="boxDiv5 resDiv">
+		
+		<div id="woodresource" class="col-xs-3  text-center">
+		<img id="imgWood" src="img/wood.png"><br />Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<small id="woodps">0</small>)</img>
 		</div>
 		
-		<div id="logdiv" class="hidden">
-		<span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span>
+        <div id="stoneresource" class="col-xs-3  text-center">
+		<img id="imgStone" src="img/stone.png"><br />Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<small id="stoneps">0</small>)</img>
+		</div>
+			
+		<div id="clayresource" class="col-xs-3  text-center">
+		<img id="imgClay" src="img/clay.png"><br />Clay: <span id="total_clay">0</span> / <span id="claymax">25</span> (<small id="clayps">0</small>)</img>
 		</div>
 		
-		<div id="blockdiv" class="hidden">
-		<span id="blockresource" class="text-muted">Stone Blocks</span>: <span id="total_blocks">0</span>
+		<div id="coaldiv" class="col-xs-3  text-center hidden">
+		<img id="charcoalresource" src="img/charcoal.png"><br />Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<small id="coalps">0</small>)</img>
 		</div>
 		
-		<div id="manadiv" class="hidden">
+		<div id="logdiv" class="col-xs-3  text-center hidden">
+		<img id="plankresource" src="img/planks.png"><br /><span id="logresource" class="text-warning">Logs</span>: <span id="total_logs">0</span></img>
+		</div>
+				
+		<div id="blockdiv" class="col-xs-3  text-center hidden">
+		<img id="concreteresource" src="img/concrete.png"><br /><span id="blockresource" class="text-muted">Concrete</span>: <span id="total_blocks">0</span></img>
+		</div>
+			
+		<div id="steamdiv" class="col-xs-3  text-center hidden">
+		<img id="steamresources" src="img/steam.png"><br /><span id="steamresource" class="text-primary">Steam</span>: <span id="total_steam">0</span> (<small id="steamps">-0</small>)</img>
+		</div>
+		
+			
+		<div id="manadiv" class="col-xs-3  text-center hidden">
 		<span id="manaresource" class="text-danger">Mana</span>: <span id="total_mana">0</span> (<small id="manaps">0</small>)<br />
 		</div>
 		
 		</div>
-		
-		<div id="eventlog" class="elog boxDiv4 bg-primary">
-			
-		</div>
-		
-		<h1>Actions</h1>
-		<button id="Forage" type="button" class="btn btn-forage btn-lg btn-block">Forage</button>
-        <div class="btn-group" role="group">    
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-forage" id="forage10" disabled>Forage x10</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-forage" id="forage25" disabled>Forage x25</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-forage" id="forage100" disabled>Forage x100</button>
-              </div>
-            </div>
-        </div>
-		<br /><br />
-		
-		<div id="minebuttondiv" class="hidden">
-		<button id="Mine" type="button" class="btn btn-mine btn-lg btn-block">Mine</button>
-        <div class="btn-group" role="group">    
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine" id="mine10" disabled>Mine x10</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine" id="mine25" disabled>Mine x25</button>
-              </div>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-mine" id="mine100" disabled>Mine x100</button>
-              </div>
-            </div>
-        </div>
-		</div><br />
-		
-		<div id="burnbuttondiv" class="hidden">
-		<button id="Burn" type="button" class="btn btn-burn btn-lg btn-block">Burn</button>
-
-		<div id ="burncheckboxes" class="checkbox">
-		<label class="checkbox-inline">
-		  <input type="checkbox" id="burnwood" value=""> 10x Wood <span class="fa fa-long-arrow-right"></span> 1 Charcoal
-		</label><br />
-		<label class="checkbox-inline">
-		  <input type="checkbox" id="burncoal" value=""> 1x Charcoal + 500x Water <span class="fa fa-long-arrow-right"></span> <span id="burnsteam">50</span> Steam
-		</label>
-		</div>
-		</div>
-    </div>
-    
-  </div>
- 
-  
+	</div>
 </div>
+</div>
+  
+
 
 <div id="modal content"> <!--Modals-->
 		

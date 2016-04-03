@@ -140,14 +140,14 @@ document.getElementById("loadgame").onclick = function() {
 		updatetotalexp();
 		
 		if (burntalent > 0) {
-			$('#burnbuttondiv').removeClass('hidden');
+			$('#burnspan').removeClass('hidden');
 			$('#burntalent').addClass('hidden');
 			$('#coaldiv').removeClass('hidden');
 			$('#steamdiv').removeClass('hidden');
 		}
 		
 		if (minetalent > 0) {
-			$('#minebuttondiv').removeClass('hidden');
+			$('#minespan').removeClass('hidden');
 			$('#minetalentlv2').removeClass('hidden');
 			$('#minetalentlv1').addClass('hidden');
 			$('#minetalentlv1desc').addClass('hidden');
@@ -229,21 +229,21 @@ document.getElementById("loadgame").onclick = function() {
 			$('#granaryspan').removeClass('hidden');
 		}
 		
-		if (farmers >= 10) {
+		if (farmers + loggers >= 15) {
 			$('#forage10').prop('disabled', false);
 		}
 		if (miners >= 10) {
 			$('#mine10').prop('disabled', false);
 		}
 		
-		if (farmers >= 25) {
+		if (farmers + loggers >= 35) {
 			$('#forage25').prop('disabled', false);
 		}
 		if (miners >= 25) {
 			$('#mine25').prop('disabled', false);
 		}
 		
-		if (farmers >= 100) {
+		if (farmers + loggers >= 125) {
 			$('#forage100').prop('disabled', false);
 		}
 		if (miners >= 100) {
