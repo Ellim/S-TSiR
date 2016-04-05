@@ -117,8 +117,100 @@ document.getElementById("craftab").onclick = function() {
 document.getElementById("talenttalent").onclick = function() {
 	if ($('#talenttalent').hasClass('btn-danger')) {
 		$('#talenttalent').removeClass('btn-danger');
-	}   
+	}
 };
+
+document.getElementById("1worker").onclick = function() {
+	if ($('#10worker').hasClass('btn-success')) {
+		$('#10worker').removeClass('btn-success');
+		$('#10worker').removeClass('active');
+		$('#10worker').addClass('btn-primary');
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		$('#25worker').removeClass('btn-success');
+		$('#25worker').removeClass('active');
+		$('#25worker').addClass('btn-primary');
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		$('#100worker').removeClass('btn-success');
+		$('#100worker').removeClass('active');
+		$('#100worker').addClass('btn-primary');
+	}
+	if ($('#1worker').hasClass('btn-primary')) {
+		$('#1worker').removeClass('btn-primary');
+		$('#1worker').addClass('active');
+		$('#1worker').addClass('btn-success');
+	}
+}
+
+document.getElementById("10worker").onclick = function() {
+	if ($('#1worker').hasClass('btn-success')) {
+		$('#1worker').removeClass('btn-success');
+		$('#1worker').removeClass('active');
+		$('#1worker').addClass('btn-primary');
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		$('#25worker').removeClass('btn-success');
+		$('#25worker').removeClass('active');
+		$('#25worker').addClass('btn-primary');
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		$('#100worker').removeClass('btn-success');
+		$('#100worker').removeClass('active');
+		$('#100worker').addClass('btn-primary');
+	}
+	if ($('#10worker').hasClass('btn-primary')) {
+		$('#10worker').removeClass('btn-primary');
+		$('#10worker').addClass('active');
+		$('#10worker').addClass('btn-success');
+	}
+}
+
+document.getElementById("25worker").onclick = function() {
+	if ($('#1worker').hasClass('btn-success')) {
+		$('#1worker').removeClass('btn-success');
+		$('#1worker').removeClass('active');
+		$('#1worker').addClass('btn-primary');
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		$('#10worker').removeClass('btn-success');
+		$('#10worker').removeClass('active');
+		$('#10worker').addClass('btn-primary');
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		$('#100worker').removeClass('btn-success');
+		$('#100worker').removeClass('active');
+		$('#100worker').addClass('btn-primary');
+	}
+	if ($('#25worker').hasClass('btn-primary')) {
+		$('#25worker').removeClass('btn-primary');
+		$('#25worker').addClass('active');
+		$('#25worker').addClass('btn-success');
+	}
+}
+
+document.getElementById("100worker").onclick = function() {
+	if ($('#1worker').hasClass('btn-success')) {
+		$('#1worker').removeClass('btn-success');
+		$('#1worker').removeClass('active');
+		$('#1worker').addClass('btn-primary');
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		$('#10worker').removeClass('btn-success');
+		$('#10worker').removeClass('active');
+		$('#10worker').addClass('btn-primary');
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		$('#25worker').removeClass('btn-success');
+		$('#25worker').removeClass('active');
+		$('#25worker').addClass('btn-primary');
+	}
+	if ($('#100worker').hasClass('btn-primary')) {
+		$('#100worker').removeClass('btn-primary');
+		$('#100worker').addClass('active');
+		$('#100worker').addClass('btn-success');
+	}
+}
 
 document.getElementById("unlockminebutton").onclick = function() {
 	if (talentpoints >= 5) {
@@ -460,9 +552,22 @@ document.getElementById("unlockwarriorbutton").onclick = function() {
 }
 
 document.getElementById("removefarmerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (farmers > 0) {
-		farmers -= 1;
-		freeworkers += 1;
+		freeworkers += Math.min(farmers,mult);
+		farmers -= Math.min(farmers,mult);
 		updateworkers();
 		if ((farmers + loggers) < 15) {
 		$('#forage10').prop('disabled', true);
@@ -477,12 +582,25 @@ document.getElementById("removefarmerbutton").onclick = function() {
 }
 
 document.getElementById("addfarmerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		mult = 100;
+	}
 	if (freeworkers > 0) {
-		if (currentfood >= 25) {
-			if (farmers < ((fields) * fieldlevel)) {
-				currentfood -= 25;
-				freeworkers -= 1;
-				farmers += 1;
+		if (currentfood >= (25 * Math.min(freeworkers,mult))) {
+			if ((farmers + Math.min(freeworkers,mult)) <= ((fields) * fieldlevel)) {
+				currentfood -= (25 * Math.min(freeworkers,mult));
+				farmers += Math.min(freeworkers,mult);
+				freeworkers -= Math.min(freeworkers,mult);
 				updateworkers();
 				if ((farmers + loggers) >= 15) {
 				$('#forage10').prop('disabled', false);
@@ -503,9 +621,22 @@ document.getElementById("addfarmerbutton").onclick = function() {
 }
 
 document.getElementById("removeloggerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (loggers > 0) {
-		loggers -= 1;
-		freeworkers += 1;
+		freeworkers += Math.min(loggers,mult);
+		loggers -= Math.min(loggers,mult);
 		updateworkers();
 		if ((farmers + loggers) < 15) {
 		$('#forage10').prop('disabled', true);
@@ -520,11 +651,24 @@ document.getElementById("removeloggerbutton").onclick = function() {
 }
 
 document.getElementById("addloggerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		mult = 100;
+	}
 	if (freeworkers > 0) {
-		if (currentfood >= 75) {
-			currentfood -= 75;
-			freeworkers -= 1;
-			loggers += 1;
+		if (currentfood >= (75 * Math.min(freeworkers,mult))) {
+			currentfood -= (75 * Math.min(freeworkers,mult));
+			loggers += Math.min(freeworkers,mult);
+			freeworkers -= Math.min(freeworkers,mult);
 			updateworkers();
 			if ((farmers + loggers) >= 15) {
 			$('#forage10').prop('disabled', false);
@@ -540,9 +684,22 @@ document.getElementById("addloggerbutton").onclick = function() {
 }
 
 document.getElementById("removeminerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		mult = 100;
+	}
 	if (miners > 0) {
-		miners -= 1;
-		freeworkers += 1;
+		freeworkers += Math.min(miners,mult);
+		miners -= Math.min(miners,mult);
 		updateworkers();
 		if (miners < 10) {
 		$('#mine10').prop('disabled', true);
@@ -557,11 +714,24 @@ document.getElementById("removeminerbutton").onclick = function() {
 }
 
 document.getElementById("addminerbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		mult = 100;
+	}
 	if (freeworkers > 0) {
-		if (currentfood >= 75) {
-			currentfood -= 75;
-			freeworkers -= 1;
-			miners += 1;
+		if (currentfood >= (75 * Math.min(freeworkers,mult))) {
+			currentfood -= (75 * Math.min(freeworkers,mult));
+			miners += Math.min(freeworkers,mult);
+			freeworkers -= Math.min(freeworkers,mult);
 			updateworkers();
 			if (miners >= 10) {
 			$('#mine10').prop('disabled', false);
@@ -577,19 +747,45 @@ document.getElementById("addminerbutton").onclick = function() {
 }
 
 document.getElementById("removeresearcherbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (researchers > 0) {
-		researchers -= 1;
-		freeworkers += 1;
+		freeworkers += Math.min(researchers,mult);
+		researchers -= Math.min(researchers,mult);
 		updateworkers();
 	}
 }
 
 document.getElementById("addresearcherbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (freeworkers > 0) {
-		if (currentfood >= 25) {
-			currentfood -= 25;
-			freeworkers -= 1;
-			researchers += 1;
+		if (currentfood >= (25 * Math.min(freeworkers,mult))) {
+			currentfood -= (25 * Math.min(freeworkers,mult));
+			researchers += Math.min(freeworkers,mult);
+			freeworkers -= Math.min(freeworkers,mult);
 			updateworkers();
 			if ($('#researchtalent').hasClass('hidden')) {
 			$('#researchtalent').removeClass('hidden');
@@ -607,19 +803,45 @@ document.getElementById("addresearcherbutton").onclick = function() {
 }
 
 document.getElementById("removewarriorbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (warriors > 0) {
-		warriors -= 1;
-		freeworkers += 1;
+		freeworkers += Math.min(researchers,mult);
+		warriors -= Math.min(warriors,mult);
 		updateworkers();
 	}
 }
 
 document.getElementById("addwarriorbutton").onclick = function() {
+	var mult;
+	if ($('#1worker').hasClass('btn-success')) {
+		var mult = 1;
+	}
+	if ($('#10worker').hasClass('btn-success')) {
+		var mult = 10;
+	}
+	if ($('#25worker').hasClass('btn-success')) {
+		var mult = 25;
+	}
+	if ($('#100worker').hasClass('btn-success')) {
+		var mult = 100;
+	}
 	if (freeworkers > 0) {
-		if (currentfood >= 125) {
-			currentfood -= 125;
-			freeworkers -= 1;
-			warriors += 1;
+		if (currentfood >= (125 * Math.min(freeworkers,mult))) {
+			currentfood -= (125 * Math.min(freeworkers,mult));
+			warriors += Math.min(freeworkers,mult);
+			freeworkers -= Math.min(freeworkers,mult);
 			updateworkers();
 		}
 	}
