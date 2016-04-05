@@ -16,7 +16,7 @@ var savetick = 300000;
 var waterrate = 2.5;
 var foodrate = 0;
 
-var water = 50;
+var water = 500;
 var watermax = 1000;
 var currentfood = 0;
 var foodmax = 350;
