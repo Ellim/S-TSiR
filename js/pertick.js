@@ -15,6 +15,8 @@ function updatetotalexp() {
 			if (currentlevel > 14) {
 				$('#talenttalent').removeClass('hidden');
 				$('#talenttalent').addClass('btn-danger');
+				message("");
+				message("You've regained enough of your skill to learn a new ability!");
 			}
 		}
     }
@@ -25,7 +27,13 @@ function updatetotalexp() {
   var tempvar4 = document.getElementById("exptnl")
   tempvar4.innerHTML = prettify(exptnl);
   var tempvar5 = document.getElementById("talentpoints")
-  tempvar5.innerHTML = prettify(talentpoints);
+  if (talentpoints > 0) {
+	  tempvar5.innerHTML = romanNumeral(talentpoints);
+  }
+  if (talentpoints < 1) {
+	  tempvar5.innerHTML = 0;
+  }
+  
   document.getElementById("expbar").style.width = ((totalexp/exptnl)* 100) + '%';
 }
 
@@ -39,8 +47,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam","rpps"]
-	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam,(((researcherrate*researchers)*4)*researcherlevel)]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam"]
+	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -162,6 +170,9 @@ document.getElementById("loadgame").onclick = function() {
 			$('#minetalentlv2desc').removeClass('hidden');
 			$('#coaldiv').removeClass('hidden');
 			$('#crafttalentbutton').removeClass('hidden');
+			$('#keeneyestalent').removeClass('hidden');
+			$('#rivertalent').removeClass('hidden');
+			$('#rtowerdiv').removeClass('hidden');
 		}
 		
 		if (researchertalent > 0) {
@@ -198,6 +209,7 @@ document.getElementById("loadgame").onclick = function() {
 		
 		if (housetalent > 0) {
 			$('#housetab').removeClass('hidden');
+			$('#popspan').removeClass('hidden');
 		}
 		
 		if (workertalent > 0) {

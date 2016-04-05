@@ -101,7 +101,7 @@ $(document).ready(function(){
         </div>
 		
 		Level: <span id="current_level">1</span> <br />
-        Population: <span id="pop">0</span> / <span id="popmax">0 </span><br />
+        <span id="popspan" class="hidden">Population: <span id="pop">0</span> / <span id="popmax">0 </span></span><br />
 		Talent Points:<span id="talentpoints" class="">0</span><br />
 		<div id="rpdiv" class="hidden">
 		Research Points: <span id="total_RP" class="">0</span> (<small id="rpps">0</small>)
@@ -133,7 +133,7 @@ $(document).ready(function(){
 						
 						<div class="btn-group-justified">
 							<button type="button" class="btn btn-danger" style="width:50%" id="removeresearcherbutton">Fire</button>
-							<button type="button" class="btn btn-success" style="width:50%" id="addresearcherbutton"><span class="hire">Hire</span> <small class="hirecost">(-50 Food)</small></button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addresearcherbutton"><span class="hire">Hire</span> <small class="hirecost">(-25 Food)</small></button>
 						</div>
 					</div>
 					
@@ -253,7 +253,7 @@ $(document).ready(function(){
 					Generates Food over time.
 					</div>
 					
-					<div class="buttonBox boxDiv3 col-xs-4">
+					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="rtowerdiv">
 					<button type="button" class="btn btn-primary btn-block" id="rtowerbutton"><span class="fa fa-lightbulb-o"></span> Research Tower <span class="badge" id="rtowernum">0</span></button>
 					Cost: <span id="rtowercost" class="">100</span> Stone.<br />
 					Increase Researcher Rate.<br />
@@ -276,7 +276,7 @@ $(document).ready(function(){
 				<div role="tabpanel" class="text-center tab-pane fade" id="talenttab">
 					<br />
 				
-					<div class="buttonBox boxDiv3 col-xs-4" id="rivertalent">
+					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="rivertalent">
 						<div class="btn-group open">
 							<button type="button" class="btn btn-primary" id="riverbutton">
 							<span class="glyphicon glyphicon-tint"></span> Expand River</button>
@@ -286,7 +286,7 @@ $(document).ready(function(){
 						Increase Water Production. <!--by <span id="riverproduction">10</span> Water/sec.-->			
 					</div>
 					
-					<div class="buttonBox boxDiv3 col-xs-4" id="keeneyestalent">
+					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="keeneyestalent">
 						<div class="btn-group open">
 							<button type="button" class="btn btn-primary" id="keeneyes">
 							<span class="fa fa-search"></span> Keen Eyes</button>

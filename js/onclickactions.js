@@ -7,14 +7,18 @@ document.getElementById("forage").onclick = function() {
 		$('#consttalent').addClass('btn-danger');
 		$('#prodtab').addClass('btn-danger');
 		constructiontalent += 1;
+		message("");
+		message("You've gathered enough seeds from all the Food you should be able to grow something!");
 		} 
 	}
 	if ($('#housetab').hasClass('hidden')) {
 		if (wood >= 10) {
 			$('#housetab').removeClass('hidden');
-			$('#consttalent').addClass('btn-danger');
+			$('#popspan').removeClass('hidden');
 			$('#housetab').addClass('btn-danger');
 			housetalent += 1;
+			message("");
+			message("Right on! You now have enough Wood to build a Hut.");
 		}
 	}
 };
@@ -125,9 +129,16 @@ document.getElementById("unlockminebutton").onclick = function() {
 		$('#minetalentlv1desc').addClass('hidden');
 		$('#minetalentlv2desc').removeClass('hidden');
 		$('#crafttalentbutton').removeClass('hidden');
+		$('#keeneyestalent').removeClass('hidden');
+		$('#rivertalent').removeClass('hidden');
+		$('#rtowerdiv').removeClass('hidden');
 		updatetotalexp();
 		minetalent += 1;
 		$('#coaldiv').removeClass('hidden');
+		message("");
+		message("Mining will take some Food and Water.");
+		message("The head of Research pleads with you to gather some Stone!");
+		message("He teaches you how to build a Research Tower; this will speed up future research.");
 	}
 }
 
@@ -395,6 +406,10 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			farmertalent += 1;
+			message("");
+			message("Your Researchers have gathered all their knowledge of Farming into a great Codex.");
+			message("You can now train Farmers to till your fields and increase Food production even more!");
+			message("Each Field can hold one Farmer initially, the head of Research assures you he can improve this eventually.");
 		}
 	}
 }
@@ -464,18 +479,24 @@ document.getElementById("removefarmerbutton").onclick = function() {
 document.getElementById("addfarmerbutton").onclick = function() {
 	if (freeworkers > 0) {
 		if (currentfood >= 25) {
-			currentfood -= 25;
-			freeworkers -= 1;
-			farmers += 1;
-			updateworkers();
-			if ((farmers + loggers) >= 15) {
-			$('#forage10').prop('disabled', false);
+			if (farmers < ((fields) * fieldlevel)) {
+				currentfood -= 25;
+				freeworkers -= 1;
+				farmers += 1;
+				updateworkers();
+				if ((farmers + loggers) >= 15) {
+				$('#forage10').prop('disabled', false);
+				}
+				if ((farmers + loggers) >= 35) {
+				$('#forage25').prop('disabled', false);
+				}
+				if ((farmers + loggers) >= 125) {
+				$('#forage100').prop('disabled', false);
+				}
 			}
-			if ((farmers + loggers) >= 35) {
-			$('#forage25').prop('disabled', false);
-			}
-			if ((farmers + loggers) >= 125) {
-			$('#forage100').prop('disabled', false);
+			if (farmers > ((fields) * fieldlevel)) {
+				message("");
+				message("There's no room for more Farmers!");
 			}
 		}
 	}
@@ -565,8 +586,8 @@ document.getElementById("removeresearcherbutton").onclick = function() {
 
 document.getElementById("addresearcherbutton").onclick = function() {
 	if (freeworkers > 0) {
-		if (currentfood >= 50) {
-			currentfood -= 50;
+		if (currentfood >= 25) {
+			currentfood -= 25;
 			freeworkers -= 1;
 			researchers += 1;
 			updateworkers();
@@ -577,7 +598,9 @@ document.getElementById("addresearcherbutton").onclick = function() {
 			researchtalent += 1;
 			$('#rpdiv').removeClass('hidden');
 			message("");
-			message("Gather as much research as you can, there are many things to discover!");
+			message("Researchers will eat up a small percentage of your food every second.");
+			message("If Food gets too low they will stop working. (Not eating though!)");
+			message("Try to get as much research as you can, there are many things to discover!");
 			}
 		}
 	}
@@ -710,8 +733,9 @@ document.getElementById("fieldbutton").onclick = function() {
 		}
 		if (fields < 2) {
 			message("")
-			message("Now that you have Food and Water under control it's time to build a shelter.");
+			message("Excellent! Now that you have Food and Water under control it's time to build a shelter.");
 			message("Keep Foraging until you've gathered 10 Wood.")
+			message("Don't forget to keep tilling fields when you can!")
 		}
 	}
 }

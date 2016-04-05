@@ -5,12 +5,13 @@ function updatefarmer() {
 	if (currentfood >= foodmax) {
 		currentfood = foodmax - 0.001;
 	}
-
+	var researcherconsume = (4*(((foodmax * .001) * researchers) * Math.max(1,researcherlevel/3)));
+	var loggerconsume = (4*(((foodmax * .002) * loggers)));
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
-	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4); 
-	tempvar2.innerHTML = prettify(tempvar3);
+	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4) - researcherconsume - loggerconsume; 
+	tempvar2.innerHTML = tempvar3.toFixed(2);
 	
 	if (currentfood < 0) {
 		currentfood = 0;
@@ -24,18 +25,21 @@ function updatelogger() {
   clearInterval(loggerinterval);
   loggerinterval = setInterval(function() {
 	if (loggers > 0) {
-		wood += (loggerrate * loggers) * (1 + (sawmills * 0.10));
-		if (wood > woodmax) {
-			wood = woodmax;
+		if (currentfood >= (foodmax*.15)) {
+			wood += (loggerrate * loggers) * (1 + (sawmills * 0.10));
+			var tempvar2 = document.getElementById("woodps");
+			var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
+			tempvar2.innerHTML = prettify(tempvar3);
 		}
+		if (currentfood < (foodmax*.15)) {
+			var tempvar2 = document.getElementById("woodps");
+			tempvar2.innerHTML = 0;
+		}
+		currentfood -= ((foodmax * .002) * loggers);
 	}
-	
-	var tempvar = document.getElementById("total_wood");
-	tempvar.innerHTML = prettify(wood);
-	var tempvar2 = document.getElementById("woodps");
-	var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
-	tempvar2.innerHTML = prettify(tempvar3);
-	
+	if (wood > woodmax) {
+		wood = woodmax;
+	}
 	}, workertick);
 }
 
@@ -43,9 +47,12 @@ function updatewarrior() {
   clearInterval(warriorinterval);
   warriorinterval = setInterval(function() {
 	if (warriors > 0) {
-		totalexp += (warriorrate * warriors) * (warriorlevel);
-		updatetotalexp();
+		if (currentfood >= (foodmax/2)) {
+			totalexp += (warriorrate * warriors) * (warriorlevel);
+		}
+		currentfood -= ((foodmax * .0033) * warriors);
 	}
+	updatetotalexp();
 	}, workertick);
 }
 
@@ -53,24 +60,32 @@ function updateminer() {
   clearInterval(minerinterval);
   minerinterval = setInterval(function() {
 	if (miners > 0) {
-		stone += (minerrate * miners);
-		clay += ((minerrate / 4) * miners);
-		if (stone > stonemax) {
-			stone = stonemax;
+		if (currentfood >= (foodmax*.10)) {
+			stone += (minerrate * miners);
+			clay += ((minerrate / 4) * miners);
+			var tempvar2 = document.getElementById("stoneps");
+			var tempvar3 = (miners * (minerrate*4)); 
+			tempvar2.innerHTML = prettify(tempvar3);
+			
+			var tempvar4 = document.getElementById("clayps");
+			var tempvar5 = (miners * ((minerrate/5)*4)); 
+			tempvar4.innerHTML = prettify(tempvar5);
 		}
-		if (clay > claymax) {
-			clay = claymax;
+		if (currentfood < (foodmax*.10)) {
+			var tempvar2 = document.getElementById("stoneps");
+			var tempvar4 = document.getElementById("clayps");
+			tempvar2.innerHTML = 0;
+			tempvar4.innerHTML = 0;
 		}
+		currentfood -= ((foodmax * .0022) * miners);
+	}
+	if (stone > stonemax) {
+		stone = stonemax;
+	}
+	if (clay > claymax) {
+		clay = claymax;
 	}
 	updateresources();
-	var tempvar2 = document.getElementById("stoneps");
-	var tempvar3 = (miners * (minerrate*4)); 
-	tempvar2.innerHTML = prettify(tempvar3);
-	
-	var tempvar4 = document.getElementById("clayps");
-	var tempvar5 = (miners * ((minerrate/5)*4)); 
-	tempvar4.innerHTML = prettify(tempvar5);
-	
 	}, workertick);
 }
 
@@ -108,34 +123,37 @@ function updateresearcher() {
   clearInterval(researcherinterval);
   researcherinterval = setInterval(function() {
 	if (researchers > 0) {
-		researchpoints += ((researcherrate * researchers)*researcherlevel);
-		var rpupcost = (((researcherlevel * 1500) * researcherlevel));
-		var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost'];
-		var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost"];
-		var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost,rpupcost]
-			for (i = 0; i < arrRPproj.length; i++) {
-				var tempvar = document.getElementById(arrRPproj1[i]);
-
-					if (arrRPprojC[i] <= researchpoints) {
-
-						$(arrRPproj[i]).removeClass('text-danger');
-						$(arrRPproj[i]).addClass('text-success');
-					}
-
-			}
-			
-			for (i = 0; i < arrRPproj.length; i++) {
-				var tempvar = document.getElementById(arrRPproj1[i]);
-				if (arrRPprojC[i] > researchpoints) {
-					
-					$(arrRPproj[i]).removeClass('text-success');
-					$(arrRPproj[i]).addClass('text-danger');
-
-				}
-			}
+		if (currentfood >= (foodmax*.2)) {
+			researchpoints += ((researcherrate * researchers) * researcherlevel);
+			var tempvar = document.getElementById("rpps");
+			tempvar.innerHTML = prettify((((researcherrate*researchers)*4)*researcherlevel));
+		}
+		if (currentfood < (foodmax * .2)) {
+			var tempvar = document.getElementById("rpps");
+			tempvar.innerHTML = 0;
+		}
+		currentfood -= (((foodmax * .001) * researchers) * Math.max(1,researcherlevel/3));
 	}
 	if (steam > 0) {
 		steam -= 1;
+	}
+	var rpupcost = (((researcherlevel * 1500) * researcherlevel));
+	var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost'];
+	var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost"];
+	var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost,rpupcost]
+	for (i = 0; i < arrRPproj.length; i++) {
+		var tempvar = document.getElementById(arrRPproj1[i]);
+			if (arrRPprojC[i] <= researchpoints) {
+				$(arrRPproj[i]).removeClass('text-danger');
+				$(arrRPproj[i]).addClass('text-success');
+			}
+	}
+	for (i = 0; i < arrRPproj.length; i++) {
+		var tempvar = document.getElementById(arrRPproj1[i]);
+			if (arrRPprojC[i] > researchpoints) {
+				$(arrRPproj[i]).removeClass('text-success');
+				$(arrRPproj[i]).addClass('text-danger');
+			}
 	}
 	}, workertick);
 }
