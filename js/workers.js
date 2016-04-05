@@ -7,10 +7,12 @@ function updatefarmer() {
 	}
 	var researcherconsume = (4*(((foodmax * .001) * researchers) * Math.max(1,researcherlevel/3)));
 	var loggerconsume = (4*(((foodmax * .002) * loggers)));
+	var minerconsume = (4*((foodmax * .0022) * miners));
+	var warriorconsume = (4*((foodmax * .0033) * warriors));
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
-	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4) - researcherconsume - loggerconsume; 
+	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4) - researcherconsume - loggerconsume - minerconsume - warriorconsume; 
 	tempvar2.innerHTML = tempvar3.toFixed(2);
 	
 	if (currentfood < 0) {
