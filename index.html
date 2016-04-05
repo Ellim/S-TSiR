@@ -124,6 +124,12 @@ $(document).ready(function(){
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="text-center tab-pane fade" id="workertab">
+					<div class="btn-group-justified">
+						<button type="button" class="btn btn-success active" style="width:25%" id="1worker">x1</button>
+						<button type="button" class="btn btn-primary" style="width:25%" id="10worker">x10</button>
+						<button type="button" class="btn btn-primary" style="width:25%" id="25worker">x25</button>
+						<button type="button" class="btn btn-primary" style="width:25%" id="100worker">x100</button>
+					</div>
 				<br />
 				
 					<div id="researchdiv" class="buttonBox2 boxDiv3 col-xs-4">
@@ -553,7 +559,7 @@ $(document).ready(function(){
 		</div>
 		
 		<div id="actionbuttons">
-			<div id="foragespan" class="buttonBox2 boxDiv3 col-xs-4">
+			<div id="foragespan" class="buttonBox2 col-xs-4">
 				<button type="button" class="btn btn-success btn-block" id="forage">
 				Forage<br /> <span class="fa fa-apple"></span> Gather simple resources.</button>
 					
@@ -565,7 +571,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 				
-			<div id="minespan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+			<div id="minespan" class="buttonBox2 col-xs-4 hidden">
 				<button type="button" class="btn btn-warning btn-block" id="mine">
 				Mine<br /> <span class="fa fa-gear"></span> Dig into the ground.</button>
 					
@@ -577,7 +583,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 				
-			<div id="burnspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+			<div id="burnspan" class="buttonBox2 col-xs-4 hidden">
 				<button type="button" class="btn btn-danger btn-block" id="burn">
 				Smelt<br /> <span class="fa fa-fire"></span> Refine resources.</button>
 					
