@@ -39,6 +39,16 @@ function updatelogger() {
 	}, workertick);
 }
 
+function updatewarrior() {
+  clearInterval(warriorinterval);
+  warriorinterval = setInterval(function() {
+	if (warriors > 0) {
+		totalexp += (warriorrate * warriors) * (warriorlevel);
+		updatetotalexp();
+	}
+	}, workertick);
+}
+
 function updateminer() {
   clearInterval(minerinterval);
   minerinterval = setInterval(function() {

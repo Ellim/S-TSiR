@@ -6,6 +6,7 @@ var loggerinterval;
 var researcherinterval;
 var minerinterval;
 var talentinterval;
+var warriorinterval;
 
 var workertick = 250;
 var watertick = 2000;
@@ -101,6 +102,8 @@ var loggerrate = 0.125;
 var researcherrate = .0375;
 var researcherlevel = 1;
 var minerrate = 0.15;
+var warriorrate = 2.5;
+var warriorlevel = 1;
 
 var researchertalent = 0;
 var farmertalent = 0;
@@ -131,6 +134,7 @@ function savegame() {
 	researcherinterval: researcherinterval,
 	minerinterval: minerinterval,
 	talentinterval: talentinterval,
+	warriorinterval: warriorinterval,
 	
 	workertick: workertick,
 	watertick: watertick,
@@ -226,6 +230,8 @@ function savegame() {
 	researcherrate: researcherrate,
 	researcherlevel: researcherlevel,
 	minerrate: minerrate,
+	warriorrate: warriorrate,
+	warriorlevel: warriorlevel,
 	
 	researchertalent: researchertalent,
 	farmertalent: farmertalent,
@@ -347,6 +353,8 @@ function loadgame() {
 	if (typeof savestring.researcherrate !== "undefined") researcherrate = savestring.researcherrate;
 	if (typeof savestring.researcherlevel !== "undefined") researcherlevel = savestring.researcherlevel;
 	if (typeof savestring.minerrate !== "undefined") minerrate = savestring.minerrate;
+	if (typeof savestring.warriorrate !== "undefined") warriorrate = savestring.warriorrate;
+	if (typeof savestring.warriorlevel !== "undefined") warriorlevel = savestring.warriorlevel;
 	
 	if (typeof savestring.researchertalent !== "undefined") researchertalent = savestring.researchertalent;
 	if (typeof savestring.farmertalent !== "undefined") farmertalent = savestring.farmertalent;

@@ -708,7 +708,7 @@ document.getElementById("fieldbutton").onclick = function() {
 				granarytalent += 1;
 			}
 		}
-		if (fields = 1) {
+		if (fields < 2) {
 			message("")
 			message("Now that you have Food and Water under control it's time to build a shelter.");
 			message("Keep Foraging until you've gathered 10 Wood.")

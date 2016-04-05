@@ -117,7 +117,7 @@ $(document).ready(function(){
 				<li role="presentation"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab" class="hidden" id="talenttalent">Talents</a></li>
 				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
 				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
-				<li role="presentation" class="active"><a href="#actiontab" aria-controls="actiontab" role="tab" data-toggle="tab" class="" id="actiontalent">Actions</a></li>
+				
 				
 			</ul>
 
@@ -172,7 +172,7 @@ $(document).ready(function(){
 
 					<div id="warriordiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 						<button type="button" class="btn btn-primary btn-block" id="warriorbutton">
-						Warriors <span id="warriornum" class="badge">0</span></button>
+						Explorers <span id="warriornum" class="badge">0</span></button>
 						
 						
 						<div class="btn-group-justified">
@@ -373,8 +373,8 @@ $(document).ready(function(){
 
 						<div id="unlockwarriordiv" class="buttonBox boxDiv3 col-xs-4">
 						<button type="button" class="btn btn-primary btn-block" id="unlockwarriorbutton">
-						<span class="fa fa-gavel"></span> Unlock Warriors</button>
-						<span>Cost: <span id="warriorcost" class="text-danger">1750</span> Research Points.</span> Warriors generate Military Prowess over time.
+						<span class="fa fa-gavel"></span> Unlock Explorers</button>
+						<span>Cost: <span id="warriorcost" class="text-danger">1750</span> Research Points.</span> Explorers generate Exp over time.
 						</div>
 						
 						<div id="upgradeRPdiv" class="buttonBox boxDiv3 col-xs-4">
@@ -464,7 +464,7 @@ $(document).ready(function(){
 			
 			</div>
 			
-			<div role="tabpanel" class="text-center tab-pane fade in active" id="actiontab">
+			<!--<div role="tabpanel" class="text-center tab-pane fade" id="actiontab">
 				<br />
 				<div id="foragespan" class="buttonBox2 boxDiv3 col-xs-4">
 					<button type="button" class="btn btn-success btn-block" id="forage">
@@ -502,7 +502,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			
-			</div>
+			</div>-->
 			
 
 			</div>
@@ -551,8 +551,45 @@ $(document).ready(function(){
 			</div>
 		
 		</div>
-		<div style="height:5vh;">
+		
+		<div id="actionbuttons">
+			<div id="foragespan" class="buttonBox2 boxDiv3 col-xs-4">
+				<button type="button" class="btn btn-success btn-block" id="forage">
+				Forage<br /> <span class="fa fa-apple"></span> Gather simple resources.</button>
+					
+					
+				<div class="btn-group-justified">
+					<button type="button" class="btn btn-success" style="width:33.3%" id="forage10" disabled>x10</button>
+					<button type="button" class="btn btn-success" style="width:33.3%" id="forage25" disabled>x25</button>
+					<button type="button" class="btn btn-success" style="width:33.3%" id="forage100" disabled>x100</button>
+				</div>
+			</div>
+				
+			<div id="minespan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+				<button type="button" class="btn btn-warning btn-block" id="mine">
+				Mine<br /> <span class="fa fa-gear"></span> Dig into the ground.</button>
+					
+					
+				<div class="btn-group-justified">
+					<button type="button" class="btn btn-warning" style="width:33.3%" id="mine10" disabled>x10</button>
+					<button type="button" class="btn btn-warning" style="width:33.3%" id="mine25" disabled>x25</button>
+					<button type="button" class="btn btn-warning" style="width:33.3%" id="mine100" disabled>x100</button>
+				</div>
+			</div>
+				
+			<div id="burnspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+				<button type="button" class="btn btn-danger btn-block" id="burn">
+				Smelt<br /> <span class="fa fa-fire"></span> Refine resources.</button>
+					
+					
+				<div class="btn-group-justified">
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal">Coal</button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnwater">Water</button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay" disabled>Clay</button>
+				</div>
+			</div>
 		</div>
+		
 		<div id="combatdiv" class="boxDiv5 bg-muted hidden" style="height:35vh; overflow-y:auto;">
 			<div id="combatLeft" class="col-xs-6 boxDiv5" style="height:35vh;">
 				<div class="" style="height:3vh; padding-top:3px;">

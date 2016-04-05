@@ -121,10 +121,10 @@ document.getElementById("newgame").onclick = function() {
 		updatetalents();
 		updatetotalexp();
 		updatebuildings();
-		
+		updatewarrior();
 		updateresources();
 		updateworkers();
-		updatetotalexp();
+
 		message("You wake up with a splitting headache. Your stomach growls with hunger.");
 		message("Luckily there is a River nearby giving you access to clean water.")
 		message("Better look around for something to eat.");
@@ -142,7 +142,7 @@ document.getElementById("loadgame").onclick = function() {
 		autosave();
 		updatetotalexp();
 		updatebuildings();
-		
+		updatewarrior();
 		updateresources();
 		updateworkers();
 		updatetotalexp();
