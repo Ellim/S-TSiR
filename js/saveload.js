@@ -14,7 +14,7 @@ var foodtick = 500;
 var savetick = 300000;
 
 var waterrate = 2.5;
-var foodrate = 0;
+var fieldrate = 0;
 
 var water = 500;
 var watermax = 1000;
@@ -142,7 +142,7 @@ function savegame() {
 	savetick: savetick,
 	
 	waterrate: waterrate,
-	foodrate: foodrate,
+	fieldrate: fieldrate,
 	
 	water: water,
 	watermax: watermax,
@@ -265,7 +265,7 @@ function loadgame() {
 	if (typeof savestring.savetick !== "undefined") savetick = savestring.savetick;
 	
 	if (typeof savestring.waterrate !== "undefined") waterrate = savestring.waterrate;
-	if (typeof savestring.foodrate !== "undefined") foodrate = savestring.foodrate;
+	if (typeof savestring.fieldrate !== "undefined") fieldrate = savestring.fieldrate;
 	
 	if (typeof savestring.water !== "undefined") water = savestring.water;
 	if (typeof savestring.watermax !== "undefined") watermax = savestring.watermax;
@@ -374,6 +374,8 @@ function loadgame() {
 	if (typeof savestring.granarytalent !== "undefined") granarytalent = savestring.granarytalent;
 	
 	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
+	
+	fieldrate = ((.175 * (fields)) * fieldlevel);
 }
 
 function showsave() {

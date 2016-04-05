@@ -1,7 +1,7 @@
 function updatefarmer() {
   clearInterval(farmerinterval);
   farmerinterval = setInterval(function() {
-	currentfood += ((farmerrate * farmers) + (foodrate));
+	currentfood += ((farmerrate * farmers) + (fieldrate));
 	if (currentfood >= foodmax) {
 		currentfood = foodmax - 0.001;
 	}
@@ -12,7 +12,7 @@ function updatefarmer() {
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
-	var tempvar3 = (farmers * (farmerrate*4)) + (foodrate*4) - researcherconsume - loggerconsume - minerconsume - warriorconsume; 
+	var tempvar3 = (farmers * (farmerrate*4)) + (fieldrate*4) - researcherconsume - loggerconsume - minerconsume - warriorconsume; 
 	tempvar2.innerHTML = tempvar3.toFixed(2);
 	
 	if (currentfood < 0) {

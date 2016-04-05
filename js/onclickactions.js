@@ -482,10 +482,10 @@ document.getElementById("fieldirrigationbutton").onclick = function() {
 		fieldlevel += 1;
 		fieldrpcost = fieldrpcost * 1.1;
 		waterrate += .125 * fields; 
-		foodrate += .125 * fields;
+		fieldrate += .175 * fields;
 		var tempvar = document.getElementById("fieldirrigationcost");
 		tempvar.innerHTML = prettify(fieldrpcost);
-		message("Fields now generate " + prettify(foodrate*4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
+		message("Fields now generate " + prettify(fieldrate*4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
 	}
 }
 
@@ -932,17 +932,17 @@ document.getElementById("fieldbutton").onclick = function() {
 		totalexp += (fields * 5);
 		ofieldcost = fieldcost;
 		fieldcost = (fieldcost * 1.24);
-		foodrate += (.125 * (fieldlevel));
+		fieldrate += (.175 * (fieldlevel));
 		waterrate += (.125 * (fieldlevel-1));
 		updatebuildings();
 		updateresources();	
 		message("");
 		message("Tilled a Field at the expense of " + prettify(ofieldcost) + " Food and gained " + prettify((fields * 5)) + " EXP.");
 		if (fieldlevel < 2) {
-			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food per second.");
+			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(fieldrate * 4) + " Food per second.");
 		}
 		if (fieldlevel > 1) {
-			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(foodrate * 4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
+			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(fieldrate * 4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
 		}
 		if ($('#granaryspan').hasClass('hidden')) {
 			if (fields > 5) {
