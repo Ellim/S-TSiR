@@ -11,7 +11,15 @@ function updatetotalexp() {
 		if (currentlevel % 3 === 0) {
 			talentpoints += 1;
 		}
-    } 
+		if ($('#talenttalent').hasClass('hidden')) {
+			if (currentlevel > 14) {
+				$('#talenttalent').removeClass('hidden');
+				$('#talenttalent').addClass('btn-danger');
+			}
+		}
+    }
+	
+	
   var tempvar3 = document.getElementById("current_level");
   tempvar3.innerHTML = prettify(currentlevel);
   var tempvar4 = document.getElementById("exptnl")
@@ -81,7 +89,7 @@ function updatewater() {
 	if (popmax > 1 && currentfood > (popmax * 2)) {
 		if (population < popmax) {
 			var rand = 1 + Math.floor(Math.random() * 20);
-			if (rand > 14) {
+			if (rand > 17) {
 				population += 1;
 				freeworkers += 1;
 				waterrate -= .25;
@@ -250,6 +258,9 @@ document.getElementById("loadgame").onclick = function() {
 			$('#mine100').prop('disabled', false);
 		}
 		
+		if (currentlevel > 14) {
+			$('#talenttalent').removeClass('hidden');
+		}
 		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = prettify(riverupgradecost);

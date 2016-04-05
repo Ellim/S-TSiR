@@ -22,7 +22,7 @@
 <div id="scripting">  <!--Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   
-<!-- Latest compiled and minified CSS -->
+<!--Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Optional theme
@@ -34,9 +34,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-
+<link rel="stylesheet" href="css/bootstrap.min.css">  
 <link rel="stylesheet" href="css/progressbars.css">  
 <link rel="stylesheet" href="css/buttons.css">  
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -113,10 +114,10 @@ $(document).ready(function(){
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation"><a href="#workertab" aria-controls="workertab" role="tab" data-toggle="tab"class="hidden" id="workertalent">Workers <span class="badge" id="freeworkers">0</span></a></li>
 				<li role="presentation"><a href="#consttab" aria-controls="consttab" role="tab" data-toggle="tab" class="hidden" id="consttalent">Construction</a></li>
-				<li role="presentation" class="active"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab" id="talenttalent">Talents</a></li>
+				<li role="presentation"><a href="#talenttab" aria-controls="talenttab" role="tab" data-toggle="tab" class="hidden" id="talenttalent">Talents</a></li>
 				<li role="presentation"><a href="#researchtab" aria-controls="researchtab" role="tab" data-toggle="tab" class="hidden" id="researchtalent">Research</a></li>
 				<li role="presentation"><a href="#craftingtab" aria-controls="craftingtab" role="tab" data-toggle="tab" class="hidden" id="craftingtalent">Crafting</a></li>
-				<li role="presentation"><a href="#actiontab" aria-controls="actiontab" role="tab" data-toggle="tab" class="" id="actiontalent">Actions</a></li>
+				<li role="presentation" class="active"><a href="#actiontab" aria-controls="actiontab" role="tab" data-toggle="tab" class="" id="actiontalent">Actions</a></li>
 				
 			</ul>
 
@@ -124,40 +125,60 @@ $(document).ready(function(){
 			<div class="tab-content">
 				<div role="tabpanel" class="text-center tab-pane fade" id="workertab">
 				<br />
-					<div id="researchdiv" class="">
-						<button type="button" class="btn btn-job2" id="removeresearcherbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="researcherbutton">Researchers <span id="researchernum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addresearcherbutton"><span class="glyphicon glyphicon-plus"></span></button>
-					</div>
+				
+					<div id="researchdiv" class="buttonBox2 boxDiv3 col-xs-4">
+						<button type="button" class="btn btn-primary btn-block" id="researcherbutton">
+						Researchers <span id="researchernum" class="badge">0</span></button>
 						
-					<div id="farmerdiv" class="hidden">
-						<button type="button" class="btn btn-job2" id="removefarmerbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="farmerbutton">Farmers <span id="farmernum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addfarmerbutton"><span class="glyphicon glyphicon-plus"></span></button>
-					</div>
 						
-					<div id="loggerdiv" class="hidden">
-						<button type="button" class="btn btn-job2" id="removeloggerbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="loggerbutton">Lumberjacks <span id="loggernum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addloggerbutton"><span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-						
-					<div id="minerdiv" class="hidden">
-						<button type="button" class="btn btn-job2" id="removeminerbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="minerbutton">Miners <span id="minernum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addminerbutton"><span class="glyphicon glyphicon-plus"></span></button>
+						<div class="btn-group-justified">
+							<button type="button" class="btn btn-danger" style="width:50%" id="removeresearcherbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addresearcherbutton"><span class="hire">Hire</span> <small class="hirecost">(-50 Food)</small></button>
+						</div>
 					</div>
 					
-					<div id="traderdiv" class="hidden">
-						<button type="button" class="btn btn-job2" id="removetraderbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="traderbutton">Traders <span id="tradernum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addtraderbutton"><span class="glyphicon glyphicon-plus"></span></button>
+					<div id="farmerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="farmerbutton">
+						Farmers <span id="farmernum" class="badge">0</span></button>
+						
+						
+						<div class="btn-group-justified">
+							<button type="button" class="btn btn-danger" style="width:50%" id="removefarmerbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addfarmerbutton"><span class="hire">Hire</span> <small class="hirecost">(-25 Food)</small></button>
+						</div>
 					</div>
 					
-					<div id="warriordiv" class="hidden">
-						<button type="button" class="btn btn-job2" id="removewarriorbutton"><span class="glyphicon glyphicon-minus"></span></button>
-						<button type="button" class="btn btn-job" id="warriorbutton">Warriors <span id="warriornum" class="badge">0</span></button>
-						<button type="button" class="btn btn-job2" id="addwarriorbutton"><span class="glyphicon glyphicon-plus"></span></button>
+					<div id="loggerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="loggerbutton">
+						Loggers <span id="loggernum" class="badge">0</span></button>
+						
+						
+						<div class="btn-group-justified">
+							<button type="button" class="btn btn-danger" style="width:50%" id="removeloggerbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addloggerbutton"><span class="hire">Hire</span> <small class="hirecost">(-75 Food)</small></button>
+						</div>
+					</div>
+
+					<div id="minerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="minerbutton">
+						Miners <span id="minernum" class="badge">0</span></button>
+						
+						
+						<div class="btn-group-justified">
+							<button type="button" class="btn btn-danger" style="width:50%" id="removeminerbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addminerbutton"><span class="hire">Hire</span> <small class="hirecost">(-75 Food)</small></button>
+						</div>
+					</div>
+
+					<div id="warriordiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="warriorbutton">
+						Warriors <span id="warriornum" class="badge">0</span></button>
+						
+						
+						<div class="btn-group-justified">
+							<button type="button" class="btn btn-danger" style="width:50%" id="removewarriorbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addwarriorbutton"><span class="hire">Hire</span> <small class="hirecost">(-125 Food)</small></button>
+						</div>
 					</div>
 					
 				</div>
@@ -252,7 +273,7 @@ $(document).ready(function(){
 				
 				
 				
-				<div role="tabpanel" class="text-center tab-pane fade in active" id="talenttab">
+				<div role="tabpanel" class="text-center tab-pane fade" id="talenttab">
 					<br />
 				
 					<div class="buttonBox boxDiv3 col-xs-4" id="rivertalent">
@@ -378,7 +399,7 @@ $(document).ready(function(){
 						<button type="button" class="btn btn-primary btn-block" id="unlockblockbutton">
 						<span class="fa fa-gear"></span> Masonry</button>
 						Cost: <span id="masonrycost" class="text-danger">3333</span> Research Points.<br />
-						Allows the creation of Stone Blocks.
+						Allows the creation of Concrete.
 						</div>
 					</div>
 					
@@ -443,10 +464,10 @@ $(document).ready(function(){
 			
 			</div>
 			
-			<div role="tabpanel" class="text-center tab-pane fade" id="actiontab">
+			<div role="tabpanel" class="text-center tab-pane fade in active" id="actiontab">
 				<br />
 				<div id="foragespan" class="buttonBox2 boxDiv3 col-xs-4">
-					<button data-toggle="tooltip" title="10 Water" data-placement="bottom" type="button" class="btn btn-success btn-block" id="forage">
+					<button type="button" class="btn btn-success btn-block" id="forage">
 					Forage<br /> <span class="fa fa-apple"></span> Gather simple resources.</button>
 					
 					
@@ -458,7 +479,7 @@ $(document).ready(function(){
 				</div>
 				
 				<div id="minespan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
-					<button data-toggle="tooltip" title="5 Food 15 Water" data-placement="bottom" type="button" class="btn btn-warning btn-block" id="mine">
+					<button type="button" class="btn btn-warning btn-block" id="mine">
 					Mine<br /> <span class="fa fa-gear"></span> Dig into the ground.</button>
 					
 					
@@ -470,7 +491,7 @@ $(document).ready(function(){
 				</div>
 				
 				<div id="burnspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
-					<button data-toggle="tooltip" title="Toggle below." data-placement="bottom" type="button" class="btn btn-danger btn-block" id="burn">
+					<button type="button" class="btn btn-danger btn-block" id="burn">
 					Smelt<br /> <span class="fa fa-fire"></span> Refine resources.</button>
 					
 					
@@ -490,46 +511,81 @@ $(document).ready(function(){
   
     <div class="col-xs-7">
 		
-		<div class="text-center">
+		
+		
+		<div id="resourcesdiv" class="boxDiv5 resDiv bg-muted" style="padding-top:2px; height:45vh; overflow-y:auto;">
+		<span class="text-center">
 		<h1>Resources</h1>
-		</div>
-		
-		<div id="resourcesdiv" class="boxDiv5 resDiv">
-		
-		<div id="woodresource" class="col-xs-3  text-center">
-		<img id="imgWood" src="img/wood.png"><br />Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<small id="woodps">0</small>)</img>
-		</div>
-		
-        <div id="stoneresource" class="col-xs-3  text-center">
-		<img id="imgStone" src="img/stone.png"><br />Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<small id="stoneps">0</small>)</img>
-		</div>
+		</span>
+			<div id="woodresource" class="col-xs-3  text-center">
+			<img id="imgWood" src="img/wood.png"><br />Wood: <span id="total_wood">0</span> / <span id="woodmax">250</span> (<small id="woodps">0</small>)</img>
+			</div>
 			
-		<div id="clayresource" class="col-xs-3  text-center">
-		<img id="imgClay" src="img/clay.png"><br />Clay: <span id="total_clay">0</span> / <span id="claymax">25</span> (<small id="clayps">0</small>)</img>
-		</div>
-		
-		<div id="coaldiv" class="col-xs-3  text-center hidden">
-		<img id="charcoalresource" src="img/charcoal.png"><br />Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<small id="coalps">0</small>)</img>
-		</div>
-		
-		<div id="logdiv" class="col-xs-3  text-center hidden">
-		<img id="plankresource" src="img/planks.png"><br /><span id="logresource" class="text-warning">Planks</span>: <span id="total_logs">0</span></img>
-		</div>
+			<div id="stoneresource" class="col-xs-3  text-center">
+			<img id="imgStone" src="img/stone.png"><br />Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<small id="stoneps">0</small>)</img>
+			</div>
 				
-		<div id="blockdiv" class="col-xs-3  text-center hidden">
-		<img id="concreteresource" src="img/concrete.png"><br /><span id="blockresource" class="text-muted">Concrete</span>: <span id="total_blocks">0</span></img>
-		</div>
+			<div id="clayresource" class="col-xs-3  text-center">
+			<img id="imgClay" src="img/clay.png"><br />Clay: <span id="total_clay">0</span> / <span id="claymax">25</span> (<small id="clayps">0</small>)</img>
+			</div>
 			
-		<div id="steamdiv" class="col-xs-3  text-center hidden">
-		<img id="steamresources" src="img/steam.png"><br /><span id="steamresource" class="text-primary">Steam</span>: <span id="total_steam">0</span> (<small id="steamps">-0</small>)</img>
+			<div id="coaldiv" class="col-xs-3  text-center hidden">
+			<img id="charcoalresource" src="img/charcoal.png"><br />Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<small id="coalps">0</small>)</img>
+			</div>
+			
+			<div id="logdiv" class="col-xs-3  text-center hidden">
+			<img id="plankresource" src="img/planks.png"><br /><span id="logresource" class="text-warning">Planks</span>: <span id="total_logs">0</span></img>
+			</div>
+					
+			<div id="blockdiv" class="col-xs-3  text-center hidden">
+			<img id="concreteresource" src="img/concrete.png"><br /><span id="blockresource" class="text-muted">Concrete</span>: <span id="total_blocks">0</span></img>
+			</div>
+				
+			<div id="steamdiv" class="col-xs-3  text-center hidden">
+			<img id="steamresources" src="img/steam.png"><br /><span id="steamresource" class="text-primary">Steam</span>: <span id="total_steam">0</span> (<small id="steamps">-0</small>)</img>
+			</div>
+			
+				
+			<div id="manadiv" class="col-xs-3  text-center hidden">
+			<span id="manaresource" class="text-danger">Mana</span>: <span id="total_mana">0</span> (<small id="manaps">0</small>)<br />
+			</div>
+		
+		</div>
+		<div style="height:5vh;">
+		</div>
+		<div id="combatdiv" class="boxDiv5 bg-muted hidden" style="height:35vh; overflow-y:auto;">
+			<div id="combatLeft" class="col-xs-6 boxDiv5" style="height:35vh;">
+				<div class="" style="height:3vh; padding-top:3px;">
+					<div class="progress">
+					<div class="progress-bar progress-bar-info" id="warriorhpbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:10%"><span class="glyphicon glyphicon-heart-empty"></span></div>
+					</div>
+				</div>
+				<div class="" style="height:32vh;">
+					HP: <span id="warriorhp">-</span> / <span id="warriorhpmax">-</span><br />
+					Attack: <span id="warrioratk">-</span><br />
+					Defense: <span id="warriordef">-</span><br />
+					Speed: <span id="warriorspd">-</span><br />
+				</div>
+			</div>
+			<div id="combatRight" class="col-xs-6 boxDiv5" style="height:35vh;">
+				<div class="" style="height:3vh; padding-top:3px;">
+					<div class="progress">
+					<div class="progress-bar progress-bar-danger" id="mobhpbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:10%"><span class="glyphicon glyphicon-heart-empty"></span></div>
+					</div>
+				</div>
+				<div class="" style="height:32vh;">
+					HP: <span id="mobhp">-</span> / <span id="mobhpmax">-</span><br />
+					Attack: <span id="mobatk">-</span><br />
+					Defense: <span id="mobdef">-</span><br />
+					Speed: <span id="mobspd">-</span><br />
+					<div class="text-center text-warning">
+						Loots
+					</div>
+				</div>
+			</div>
+			
 		</div>
 		
-			
-		<div id="manadiv" class="col-xs-3  text-center hidden">
-		<span id="manaresource" class="text-danger">Mana</span>: <span id="total_mana">0</span> (<small id="manaps">0</small>)<br />
-		</div>
-		
-		</div>
 	</div>
 </div>
 </div>

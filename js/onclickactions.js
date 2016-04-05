@@ -2,7 +2,7 @@
 document.getElementById("forage").onclick = function() {
 	forage(1); 
 	if ($('#consttalent').hasClass('hidden')) {
-		if (currentfood >= 35) {
+		if (currentfood >= 50) {
 		$('#consttalent').removeClass('hidden');
 		$('#consttalent').addClass('btn-danger');
 		$('#prodtab').addClass('btn-danger');
@@ -128,7 +128,6 @@ document.getElementById("unlockminebutton").onclick = function() {
 		updatetotalexp();
 		minetalent += 1;
 		$('#coaldiv').removeClass('hidden');
-		
 	}
 }
 
@@ -464,17 +463,20 @@ document.getElementById("removefarmerbutton").onclick = function() {
 
 document.getElementById("addfarmerbutton").onclick = function() {
 	if (freeworkers > 0) {
-		freeworkers -= 1;
-		farmers += 1;
-		updateworkers();
-		if ((farmers + loggers) >= 15) {
-		$('#forage10').prop('disabled', false);
-		}
-		if ((farmers + loggers) >= 35) {
-		$('#forage25').prop('disabled', false);
-		}
-		if ((farmers + loggers) >= 125) {
-		$('#forage100').prop('disabled', false);
+		if (currentfood >= 25) {
+			currentfood -= 25;
+			freeworkers -= 1;
+			farmers += 1;
+			updateworkers();
+			if ((farmers + loggers) >= 15) {
+			$('#forage10').prop('disabled', false);
+			}
+			if ((farmers + loggers) >= 35) {
+			$('#forage25').prop('disabled', false);
+			}
+			if ((farmers + loggers) >= 125) {
+			$('#forage100').prop('disabled', false);
+			}
 		}
 	}
 }
@@ -498,17 +500,20 @@ document.getElementById("removeloggerbutton").onclick = function() {
 
 document.getElementById("addloggerbutton").onclick = function() {
 	if (freeworkers > 0) {
-		freeworkers -= 1;
-		loggers += 1;
-		updateworkers();
-		if ((farmers + loggers) >= 15) {
-		$('#forage10').prop('disabled', false);
-		}
-		if ((farmers + loggers) >= 35) {
-		$('#forage25').prop('disabled', false);
-		}
-		if ((farmers + loggers) >= 125) {
-		$('#forage100').prop('disabled', false);
+		if (currentfood >= 75) {
+			currentfood -= 75;
+			freeworkers -= 1;
+			loggers += 1;
+			updateworkers();
+			if ((farmers + loggers) >= 15) {
+			$('#forage10').prop('disabled', false);
+			}
+			if ((farmers + loggers) >= 35) {
+			$('#forage25').prop('disabled', false);
+			}
+			if ((farmers + loggers) >= 125) {
+			$('#forage100').prop('disabled', false);
+			}
 		}
 	}
 }
@@ -532,17 +537,20 @@ document.getElementById("removeminerbutton").onclick = function() {
 
 document.getElementById("addminerbutton").onclick = function() {
 	if (freeworkers > 0) {
-		freeworkers -= 1;
-		miners += 1;
-		updateworkers();
-		if (miners >= 10) {
-		$('#mine10').prop('disabled', false);
-		}
-		if (miners >= 25) {
-		$('#mine25').prop('disabled', false);
-		}
-		if (miners >= 100) {
-		$('#mine100').prop('disabled', false);
+		if (currentfood >= 75) {
+			currentfood -= 75;
+			freeworkers -= 1;
+			miners += 1;
+			updateworkers();
+			if (miners >= 10) {
+			$('#mine10').prop('disabled', false);
+			}
+			if (miners >= 25) {
+			$('#mine25').prop('disabled', false);
+			}
+			if (miners >= 100) {
+			$('#mine100').prop('disabled', false);
+			}
 		}
 	}
 }
@@ -557,16 +565,21 @@ document.getElementById("removeresearcherbutton").onclick = function() {
 
 document.getElementById("addresearcherbutton").onclick = function() {
 	if (freeworkers > 0) {
-		freeworkers -= 1;
-		researchers += 1;
-		updateworkers();
-		if ($('#researchtalent').hasClass('hidden')) {
-		$('#researchtalent').removeClass('hidden');
-		$('#researchtalent').addClass('btn-danger');
-		$('#clastab').addClass('btn-danger');
-		researchtalent += 1;
-		$('#rpdiv').removeClass('hidden');
-	}
+		if (currentfood >= 50) {
+			currentfood -= 50;
+			freeworkers -= 1;
+			researchers += 1;
+			updateworkers();
+			if ($('#researchtalent').hasClass('hidden')) {
+			$('#researchtalent').removeClass('hidden');
+			$('#researchtalent').addClass('btn-danger');
+			$('#clastab').addClass('btn-danger');
+			researchtalent += 1;
+			$('#rpdiv').removeClass('hidden');
+			message("");
+			message("Gather as much research as you can, there are many things to discover!");
+			}
+		}
 	}
 }
 
@@ -580,9 +593,12 @@ document.getElementById("removewarriorbutton").onclick = function() {
 
 document.getElementById("addwarriorbutton").onclick = function() {
 	if (freeworkers > 0) {
-		freeworkers -= 1;
-		warriors += 1;
-		updateworkers();
+		if (currentfood >= 125) {
+			currentfood -= 125;
+			freeworkers -= 1;
+			warriors += 1;
+			updateworkers();
+		}
 	}
 }
 
@@ -606,7 +622,12 @@ document.getElementById("hutbutton").onclick = function() {
 		$('#workertalent').removeClass('hidden');
 		$('#workertalent').addClass('btn-danger');
 		workertalent += 1;
-		} 
+		}
+		if (huts = 1) {
+			message("");
+			message("Great! Now you can sustain a few more people to help you out.");
+			message("Don't worry, they will show up on their own.");
+		}
 	}
 	}
 };
@@ -686,6 +707,11 @@ document.getElementById("fieldbutton").onclick = function() {
 				$('#storetab').addClass('btn-danger');
 				granarytalent += 1;
 			}
+		}
+		if (fields = 1) {
+			message("")
+			message("Now that you have Food and Water under control it's time to build a shelter.");
+			message("Keep Foraging until you've gathered 10 Wood.")
 		}
 	}
 }
@@ -782,19 +808,27 @@ document.getElementById("sawmillbutton").onclick = function() {
 document.getElementById("burnwater").onclick = function() {
 	if ($('#burnwater').hasClass('active')) {
 		($('#burnwater').removeClass('active'));
+		($('#burnwater').removeClass('btn-success'));
+		($('#burnwater').addClass('btn-danger'));
 	} else {
 		($('#burnwater').addClass('active'));
+		($('#burnwater').addClass('btn-success'));
+		($('#burnwater').removeClass('btn-danger'));
 	}
 }
-
 
 document.getElementById("burncoal").onclick = function() {
 	if ($('#burncoal').hasClass('active')) {
 		($('#burncoal').removeClass('active'));
+		($('#burncoal').removeClass('btn-success'));
+		($('#burncoal').addClass('btn-danger'));
 	} else {
-		($(burncoal).addClass('active'));
+		($('#burncoal').addClass('active'));
+		($('#burncoal').addClass('btn-success'));
+		($('#burncoal').removeClass('btn-danger'));
 	}
 }
+
 
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {

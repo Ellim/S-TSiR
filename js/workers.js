@@ -44,7 +44,7 @@ function updateminer() {
   minerinterval = setInterval(function() {
 	if (miners > 0) {
 		stone += (minerrate * miners);
-		clay += ((minerrate / 5) * miners);
+		clay += ((minerrate / 4) * miners);
 		if (stone > stonemax) {
 			stone = stonemax;
 		}

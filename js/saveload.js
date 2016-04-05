@@ -100,7 +100,7 @@ var farmerrate = 1.125;
 var loggerrate = 0.125;
 var researcherrate = .0375;
 var researcherlevel = 1;
-var minerrate = 0.25;
+var minerrate = 0.15;
 
 var researchertalent = 0;
 var farmertalent = 0;

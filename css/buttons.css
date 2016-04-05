@@ -29,7 +29,9 @@
 
 .btn-craft2 {background: rgba(255, 229, 242, 1); background: -webkit-linear-gradient(top, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); background: linear-gradient(to bottom, rgba(255, 166, 107, 1) 0%, rgba(255, 229, 242, 1) 100%); border-color: rgba(156, 156, 156, 1); color: rgba(0, 0, 0, 1); font-size: 14px; border-radius: 15px; border-width: 4px; width: 240px; height: 120px;}
 
-
+button .hirecost {display:none;}
+button:hover .hire {display:none;}
+button:hover .hirecost {display:inline;}
 
 .elog {height: 15.5vh; overflow-y: auto;}
 
@@ -49,7 +51,7 @@
 
 .boxDiv4 {outline: 1px solid grey;}
 
-.boxDiv5 {outline: 1px solid grey; background: #e9e2c8;}
+.boxDiv5 {outline: 1px solid grey;}
 
 
 
