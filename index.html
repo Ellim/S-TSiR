@@ -228,7 +228,7 @@ $(document).ready(function(){
 					
 					<div id="apartmentspan" class="buttonBox boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="apartmentbutton"><span class="glyphicon glyphicon-home"></span> Apartment Building<span class="badge" id="apartmentnum">0</span></button>
-					Cost: <span id="apartmentcost" class="">75</span> Concrete.<br />
+					Cost: <span id="apartmentcost" class="">50</span> Concrete & <span id="aptbrickcost">25</span> Bricks.<br />
 					Increase Population by: <span id="apartmentlevel">25</span>
 					
 					</div>
@@ -485,7 +485,7 @@ $(document).ready(function(){
 				
 				<div id="blockspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="blockbutton">
-					100 Stone & 25 Clay <br /><span class="fa fa-long-arrow-right"></span> 1 Concrete</button>
+					100 Stone & 100 Water <br /><span class="fa fa-long-arrow-right"></span> 1 Concrete</button>
 					
 					
 					<div class="btn-group-justified">
@@ -566,6 +566,10 @@ $(document).ready(function(){
 			<img id="charcoalresource" src="img/charcoal.png"><br />Charcoal: <span id="total_coal">0</span> / <span id="coalmax">50</span> (<small id="coalps">0</small>)</img>
 			</div>
 			
+			<div id="brickdiv" class="col-xs-3  text-center hidden">
+			<img id="brickresource" src="img/brick.png"><br /><span class="text-danger">Bricks</span>: <span id="total_bricks">0</span></img>
+			</div>
+			
 			<div id="logdiv" class="col-xs-3  text-center hidden">
 			<img id="plankresource" src="img/planks.png"><br /><span id="logresource" class="text-warning">Planks</span>: <span id="total_logs">0</span></img>
 			</div>
@@ -616,9 +620,9 @@ $(document).ready(function(){
 					
 					
 				<div class="btn-group-justified">
-					<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal">Coal</button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal">Wood</button>
 					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnwater">Water</button>
-					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay" disabled>Clay</button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay">Clay</button>
 				</div>
 			</div>
 		</div>

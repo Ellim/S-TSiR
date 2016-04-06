@@ -34,7 +34,8 @@ var logs = 0;
 var woodlogcost = 50;
 var stoneblocks = 0;
 var stoneblockscost = 100;
-var stoneblockccost = 25;
+var bricks = 0;
+var bricklevel = 1;
 
 var researchmin = 100;
 
@@ -68,7 +69,7 @@ var cabincost = 50;
 var cabinlevel = 10;
 
 var apartments = 0;
-var aptcost = 75;
+var aptcost = 50;
 var aptlevel = 25;
 
 var granaries = 0;
@@ -166,7 +167,8 @@ function savegame() {
 	woodlogcost: woodlogcost,
 	stoneblocks: stoneblocks,
 	stoneblockscost: stoneblockscost,
-	stoneblockccost: stoneblockccost,
+	bricks: bricks,
+	bricklevel: bricklevel,
 	
 	researchmin: researchmin,
 	
@@ -293,8 +295,9 @@ function loadgame() {
 	if (typeof savestring.woodlogcost !== "undefined") woodlogcost = savestring.woodlogcost;
 	if (typeof savestring.stoneblocks !== "undefined") stoneblocks = savestring.stoneblocks;
 	if (typeof savestring.stoneblockscost !== "undefined") stoneblockscost = savestring.stoneblockscost;
-	if (typeof savestring.stoneblockccost !== "undefined") stoneblockccost = savestring.stoneblockccost;
-	
+	if (typeof savestring.bricks !== "undefined") bricks = savestring.bricks;
+	if (typeof savestring.bricklevel !== "undefined") bricklevel = savestring.bricklevel;
+		
 	if (typeof savestring.researchmin !== "undefined") researchmin = savestring.researchmin;
 	
 	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;

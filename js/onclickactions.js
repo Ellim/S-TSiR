@@ -244,6 +244,7 @@ document.getElementById("unlockburnbutton").onclick = function() {
 		burntalent += 1;
 		$('#coaldiv').removeClass('hidden');
 		$('#steamdiv').removeClass('hidden');
+		$('#brickdiv').removeClass('hidden');
 	}
 }
 
@@ -350,13 +351,13 @@ document.getElementById("log100").onclick = function() {
 
 document.getElementById("blockbutton").onclick = function() {
 	if (stone >= stoneblockscost) {
-		if (clay >= stoneblockccost) {
+		if (water >= stoneblockscost) {
 			stone -= stoneblockscost;
-			clay -= stoneblockccost
+			water -= stoneblockscost
 			stoneblocks += 1;
 			var tempexp = (50 * (popmax/100));
 			totalexp += tempexp;
-			message("Crafted 1 Concrete using " + prettify(stoneblockscost) + " Stone and " + prettify(stoneblockccost) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 1 Concrete using " + prettify(stoneblockscost) + " Stone and " + prettify(stoneblockscost) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -368,13 +369,13 @@ document.getElementById("blockbutton").onclick = function() {
 
 document.getElementById("sb10").onclick = function() {
 	if (stone >= stoneblockscost*10) {
-		if (clay >= stoneblockccost*10) {
+		if (water >= stoneblockscost*10) {
 			stone -= stoneblockscost*10;
-			clay -= stoneblockccost*10
+			water -= stoneblockscost*10
 			stoneblocks += 10;
 			var tempexp = ((50 * (popmax/100)) * 10);
 			totalexp += tempexp;
-			message("Crafted 10 Concrete using " + prettify(stoneblockscost*10) + " Stone and " + prettify(stoneblockccost*10) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 10 Concrete using " + prettify(stoneblockscost*10) + " Stone and " + prettify(stoneblockscost*10) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -386,13 +387,13 @@ document.getElementById("sb10").onclick = function() {
 
 document.getElementById("sb25").onclick = function() {
 	if (stone >= stoneblockscost*25) {
-		if (clay >= stoneblockccost*25) {
+		if (water >= stoneblockscost*25) {
 			stone -= stoneblockscost*25;
-			clay -= stoneblockccost*25
+			water -= stoneblockscost*25
 			stoneblocks += 25;
 			var tempexp = ((50 * (popmax/100)) * 25);
 			totalexp += tempexp;
-			message("Crafted 25 Concrete using " + prettify(stoneblockscost*25) + " Stone and " + prettify(stoneblockccost*25) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 25 Concrete using " + prettify(stoneblockscost*25) + " Stone and " + prettify(stoneblockscost*25) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -404,13 +405,13 @@ document.getElementById("sb25").onclick = function() {
 
 document.getElementById("sb100").onclick = function() {
 	if (stone >= stoneblockscost*100) {
-		if (clay >= stoneblockccost*100) {
+		if (water >= stoneblockscost*100) {
 			stone -= stoneblockscost*100;
-			clay -= stoneblockccost*100
+			water -= stoneblockscost*100
 			stoneblocks += 100;
 			var tempexp = ((50 * (popmax/100)) * 100);
 			totalexp += tempexp;
-			message("Crafted 100 Concrete using " + prettify(stoneblockscost*100) + " Stone and " + prettify(stoneblockccost*100) + " Clay, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 100 Concrete using " + prettify(stoneblockscost*100) + " Stone and " + prettify(stoneblockscost*100) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -445,14 +446,6 @@ document.getElementById("upgradeRPbutton").onclick = function() {
 	}
 }
 
-document.getElementById("upgradeRPbutton").onclick = function() {
-	if (researchpoints > ((researcherlevel * 1500)*researcherlevel)) {
-		researchpoints -= ((researcherlevel * 1500)*researcherlevel);
-		researcherlevel += 1;
-		var tempvar = document.getElementById("RPupcost");
-		tempvar.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
-	}
-}
 
 document.getElementById("unlockblockbutton").onclick = function() {
 	if (researchpoints > 3332) {
@@ -935,8 +928,9 @@ document.getElementById("hutbutton").onclick = function() {
 };
 
 document.getElementById("apartmentbutton").onclick = function() {
-	if (stoneblocks >= aptcost) {
+	if (stoneblocks >= aptcost && bricks >= (aptcost/2)) {
 		stoneblocks -= aptcost;
+		bricks -= (aptcost/2);
 		totalexp += (2000 * apartments);
 		oAptCost = aptcost;
 		aptcost = (aptcost*1.3);
@@ -1142,6 +1136,18 @@ document.getElementById("burncoal").onclick = function() {
 	}
 }
 
+document.getElementById("burnclay").onclick = function() {
+	if ($('#burnclay').hasClass('active')) {
+		($('#burnclay').removeClass('active'));
+		($('#burnclay').removeClass('btn-success'));
+		($('#burnclay').addClass('btn-danger'));
+	} else {
+		($('#burnclay').addClass('active'));
+		($('#burnclay').addClass('btn-success'));
+		($('#burnclay').removeClass('btn-danger'));
+	}
+}
+
 
 function forage(m) {
 	if (((water) - (5 * m)) >= 0) {
@@ -1236,6 +1242,18 @@ function burn(m) {
 				coal -= m;
 				steam += 50;
 				totalexp += (m * 17.5) + popbonus;
+				updatetotalexp();
+				updateresources();
+			}
+		}
+	}
+	if ($('#burnclay').hasClass('active')) {
+		if (clay >= (m * 25)) {
+			if (coal >= (m)) {
+				clay -= m * 25;
+				coal -= m;
+				bricks += 1;
+				totalexp += (m * 7.5) + popbonus;
 				updatetotalexp();
 				updateresources();
 			}

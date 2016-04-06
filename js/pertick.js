@@ -47,8 +47,8 @@ function updateworkers() {
 }
 
 function updateresources() {
-	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam"]
-	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam]
+	var arrResources = ["total_RP","pop","popmax","total_wood","woodmax","total_stone","stonemax","total_coal","coalmax","total_clay","claymax","total_mana","maxfood","maxwater","total_logs","total_blocks","total_steam","total_bricks"]
+	var arrResourceDiv = [researchpoints,population-1,popmax-1,wood,woodmax,stone,stonemax,coal,coalmax,clay,claymax,mana,foodmax,watermax,logs,stoneblocks,steam,bricks]
 	
 	for (i = 0; i < arrResources.length; i++) {
 		var tempvar = document.getElementById(arrResources[i]);
@@ -60,8 +60,8 @@ function updateresources() {
 }
 
 function updatebuildings() {
-	var arrBuilding = ["cabinnum","cabincost","hutnum","hutcost","rhnum","rhcost","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","fieldnum","fieldcost"]
-	var arrBuildingDiv = [cabins,cabincost,huts,hutcost,roundhouses,rhcost,granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,fields,fieldcost]
+	var arrBuilding = ["cabinnum","cabincost","hutnum","hutcost","rhnum","rhcost","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","aptbrickcost","fieldnum","fieldcost"]
+	var arrBuildingDiv = [cabins,cabincost,huts,hutcost,roundhouses,rhcost,granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,(aptcost/2),fields,fieldcost]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
@@ -160,6 +160,7 @@ document.getElementById("loadgame").onclick = function() {
 			$('#burntalent').addClass('hidden');
 			$('#coaldiv').removeClass('hidden');
 			$('#steamdiv').removeClass('hidden');
+			$('#brickdiv').removeClass('hidden');
 		}
 		
 		if (minetalent > 0) {
