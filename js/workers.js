@@ -71,14 +71,14 @@ function updateminer() {
   minerinterval = setInterval(function() {
 	if (miners > 0) {
 		if (currentfood >= (foodmax*.10)) {
-			stone += (minerrate * miners);
-			clay += ((minerrate / 4) * miners);
+			stone += (minerrate * (miners * minerlevel));
+			clay += ((minerrate / 4) * (miners * minerlevel));
 			var tempvar2 = document.getElementById("stoneps");
-			var tempvar3 = (miners * (minerrate*4)); 
+			var tempvar3 = ((miners * minerlevel) * (minerrate*4)); 
 			tempvar2.innerHTML = prettify(tempvar3);
 			
 			var tempvar4 = document.getElementById("clayps");
-			var tempvar5 = (miners * ((minerrate/5)*4)); 
+			var tempvar5 = ((miners * minerlevel) * ((minerrate/5)*4)); 
 			tempvar4.innerHTML = prettify(tempvar5);
 		}
 		if (currentfood < (foodmax*.10)) {
