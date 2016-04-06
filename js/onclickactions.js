@@ -982,9 +982,11 @@ document.getElementById("rhbutton").onclick = function() {
 
 document.getElementById("aquaductbutton").onclick = function() {
 	var aqcost = (150 * (Math.pow(aquaducts+1,1.25)));
-	if (stone >= aqcost && currentfood >= (aqcost/2)) {
+	var aqrpcost = (1000 * (Math.pow(aquaducts+1,1.15)));
+	if (stone >= aqcost && currentfood >= (aqcost/2) && researchpoints >= aqrpcost) {
 		currentfood -= (aqcost/2);
 		stone -= aqcost;
+		researchpoints -= aqrpcost;
 		totalexp += aqcost;
 		aquaducts += 1;
 		updatebuildings();
