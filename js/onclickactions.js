@@ -235,8 +235,8 @@ document.getElementById("unlockminebutton").onclick = function() {
 }
 
 document.getElementById("unlockburnbutton").onclick = function() {
-	if (talentpoints >= 5) {
-		talentpoints -= 5;
+	if (talentpoints >= 3) {
+		talentpoints -= 3;
 		$('#burnspan').removeClass('hidden');
 		$('#burntalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
@@ -245,6 +245,10 @@ document.getElementById("unlockburnbutton").onclick = function() {
 		$('#coaldiv').removeClass('hidden');
 		$('#steamdiv').removeClass('hidden');
 		$('#brickdiv').removeClass('hidden');
+		message("");
+		message("Now that you wield the power of <span class='text-danger'>FIRE</span> you can make some real progress!");
+		message("In order to make Bricks you'll need Charcoal and Clay.");
+		message("25 Wood can be burned and you'll be left with some usable Charcoal for your efforts.")
 	}
 }
 
@@ -976,8 +980,30 @@ document.getElementById("rhbutton").onclick = function() {
 	}
 };
 
+document.getElementById("aquaductbutton").onclick = function() {
+	var aqcost = (150 * (Math.pow(aquaducts+1,1.25)));
+	if (stone >= aqcost && currentfood >= (aqcost/2)) {
+		currentfood -= (aqcost/2);
+		stone -= aqcost;
+		totalexp += aqcost;
+		aquaducts += 1;
+		updatebuildings();
+		updateresources();
+		message("");
+		message("Built an Aquaduct using " + prettify(aqcost) + " Stone and " + prettify(aqcost/2) + " Food and gained " + prettify(aqcost) + " EXP.");
+		message("This brings you to a total of " + prettify(aquaducts) + ".");
+		if ($('#granaryspan').hasClass('hidden')) {
+				message("Granary Unlocked!");
+				message("<span class='text-danger'>Warning!</span> Increasing your Food max will increase how much your workers eat!");
+				message("Make sure you've got some Food supplies built up or people prepared to learn how to farm.");
+				$('#granaryspan').removeClass('hidden');
+				granarytalent += 1;
+		}
+	}
+}
+
 document.getElementById("fieldbutton").onclick = function() {
-	var fieldcost = (50 * (Math.pow(fields+1,1.4)));
+	var fieldcost = (50 * (Math.pow(fields+1,1.2)));
 	if (currentfood >= fieldcost) {
 		currentfood -= fieldcost;
 		fields += 1;
@@ -995,13 +1021,12 @@ document.getElementById("fieldbutton").onclick = function() {
 		if (fieldlevel > 1) {
 			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(fieldrate * 4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
 		}
-		if ($('#granaryspan').hasClass('hidden')) {
-			if (fields > 5) {
+		if ($('#aquaductspan').hasClass('hidden')) {
+			if (fields > 4) {
 				message("");
-				message("Granary Unlocked!");
-				$('#granaryspan').removeClass('hidden');
-				$('#storetab').addClass('btn-danger');
-				granarytalent += 1;
+				message("Aquaduct Unlocked!");
+				$('#aquaductspan').removeClass('hidden');
+				aquaducttalent += 1;
 			}
 		}
 		if (fields < 2) {
@@ -1224,8 +1249,8 @@ function burn(m) {
 	var popbonus = (m * ((population - 1) * 0.025));
 	
 	if ($('#burncoal').hasClass('active')) {
-		if (wood >= (m * 10)) {
-			wood -= (m * 10);
+		if (wood >= (m * 25)) {
+			wood -= (m * 25);
 			coal += m
 			if (coal >= coalmax) {
 				coal = coalmax;

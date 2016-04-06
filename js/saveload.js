@@ -84,6 +84,9 @@ var sawmills = 0;
 var smscost = 25;
 var smccost = 1;
 
+var aquaducts = 0;
+var aquaductlevel = 1;
+
 var population = 1;
 var popmax = 1;
 var freeworkers = 0;
@@ -121,6 +124,7 @@ var logtalent = 0;
 var tradertalent = 0;
 var blocktalent = 0;
 var granarytalent = 0;
+var aquaducttalent = 0;
 
 var btc = 0;
 
@@ -212,6 +216,9 @@ function savegame() {
 	smscost: smscost,
 	smccost: smccost,
 	
+	aquaducts: aquaducts,
+	aquaductlevel: aquaductlevel,
+	
 	population: population,
 	popmax: popmax,
 	freeworkers: freeworkers,
@@ -249,6 +256,7 @@ function savegame() {
 	tradertalent: tradertalent,
 	blocktalent: blocktalent,
 	granarytalent: granarytalent,
+	aquaducttalent: aquaducttalent,
 	
 	btc: btc
 	
@@ -335,6 +343,9 @@ function loadgame() {
 	if (typeof savestring.smscost !== "undefined") smscost = savestring.smscost;
 	if (typeof savestring.smccost !== "undefined") smccost = savestring.smccost;
 	
+	if (typeof savestring.aquaducts !== "undefined") aquaducts = savestring.aquaducts;
+	if (typeof savestring.aquaductlevel !== "undefined") aquaductlevel = savestring.aquaductlevel;
+		
 	if (typeof savestring.population !== "undefined") population = savestring.population;
 	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
 	if (typeof savestring.freeworkers !== "undefined") freeworkers = savestring.freeworkers;
@@ -372,6 +383,7 @@ function loadgame() {
 	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
 	if (typeof savestring.blocktalent !== "undefined") blocktalent = savestring.blocktalent;
 	if (typeof savestring.granarytalent !== "undefined") granarytalent = savestring.granarytalent;
+	if (typeof savestring.aquaducttalent !== "undefined") aquaducttalent = savestring.aquaducttalent;
 	
 	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
 	

@@ -5,10 +5,10 @@ function updatefarmer() {
 	if (currentfood >= foodmax) {
 		currentfood = foodmax - 0.001;
 	}
-	var researcherconsume = (4*(((foodmax * .001) * researchers) * Math.max(1,researcherlevel/3)));
-	var loggerconsume = (4*(((foodmax * .002) * loggers)));
-	var minerconsume = (4*((foodmax * .0022) * miners));
-	var warriorconsume = (4*((foodmax * .0033) * warriors));
+	var warriorconsume = (4*(((foodmax * (.0033 / ((aquaducts + 1) * aquaductlevel))) * warriors)));
+	var minerconsume = (4*(((foodmax * (.0022 / ((aquaducts + 1) * aquaductlevel))) * miners)));
+	var loggerconsume = (4*(((foodmax * (.002 / ((aquaducts + 1) * aquaductlevel))) * loggers)));
+	var researcherconsume = (4*(((foodmax * (.001 / ((aquaducts + 1) * aquaductlevel))) * researchers)));
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
@@ -37,7 +37,7 @@ function updatelogger() {
 			var tempvar2 = document.getElementById("woodps");
 			tempvar2.innerHTML = 0;
 		}
-		currentfood -= ((foodmax * .002) * loggers);
+		currentfood -= ((foodmax * (.002 / ((aquaducts + 1) * aquaductlevel))) * loggers);
 	}
 	if (loggers < 1) {
 			var tempvar2 = document.getElementById("woodps");
@@ -60,7 +60,7 @@ function updatewarrior() {
 			tempvar2.innerHTML = prettify(tempvar3);
 			
 		}
-		currentfood -= ((foodmax * .0033) * warriors);
+		currentfood -= ((foodmax * (.0033 / ((aquaducts + 1) * aquaductlevel))) * warriors);
 	}
 	updatetotalexp();
 	}, workertick);
@@ -87,7 +87,7 @@ function updateminer() {
 			tempvar2.innerHTML = 0;
 			tempvar4.innerHTML = 0;
 		}
-		currentfood -= ((foodmax * .0022) * miners);
+		currentfood -= ((foodmax * (.0022 / ((aquaducts + 1) * aquaductlevel))) * miners);
 	}
 	if (miners < 1) {
 		var tempvar2 = document.getElementById("stoneps");
@@ -148,7 +148,7 @@ function updateresearcher() {
 			var tempvar = document.getElementById("rpps");
 			tempvar.innerHTML = 0;
 		}
-		currentfood -= (((foodmax * .001) * researchers) * Math.max(1,researcherlevel/3));
+		currentfood -= ((foodmax * (.001 / ((aquaducts + 1) * aquaductlevel))) * researchers);
 	}
 	if (steam > 0) {
 		steam -= 1;
