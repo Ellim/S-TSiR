@@ -900,11 +900,11 @@ document.getElementById("addwarriorbutton").onclick = function() {
 
 
 document.getElementById("hutbutton").onclick = function() {
+	var hutcost = (10 * (Math.pow(huts+1,2.5)));
 	if (wood >= hutcost) {
 		wood -= hutcost;
 		totalexp += hutcost;
 		oHutCost = hutcost;
-		hutcost += (hutcost*1.2);
 		huts += 1;
 		popmax += hutlevel;
 		updatebuildings();
@@ -928,12 +928,12 @@ document.getElementById("hutbutton").onclick = function() {
 };
 
 document.getElementById("apartmentbutton").onclick = function() {
+	var aptcost = (50 * (Math.pow(apartments+1,1.95)));
 	if (stoneblocks >= aptcost && bricks >= (aptcost/2)) {
 		stoneblocks -= aptcost;
 		bricks -= (aptcost/2);
 		totalexp += (2000 * apartments);
 		oAptCost = aptcost;
-		aptcost = (aptcost*1.3);
 		apartments += 1;
 		popmax += aptlevel;
 		updatebuildings();
@@ -945,11 +945,11 @@ document.getElementById("apartmentbutton").onclick = function() {
 }
 
 document.getElementById("cabinbutton").onclick = function() {
+	var cabincost = (50 * (Math.pow(cabins+1,1.9)));
 	if (logs >= cabincost) {
 		logs -= cabincost;
 		totalexp += cabincost * 30;
 		oCabinCost = cabincost;
-		cabincost = (cabincost*1.44);
 		cabins += 1;
 		popmax += cabinlevel;
 		updatebuildings();
@@ -961,11 +961,11 @@ document.getElementById("cabinbutton").onclick = function() {
 };
 
 document.getElementById("rhbutton").onclick = function() {
+	var rhcost = (33 * (Math.pow(roundhouses+1,1.47)));
 	if (clay >= rhcost) {
 		clay -= rhcost;
 		totalexp += rhcost*2;
 		oRhCost = rhcost;
-		rhcost = (rhcost*1.33);
 		roundhouses += 1;
 		popmax += rhlevel;
 		updatebuildings();
@@ -977,12 +977,12 @@ document.getElementById("rhbutton").onclick = function() {
 };
 
 document.getElementById("fieldbutton").onclick = function() {
+	var fieldcost = (50 * (Math.pow(fields+1,1.4)));
 	if (currentfood >= fieldcost) {
 		currentfood -= fieldcost;
 		fields += 1;
 		totalexp += (fields * 5);
 		ofieldcost = fieldcost;
-		fieldcost = (fieldcost * 1.24);
 		fieldrate += (.175 * (fieldlevel));
 		waterrate += (.125 * (fieldlevel-1));
 		updatebuildings();

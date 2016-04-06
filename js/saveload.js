@@ -46,7 +46,6 @@ var talentpoints = 0;
 var researchpoints = 0;
 
 var fields = 0;
-var fieldcost = 50;
 var fieldlevel = 1;
 var fieldrpcost = 550;
 
@@ -57,19 +56,15 @@ var keeneyescost = 2;
 var keeneyelevel = 1;
 
 var huts = 0;
-var hutcost = 10;
 var hutlevel = 2;
 
 var roundhouses = 0;
-var rhcost = 100;
 var rhlevel = 5;
 
 var cabins = 0;
-var cabincost = 50;
 var cabinlevel = 10;
 
 var apartments = 0;
-var aptcost = 50;
 var aptlevel = 25;
 
 var granaries = 0;
@@ -179,7 +174,6 @@ function savegame() {
 	researchpoints: researchpoints,
 	
 	fields: fields,
-	fieldcost: fieldcost,
 	fieldlevel: fieldlevel,
 	fieldrpcost: fieldrpcost,
 	
@@ -190,19 +184,15 @@ function savegame() {
 	keeneyescost: keeneyescost,
 	
 	huts: huts,
-	hutcost: hutcost,
 	hutlevel: hutlevel,
 	
 	roundhouses: roundhouses,
-	rhcost: rhcost,
 	rhlevel: rhlevel,
 	
 	cabins: cabins,
-	cabincost: cabincost,
 	cabinlevel: cabinlevel,
 	
 	apartments: apartments,
-	aptcost: aptcost,
 	aptlevel: aptlevel,
 	
 	granaries: granaries,
@@ -307,7 +297,6 @@ function loadgame() {
 	if (typeof savestring.researchpoints !== "undefined") researchpoints = savestring.researchpoints;
 	
 	if (typeof savestring.fields !== "undefined") fields = savestring.fields;
-	if (typeof savestring.fieldcost !== "undefined") fieldcost = savestring.fieldcost;
 	if (typeof savestring.fieldlevel !== "undefined") fieldlevel = savestring.fieldlevel;
 	if (typeof savestring.fieldrpcost !== "undefined") fieldrpcost = savestring.fieldrpcost;
 	
@@ -318,19 +307,15 @@ function loadgame() {
 	if (typeof savestring.keeneyescost !== "undefined") keeneyescost = savestring.keeneyescost;
 	
 	if (typeof savestring.huts !== "undefined") huts = savestring.huts;
-	if (typeof savestring.hutcost !== "undefined") hutcost = savestring.hutcost;
 	if (typeof savestring.hutlevel !== "undefined") hutlevel = savestring.hutlevel;
 	
 	if (typeof savestring.roundhouses !== "undefined") roundhouses = savestring.roundhouses;
-	if (typeof savestring.rhcost !== "undefined") rhcost = savestring.rhcost;
 	if (typeof savestring.rhlevel !== "undefined") rhlevel = savestring.rhlevel;
 	
 	if (typeof savestring.cabins !== "undefined") cabins = savestring.cabins;
-	if (typeof savestring.cabincost !== "undefined") cabincost = savestring.cabincost;
 	if (typeof savestring.cabinlevel !== "undefined") cabinlevel = savestring.cabinlevel;
 	
 	if (typeof savestring.apartments !== "undefined") apartments = savestring.apartments;
-	if (typeof savestring.aptcost !== "undefined") aptcost = savestring.aptcost;
 	if (typeof savestring.aptlevel !== "undefined") aptlevel = savestring.aptlevel;
 	
 	if (typeof savestring.granaries !== "undefined") granaries = savestring.granaries;

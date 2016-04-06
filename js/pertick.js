@@ -61,7 +61,7 @@ function updateresources() {
 
 function updatebuildings() {
 	var arrBuilding = ["cabinnum","cabincost","hutnum","hutcost","rhnum","rhcost","granarynum","granarywoodcost","granarystonecost","sthnum","shcost","rtowernum","rtowercost","sawmillnum","sawmillstonecost","sawmillclaycost","apartmentnum","apartmentcost","aptbrickcost","fieldnum","fieldcost"]
-	var arrBuildingDiv = [cabins,cabincost,huts,hutcost,roundhouses,rhcost,granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,aptcost,(aptcost/2),fields,fieldcost]
+	var arrBuildingDiv = [cabins,(50 * (Math.pow(cabins+1,1.9))),huts,(10 * (Math.pow(huts+1,2.5))),roundhouses,(33 * (Math.pow(roundhouses+1,1.47))),granaries,granarywoodcost,granarystonecost,storehouses,shcost,rtowers,rtowercost,sawmills,smscost,smccost,apartments,(50 * (Math.pow(apartments+1,1.95))),(((50 * (Math.pow(apartments+1,1.95))))/2),fields,(50 * (Math.pow(fields+1,1.4)))]
 	
 	for (i = 0; i < arrBuilding.length; i++) {
 		var tempvar = document.getElementById(arrBuilding[i]);
