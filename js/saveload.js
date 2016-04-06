@@ -47,7 +47,7 @@ var researchpoints = 0;
 var fields = 0;
 var fieldcost = 50;
 var fieldlevel = 1;
-var fieldrpcost = 750;
+var fieldrpcost = 550;
 
 var riverupgradecost = 1;
 var riverlevel = 0;
