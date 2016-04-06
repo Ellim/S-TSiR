@@ -3,6 +3,11 @@
 
 Clicker game made in an attempt to learn some JavaScript.
 
+I was keeping track of changes but they happen so often and fast it's still too crazy to try and keep track of it all.
+
+I've changed and added so much since the last update it may as well be entirely new. Next goal to work on is a Save/Load system and then to rework the costs of everything so when I change prices it will actually change for people who have a file started.
+
+
 03/31/16
 
 UI Changes:
