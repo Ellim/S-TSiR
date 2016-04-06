@@ -286,6 +286,7 @@ document.getElementById("loadgame").onclick = function() {
 		var loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
 		var minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
 		var warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+		var researcherrp = (researcherlevel * 1500) * (researcherlevel * 1.25);
 		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = prettify(riverupgradecost);
@@ -310,6 +311,9 @@ document.getElementById("loadgame").onclick = function() {
 		
 		var tempvar8 = document.getElementById("explorerupcost");
 		tempvar8.innerHTML = prettify(warriorrp);
+		
+		var tempvar9 = document.getElementById("RPupcost");
+		tempvar9.innerHTML = prettify(researcherrp);
 		
 		message("Welcome back!");
 		

@@ -55,6 +55,10 @@ function updatewarrior() {
 	if (warriors > 0) {
 		if (currentfood >= (foodmax/2)) {
 			totalexp += (warriorrate * warriors) * (warriorlevel);
+			var tempvar2 = document.getElementById("expps");
+			var tempvar3 = ((warriorrate * 4) * warriors) * (warriorlevel); 
+			tempvar2.innerHTML = prettify(tempvar3);
+			
 		}
 		currentfood -= ((foodmax * .0033) * warriors);
 	}
