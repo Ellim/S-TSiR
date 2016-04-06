@@ -176,7 +176,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 
-					<div id="warriordiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+					<div id="explorerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 						<button type="button" class="btn btn-primary btn-block" id="warriorbutton">
 						Explorers <span id="warriornum" class="badge">0</span></button>
 						
@@ -239,7 +239,7 @@ $(document).ready(function(){
 					<br />
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="granaryspan">
 					<button type="button" class="btn btn-primary btn-block" id="granarybutton"><span class="glyphicon glyphicon-grain"></span> Granary <span class="badge" id="granarynum">0</span></button>
-					Cost: <span id="granarywoodcost" class="">50</span> Wood & <span id="granarystonecost" class="">75</span> Stone.<br />
+					Cost: <span id="granarywoodcost" class="">35</span> Wood & <span id="granarystonecost" class="">50</span> Stone.<br />
 					Increase Food/Water max.</span>
 					</div>
 					
@@ -271,6 +271,12 @@ $(document).ready(function(){
 					Increase Lumberjack Rate.<br />
 					</div>
 					
+					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="aquaductspan">
+					<button type="button" class="btn btn-primary btn-block" id="aquaductbutton"><span class="fa fa-bank"></span> Aquaduct <span class="badge" id="aquaductnum">0</span></button>
+					Cost: <span id="aquaductcost" class="text-danger">150</span> Stone & <span id="aquaductfcost" class="text-danger">40</span> Food.<br />
+					Decreases Food consumption.<br />
+					</div>
+					
 				</div>
 				
 				</div>
@@ -283,37 +289,35 @@ $(document).ready(function(){
 					<br />
 				
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="rivertalent">
-						<div class="btn-group open">
+						
 							<button type="button" class="btn btn-primary" id="riverbutton">
 							<span class="glyphicon glyphicon-tint"></span> Expand River</button>
-							<button id="riverinfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div><br />
+							<br />
 						Cost: <span id="riverupgradecost" class="text-danger">1</span> Talent Point(s).<br />
 						Increase Water Production. <!--by <span id="riverproduction">10</span> Water/sec.-->			
 					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="keeneyestalent">
-						<div class="btn-group open">
+						
 							<button type="button" class="btn btn-primary" id="keeneyes">
 							<span class="fa fa-search"></span> Keen Eyes</button>
-							<button id="keeneyeinfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div><br />
+							<br />
 						Cost: <span id="keeneyecost" class="text-danger">2</span> Talent Point(s).<br />
 						Doubles resources gained from Forage Action.			
 					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4" id="minetalent">
-						<div class="btn-group open" id="minetalentlv1">
+							<div id="minetalentlv1">
 							<button type="button" class="btn btn-primary" id="unlockminebutton">
 							<span class="glyphicon glyphicon-education"></span> Basic Tools</button>
-							<button id="mineactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div>
+							</div>
+					
 						
-						<div class="btn-group open hidden" id="minetalentlv2">
+						<div class="hidden" id="minetalentlv2">
 							<button type="button" class="btn btn-primary" id="upgrademinebutton">
 							<span class="glyphicon glyphicon-education"></span> Stone Tools</button>
-							<button id="mineactioninfolv2" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div><br />
+							
+						</div>
 						
 						<div id="minetalentlv1desc">
 							Cost: <span id="minetalentcost" class="text-danger">5</span> Talent Points.<br />
@@ -321,27 +325,26 @@ $(document).ready(function(){
 						</div>
 						
 						<div id="minetalentlv2desc" class="hidden">
-							Cost: <span id="minetalentcost" class="text-danger">3</span> Talent Points<span id="minesbcostlv2"> 10 </span> Stone Blocks.<br />
+							Cost: <span id="minetalentcost" class="text-danger">3</span> Talent Points & <span id="minecccostlv2" class="text-danger"> 15 </span> Concrete.<br />
 							Allows Miners to find Iron.
 						</div>
 					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="burntalent">
-						<div class="btn-group open">
+						
 							<button type="button" class="btn btn-primary" id="unlockburnbutton">
 							<span class="glyphicon glyphicon-education"></span> Harness Fire</button>
-							<button id="burnactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div><br />
+							
+						<br />
 						Cost: <span id="burntalentcost" class="text-danger">5</span> Talent Points.<br />
 						Allows transformation of some resources into others.
 					</div>
 					
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="crafttalentbutton">
-						<div class="btn-group open">
+						
 							<button type="button" class="btn btn-primary" id="craftingbutton">
 							<span class="fa fa-gear"></span>Workshops</button>
-							<button id="craftactioninfo" class="btn btn-primary"><span class="fa fa-info-circle"></span>
-						</div><br />
+							<br />
 						Cost: <span id="crafttalentcost" class="text-danger">5</span> Talent Point(s).<br />
 						Unlocks the creation of advanced resources.
 					</div>
@@ -362,31 +365,55 @@ $(document).ready(function(){
 						<div id="unlockfarmerdiv" class="buttonBox boxDiv3 col-xs-4">
 						<button type="button" class="btn btn-primary btn-block" id="unlockfarmerbutton">
 						<span class="glyphicon glyphicon-cutlery"></span> Unlock Farmers</button>
-						<span id="farmertalent">Cost: <span id="farmercost" class="text-danger">100</span> Research Points.</span> Farmers generate Food over time.
+						<span id="farmertalent">Cost: <span id="farmercost" class="text-danger">25</span> Research Points.</span> Farmers generate Food over time.
 						</div>
 						
 						<div id="unlockloggerdiv" class="buttonBox boxDiv3 col-xs-4">
 						<button type="button" class="btn btn-primary btn-block" id="unlockloggerbutton">
 						<span class="glyphicon glyphicon-tree-conifer"></span> Unlock Lumberjacks</button>
-						<span>Cost: <span id="loggercost" class="text-danger">250</span> Research Points.</span> Researchers generate Research Points over time.
+						<span>Cost: <span id="loggercost" class="text-danger">150</span> Research Points.</span> Lumberjacks generate Wood over time.
 						</div>
 						
 						<div id="unlockminerdiv" class="buttonBox boxDiv3 col-xs-4">
 						<button type="button" class="btn btn-primary btn-block" id="unlockminerbutton">
 						<span class="fa fa-diamond"></span> Unlock Miners</button>
-						<span>Cost: <span id="minercost" class="text-danger">500</span> Research Points.</span> Miners generate Stone, Clay, and Charcoal over time.
+						<span>Cost: <span id="minercost" class="text-danger">350</span> Research Points.</span> Miners generate Stone, Clay, and Charcoal over time.
 						</div>
 
-						<div id="unlockwarriordiv" class="buttonBox boxDiv3 col-xs-4">
-						<button type="button" class="btn btn-primary btn-block" id="unlockwarriorbutton">
+						<div id="unlockexplorerdiv" class="buttonBox boxDiv3 col-xs-4">
+						<button type="button" class="btn btn-primary btn-block" id="unlockexplorerbutton">
 						<span class="fa fa-gavel"></span> Unlock Explorers</button>
 						<span>Cost: <span id="warriorcost" class="text-danger">1750</span> Research Points.</span> Explorers generate Exp over time.
 						</div>
 						
-						<div id="upgradeRPdiv" class="buttonBox boxDiv3 col-xs-4">
+						<div id="upgradefarmerdiv" class="buttonBox boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="upgradefarmerbutton">
+						<span class="fa fa-leaf"></span> Crop Rotation</button>
+						<span>Cost: <span id="farmerupcost" class="text-danger">750</span> Research Points.</span> Doubles Farmer efficiency.
+						</div>
+						
+						<div id="upgradeloggerdiv" class="buttonBox boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="upgradeloggerbutton">
+						<span class="glyphicon glyphicon-tree-conifer"></span> Basic Forestry</button>
+						<span>Cost: <span id="loggerupcost" class="text-danger">1125</span> Research Points.</span> Doubles Lumberjack efficiency.
+						</div>
+						
+						<div id="upgrademinerdiv" class="buttonBox boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="upgrademinerbutton">
+						<span class="fa fa-diamond"></span> Mine Foreman</button>
+						<span>Cost: <span id="minerupcost" class="text-danger">1500</span> Research Points.</span> Doubles Miner efficiency.
+						</div>
+						
+						<div id="upgradeexplorerdiv" class="buttonBox boxDiv3 col-xs-4 hidden">
+						<button type="button" class="btn btn-primary btn-block" id="upgradeexplorerbutton">
+						<span class="fa fa-diamond"></span> Scouting Parties</button>
+						<span>Cost: <span id="explorerupcost" class="text-danger">3125</span> Research Points.</span> Doubles Explorer efficiency.
+						</div>
+						
+						<div id="upgradeRPdiv" class="buttonBox boxDiv3 col-xs-4 hidden">
 						<button type="button" class="btn btn-primary btn-block" id="upgradeRPbutton">
 						<span class="fa fa-flask"></span> Alchemical Research</button>
-						<span>Cost: <span id="RPupcost" class="text-danger">1500</span> Research Points.</span> Doubles Research Point generation.
+						<span>Cost: <span id="RPupcost" class="text-danger">1500</span> Research Points.</span> Doubles Researcher efficiency.
 						</div>
 						
 					</div>

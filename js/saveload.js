@@ -47,7 +47,7 @@ var researchpoints = 0;
 var fields = 0;
 var fieldcost = 50;
 var fieldlevel = 1;
-var fieldrpcost = 1750;
+var fieldrpcost = 750;
 
 var riverupgradecost = 1;
 var riverlevel = 0;
@@ -72,8 +72,9 @@ var aptcost = 75;
 var aptlevel = 25;
 
 var granaries = 0;
-var granarywoodcost = 50;
-var granarystonecost = 75;
+var granarywoodcost = 35;
+var granarystonecost = 50;
+var granarylevel = 1;
 
 var storehouses = 0;
 var shcost = 150;
@@ -98,10 +99,13 @@ var farmers = 0;
 var traders = 0;
 
 var farmerrate = 1.125;
+var farmerlevel = 1;
 var loggerrate = 0.125;
+var loggerlevel = 1;
 var researcherrate = .0375;
 var researcherlevel = 1;
 var minerrate = 0.15;
+var minerlevel = 1;
 var warriorrate = 2.5;
 var warriorlevel = 1;
 
@@ -202,6 +206,7 @@ function savegame() {
 	granaries: granaries,
 	granarywoodcost: granarywoodcost,
 	granarystonecost: granarystonecost,
+	granarylevel: granarylevel,
 	
 	storehouses: storehouses,
 	shcost: shcost,
@@ -226,10 +231,13 @@ function savegame() {
 	traders: traders,
 	
 	farmerrate: farmerrate,
+	farmerlevel: farmerlevel,
 	loggerrate: loggerrate,
+	loggerlevel: loggerlevel,
 	researcherrate: researcherrate,
 	researcherlevel: researcherlevel,
 	minerrate: minerrate,
+	minerlevel: minerlevel,
 	warriorrate: warriorrate,
 	warriorlevel: warriorlevel,
 	
@@ -325,6 +333,7 @@ function loadgame() {
 	if (typeof savestring.granaries !== "undefined") granaries = savestring.granaries;
 	if (typeof savestring.granarywoodcost !== "undefined") granarywoodcost = savestring.granarywoodcost;
 	if (typeof savestring.granarystonecost !== "undefined") granarystonecost = savestring.granarystonecost;
+	if (typeof savestring.granarylevel !== "undefined") granarylevel = savestring.granarylevel;
 	
 	if (typeof savestring.storehouses !== "undefined") storehouses = savestring.storehouses;
 	if (typeof savestring.shcost !== "undefined") shcost = savestring.shcost;
@@ -349,10 +358,13 @@ function loadgame() {
 	if (typeof savestring.traders !== "undefined") traders = savestring.traders;
 	
 	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
+	if (typeof savestring.farmerlevel !== "undefined") farmerlevel = savestring.farmerlevel;
 	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
+	if (typeof savestring.loggerlevel !== "undefined") loggerlevel = savestring.loggerlevel;
 	if (typeof savestring.researcherrate !== "undefined") researcherrate = savestring.researcherrate;
 	if (typeof savestring.researcherlevel !== "undefined") researcherlevel = savestring.researcherlevel;
 	if (typeof savestring.minerrate !== "undefined") minerrate = savestring.minerrate;
+	if (typeof savestring.minerlevel !== "undefined") minerlevel = savestring.minerlevel;
 	if (typeof savestring.warriorrate !== "undefined") warriorrate = savestring.warriorrate;
 	if (typeof savestring.warriorlevel !== "undefined") warriorlevel = savestring.warriorlevel;
 	

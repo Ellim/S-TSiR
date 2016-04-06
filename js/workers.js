@@ -1,7 +1,7 @@
 function updatefarmer() {
   clearInterval(farmerinterval);
   farmerinterval = setInterval(function() {
-	currentfood += ((farmerrate * farmers) + (fieldrate));
+	currentfood += ((farmerrate * (farmers * farmerlevel)) + (fieldrate));
 	if (currentfood >= foodmax) {
 		currentfood = foodmax - 0.001;
 	}
@@ -12,7 +12,7 @@ function updatefarmer() {
 	var tempvar = document.getElementById("currentfood");
 	tempvar.innerHTML = prettify(currentfood);
 	var tempvar2 = document.getElementById("foodps");
-	var tempvar3 = (farmers * (farmerrate*4)) + (fieldrate*4) - researcherconsume - loggerconsume - minerconsume - warriorconsume; 
+	var tempvar3 = ((farmers * farmerlevel) * (farmerrate*4)) + (fieldrate*4) - researcherconsume - loggerconsume - minerconsume - warriorconsume; 
 	tempvar2.innerHTML = tempvar3.toFixed(2);
 	
 	if (currentfood < 0) {
@@ -28,9 +28,9 @@ function updatelogger() {
   loggerinterval = setInterval(function() {
 	if (loggers > 0) {
 		if (currentfood >= (foodmax*.15)) {
-			wood += (loggerrate * loggers) * (1 + (sawmills * 0.10));
+			wood += (loggerrate * (loggers * loggerlevel)) * (1 + (sawmills * 0.10));
 			var tempvar2 = document.getElementById("woodps");
-			var tempvar3 = (loggers * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
+			var tempvar3 = ((loggers * loggerlevel) * (loggerrate*4)) * (1 + (sawmills * 0.10)); 
 			tempvar2.innerHTML = prettify(tempvar3);
 		}
 		if (currentfood < (foodmax*.15)) {
@@ -39,6 +39,10 @@ function updatelogger() {
 		}
 		currentfood -= ((foodmax * .002) * loggers);
 	}
+	if (loggers < 1) {
+			var tempvar2 = document.getElementById("woodps");
+			tempvar2.innerHTML = 0;
+		}
 	if (wood > woodmax) {
 		wood = woodmax;
 	}
@@ -80,6 +84,12 @@ function updateminer() {
 			tempvar4.innerHTML = 0;
 		}
 		currentfood -= ((foodmax * .0022) * miners);
+	}
+	if (miners < 1) {
+		var tempvar2 = document.getElementById("stoneps");
+		var tempvar4 = document.getElementById("clayps");
+		tempvar2.innerHTML = 0;
+		tempvar4.innerHTML = 0;
 	}
 	if (stone > stonemax) {
 		stone = stonemax;
@@ -139,10 +149,16 @@ function updateresearcher() {
 	if (steam > 0) {
 		steam -= 1;
 	}
-	var rpupcost = (((researcherlevel * 1500) * researcherlevel));
-	var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost'];
-	var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost"];
-	var arrRPprojC = [100,250,500,1750,1000,3333,shrpcost,fieldrpcost,rpupcost]
+	
+	var researcherrp = (researcherlevel * 1500) * (researcherlevel * 1.25);
+	var farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
+	var loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
+	var minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
+	var warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+	
+	var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost','#farmerupcost','#loggerupcost','#minerupcost','#explorerupcost'];
+	var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost","farmerupcost","loggerupcost","minerupcost","explorerupcost"];
+	var arrRPprojC = [25,150,350,1750,1000,3333,shrpcost,fieldrpcost,researcherrp,farmerrp,loggerrp,minerrp,warriorrp];
 	for (i = 0; i < arrRPproj.length; i++) {
 		var tempvar = document.getElementById(arrRPproj1[i]);
 			if (arrRPprojC[i] <= researchpoints) {

@@ -39,7 +39,7 @@ button:hover .hirecost {display:inline;}
 
 .actionDiv {height: 42.2%; overflow-y: auto;}
 
-.buttonBox {height: 120px;}
+.buttonBox {height: 140px; overflow-y: auto;}
 
 .buttonBox2 {height: 91px;}
 

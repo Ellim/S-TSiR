@@ -199,8 +199,8 @@ document.getElementById("loadgame").onclick = function() {
 		}
 		
 		if (warriortalent > 0) {
-			$('#warriordiv').removeClass('hidden');
-			$('#unlockwarriordiv').addClass('hidden');
+			$('#explorerdiv').removeClass('hidden');
+			$('#unlockexplorerdiv').addClass('hidden');
 		}
 		
 		if (constructiontalent > 0) {
@@ -274,6 +274,19 @@ document.getElementById("loadgame").onclick = function() {
 			$('#talenttalent').removeClass('hidden');
 		}
 		
+		if (rtowers > 4) {
+			$('#upgradefarmerdiv').removeClass('hidden');
+			$('#upgradeloggerdiv').removeClass('hidden');
+			$('#upgrademinerdiv').removeClass('hidden');
+			$('#upgradeRPdiv').removeClass('hidden');
+			$('#upgradeexplorerdiv').removeClass('hidden');
+		}
+		
+		var farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
+		var loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
+		var minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
+		var warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+		
 		var tempvar = document.getElementById("riverupgradecost");
 		tempvar.innerHTML = prettify(riverupgradecost);
 		
@@ -286,8 +299,17 @@ document.getElementById("loadgame").onclick = function() {
 		var tempvar4 = document.getElementById("fieldirrigationcost");
 		tempvar4.innerHTML = prettify(fieldrpcost);
 		
-		var tempvar5 = document.getElementById("RPupcost");
-		tempvar5.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
+		var tempvar5 = document.getElementById("farmerupcost");
+		tempvar5.innerHTML = prettify(farmerrp);
+		
+		var tempvar6 = document.getElementById("loggerupcost");
+		tempvar6.innerHTML = prettify(loggerrp);
+		
+		var tempvar7 = document.getElementById("minerupcost");
+		tempvar7.innerHTML = prettify(minerrp);
+		
+		var tempvar8 = document.getElementById("explorerupcost");
+		tempvar8.innerHTML = prettify(warriorrp);
 		
 		message("Welcome back!");
 		

@@ -445,6 +445,15 @@ document.getElementById("upgradeRPbutton").onclick = function() {
 	}
 }
 
+document.getElementById("upgradeRPbutton").onclick = function() {
+	if (researchpoints > ((researcherlevel * 1500)*researcherlevel)) {
+		researchpoints -= ((researcherlevel * 1500)*researcherlevel);
+		researcherlevel += 1;
+		var tempvar = document.getElementById("RPupcost");
+		tempvar.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
+	}
+}
+
 document.getElementById("unlockblockbutton").onclick = function() {
 	if (researchpoints > 3332) {
 		researchpoints -= 3333;
@@ -480,7 +489,7 @@ document.getElementById("fieldirrigationbutton").onclick = function() {
 	if (researchpoints >= fieldrpcost) {
 		researchpoints -= fieldrpcost;
 		fieldlevel += 1;
-		fieldrpcost = fieldrpcost * 1.1;
+		fieldrpcost = fieldrpcost * 1.15;
 		waterrate += .125 * fields; 
 		fieldrate += .175 * fields;
 		var tempvar = document.getElementById("fieldirrigationcost");
@@ -489,9 +498,57 @@ document.getElementById("fieldirrigationbutton").onclick = function() {
 	}
 }
 
+document.getElementById("upgradefarmerbutton").onclick = function() {
+	var farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
+	if (researchpoints >= farmerrp) {
+		researchpoints -= farmerrp;
+		farmerlevel += 1;
+		farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
+		var tempvar = document.getElementById("farmerupcost");
+		tempvar.innerHTML = prettify(farmerrp);
+		message("Farmers are cool now.");
+	}
+}
+
+document.getElementById("upgradeloggerbutton").onclick = function() {
+	var loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
+	if (researchpoints >= loggerrp) {
+		researchpoints -= loggerrp;
+		loggerlevel += 1;
+		loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
+		var tempvar = document.getElementById("loggerupcost");
+		tempvar.innerHTML = prettify(loggerrp);
+		message("Loggers are cool now.");
+	}
+}
+
+document.getElementById("upgrademinerbutton").onclick = function() {
+	var minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
+	if (researchpoints >= minerrp) {
+		researchpoints -= minerrp;
+		minerlevel += 1;
+		minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
+		var tempvar = document.getElementById("minerupcost");
+		tempvar.innerHTML = prettify(minerrp);
+		message("Miners are cool now.");
+	}
+}
+
+document.getElementById("upgradeexplorerbutton").onclick = function() {
+	var warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+	if (researchpoints >= warriorrp) {
+		researchpoints -= warriorrp;
+		warriorlevel += 1;
+		warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+		var tempvar = document.getElementById("explorerupcost");
+		tempvar.innerHTML = prettify(warriorrp);
+		message("Explorers are cool now.");
+	}
+}
+
 document.getElementById("unlockfarmerbutton").onclick = function() {
-	if (researchpoints > 99) {
-		researchpoints -= 100;
+	if (researchpoints > 24) {
+		researchpoints -= 25;
 		if ($('#farmerdiv').hasClass('hidden')) {
 			$('#farmerdiv').removeClass('hidden');
 			$('#unlockfarmerdiv').addClass('hidden');
@@ -507,8 +564,8 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 }
 
 document.getElementById("unlockloggerbutton").onclick = function() {
-	if (researchpoints > 249) {
-		researchpoints -= 250;
+	if (researchpoints > 149) {
+		researchpoints -= 150;
 		if ($('#loggerdiv').hasClass('hidden')) {
 			$('#loggerdiv').removeClass('hidden');
 			$('#unlockloggerdiv').addClass('hidden');
@@ -523,8 +580,8 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 }
 
 document.getElementById("unlockminerbutton").onclick = function() {
-	if (researchpoints > 499) {
-		researchpoints -= 500;
+	if (researchpoints > 349) {
+		researchpoints -= 350;
 		if ($('#minerdiv').hasClass('hidden')) {
 			$('#minerdiv').removeClass('hidden');
 			$('#unlockminerdiv').addClass('hidden');
@@ -538,12 +595,12 @@ document.getElementById("unlockminerbutton").onclick = function() {
 	}
 }
 
-document.getElementById("unlockwarriorbutton").onclick = function() {
+document.getElementById("unlockexplorerbutton").onclick = function() {
 	if (researchpoints > 1749) {
 		researchpoints -= 1750;
-		if ($('#warriordiv').hasClass('hidden')) {
-			$('#warriordiv').removeClass('hidden');
-			$('#unlockwarriordiv').addClass('hidden');
+		if ($('#explorerdiv').hasClass('hidden')) {
+			$('#explorerdiv').removeClass('hidden');
+			$('#unlockexplorerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
 			tempvar.innerHTML = talentpoints.toFixed(0);
 			warriortalent += 1;
@@ -970,12 +1027,12 @@ document.getElementById("granarybutton").onclick = function() {
 		stone -= granarystonecost;
 		oGranaryWoodCost = granarywoodcost;
 		oGranaryStoneCost = granarystonecost;
-		granarywoodcost = (granarywoodcost * 1.65);
-		granarystonecost = (granarystonecost * 1.45);
+		granarywoodcost = (granarywoodcost * 1.6);
+		granarystonecost = (granarystonecost * 1.4);
 		granaries += 1;
-		foodmax += 175;
-		watermax += 500;
-		totalexp += (150*granaries);
+		foodmax += (175 * granarylevel);
+		watermax += (300 * granarylevel);
+		totalexp += (150 * granaries);
 		updatebuildings();
 		updateresources();
 		updatetotalexp();
@@ -991,7 +1048,7 @@ document.getElementById("shbutton").onclick = function() {
 		storehouses += 1;
 		oShCost = shcost;
 		shcost = (shcost * 1.55);
-		totalexp += (75*storehouses) * shlevel;
+		totalexp += (75 * storehouses) * shlevel;
 		woodmax += 250 * shlevel;
 		stonemax += 200 * shlevel;
 		coalmax += 50 * shlevel;
@@ -1016,7 +1073,7 @@ document.getElementById("rtowerbutton").onclick = function() {
 		rtowers += 1;
 		oRTowerCost = rtowercost;
 		rtowercost = (rtowercost * 1.45);
-		totalexp += (25*rtowers);
+		totalexp += (25 * rtowers);
 		researcherrate = (researcherrate * 1.165);
 		updatebuildings();
 		updateresources();		
@@ -1025,6 +1082,16 @@ document.getElementById("rtowerbutton").onclick = function() {
 		message("Built a Research Tower using " + prettify(oRTowerCost) + " Stone and gained " + prettify(25*rtowers) + " EXP.");
 		message("This brings you to a total of " + prettify(rtowers) + " Research Towers.");
 		message("Each Researcher now produces " + prettify((researcherrate*4)*researcherlevel) + " Research Points per second.")
+	}
+	if (rtowers > 4 && $('#upgradeRPdiv').hasClass('hidden')) {
+		$('#upgradeRPdiv').removeClass('hidden');
+		$('#upgradefarmerdiv').removeClass('hidden');
+		$('#upgradeloggerdiv').removeClass('hidden');
+		$('#upgrademinerdiv').removeClass('hidden');
+		$('#upgradeexplorerdiv').removeClass('hidden');
+		$('#researchtalent').addClass('btn-danger');
+		message("");
+		message("More research projects unlocked!");
 	}
 }
 
