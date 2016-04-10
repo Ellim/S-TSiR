@@ -25,7 +25,7 @@ function newGame() {
 				rate: -1
 			},
 			food: {
-				owned: 349,
+				owned: 14,
 				max: 350,
 				rate: -1
 			},
@@ -45,7 +45,7 @@ function newGame() {
 				rate: .25
 			},
 			wood: {
-				owned: 9,
+				owned: 5,
 				max: 250,
 				rate: -1
 			},
