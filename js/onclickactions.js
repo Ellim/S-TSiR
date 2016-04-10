@@ -8,6 +8,12 @@ document.getElementById("importSave").onclick = function() {
 
 document.getElementById("importGame").onclick = function() {
 	load(true);
+	updateWorkers();
+	autoSave();
+	updatetotalexp();
+	updatebuildings();
+	updateresources();
+	updateWorkerNumber();
 	loadUI();
 }
 
@@ -26,7 +32,7 @@ document.getElementById("forage").onclick = function() {
 		$('#prodtab').addClass('btn-danger');
 		game.talents.constructionTalent += 1;
 		message("");
-		message("You've gathered enough seeds from all the Food you should be able to grow something!");
+		message("You've gathered enough seeds from all that <span class='text-info'>Food</span> you should be able to grow something!");
 		} 
 	}
 	if ($('#housetab').hasClass('hidden')) {
@@ -36,7 +42,7 @@ document.getElementById("forage").onclick = function() {
 			$('#housetab').addClass('btn-danger');
 			game.talents.houseTalent += 1;
 			message("");
-			message("Right on! You now have enough Wood to build a Hut.");
+			message("Right on! You now have enough <span class='text-info'>Wood</span> to build a <span class='text-success'>Hut</span>.");
 		}
 	}
 };
@@ -246,9 +252,9 @@ document.getElementById("unlockminebutton").onclick = function() {
 		game.talents.mineTalent += 1;
 		$('#coaldiv').removeClass('hidden');
 		message("");
-		message("Mining will take some Food and Water.");
-		message("The head of Research pleads with you to gather some Stone!");
-		message("He teaches you how to build a Research Tower; this will speed up future research.");
+		message("<span class='text-warning'>Mining</span> will take some <span class='text-info'>Food</span> and <span class='text-info'>Water</span>.");
+		message("The head of Research pleads with you to gather some <span class='text-info'>Stone</span>!");
+		message("He teaches you how to build a <span class='text-success'>Research Tower</span>; this will speed up future research.");
 	}
 }
 
@@ -265,8 +271,8 @@ document.getElementById("unlockburnbutton").onclick = function() {
 		$('#brickdiv').removeClass('hidden');
 		message("");
 		message("Now that you wield the power of <span class='text-danger'>FIRE</span> you can make some real progress!");
-		message("In order to make Bricks you'll need Charcoal and Clay.");
-		message("25 Wood can be burned and you'll be left with some usable Charcoal for your efforts.")
+		message("In order to make <span class='text-info'>Bricks</span> you'll need <span class='text-info'>Charcoal</span> and <span class='text-info'>Clay</span>.");
+		message("25 <span class='text-info'>Wood</span> can be burned and you'll be left with some usable <span class='text-info'>Charcoal</span> for your efforts.")
 	}
 }
 
@@ -312,9 +318,9 @@ document.getElementById("logbutton").onclick = function() {
 	if (game.resources.wood.owned >= game.resources.logs.rate) {
 		game.resources.wood.owned -= game.resources.logs.rate;
 		game.resources.logs.owned += 1;
-		var tempexp = (50 * (popmax/100));
+		var tempexp = (50 * (game.stats.populationMax / 100));
 		game.stats.totalEXP += tempexp;
-		message("Crafted 1 Plank using " + prettify(game.resources.logs.rate) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		message("Crafted 1 <span class='text-info'>Plank</span> using " + prettify(game.resources.logs.rate) + " <span class='text-info'>Wood</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -327,9 +333,9 @@ document.getElementById("log10").onclick = function() {
 	if (game.resources.wood.owned >= game.resources.logs.rate * 10) {
 		game.resources.wood.owned -= game.resources.logs.rate * 10;
 		game.resources.logs.owned += 10;
-		var tempexp = ((50 * (popmax/100)) * 10);
+		var tempexp = ((50 * (game.stats.populationMax / 100)) * 10);
 		game.stats.totalEXP += tempexp;
-		message("Crafted 10 Planks using " + prettify(game.resources.logs.rate * 10) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		message("Crafted 10 <span class='text-info'>Planks</span> using " + prettify(game.resources.logs.rate * 10) + " <span class='text-info'>Wood</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -342,9 +348,9 @@ document.getElementById("log25").onclick = function() {
 	if (game.resources.wood.owned >= game.resources.logs.rate * 25) {
 		game.resources.wood.owned -= game.resources.logs.rate * 25;
 		game.resources.logs.owned += 25;
-		var tempexp = ((50 * (popmax/100)) * 25);
+		var tempexp = ((50 * (game.stats.populationMax / 100)) * 25);
 		game.stats.totalEXP += tempexp;
-		message("Crafted 25 Planks using " + prettify(game.resources.logs.rate * 25) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		message("Crafted 25 <span class='text-info'>Planks</span> using " + prettify(game.resources.logs.rate * 25) + " <span class='text-info'>Wood</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -357,9 +363,9 @@ document.getElementById("log100").onclick = function() {
 	if (game.resources.wood.owned >= game.resources.logs.rate * 100) {
 		game.resources.wood.owned -= game.resources.logs.rate * 100;
 		game.resources.logs.owned += 100;
-		var tempexp = ((50 * (popmax/100)) * 100);
+		var tempexp = ((50 * (game.stats.populationMax / 100)) * 100);
 		game.stats.totalEXP += tempexp;
-		message("Crafted 100 Planks using " + prettify(game.resources.logs.rate * 100) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		message("Crafted 100 <span class='text-info'>Planks</span> using " + prettify(game.resources.logs.rate * 100) + " <span class='text-info'>Wood</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -375,9 +381,9 @@ document.getElementById("blockbutton").onclick = function() {
 			game.resources.stone.owned -= game.resources.concrete.rate.stone;
 			game.resources.water.owned -= game.resources.concrete.rate.water;
 			game.resources.concrete.owned += 1;
-			var tempexp = (50 * (popmax/100));
+			var tempexp = (50 * (game.stats.populationMax / 100));
 			game.stats.totalEXP += tempexp;
-			message("Crafted 1 Concrete using " + prettify(game.resources.concrete.rate.stone) + " Stone and " + prettify(game.resources.concrete.rate.water) + " Water, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 1 <span class='text-info'>Concrete</span> using " + prettify(game.resources.concrete.rate.stone) + " <span class='text-info'>Stone</span> and " + prettify(game.resources.concrete.rate.water) + " <span class='text-info'>Water</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -393,9 +399,9 @@ document.getElementById("sb10").onclick = function() {
 			game.resources.stone.owned -= game.resources.concrete.rate.stone * 10;
 			game.resources.water.owned -= game.resources.concrete.rate.water * 10;
 			game.resources.concrete.owned += 10;
-			var tempexp = ((50 * (popmax/100)) * 10);
+			var tempexp = ((50 * (game.stats.populationMax / 100)) * 10);
 			game.stats.totalEXP += tempexp;
-			message("Crafted 10 Concrete using " + prettify(game.resources.concrete.rate.stone * 10) + " Stone and " + prettify(game.resources.concrete.rate.water * 10) + " Water, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 10 <span class='text-info'>Concrete</span> using " + prettify(game.resources.concrete.rate.stone * 10) + " <span class='text-info'>Stone</span> and " + prettify(game.resources.concrete.rate.water * 10) + " <span class='text-info'>Water</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -411,9 +417,9 @@ document.getElementById("sb25").onclick = function() {
 			game.resources.stone.owned -= game.resources.concrete.rate.stone * 25;
 			game.resources.water.owned -= game.resources.concrete.rate.water * 25
 			game.resources.concrete.owned += 25;
-			var tempexp = ((50 * (popmax/100)) * 25);
+			var tempexp = ((50 * (game.stats.populationMax / 100)) * 25);
 			game.stats.totalEXP += tempexp;
-			message("Crafted 25 Concrete using " + prettify(game.resources.concrete.rate.stone * 25) + " Stone and " + prettify(game.resources.concrete.rate.water * 25) + " Water, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 25 <span class='text-info'>Concrete</span> using " + prettify(game.resources.concrete.rate.stone * 25) + " <span class='text-info'>Stone</span> and " + prettify(game.resources.concrete.rate.water * 25) + " <span class='text-info'>Water</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -429,9 +435,9 @@ document.getElementById("sb100").onclick = function() {
 			game.resources.stone.owned -= game.resources.concrete.rate.stone * 100;
 			game.resources.water.owned -= game.resources.concrete.rate.water * 100
 			game.resources.concrete.owned += 100;
-			var tempexp = ((50 * (popmax/100)) * 100);
+			var tempexp = ((50 * (game.stats.populationMax / 100)) * 100);
 			game.stats.totalEXP += tempexp;
-			message("Crafted 100 Concrete using " + prettify(game.resources.concrete.rate.stone * 100) + " Stone and " + prettify(game.resources.concrete.rate.water * 100) + " Water, gained " + prettify(tempexp) + " EXP.");
+			message("Crafted 100 <span class='text-info'>Concrete</span> using " + prettify(game.resources.concrete.rate.stone * 100) + " <span class='text-info'>Stone</span> and " + prettify(game.resources.concrete.rate.water * 100) + " <span class='text-info'>Water</span>, gained " + prettify(tempexp) + " <span class='text-warning'>EXP</span>.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -452,7 +458,7 @@ document.getElementById("unlocklogbutton").onclick = function() {
 			$('#craftingtalent').addClass('btn-danger');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
-			message("You now know how to craft Planks! Check out the Crafting Tab.");
+			message("You now know how to craft <span class='text-info'>Planks</span>! Check out the Crafting Tab.");
 		}
 	}
 }
@@ -478,7 +484,7 @@ document.getElementById("unlockblockbutton").onclick = function() {
 			$('#apartmentspan').removeClass('hidden');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
-			message("You now know how to craft Concrete! Check out the Crafting Tab.");
+			message("You now know how to craft <span class='text-info'>Concrete</span>! Check out the Crafting Tab.");
 		}
 	}
 }
@@ -495,7 +501,7 @@ document.getElementById("upgradeshbutton").onclick = function() {
 		var tempvar = document.getElementById("upgradeshcost");
 		rpCost = (game.buildings.storeHouses.level * 1500) * (game.buildings.storeHouses.level * 1.15);
 		tempvar.innerHTML = prettify(rpCost);
-		message("Storehouses now each hold " + prettify(250 * game.buildings.storeHouses.level) + " Wood, " + prettify(200 * game.buildings.storeHouses.level) + " Stone, " + prettify(50 * game.buildings.storeHouses.level) + " Coal, " + prettify(25 * game.buildings.storeHouses.level) + " Clay.");
+		message("<span class='text-success'>Storehouses</span> now each hold " + prettify(250 * game.buildings.storeHouses.level) + " Wood, " + prettify(200 * game.buildings.storeHouses.level) + " Stone, " + prettify(50 * game.buildings.storeHouses.level) + " Coal, " + prettify(25 * game.buildings.storeHouses.level) + " Clay.");
 	}
 }
 
@@ -509,7 +515,7 @@ document.getElementById("fieldirrigationbutton").onclick = function() {
 		var tempvar = document.getElementById("fieldirrigationcost");
 		rpCost = (game.buildings.fields.level * 1500) * (game.buildings.fields.level * 1.2);
 		tempvar.innerHTML = prettify(rpCost);
-		message("Fields now generate " + prettify(game.buildings.fields.rate.production * 4) + " Food and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " Water per second.");
+		message("<span class='text-success'>Fields</span> now generate " + prettify(game.buildings.fields.rate.production * 4) + " Food and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " Water per second.");
 	}
 }
 
@@ -572,8 +578,8 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 			game.talents.farmerTalent += 1;
 			message("");
 			message("Your Researchers have gathered all their knowledge of Farming into a great Codex.");
-			message("You can now train Farmers to till your fields and increase Food production even more!");
-			message("Each Field can hold one Farmer initially, the head of Research assures you he can improve this eventually.");
+			message("You can now train Farmers to till your <span class='text-success'>Fields</span> and increase <span class='text-info'>Food</span> production even more!");
+			message("Each <span class='text-success'>Field</span> can hold one Farmer initially, the head of Research assures you he can improve this eventually.");
 		}
 	}
 }
@@ -669,7 +675,7 @@ document.getElementById("addfarmerbutton").onclick = function() {
 	}
 	if (game.workers.freeWorkers.owned > 0) {
 		if (game.resources.food.owned >= (25 * Math.min(game.workers.freeWorkers.owned,mult))) {
-			if ((game.workers.farmers.owned + Math.min(game.workers.freeWorkers.owned,mult)) <= ((game.buildings.fields.owned) * game.buildings.fields.level)) {
+			if ((game.workers.farmers.owned + Math.min(game.workers.freeWorkers.owned,mult)) <= ((game.buildings.fields.owned) * game.buildings.fields.level + 1)) {
 				game.resources.food.owned -= (25 * Math.min(game.workers.freeWorkers.owned,mult));
 				game.workers.farmers.owned += Math.min(game.workers.freeWorkers.owned,mult);
 				game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
@@ -686,7 +692,7 @@ document.getElementById("addfarmerbutton").onclick = function() {
 			}
 			if (game.workers.farmers.owned > ((game.buildings.fields.owned) * game.buildings.fields.level)) {
 				message("");
-				message("There's no room for more Farmers!");
+				message("There's no room for more Farmers! Buy or Upgrade more <span class='text-success'>Fields</span>!");
 			}
 		}
 	}
@@ -866,9 +872,9 @@ document.getElementById("addresearcherbutton").onclick = function() {
 			game.talents.researchTalent += 1;
 			$('#rpdiv').removeClass('hidden');
 			message("");
-			message("Researchers will eat up a small percentage of your food every second.");
-			message("If Food gets too low they will stop working. (Not eating though!)");
-			message("Try to get as much research as you can, there are many things to discover!");
+			message("Workers will eat up a small percentage of your <span class='text-info'>Food</span> every second.");
+			message("If <span class='text-info'>Food</span> gets too low they will stop working. (Except for Farmers!)");
+			message("Try to get as many <span class='text-info'>Research Points</span> as you can, there are many things to discover!");
 			}
 		}
 	}
@@ -922,7 +928,7 @@ document.getElementById("addexplorerbutton").onclick = function() {
 
 
 document.getElementById("hutbutton").onclick = function() {
-	var hutcost = (10 * (Math.pow(game.buildings.huts.owned + 1,2.5)));
+	var hutcost = (10 * (Math.pow(game.buildings.huts.owned + 1,1.95)));
 	if (game.resources.wood.owned >= hutcost) {
 		game.resources.wood.owned -= hutcost;
 		game.stats.totalEXP += hutcost;
@@ -932,8 +938,8 @@ document.getElementById("hutbutton").onclick = function() {
 		updatebuildings();
 		updateresources();	
 		message("");
-		message("Built a Hut using " + prettify(oHutCost) + " Wood and gained " + prettify(oHutCost) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.huts.owned) + " Huts; Housing " + prettify(game.buildings.huts.owned * (game.buildings.huts.level * 2)) + ".");
+		message("Built a <span class='text-success'>Hut</span> using " + prettify(oHutCost) + " <span class='text-info'>Wood</span> and gained " + prettify(oHutCost) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.huts.owned) + " <span class='text-success'>Huts</span>; Housing " + prettify(game.buildings.huts.owned * (game.buildings.huts.level * 2)) + ".");
 		if ($('#workertalent').hasClass('hidden')) {
 		if (game.stats.populationMax > 1) {
 		$('#workertalent').removeClass('hidden');
@@ -961,8 +967,8 @@ document.getElementById("apartmentbutton").onclick = function() {
 		updatebuildings();
 		updateresources();
 		message("");
-		message("Built an Apartment Building using " + prettify(oAptCost) + " Concrete and gained " + prettify(2000 * (game.buildings.apartments.owned - 1)) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.apartments.owned) + " Apartments; Housing " + prettify(game.buildings.apartments.owned * (game.buildings.apartments.level * 25)) + ".");
+		message("Built an <span class='text-success'>Apartment Building</span> using " + prettify(oAptCost) + " <span class='text-info'>Concrete</span> and gained " + prettify(2000 * (game.buildings.apartments.owned - 1)) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.apartments.owned) + " <span class='text-success'>Apartments</span>; Housing " + prettify(game.buildings.apartments.owned * (game.buildings.apartments.level * 25)) + ".");
 	}
 }
 
@@ -977,8 +983,8 @@ document.getElementById("cabinbutton").onclick = function() {
 		updatebuildings();
 		updateresources();
 		message("");
-		message("Built a Cabin using " + prettify(oCabinCost) + " Planks and gained " + prettify(oCabinCost * 30) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.cabins.owned) + " Cabins; Housing " + prettify(game.buildings.cabins.owned * (game.buildings.cabins.level * 10) + "."));		
+		message("Built a <span class='text-success'>Cabin</span> using " + prettify(oCabinCost) + " <span class='text-info'>Planks</span> and gained " + prettify(oCabinCost * 30) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.cabins.owned) + " <span class='text-success'>Cabins</span>; Housing " + prettify(game.buildings.cabins.owned * (game.buildings.cabins.level * 10) + "."));		
 	}
 };
 
@@ -993,8 +999,8 @@ document.getElementById("rhbutton").onclick = function() {
 		updatebuildings();
 		updateresources();	
 		message("");
-		message("Built a Roundhouse using " + prettify(oRhCost) + " Clay and gained " + prettify(oRhCost * 2) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.roundHouses.owned) + " Roundhouses; Housing " + prettify(game.buildings.roundHouses.owned * (game.buildings.roundHouses.level * 5)) + ".");		
+		message("Built a <span class='text-success'>Roundhouse</span> using " + prettify(oRhCost) + " <span class='text-info'>Clay</span> and gained " + prettify(oRhCost * 2) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.roundHouses.owned) + " <span class='text-success'>Roundhouses</span>; Housing " + prettify(game.buildings.roundHouses.owned * (game.buildings.roundHouses.level * 5)) + ".");		
 	}
 };
 
@@ -1010,12 +1016,12 @@ document.getElementById("aqueductbutton").onclick = function() {
 		updatebuildings();
 		updateresources();
 		message("");
-		message("Built an Aqueduct using " + prettify(aqcost) + " Stone and " + prettify(aqcost/2) + " Food and gained " + prettify(aqcost) + " EXP.");
+		message("Built an <span class='text-success'>Aqueduct</span> using " + prettify(aqcost) + " <span class='text-info'>Stone</span> and " + prettify(aqcost/2) + " <span class='text-info'>Food</span> and gained " + prettify(aqcost) + " <span class='text-warning'>EXP</span>.");
 		message("This brings you to a total of " + prettify(game.buildings.aqueducts.owned) + ".");
 		if ($('#granaryspan').hasClass('hidden')) {
-				message("Granary Unlocked!");
-				message("<span class='text-danger'>Warning!</span> Increasing your Food max will increase how much your workers eat!");
-				message("Make sure you've got some Food supplies built up or people prepared to learn how to farm.");
+				message("<span class='text-success'>Granary</span> Unlocked!");
+				message("<span class='text-danger'>Warning!</span> Increasing your <span class='text-info'>Food</span> max will increase how much your workers eat!");
+				message("Make sure you've got some <span class='text-info'>Food</span> supplies built up or people prepared to learn how to farm.");
 				$('#granaryspan').removeClass('hidden');
 				game.talents.granaryTalent += 1;
 		}
@@ -1023,7 +1029,7 @@ document.getElementById("aqueductbutton").onclick = function() {
 }
 
 document.getElementById("fieldbutton").onclick = function() {
-	var fieldcost = (50 * (Math.pow(game.buildings.fields.owned + 1,1.2)));
+	var fieldcost = (50 * (Math.pow(game.buildings.fields.owned + 1,1.07)));
 	if (game.resources.food.owned >= fieldcost) {
 		game.resources.food.owned -= fieldcost;
 		game.buildings.fields.owned += 1;
@@ -1034,26 +1040,26 @@ document.getElementById("fieldbutton").onclick = function() {
 		updatebuildings();
 		updateresources();	
 		message("");
-		message("Tilled a Field at the expense of " + prettify(ofieldcost) + " Food and gained " + prettify((game.buildings.fields.owned * 5)) + " EXP.");
+		message("Tilled a <span class='text-success'>Field</span> at the expense of " + prettify(ofieldcost) + " <span class='text-info'>Food</span> and gained " + prettify((game.buildings.fields.owned * 5)) + " <span class='text-warning'>EXP</span>.");
 		if (game.buildings.fields.level < 2) {
-			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " Fields; Producing " + prettify(game.buildings.fields.rate.production * 4) + " Food per second.");
+			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " <span class='text-success'>Fields</span>; Producing " + prettify(game.buildings.fields.rate.production * 4) + " <span class='text-info'>Food</span> per second.");
 		}
 		if (game.buildings.fields.level > 1) {
-			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " Fields; Producing " + prettify(game.buildings.fields.rate.production * 4) + " Food and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " Water per second.");
+			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " <span class='text-success'>Fields</span>; Producing " + prettify(game.buildings.fields.rate.production * 4) + " <span class='text-info'>Food</span> and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " <span class='text-info'>Water</span> per second.");
 		}
 		if ($('#aqueductspan').hasClass('hidden')) {
 			if (game.buildings.fields.owned > 4) {
 				message("");
-				message("Aqueduct Unlocked!");
+				message("<span class='text-success'>Aqueduct</span> Unlocked!");
 				$('#aqueductspan').removeClass('hidden');
 				game.talents.aqueductTalent += 1;
 			}
 		}
 		if (game.buildings.fields.owned < 2) {
 			message("")
-			message("Excellent! Now that you have Food and Water under control it's time to build a shelter.");
-			message("Keep Foraging until you've gathered 10 Wood.")
-			message("Don't forget to keep tilling fields when you can!")
+			message("Excellent! Now that you have <span class='text-info'>Food</span> and <span class='text-info'>Water</span> under control it's time to build a shelter.");
+			message("Keep Foraging until you've gathered 10 <span class='text-info'>Wood</span>.")
+			message("Don't forget to keep tilling <span class='text-success'>Fields</span> when you can!")
 		}
 	}
 }
@@ -1076,13 +1082,13 @@ document.getElementById("granarybutton").onclick = function() {
 		updateresources();
 		updatetotalexp();
 		message("");
-		message("Built a Granary using " + prettify(oGranaryWoodCost) + " Wood and " + prettify(oGranaryStoneCost) + " Stone and gained " + prettify((game.buildings.granaries.owned * 150)) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.granaries.owned) + " Granaries.");
+		message("Built a <span class='text-success'>Granary</span> using " + prettify(oGranaryWoodCost) + " <span class='text-info'>Wood</span> and " + prettify(oGranaryStoneCost) + " <span class='text-info'>Stone</span> and gained " + prettify((game.buildings.granaries.owned * 150)) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.granaries.owned) + " <span class='text-success'>Granaries</span>.");
 	}
 }
 
 document.getElementById("shbutton").onclick = function() {
-	var shcost = (150 * (Math.pow(game.buildings.storeHouses.owned + 1,1.55)));
+	var shcost = (150 * (Math.pow(game.buildings.storeHouses.owned + 1,1.35)));
 	if (game.resources.wood.owned >= shcost) {
 		game.resources.wood.owned -= shcost;
 		game.buildings.storeHouses.owned += 1;
@@ -1096,9 +1102,9 @@ document.getElementById("shbutton").onclick = function() {
 		updateresources();	
 		updatetotalexp();
 		message("");
-		message("Built a Storehouse using " + prettify(oShCost) + " Wood and gained " + prettify((75 * game.buildings.storeHouses.owned) * game.buildings.storeHouses.level) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.storeHouses.owned) + " Storehouses.");
-		message("Storehouses capacity is now " + prettify((250 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Wood, " + prettify((200 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Stone, " + prettify((50 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Coal, " + prettify((25 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Clay.");
+		message("Built a <span class='text-success'>Storehouse</span> using " + prettify(oShCost) + " <span class='text-info'>Wood</span> and gained " + prettify((75 * game.buildings.storeHouses.owned) * game.buildings.storeHouses.level) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.storeHouses.owned) + " <span class='text-success'>Storehouses</span>.");
+		message("<span class='text-success'>Storehouse</span> capacity is now " + prettify((250 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " <span class='text-info'>Wood</span>, " + prettify((200 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " <span class='text-info'>Stone</span>, " + prettify((50 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " <span class='text-info'>Coal</span>, " + prettify((25 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " <span class='text-info'>Clay</span>.");
 
 	}
 	
@@ -1107,7 +1113,7 @@ document.getElementById("shbutton").onclick = function() {
 
 
 document.getElementById("rtowerbutton").onclick = function() {
-	var rtowercost = (100 * (Math.pow(game.buildings.researchTowers.owned + 1,1.45)));
+	var rtowercost = (100 * (Math.pow(game.buildings.researchTowers.owned + 1,1.04)));
 	if (game.resources.stone.owned >= rtowercost) {
 		game.resources.stone.owned -= rtowercost;
 		game.buildings.researchTowers.owned += 1;
@@ -1118,9 +1124,9 @@ document.getElementById("rtowerbutton").onclick = function() {
 		updateresources();		
 		updatetotalexp();
 		message("");
-		message("Built a Research Tower using " + prettify(oRTowerCost) + " Stone and gained " + prettify(25 * game.buildings.researchTowers.owned) + " EXP.");
-		message("This brings you to a total of " + prettify(game.buildings.researchTowers.owned) + " Research Towers.");
-		message("Each Researcher now produces " + prettify((game.workers.researchers.rate * 4) * game.workers.researchers.level) + " Research Points per second.")
+		message("Built a <span class='text-success'>Research Tower</span> using " + prettify(oRTowerCost) + " <span class='text-info'>Stone</span> and gained " + prettify(25 * game.buildings.researchTowers.owned) + " <span class='text-warning'>EXP</span>.");
+		message("This brings you to a total of " + prettify(game.buildings.researchTowers.owned) + " <span class='text-success'>Research Towers</span>.");
+		message("Each Researcher now produces " + prettify((game.workers.researchers.rate * 4) * game.workers.researchers.level) + " <span class='text-info'>Research Points</span> per second.")
 	}
 	if (game.buildings.researchTowers.owned > 4 && $('#upgradeRPdiv').hasClass('hidden')) {
 		$('#upgradeRPdiv').removeClass('hidden');
@@ -1130,13 +1136,13 @@ document.getElementById("rtowerbutton").onclick = function() {
 		$('#upgradeexplorerdiv').removeClass('hidden');
 		$('#researchtalent').addClass('btn-danger');
 		message("");
-		message("More research projects unlocked!");
+		message("<span class='text-danger'>More research projects unlocked!</span>");
 	}
 }
 
 document.getElementById("sawmillbutton").onclick = function() {
-	var smscost = (25 * (Math.pow(game.buildings.sawMills.owned + 1,1.75)));
-	var smccost = (1 * (Math.pow(game.buildings.sawMills.owned + 1,1.75)));
+	var smscost = (25 * (Math.pow(game.buildings.sawMills.owned + 1,1.5)));
+	var smccost = (1 * (Math.pow(game.buildings.sawMills.owned + 1,1.5)));
 	if (game.resources.stone.owned >= smscost) {
 		if (game.resources.clay.owned >= smccost) {
 			game.resources.stone.owned -= smscost;
@@ -1149,9 +1155,9 @@ document.getElementById("sawmillbutton").onclick = function() {
 			updateresources();		
 			updatetotalexp();
 			message("");
-			message("Built a Sawmill using " + prettify(oSmSCost) + " Stone and " + prettify(oSmCCost) + " Clay and gained " + prettify((game.buildings.sawMills.owned * 25)) + " EXP.");
-			message("This brings you to a total of " + prettify(game.buildings.sawMills.owned) + " Sawmills.");
-			message("Each Lumberjack now produces " + prettify((game.workers.lumberJacks.rate * 4) * (1 + (game.buildings.sawMills.owned * 0.10))) + " Wood per second.");
+			message("Built a <span class='text-success'>Sawmill</span> using " + prettify(oSmSCost) + " <span class='text-info'>Stone</span> and " + prettify(oSmCCost) + " <span class='text-info'>Clay</span> and gained " + prettify((game.buildings.sawMills.owned * 25)) + " <span class='text-warning'>EXP</span>.");
+			message("This brings you to a total of " + prettify(game.buildings.sawMills.owned) + " <span class='text-success'>Sawmills</span>.");
+			message("Each Lumberjack now produces " + prettify((game.workers.lumberJacks.rate * 4) * (1 + (game.buildings.sawMills.owned * 0.10))) + " <span class='text-info'>Wood</span> per second.");
 			
 		}
 	}
@@ -1492,7 +1498,7 @@ document.getElementById("newgame").onclick = function() {
 		updateWorkerNumber();
 
 		message("You wake up with a splitting headache. Your stomach growls with hunger.");
-		message("Luckily there is a River nearby giving you access to clean water.")
+		message("Luckily there is a River nearby giving you access to clean <span class='text-info'>Water</span>.")
 		message("Better look around for something to eat.");
 		
 }

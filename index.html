@@ -101,7 +101,7 @@ $(document).ready(function(){
 		
 		Level: <span id="current_level">1</span> <br />
         <span id="popspan" class="hidden">Population: <span id="pop">0</span> / <span id="popmax">0 </span></span><br />
-		Talent Points:<span id="talentpoints" class="">0</span><br />
+		Talent Points: <span id="talentpoints" class="">0</span><br />
 		<div id="rpdiv" class="hidden">
 		Research Points: <span id="total_RP" class="">0</span> (<small id="rpps">0</small>)
 		<div id="steamdiv" class="hidden">
@@ -275,7 +275,7 @@ $(document).ready(function(){
 					
 					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="aqueductspan">
 					<button type="button" class="btn btn-primary btn-block" id="aqueductbutton"><span class="fa fa-bank"></span> Aqueduct <span class="badge" id="aqueductnum">0</span></button>
-					Cost: <span id="aqueductcost" class="">150</span> Stone, <span id="aqueductfcost" class="">75</span> Food & <span id="aqueductrpcost">1000<span> Research Points.<br />
+					Cost: <span id="aqueductcost" class="">150</span> Stone, <span id="aqueductfcost" class="">75</span> Food & <span id="aqueductrpcost">1000</span> Research Points.<br />
 					Decreases Food consumption.<br />
 					</div>
 					
@@ -464,7 +464,7 @@ $(document).ready(function(){
 			<div role="tabpanel" class="text-center tab-pane fade" id="craftingtab">
 				<br />
 				
-				<div id="logspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+				<div id="logspan" class="buttonBox2 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="logbutton">
 					50 Wood <br /><span class="fa fa-long-arrow-right"></span> 1 Plank</button>
 					
@@ -476,7 +476,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				
-				<div id="blockspan" class="buttonBox2 boxDiv3 col-xs-4 hidden">
+				<div id="blockspan" class="buttonBox2 col-xs-4 hidden">
 					<button type="button" class="btn btn-primary btn-block" id="blockbutton">
 					100 Stone & 100 Water <br /><span class="fa fa-long-arrow-right"></span> 1 Concrete</button>
 					
@@ -548,7 +548,7 @@ $(document).ready(function(){
 			</div>
 			
 			<div id="stoneresource" class="col-xs-3  text-center">
-			<img id="imgStone" src="img/stone.png"><br />Stone: <span id="total_stone">0</span> / <span id="stonemax">200</span> (<small id="stoneps">0</small>)</img>
+			<img id="imgStone" src="img/stone.png"><br />Stone: <span id="total_stone">0</span> / <span id="stonemax">250</span> (<small id="stoneps">0</small>)</img>
 			</div>
 				
 			<div id="clayresource" class="col-xs-3  text-center">
@@ -609,9 +609,9 @@ $(document).ready(function(){
 					
 					
 				<div class="btn-group-justified">
-					<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal">Wood</button>
-					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnwater">Water</button>
-					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay">Clay</button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burncoal"><span class="hire">Wood</span> <small class="hirecost">(-25 Wood)</small></button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnwater"><span class="hire">Water</span> <small class="hirecost">(-500 Water)</small></button>
+					<button type="button" class="btn btn-danger" style="width:33.3%" id="burnclay"><span class="hire">Clay</span> <small class="hirecost">(-25 Clay)</small></button>
 				</div>
 			</div>
 		</div>
