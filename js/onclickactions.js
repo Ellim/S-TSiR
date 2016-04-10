@@ -1,22 +1,40 @@
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+document.getElementById("importSave").onclick = function() {
+	$('#importModal').modal('show');
+}
+
+document.getElementById("importGame").onclick = function() {
+	load(true);
+	loadUI();
+}
+
+document.getElementById("exportSave").onclick = function() {
+	$('#exportModal').modal('show');
+	var exportString = document.getElementById("exportBox");
+	exportString.value = save(true);
+}
 
 document.getElementById("forage").onclick = function() {
-	forage(1); 
+	forage(1);
 	if ($('#consttalent').hasClass('hidden')) {
-		if (currentfood >= 50) {
+		if (game.resources.food.owned >= 50) {
 		$('#consttalent').removeClass('hidden');
 		$('#consttalent').addClass('btn-danger');
 		$('#prodtab').addClass('btn-danger');
-		constructiontalent += 1;
+		game.talents.constructionTalent += 1;
 		message("");
 		message("You've gathered enough seeds from all the Food you should be able to grow something!");
 		} 
 	}
 	if ($('#housetab').hasClass('hidden')) {
-		if (wood >= 10) {
+		if (game.resources.wood.owned >= 10) {
 			$('#housetab').removeClass('hidden');
 			$('#popspan').removeClass('hidden');
 			$('#housetab').addClass('btn-danger');
-			housetalent += 1;
+			game.talents.houseTalent += 1;
 			message("");
 			message("Right on! You now have enough Wood to build a Hut.");
 		}
@@ -57,7 +75,7 @@ document.getElementById("burn").onclick = function() {
 };
 
 document.getElementById("save").onclick = function() {
-	showsave();
+	save();
 }
 
 document.getElementById("consttalent").onclick = function() {
@@ -213,8 +231,8 @@ document.getElementById("100worker").onclick = function() {
 }
 
 document.getElementById("unlockminebutton").onclick = function() {
-	if (talentpoints >= 5) {
-		talentpoints -= 5;
+	if (game.stats.talentPoints >= 5) {
+		game.stats.talentPoints -= 5;
 		$('#minespan').removeClass('hidden');
 		$('#minetalentlv2').removeClass('hidden');
 		$('#minetalentlv1').addClass('hidden');
@@ -225,7 +243,7 @@ document.getElementById("unlockminebutton").onclick = function() {
 		$('#rivertalent').removeClass('hidden');
 		$('#rtowerdiv').removeClass('hidden');
 		updatetotalexp();
-		minetalent += 1;
+		game.talents.mineTalent += 1;
 		$('#coaldiv').removeClass('hidden');
 		message("");
 		message("Mining will take some Food and Water.");
@@ -235,13 +253,13 @@ document.getElementById("unlockminebutton").onclick = function() {
 }
 
 document.getElementById("unlockburnbutton").onclick = function() {
-	if (talentpoints >= 3) {
-		talentpoints -= 3;
+	if (game.stats.talentPoints >= 3) {
+		game.stats.talentPoints -= 3;
 		$('#burnspan').removeClass('hidden');
 		$('#burntalent').addClass('hidden');
 		var tempvar = document.getElementById("talentpoints");
-		tempvar.innerHTML = talentpoints.toFixed(0);
-		burntalent += 1;
+		tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+		game.talents.burnTalent += 1;
 		$('#coaldiv').removeClass('hidden');
 		$('#steamdiv').removeClass('hidden');
 		$('#brickdiv').removeClass('hidden');
@@ -253,31 +271,29 @@ document.getElementById("unlockburnbutton").onclick = function() {
 }
 
 document.getElementById("riverbutton").onclick = function() {
-	if (talentpoints >= riverupgradecost) {
-		talentpoints -= riverupgradecost;
-		waterrate += riverupgradecost * 2.5;
-		riverupgradecost += riverupgradecost;
-		riverlevel += 1;
+	if (game.stats.talentPoints >= game.buildings.river.owned) {
+		game.stats.talentPoints -= game.buildings.river.owned;
+		game.buildings.river.rate += game.buildings.river.owned * 2.5;
+		game.buildings.river.owned += game.buildings.river.owned;
+		game.buildings.river.level += 1;
 		var tempvar = document.getElementById("riverupgradecost");
-		tempvar.innerHTML = riverupgradecost.toFixed(0);
-		var tempvar3 = document.getElementById("riverproduction");
-		tempvar3.innerHTML = ((riverupgradecost * 20)/(watertick/1000)).toFixed(0);
+		tempvar.innerHTML = game.buildings.river.owned.toFixed(0);
 	}
 };
 
 document.getElementById("keeneyes").onclick = function() {
-	if (talentpoints >= keeneyescost) {
-		talentpoints -= keeneyescost;
-		keeneyelevel += 1;
-		keeneyescost = keeneyescost * 2;
+	if (game.stats.talentPoints >= game.talents.keenEyes * 2) {
+		game.stats.talentPoints -= game.talents.keenEyes * 2;
+		game.talents.keenEyes += 1;
+		var keeneyescost = game.talents.keenEyes * 2;
 		var tempvar = document.getElementById("keeneyecost");
 		tempvar.innerHTML = keeneyescost.toFixed(0);
 	}
 }
 
 document.getElementById("craftingbutton").onclick = function() {
-	if (talentpoints > 4) {
-		talentpoints -= 5;
+	if (game.stats.talentPoints > 4) {
+		game.stats.talentPoints -= 5;
 		if ($('#craftingtalent').hasClass('hidden')) {
 			$('#craftingtalent').removeClass('hidden');
 			$('#craftab').removeClass('hidden');
@@ -286,19 +302,19 @@ document.getElementById("craftingbutton").onclick = function() {
 			$('#researchtalent').addClass('btn-danger');
 			$('#crafttalentbutton').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			craftingtalent += 1;
+			tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+			game.talents.craftingTalent += 1;
 		}
 	}
 }
 
 document.getElementById("logbutton").onclick = function() {
-	if (wood >= woodlogcost) {
-		wood -= woodlogcost;
-		logs += 1;
+	if (game.resources.wood.owned >= game.resources.logs.rate) {
+		game.resources.wood.owned -= game.resources.logs.rate;
+		game.resources.logs.owned += 1;
 		var tempexp = (50 * (popmax/100));
-		totalexp += tempexp;
-		message("Crafted 1 Plank using " + prettify(woodlogcost) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		game.stats.totalEXP += tempexp;
+		message("Crafted 1 Plank using " + prettify(game.resources.logs.rate) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -308,12 +324,12 @@ document.getElementById("logbutton").onclick = function() {
 }
 
 document.getElementById("log10").onclick = function() {
-	if (wood >= woodlogcost * 10) {
-		wood -= woodlogcost * 10;
-		logs += 10;
+	if (game.resources.wood.owned >= game.resources.logs.rate * 10) {
+		game.resources.wood.owned -= game.resources.logs.rate * 10;
+		game.resources.logs.owned += 10;
 		var tempexp = ((50 * (popmax/100)) * 10);
-		totalexp += tempexp;
-		message("Crafted 10 Planks using " + prettify(woodlogcost*10) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		game.stats.totalEXP += tempexp;
+		message("Crafted 10 Planks using " + prettify(game.resources.logs.rate * 10) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -323,12 +339,12 @@ document.getElementById("log10").onclick = function() {
 }
 
 document.getElementById("log25").onclick = function() {
-	if (wood >= woodlogcost * 25) {
-		wood -= woodlogcost * 25;
-		logs += 25;
+	if (game.resources.wood.owned >= game.resources.logs.rate * 25) {
+		game.resources.wood.owned -= game.resources.logs.rate * 25;
+		game.resources.logs.owned += 25;
 		var tempexp = ((50 * (popmax/100)) * 25);
-		totalexp += tempexp;
-		message("Crafted 25 Planks using " + prettify(woodlogcost*25) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		game.stats.totalEXP += tempexp;
+		message("Crafted 25 Planks using " + prettify(game.resources.logs.rate * 25) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -338,12 +354,12 @@ document.getElementById("log25").onclick = function() {
 }
 
 document.getElementById("log100").onclick = function() {
-	if (wood >= woodlogcost * 100) {
-		wood -= woodlogcost * 100;
-		logs += 100;
+	if (game.resources.wood.owned >= game.resources.logs.rate * 100) {
+		game.resources.wood.owned -= game.resources.logs.rate * 100;
+		game.resources.logs.owned += 100;
 		var tempexp = ((50 * (popmax/100)) * 100);
-		totalexp += tempexp;
-		message("Crafted 100 Planks using " + prettify(woodlogcost*100) + " Wood, gained " + prettify(tempexp) + " EXP.");
+		game.stats.totalEXP += tempexp;
+		message("Crafted 100 Planks using " + prettify(game.resources.logs.rate * 100) + " Wood, gained " + prettify(tempexp) + " EXP.");
 		if ($('#logdiv').hasClass('hidden')) {
 		$('#logdiv').removeClass('hidden');
 	}  
@@ -354,14 +370,14 @@ document.getElementById("log100").onclick = function() {
 
 
 document.getElementById("blockbutton").onclick = function() {
-	if (stone >= stoneblockscost) {
-		if (water >= stoneblockscost) {
-			stone -= stoneblockscost;
-			water -= stoneblockscost
-			stoneblocks += 1;
+	if (game.resources.stone.owned >= game.resources.concrete.rate.stone) {
+		if (game.resources.water.owned >= game.resources.concrete.rate.water) {
+			game.resources.stone.owned -= game.resources.concrete.rate.stone;
+			game.resources.water.owned -= game.resources.concrete.rate.water;
+			game.resources.concrete.owned += 1;
 			var tempexp = (50 * (popmax/100));
-			totalexp += tempexp;
-			message("Crafted 1 Concrete using " + prettify(stoneblockscost) + " Stone and " + prettify(stoneblockscost) + " Water, gained " + prettify(tempexp) + " EXP.");
+			game.stats.totalEXP += tempexp;
+			message("Crafted 1 Concrete using " + prettify(game.resources.concrete.rate.stone) + " Stone and " + prettify(game.resources.concrete.rate.water) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -372,14 +388,14 @@ document.getElementById("blockbutton").onclick = function() {
 }
 
 document.getElementById("sb10").onclick = function() {
-	if (stone >= stoneblockscost*10) {
-		if (water >= stoneblockscost*10) {
-			stone -= stoneblockscost*10;
-			water -= stoneblockscost*10
-			stoneblocks += 10;
+	if (game.resources.stone.owned >= game.resources.concrete.rate.stone * 10) {
+		if (game.resources.water.owned >= game.resources.concrete.rate.water * 10) {
+			game.resources.stone.owned -= game.resources.concrete.rate.stone * 10;
+			game.resources.water.owned -= game.resources.concrete.rate.water * 10;
+			game.resources.concrete.owned += 10;
 			var tempexp = ((50 * (popmax/100)) * 10);
-			totalexp += tempexp;
-			message("Crafted 10 Concrete using " + prettify(stoneblockscost*10) + " Stone and " + prettify(stoneblockscost*10) + " Water, gained " + prettify(tempexp) + " EXP.");
+			game.stats.totalEXP += tempexp;
+			message("Crafted 10 Concrete using " + prettify(game.resources.concrete.rate.stone * 10) + " Stone and " + prettify(game.resources.concrete.rate.water * 10) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -390,14 +406,14 @@ document.getElementById("sb10").onclick = function() {
 }
 
 document.getElementById("sb25").onclick = function() {
-	if (stone >= stoneblockscost*25) {
-		if (water >= stoneblockscost*25) {
-			stone -= stoneblockscost*25;
-			water -= stoneblockscost*25
-			stoneblocks += 25;
+	if (game.resources.stone.owned >= game.resources.concrete.rate.stone * 25) {
+		if (game.resources.water.owned >= game.resources.concrete.rate.water * 25) {
+			game.resources.stone.owned -= game.resources.concrete.rate.stone * 25;
+			game.resources.water.owned -= game.resources.concrete.rate.water * 25
+			game.resources.concrete.owned += 25;
 			var tempexp = ((50 * (popmax/100)) * 25);
-			totalexp += tempexp;
-			message("Crafted 25 Concrete using " + prettify(stoneblockscost*25) + " Stone and " + prettify(stoneblockscost*25) + " Water, gained " + prettify(tempexp) + " EXP.");
+			game.stats.totalEXP += tempexp;
+			message("Crafted 25 Concrete using " + prettify(game.resources.concrete.rate.stone * 25) + " Stone and " + prettify(game.resources.concrete.rate.water * 25) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -408,14 +424,14 @@ document.getElementById("sb25").onclick = function() {
 }
 
 document.getElementById("sb100").onclick = function() {
-	if (stone >= stoneblockscost*100) {
-		if (water >= stoneblockscost*100) {
-			stone -= stoneblockscost*100;
-			water -= stoneblockscost*100
-			stoneblocks += 100;
+	if (game.resources.stone.owned >= game.resources.concrete.rate.stone * 100) {
+		if (game.resources.water.owned >= game.resources.concrete.rate.water * 100) {
+			game.resources.stone.owned -= game.resources.concrete.rate.stone * 100;
+			game.resources.water.owned -= game.resources.concrete.rate.water * 100
+			game.resources.concrete.owned += 100;
 			var tempexp = ((50 * (popmax/100)) * 100);
-			totalexp += tempexp;
-			message("Crafted 100 Concrete using " + prettify(stoneblockscost*100) + " Stone and " + prettify(stoneblockscost*100) + " Water, gained " + prettify(tempexp) + " EXP.");
+			game.stats.totalEXP += tempexp;
+			message("Crafted 100 Concrete using " + prettify(game.resources.concrete.rate.stone * 100) + " Stone and " + prettify(game.resources.concrete.rate.water * 100) + " Water, gained " + prettify(tempexp) + " EXP.");
 			if ($('#blockdiv').hasClass('hidden')) {
 			$('#blockdiv').removeClass('hidden');
 		}
@@ -426,13 +442,13 @@ document.getElementById("sb100").onclick = function() {
 }
 
 document.getElementById("unlocklogbutton").onclick = function() {
-	if (researchpoints > 999) {
-		researchpoints -= 1000;
+	if (game.resources.researchPoints.owned > 999) {
+		game.resources.researchPoints.owned -= 1000;
 		if ($('#logspan').hasClass('hidden')) {
 			$('#logspan').removeClass('hidden');
 			$('#cabinspan').removeClass('hidden');
 			$('#unlocklogdiv').addClass('hidden');
-			logtalent += 1;
+			game.talents.logTalent += 1;
 			$('#craftingtalent').addClass('btn-danger');
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
@@ -442,22 +458,22 @@ document.getElementById("unlocklogbutton").onclick = function() {
 }
 
 document.getElementById("upgradeRPbutton").onclick = function() {
-	if (researchpoints > ((researcherlevel * 1500)*researcherlevel)) {
-		researchpoints -= ((researcherlevel * 1500)*researcherlevel);
-		researcherlevel += 1;
+	if (game.resources.researchPoints.owned > ((game.workers.researchers.level * 1500) * game.workers.researchers.level)) {
+		game.resources.researchPoints.owned -= ((game.workers.researchers.level * 1500) * game.workers.researchers.level);
+		game.workers.researchers.level += 1;
 		var tempvar = document.getElementById("RPupcost");
-		tempvar.innerHTML = prettify(((researcherlevel * 1500)*researcherlevel));
+		tempvar.innerHTML = prettify(((game.workers.researchers.level * 1500) * game.workers.researchers.level));
 	}
 }
 
 
 document.getElementById("unlockblockbutton").onclick = function() {
-	if (researchpoints > 3332) {
-		researchpoints -= 3333;
+	if (game.resources.researchPoints.owned > 3332) {
+		game.resources.researchPoints.owned -= 3333;
 		if ($('#blockspan').hasClass('hidden')) {
 			$('#blockspan').removeClass('hidden');
 			$('#unlockblockdiv').addClass('hidden');
-			blocktalent += 1;
+			game.talents.blockTalent += 1;
 			$('#craftingtalent').addClass('btn-danger');
 			$('#apartmentspan').removeClass('hidden');
 			$('#consttalent').addClass('btn-danger');
@@ -468,90 +484,92 @@ document.getElementById("unlockblockbutton").onclick = function() {
 }
 
 document.getElementById("upgradeshbutton").onclick = function() {
-	if (researchpoints >= shrpcost) {
-		researchpoints -= shrpcost;
-		shlevel += 1;
-		shrpcost = shrpcost * 1.75;
-		woodmax += 250 * storehouses;
-		stonemax += 200 * storehouses;
-		coalmax += 50 * storehouses;
-		claymax += 25 * storehouses;
+	var rpCost = (game.buildings.storeHouses.level * 1500) * (game.buildings.storeHouses.level * 1.15);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.buildings.storeHouses.level += 1;
+		game.resources.wood.max += 250 * game.buildings.storeHouses.owned;
+		game.resources.stone.max += 200 * game.buildings.storeHouses.owned;
+		game.resources.charcoal.max += 50 * game.buildings.storeHouses.owned;
+		game.resources.clay.max += 25 * game.buildings.storeHouses.owned;
 		var tempvar = document.getElementById("upgradeshcost");
-		tempvar.innerHTML = prettify(shrpcost);
-		message("Storehouses now each hold " + prettify(250 * shlevel) + " Wood, " + prettify(200 * shlevel) + " Stone, " + prettify(50 * shlevel) + " Coal, " + prettify(25 * shlevel) + " Clay.");
+		rpCost = (game.buildings.storeHouses.level * 1500) * (game.buildings.storeHouses.level * 1.15);
+		tempvar.innerHTML = prettify(rpCost);
+		message("Storehouses now each hold " + prettify(250 * game.buildings.storeHouses.level) + " Wood, " + prettify(200 * game.buildings.storeHouses.level) + " Stone, " + prettify(50 * game.buildings.storeHouses.level) + " Coal, " + prettify(25 * game.buildings.storeHouses.level) + " Clay.");
 	}
 }
 
 document.getElementById("fieldirrigationbutton").onclick = function() {
-	if (researchpoints >= fieldrpcost) {
-		researchpoints -= fieldrpcost;
-		fieldlevel += 1;
-		fieldrpcost = fieldrpcost * 1.15;
-		waterrate += .125 * fields; 
-		fieldrate += .175 * fields;
+	var rpCost = (game.buildings.fields.level * 1500) * (game.buildings.fields.level * 1.2);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.buildings.fields.level += 1;
+		game.buildings.river.rate += .125 * game.buildings.fields.owned; 
+		game.buildings.fields.rate.production += .175 * game.buildings.fields.owned;
 		var tempvar = document.getElementById("fieldirrigationcost");
-		tempvar.innerHTML = prettify(fieldrpcost);
-		message("Fields now generate " + prettify(fieldrate*4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
+		rpCost = (game.buildings.fields.level * 1500) * (game.buildings.fields.level * 1.2);
+		tempvar.innerHTML = prettify(rpCost);
+		message("Fields now generate " + prettify(game.buildings.fields.rate.production * 4) + " Food and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " Water per second.");
 	}
 }
 
 document.getElementById("upgradefarmerbutton").onclick = function() {
-	var farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
-	if (researchpoints >= farmerrp) {
-		researchpoints -= farmerrp;
-		farmerlevel += 1;
-		farmerrp = (farmerlevel * 600) * (farmerlevel * 1.25);
+	var rpCost = (game.workers.farmers.level * 600) * (game.workers.farmers.level * 1.25);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.workers.farmers.level += 1;
+		rpCost = (game.workers.farmers.level * 600) * (game.workers.farmers.level * 1.25);
 		var tempvar = document.getElementById("farmerupcost");
-		tempvar.innerHTML = prettify(farmerrp);
+		tempvar.innerHTML = prettify(rpCost);
 		message("Farmers are cool now.");
 	}
 }
 
 document.getElementById("upgradeloggerbutton").onclick = function() {
-	var loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
-	if (researchpoints >= loggerrp) {
-		researchpoints -= loggerrp;
-		loggerlevel += 1;
-		loggerrp = (loggerlevel * 900) * (loggerlevel * 1.25);
+	var rpCost = (game.workers.lumberJacks.level * 900) * (game.workers.lumberJacks.level * 1.25);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.workers.lumberJacks.level += 1;
+		rpCost = (game.workers.lumberJacks.level * 900) * (game.workers.lumberJacks.level * 1.25);
 		var tempvar = document.getElementById("loggerupcost");
-		tempvar.innerHTML = prettify(loggerrp);
+		tempvar.innerHTML = prettify(rpCost);
 		message("Loggers are cool now.");
 	}
 }
 
 document.getElementById("upgrademinerbutton").onclick = function() {
-	var minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
-	if (researchpoints >= minerrp) {
-		researchpoints -= minerrp;
-		minerlevel += 1;
-		minerrp = (minerlevel * 1200) * (minerlevel * 1.25);
+	var rpCost = (game.workers.miners.level * 1200) * (game.workers.miners.level * 1.25);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.workers.miners.level += 1;
+		rpCost = (game.workers.miners.level * 1200) * (game.workers.miners.level * 1.25);
 		var tempvar = document.getElementById("minerupcost");
-		tempvar.innerHTML = prettify(minerrp);
+		tempvar.innerHTML = prettify(rpCost);
 		message("Miners are cool now.");
 	}
 }
 
 document.getElementById("upgradeexplorerbutton").onclick = function() {
-	var warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
-	if (researchpoints >= warriorrp) {
-		researchpoints -= warriorrp;
-		warriorlevel += 1;
-		warriorrp = (warriorlevel * 2500) * (warriorlevel * 1.25);
+	var rpCost = (game.workers.explorers.level * 2500) * (game.workers.explorers.level * 1.25);
+	if (game.resources.researchPoints.owned >= rpCost) {
+		game.resources.researchPoints.owned -= rpCost;
+		game.workers.explorers.level += 1;
+		rpCost = (game.workers.explorers.level * 2500) * (game.workers.explorers.level * 1.25);
 		var tempvar = document.getElementById("explorerupcost");
-		tempvar.innerHTML = prettify(warriorrp);
+		tempvar.innerHTML = prettify(rpCost);
 		message("Explorers are cool now.");
 	}
 }
 
 document.getElementById("unlockfarmerbutton").onclick = function() {
-	if (researchpoints > 24) {
-		researchpoints -= 25;
+	if (game.resources.researchPoints.owned > 24) {
+		game.resources.researchPoints.owned -= 25;
 		if ($('#farmerdiv').hasClass('hidden')) {
 			$('#farmerdiv').removeClass('hidden');
 			$('#unlockfarmerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			farmertalent += 1;
+			tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+			game.talents.farmerTalent += 1;
 			message("");
 			message("Your Researchers have gathered all their knowledge of Farming into a great Codex.");
 			message("You can now train Farmers to till your fields and increase Food production even more!");
@@ -561,14 +579,14 @@ document.getElementById("unlockfarmerbutton").onclick = function() {
 }
 
 document.getElementById("unlockloggerbutton").onclick = function() {
-	if (researchpoints > 149) {
-		researchpoints -= 150;
+	if (game.resources.researchPoints.owned > 149) {
+		game.resources.researchPoints.owned -= 150;
 		if ($('#loggerdiv').hasClass('hidden')) {
 			$('#loggerdiv').removeClass('hidden');
 			$('#unlockloggerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			loggertalent += 1;
+			tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+			game.talents.loggerTalent += 1;
 			$('#consttalent').addClass('btn-danger');
 			$('#prodtab').addClass('btn-danger');
 			$('#sawmillspan').removeClass('hidden');
@@ -577,14 +595,14 @@ document.getElementById("unlockloggerbutton").onclick = function() {
 }
 
 document.getElementById("unlockminerbutton").onclick = function() {
-	if (researchpoints > 349) {
-		researchpoints -= 350;
+	if (game.resources.researchPoints.owned > 349) {
+		game.resources.researchPoints.owned -= 350;
 		if ($('#minerdiv').hasClass('hidden')) {
 			$('#minerdiv').removeClass('hidden');
 			$('#unlockminerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			minertalent += 1;
+			tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+			game.talents.minerTalent += 1;
 			$('#consttalent').addClass('btn-danger');
 			$('#housetab').addClass('btn-danger');
 			$('#rhspan').removeClass('hidden');
@@ -593,14 +611,14 @@ document.getElementById("unlockminerbutton").onclick = function() {
 }
 
 document.getElementById("unlockexplorerbutton").onclick = function() {
-	if (researchpoints > 1749) {
-		researchpoints -= 1750;
+	if (game.resources.researchPoints.owned > 1749) {
+		game.resources.researchPoints.owned -= 1750;
 		if ($('#explorerdiv').hasClass('hidden')) {
 			$('#explorerdiv').removeClass('hidden');
 			$('#unlockexplorerdiv').addClass('hidden');
 			var tempvar = document.getElementById("talentpoints");
-			tempvar.innerHTML = talentpoints.toFixed(0);
-			warriortalent += 1;
+			tempvar.innerHTML = game.stats.talentPoints.toFixed(0);
+			game.talents.warriorTalent += 1;
 		}
 	}
 }
@@ -619,17 +637,17 @@ document.getElementById("removefarmerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (farmers > 0) {
-		freeworkers += Math.min(farmers,mult);
-		farmers -= Math.min(farmers,mult);
-		updateworkers();
-		if ((farmers + loggers) < 15) {
+	if (game.workers.farmers.owned > 0) {
+		game.workers.freeWorkers.owned += Math.min(game.workers.farmers.owned,mult);
+		game.workers.farmers.owned -= Math.min(game.workers.farmers.owned,mult);
+		updateWorkerNumber();
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 10) {
 		$('#forage10').prop('disabled', true);
 		}
-		if ((farmers + loggers) < 35) {
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 25) {
 		$('#forage25').prop('disabled', true);
 		}
-		if ((farmers + loggers) < 125) {
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 100) {
 		$('#forage100').prop('disabled', true);
 		}
 	}
@@ -649,24 +667,24 @@ document.getElementById("addfarmerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		mult = 100;
 	}
-	if (freeworkers > 0) {
-		if (currentfood >= (25 * Math.min(freeworkers,mult))) {
-			if ((farmers + Math.min(freeworkers,mult)) <= ((fields) * fieldlevel)) {
-				currentfood -= (25 * Math.min(freeworkers,mult));
-				farmers += Math.min(freeworkers,mult);
-				freeworkers -= Math.min(freeworkers,mult);
-				updateworkers();
-				if ((farmers + loggers) >= 15) {
+	if (game.workers.freeWorkers.owned > 0) {
+		if (game.resources.food.owned >= (25 * Math.min(game.workers.freeWorkers.owned,mult))) {
+			if ((game.workers.farmers.owned + Math.min(game.workers.freeWorkers.owned,mult)) <= ((game.buildings.fields.owned) * game.buildings.fields.level)) {
+				game.resources.food.owned -= (25 * Math.min(game.workers.freeWorkers.owned,mult));
+				game.workers.farmers.owned += Math.min(game.workers.freeWorkers.owned,mult);
+				game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
+				updateWorkerNumber();
+				if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 10) {
 				$('#forage10').prop('disabled', false);
 				}
-				if ((farmers + loggers) >= 35) {
+				if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 25) {
 				$('#forage25').prop('disabled', false);
 				}
-				if ((farmers + loggers) >= 125) {
+				if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 100) {
 				$('#forage100').prop('disabled', false);
 				}
 			}
-			if (farmers > ((fields) * fieldlevel)) {
+			if (game.workers.farmers.owned > ((game.buildings.fields.owned) * game.buildings.fields.level)) {
 				message("");
 				message("There's no room for more Farmers!");
 			}
@@ -688,17 +706,17 @@ document.getElementById("removeloggerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (loggers > 0) {
-		freeworkers += Math.min(loggers,mult);
-		loggers -= Math.min(loggers,mult);
-		updateworkers();
-		if ((farmers + loggers) < 15) {
+	if (game.workers.lumberJacks.owned > 0) {
+		game.workers.freeWorkers.owned += Math.min(game.workers.lumberJacks.owned,mult);
+		game.workers.lumberJacks.owned -= Math.min(game.workers.lumberJacks.owned,mult);
+		updateWorkerNumber();
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 10) {
 		$('#forage10').prop('disabled', true);
 		}
-		if ((farmers + loggers) < 35) {
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 25) {
 		$('#forage25').prop('disabled', true);
 		}
-		if ((farmers + loggers) < 125) {
+		if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) < 100) {
 		$('#forage100').prop('disabled', true);
 		}
 	}
@@ -718,19 +736,19 @@ document.getElementById("addloggerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		mult = 100;
 	}
-	if (freeworkers > 0) {
-		if (currentfood >= (75 * Math.min(freeworkers,mult))) {
-			currentfood -= (75 * Math.min(freeworkers,mult));
-			loggers += Math.min(freeworkers,mult);
-			freeworkers -= Math.min(freeworkers,mult);
-			updateworkers();
-			if ((farmers + loggers) >= 15) {
+	if (game.workers.freeWorkers.owned > 0) {
+		if (game.resources.food.owned >= (75 * Math.min(game.workers.freeWorkers.owned,mult))) {
+			game.resources.food.owned -= (75 * Math.min(game.workers.freeWorkers.owned,mult));
+			game.workers.lumberJacks.owned += Math.min(game.workers.freeWorkers.owned,mult);
+			game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
+			updateWorkerNumber();
+			if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 15) {
 			$('#forage10').prop('disabled', false);
 			}
-			if ((farmers + loggers) >= 35) {
+			if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 35) {
 			$('#forage25').prop('disabled', false);
 			}
-			if ((farmers + loggers) >= 125) {
+			if ((game.workers.farmers.owned + game.workers.lumberJacks.owned) >= 125) {
 			$('#forage100').prop('disabled', false);
 			}
 		}
@@ -751,17 +769,17 @@ document.getElementById("removeminerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		mult = 100;
 	}
-	if (miners > 0) {
-		freeworkers += Math.min(miners,mult);
-		miners -= Math.min(miners,mult);
-		updateworkers();
-		if (miners < 10) {
+	if (game.workers.miners.owned > 0) {
+		game.workers.freeWorkers.owned += Math.min(game.workers.miners.owned,mult);
+		game.workers.miners.owned -= Math.min(game.workers.miners.owned,mult);
+		updateWorkerNumber();
+		if (game.workers.miners.owned < 10) {
 		$('#mine10').prop('disabled', true);
 		}
-		if (miners < 25) {
+		if (game.workers.miners.owned < 25) {
 		$('#mine25').prop('disabled', true);
 		}
-		if (miners < 100) {
+		if (game.workers.miners.owned < 100) {
 		$('#mine100').prop('disabled', true);
 		}
 	}
@@ -781,19 +799,19 @@ document.getElementById("addminerbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		mult = 100;
 	}
-	if (freeworkers > 0) {
-		if (currentfood >= (75 * Math.min(freeworkers,mult))) {
-			currentfood -= (75 * Math.min(freeworkers,mult));
-			miners += Math.min(freeworkers,mult);
-			freeworkers -= Math.min(freeworkers,mult);
-			updateworkers();
-			if (miners >= 10) {
+	if (game.workers.freeWorkers.owned > 0) {
+		if (game.resources.food.owned >= (75 * Math.min(game.workers.freeWorkers.owned,mult))) {
+			game.resources.food.owned -= (75 * Math.min(game.workers.freeWorkers.owned,mult));
+			game.workers.miners.owned += Math.min(game.workers.freeWorkers.owned,mult);
+			game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
+			updateWorkerNumber();
+			if (game.workers.miners.owned >= 10) {
 			$('#mine10').prop('disabled', false);
 			}
-			if (miners >= 25) {
+			if (game.workers.miners.owned >= 25) {
 			$('#mine25').prop('disabled', false);
 			}
-			if (miners >= 100) {
+			if (game.workers.miners.owned >= 100) {
 			$('#mine100').prop('disabled', false);
 			}
 		}
@@ -814,10 +832,10 @@ document.getElementById("removeresearcherbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (researchers > 0) {
-		freeworkers += Math.min(researchers,mult);
-		researchers -= Math.min(researchers,mult);
-		updateworkers();
+	if (game.workers.researchers.owned > 0) {
+		game.workers.freeWorkers.owned += Math.min(game.workers.researchers.owned,mult);
+		game.workers.researchers.owned -= Math.min(game.workers.researchers.owned,mult);
+		updateWorkerNumber();
 	}
 }
 
@@ -835,17 +853,17 @@ document.getElementById("addresearcherbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (freeworkers > 0) {
-		if (currentfood >= (25 * Math.min(freeworkers,mult))) {
-			currentfood -= (25 * Math.min(freeworkers,mult));
-			researchers += Math.min(freeworkers,mult);
-			freeworkers -= Math.min(freeworkers,mult);
-			updateworkers();
+	if (game.workers.freeWorkers.owned > 0) {
+		if (game.resources.food.owned >= (25 * Math.min(game.workers.freeWorkers.owned,mult))) {
+			game.resources.food.owned -= (25 * Math.min(game.workers.freeWorkers.owned,mult));
+			game.workers.researchers.owned += Math.min(game.workers.freeWorkers.owned,mult);
+			game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
+			updateWorkerNumber();
 			if ($('#researchtalent').hasClass('hidden')) {
 			$('#researchtalent').removeClass('hidden');
 			$('#researchtalent').addClass('btn-danger');
 			$('#clastab').addClass('btn-danger');
-			researchtalent += 1;
+			game.talents.researchTalent += 1;
 			$('#rpdiv').removeClass('hidden');
 			message("");
 			message("Researchers will eat up a small percentage of your food every second.");
@@ -856,7 +874,7 @@ document.getElementById("addresearcherbutton").onclick = function() {
 	}
 }
 
-document.getElementById("removewarriorbutton").onclick = function() {
+document.getElementById("removeexplorerbutton").onclick = function() {
 	var mult;
 	if ($('#1worker').hasClass('btn-success')) {
 		var mult = 1;
@@ -870,14 +888,14 @@ document.getElementById("removewarriorbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (warriors > 0) {
-		freeworkers += Math.min(researchers,mult);
-		warriors -= Math.min(warriors,mult);
-		updateworkers();
+	if (game.workers.explorers.owned > 0) {
+		game.workers.freeWorkers.owned += Math.min(game.workers.explorers.owned,mult);
+		game.workers.explorers.owned -= Math.min(game.workers.explorers.owned,mult);
+		updateWorkerNumber();
 	}
 }
 
-document.getElementById("addwarriorbutton").onclick = function() {
+document.getElementById("addexplorerbutton").onclick = function() {
 	var mult;
 	if ($('#1worker').hasClass('btn-success')) {
 		var mult = 1;
@@ -891,12 +909,12 @@ document.getElementById("addwarriorbutton").onclick = function() {
 	if ($('#100worker').hasClass('btn-success')) {
 		var mult = 100;
 	}
-	if (freeworkers > 0) {
-		if (currentfood >= (125 * Math.min(freeworkers,mult))) {
-			currentfood -= (125 * Math.min(freeworkers,mult));
-			warriors += Math.min(freeworkers,mult);
-			freeworkers -= Math.min(freeworkers,mult);
-			updateworkers();
+	if (game.workers.freeWorkers.owned > 0) {
+		if (game.resources.food.owned >= (125 * Math.min(game.workers.freeWorkers.owned,mult))) {
+			game.resources.food.owned -= (125 * Math.min(game.workers.freeWorkers.owned,mult));
+			game.workers.explorers.owned += Math.min(game.workers.freeWorkers.owned,mult);
+			game.workers.freeWorkers.owned -= Math.min(game.workers.freeWorkers.owned,mult);
+			updateWorkerNumber();
 		}
 	}
 }
@@ -904,25 +922,25 @@ document.getElementById("addwarriorbutton").onclick = function() {
 
 
 document.getElementById("hutbutton").onclick = function() {
-	var hutcost = (10 * (Math.pow(huts+1,2.5)));
-	if (wood >= hutcost) {
-		wood -= hutcost;
-		totalexp += hutcost;
+	var hutcost = (10 * (Math.pow(game.buildings.huts.owned + 1,2.5)));
+	if (game.resources.wood.owned >= hutcost) {
+		game.resources.wood.owned -= hutcost;
+		game.stats.totalEXP += hutcost;
 		oHutCost = hutcost;
-		huts += 1;
-		popmax += hutlevel;
+		game.buildings.huts.owned += 1;
+		game.stats.populationMax += game.buildings.huts.level * 2;
 		updatebuildings();
 		updateresources();	
 		message("");
 		message("Built a Hut using " + prettify(oHutCost) + " Wood and gained " + prettify(oHutCost) + " EXP.");
-		message("This brings you to a total of " + prettify(huts) + " Huts; Housing " + prettify(huts * hutlevel) + ".");
+		message("This brings you to a total of " + prettify(game.buildings.huts.owned) + " Huts; Housing " + prettify(game.buildings.huts.owned * (game.buildings.huts.level * 2)) + ".");
 		if ($('#workertalent').hasClass('hidden')) {
-		if (popmax > 1) {
+		if (game.stats.populationMax > 1) {
 		$('#workertalent').removeClass('hidden');
 		$('#workertalent').addClass('btn-danger');
-		workertalent += 1;
+		game.talents.workerTalent += 1;
 		}
-		if (huts = 1) {
+		if (game.buildings.huts.owned = 1) {
 			message("");
 			message("Great! Now you can sustain a few more people to help you out.");
 			message("Don't worry, they will show up on their own.");
@@ -932,106 +950,106 @@ document.getElementById("hutbutton").onclick = function() {
 };
 
 document.getElementById("apartmentbutton").onclick = function() {
-	var aptcost = (50 * (Math.pow(apartments+1,1.95)));
-	if (stoneblocks >= aptcost && bricks >= (aptcost/2)) {
-		stoneblocks -= aptcost;
-		bricks -= (aptcost/2);
-		totalexp += (2000 * apartments);
+	var aptcost = (50 * (Math.pow(game.buildings.apartments.owned + 1,1.95)));
+	if (game.resources.concrete.owned >= aptcost && game.resources.bricks.owned >= (aptcost/2)) {
+		game.resources.concrete.owned -= aptcost;
+		game.resources.bricks.owned -= (aptcost/2);
+		game.stats.totalEXP += (2000 * game.buildings.apartments.owned);
 		oAptCost = aptcost;
-		apartments += 1;
-		popmax += aptlevel;
+		game.buildings.apartments.owned += 1;
+		game.stats.populationMax += game.buildings.apartments.level * 25;
 		updatebuildings();
 		updateresources();
 		message("");
-		message("Built an Apartment Building using " + prettify(oAptCost) + " Concrete and gained " + prettify(2000 * (apartments - 1)) + " EXP.");
-		message("This brings you to a total of " + prettify(apartments) + " Apartments; Housing " + prettify(apartments * aptlevel) + ".");
+		message("Built an Apartment Building using " + prettify(oAptCost) + " Concrete and gained " + prettify(2000 * (game.buildings.apartments.owned - 1)) + " EXP.");
+		message("This brings you to a total of " + prettify(game.buildings.apartments.owned) + " Apartments; Housing " + prettify(game.buildings.apartments.owned * (game.buildings.apartments.level * 25)) + ".");
 	}
 }
 
 document.getElementById("cabinbutton").onclick = function() {
-	var cabincost = (50 * (Math.pow(cabins+1,1.9)));
-	if (logs >= cabincost) {
-		logs -= cabincost;
-		totalexp += cabincost * 30;
+	var cabincost = (50 * (Math.pow(game.buildings.cabins.owned + 1,1.9)));
+	if (game.resources.logs.owned >= cabincost) {
+		game.resources.logs.owned -= cabincost;
+		game.stats.totalEXP += cabincost * 30;
 		oCabinCost = cabincost;
-		cabins += 1;
-		popmax += cabinlevel;
+		game.buildings.cabins.owned += 1;
+		game.stats.populationMax += game.buildings.cabins.level * 10;
 		updatebuildings();
 		updateresources();
 		message("");
 		message("Built a Cabin using " + prettify(oCabinCost) + " Planks and gained " + prettify(oCabinCost * 30) + " EXP.");
-		message("This brings you to a total of " + prettify(cabins) + " Cabins; Housing " + prettify(cabins * cabinlevel) + ".");		
+		message("This brings you to a total of " + prettify(game.buildings.cabins.owned) + " Cabins; Housing " + prettify(game.buildings.cabins.owned * (game.buildings.cabins.level * 10) + "."));		
 	}
 };
 
 document.getElementById("rhbutton").onclick = function() {
-	var rhcost = (33 * (Math.pow(roundhouses+1,1.47)));
-	if (clay >= rhcost) {
-		clay -= rhcost;
-		totalexp += rhcost*2;
+	var rhcost = (33 * (Math.pow(game.buildings.roundHouses.owned + 1,1.47)));
+	if (game.resources.clay.owned >= rhcost) {
+		game.resources.clay.owned -= rhcost;
+		game.stats.totalEXP += rhcost * 2;
 		oRhCost = rhcost;
-		roundhouses += 1;
-		popmax += rhlevel;
+		game.buildings.roundHouses.owned += 1;
+		game.stats.populationMax += game.buildings.roundHouses.level * 5;
 		updatebuildings();
 		updateresources();	
 		message("");
 		message("Built a Roundhouse using " + prettify(oRhCost) + " Clay and gained " + prettify(oRhCost * 2) + " EXP.");
-		message("This brings you to a total of " + prettify(roundhouses) + " Roundhouses; Housing " + prettify(roundhouses * rhlevel) + ".");		
+		message("This brings you to a total of " + prettify(game.buildings.roundHouses.owned) + " Roundhouses; Housing " + prettify(game.buildings.roundHouses.owned * (game.buildings.roundHouses.level * 5)) + ".");		
 	}
 };
 
-document.getElementById("aquaductbutton").onclick = function() {
-	var aqcost = (150 * (Math.pow(aquaducts+1,1.25)));
-	var aqrpcost = (1000 * (Math.pow(aquaducts+1,1.15)));
-	if (stone >= aqcost && currentfood >= (aqcost/2) && researchpoints >= aqrpcost) {
-		currentfood -= (aqcost/2);
-		stone -= aqcost;
-		researchpoints -= aqrpcost;
-		totalexp += aqcost;
-		aquaducts += 1;
+document.getElementById("aqueductbutton").onclick = function() {
+	var aqcost = (150 * (Math.pow(game.buildings.aqueducts.owned + 1,1.25)));
+	var aqrpcost = (1000 * (Math.pow(game.buildings.aqueducts.owned+1,1.15)));
+	if (game.resources.stone.owned >= aqcost && game.resources.food.owned >= (aqcost/2) && game.resources.researchPoints.owned >= aqrpcost) {
+		game.resources.food.owned -= (aqcost/2);
+		game.resources.stone.owned -= aqcost;
+		game.resources.researchPoints.owned -= aqrpcost;
+		game.stats.totalEXP += aqcost;
+		game.buildings.aqueducts.owned += 1;
 		updatebuildings();
 		updateresources();
 		message("");
-		message("Built an Aquaduct using " + prettify(aqcost) + " Stone and " + prettify(aqcost/2) + " Food and gained " + prettify(aqcost) + " EXP.");
-		message("This brings you to a total of " + prettify(aquaducts) + ".");
+		message("Built an Aqueduct using " + prettify(aqcost) + " Stone and " + prettify(aqcost/2) + " Food and gained " + prettify(aqcost) + " EXP.");
+		message("This brings you to a total of " + prettify(game.buildings.aqueducts.owned) + ".");
 		if ($('#granaryspan').hasClass('hidden')) {
 				message("Granary Unlocked!");
 				message("<span class='text-danger'>Warning!</span> Increasing your Food max will increase how much your workers eat!");
 				message("Make sure you've got some Food supplies built up or people prepared to learn how to farm.");
 				$('#granaryspan').removeClass('hidden');
-				granarytalent += 1;
+				game.talents.granaryTalent += 1;
 		}
 	}
 }
 
 document.getElementById("fieldbutton").onclick = function() {
-	var fieldcost = (50 * (Math.pow(fields+1,1.2)));
-	if (currentfood >= fieldcost) {
-		currentfood -= fieldcost;
-		fields += 1;
-		totalexp += (fields * 5);
+	var fieldcost = (50 * (Math.pow(game.buildings.fields.owned + 1,1.2)));
+	if (game.resources.food.owned >= fieldcost) {
+		game.resources.food.owned -= fieldcost;
+		game.buildings.fields.owned += 1;
+		game.stats.totalEXP += (game.buildings.fields.owned * 5);
 		ofieldcost = fieldcost;
-		fieldrate += (.175 * (fieldlevel));
-		waterrate += (.125 * (fieldlevel-1));
+		game.buildings.fields.rate.production += (.175 * (game.buildings.fields.level));
+		game.buildings.river.rate += (.125 * (game.buildings.fields.level - 1));
 		updatebuildings();
 		updateresources();	
 		message("");
-		message("Tilled a Field at the expense of " + prettify(ofieldcost) + " Food and gained " + prettify((fields * 5)) + " EXP.");
-		if (fieldlevel < 2) {
-			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(fieldrate * 4) + " Food per second.");
+		message("Tilled a Field at the expense of " + prettify(ofieldcost) + " Food and gained " + prettify((game.buildings.fields.owned * 5)) + " EXP.");
+		if (game.buildings.fields.level < 2) {
+			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " Fields; Producing " + prettify(game.buildings.fields.rate.production * 4) + " Food per second.");
 		}
-		if (fieldlevel > 1) {
-			message("This brings you to a total of " + prettify(fields) + " Fields; Producing " + prettify(fieldrate * 4) + " Food and " + prettify((((fields * fieldlevel) * .125) * 4)) + " Water per second.");
+		if (game.buildings.fields.level > 1) {
+			message("This brings you to a total of " + prettify(game.buildings.fields.owned) + " Fields; Producing " + prettify(game.buildings.fields.rate.production * 4) + " Food and " + prettify((((game.buildings.fields.owned * game.buildings.fields.level) * .125) * 4)) + " Water per second.");
 		}
-		if ($('#aquaductspan').hasClass('hidden')) {
-			if (fields > 4) {
+		if ($('#aqueductspan').hasClass('hidden')) {
+			if (game.buildings.fields.owned > 4) {
 				message("");
-				message("Aquaduct Unlocked!");
-				$('#aquaductspan').removeClass('hidden');
-				aquaducttalent += 1;
+				message("Aqueduct Unlocked!");
+				$('#aqueductspan').removeClass('hidden');
+				game.talents.aqueductTalent += 1;
 			}
 		}
-		if (fields < 2) {
+		if (game.buildings.fields.owned < 2) {
 			message("")
 			message("Excellent! Now that you have Food and Water under control it's time to build a shelter.");
 			message("Keep Foraging until you've gathered 10 Wood.")
@@ -1043,44 +1061,44 @@ document.getElementById("fieldbutton").onclick = function() {
 
 
 document.getElementById("granarybutton").onclick = function() {
-	if (wood >= granarywoodcost && stone >= granarystonecost) {
-		wood -= granarywoodcost;
-		stone -= granarystonecost;
+	var granarywoodcost = (35 * (Math.pow(game.buildings.granaries.owned + 1,1.6)));
+	var granarystonecost = (50 * (Math.pow(game.buildings.granaries.owned + 1,1.45)));
+	if (game.resources.wood.owned >= granarywoodcost && game.resources.stone.owned >= granarystonecost) {
+		game.resources.wood.owned -= granarywoodcost;
+		game.resources.stone.owned -= granarystonecost;
 		oGranaryWoodCost = granarywoodcost;
 		oGranaryStoneCost = granarystonecost;
-		granarywoodcost = (granarywoodcost * 1.6);
-		granarystonecost = (granarystonecost * 1.4);
-		granaries += 1;
-		foodmax += (175 * granarylevel);
-		watermax += (300 * granarylevel);
-		totalexp += (150 * granaries);
+		game.buildings.granaries.owned += 1;
+		game.resources.food.max += (175 * game.buildings.granaries.level);
+		game.resources.water.max += (300 * game.buildings.granaries.level);
+		game.stats.totalEXP += (150 * game.buildings.granaries.owned);
 		updatebuildings();
 		updateresources();
 		updatetotalexp();
 		message("");
-		message("Built a Granary using " + prettify(oGranaryWoodCost) + " Wood and " + prettify(oGranaryStoneCost) + " Stone and gained " + prettify((granaries * 150)) + " EXP.");
-		message("This brings you to a total of " + prettify(granaries) + " Granaries.");
+		message("Built a Granary using " + prettify(oGranaryWoodCost) + " Wood and " + prettify(oGranaryStoneCost) + " Stone and gained " + prettify((game.buildings.granaries.owned * 150)) + " EXP.");
+		message("This brings you to a total of " + prettify(game.buildings.granaries.owned) + " Granaries.");
 	}
 }
 
 document.getElementById("shbutton").onclick = function() {
-	if (wood >= shcost) {
-		wood -= shcost;
-		storehouses += 1;
+	var shcost = (150 * (Math.pow(game.buildings.storeHouses.owned + 1,1.55)));
+	if (game.resources.wood.owned >= shcost) {
+		game.resources.wood.owned -= shcost;
+		game.buildings.storeHouses.owned += 1;
 		oShCost = shcost;
-		shcost = (shcost * 1.55);
-		totalexp += (75 * storehouses) * shlevel;
-		woodmax += 250 * shlevel;
-		stonemax += 200 * shlevel;
-		coalmax += 50 * shlevel;
-		claymax += 25 * shlevel;
+		game.stats.totalEXP += (75 * game.buildings.storeHouses.owned) * game.buildings.storeHouses.level;
+		game.resources.wood.max += 250 * game.buildings.storeHouses.level;
+		game.resources.stone.max += 200 * game.buildings.storeHouses.level;
+		game.resources.charcoal.max += 50 * game.buildings.storeHouses.level;
+		game.resources.clay.max += 25 * game.buildings.storeHouses.level;
 		updatebuildings();
 		updateresources();	
 		updatetotalexp();
 		message("");
-		message("Built a Storehouse using " + prettify(oShCost) + " Wood and gained " + prettify((75*storehouses) * shlevel) + " EXP.");
-		message("This brings you to a total of " + prettify(storehouses) + " Storehouses.");
-		message("Storehouses capacity is now " + prettify((250 * shlevel)*storehouses) + " Wood, " + prettify((200 * shlevel)*storehouses) + " Stone, " + prettify((50 * shlevel)*storehouses) + " Coal, " + prettify((25 * shlevel)*storehouses) + " Clay.");
+		message("Built a Storehouse using " + prettify(oShCost) + " Wood and gained " + prettify((75 * game.buildings.storeHouses.owned) * game.buildings.storeHouses.level) + " EXP.");
+		message("This brings you to a total of " + prettify(game.buildings.storeHouses.owned) + " Storehouses.");
+		message("Storehouses capacity is now " + prettify((250 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Wood, " + prettify((200 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Stone, " + prettify((50 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Coal, " + prettify((25 * game.buildings.storeHouses.level) * game.buildings.storeHouses.owned) + " Clay.");
 
 	}
 	
@@ -1089,22 +1107,22 @@ document.getElementById("shbutton").onclick = function() {
 
 
 document.getElementById("rtowerbutton").onclick = function() {
-	if (stone >= rtowercost) {
-		stone -= rtowercost;
-		rtowers += 1;
+	var rtowercost = (100 * (Math.pow(game.buildings.researchTowers.owned + 1,1.45)));
+	if (game.resources.stone.owned >= rtowercost) {
+		game.resources.stone.owned -= rtowercost;
+		game.buildings.researchTowers.owned += 1;
 		oRTowerCost = rtowercost;
-		rtowercost = (rtowercost * 1.45);
-		totalexp += (25 * rtowers);
-		researcherrate = (researcherrate * 1.165);
+		game.stats.totalEXP += (25 * game.buildings.researchTowers.owned);
+		game.workers.researchers.rate = (game.workers.researchers.rate * 1.165);
 		updatebuildings();
 		updateresources();		
 		updatetotalexp();
 		message("");
-		message("Built a Research Tower using " + prettify(oRTowerCost) + " Stone and gained " + prettify(25*rtowers) + " EXP.");
-		message("This brings you to a total of " + prettify(rtowers) + " Research Towers.");
-		message("Each Researcher now produces " + prettify((researcherrate*4)*researcherlevel) + " Research Points per second.")
+		message("Built a Research Tower using " + prettify(oRTowerCost) + " Stone and gained " + prettify(25 * game.buildings.researchTowers.owned) + " EXP.");
+		message("This brings you to a total of " + prettify(game.buildings.researchTowers.owned) + " Research Towers.");
+		message("Each Researcher now produces " + prettify((game.workers.researchers.rate * 4) * game.workers.researchers.level) + " Research Points per second.")
 	}
-	if (rtowers > 4 && $('#upgradeRPdiv').hasClass('hidden')) {
+	if (game.buildings.researchTowers.owned > 4 && $('#upgradeRPdiv').hasClass('hidden')) {
 		$('#upgradeRPdiv').removeClass('hidden');
 		$('#upgradefarmerdiv').removeClass('hidden');
 		$('#upgradeloggerdiv').removeClass('hidden');
@@ -1117,23 +1135,23 @@ document.getElementById("rtowerbutton").onclick = function() {
 }
 
 document.getElementById("sawmillbutton").onclick = function() {
-	if (stone >= smscost) {
-		if (clay >= smccost) {
-			stone -= smscost;
-			clay -= smccost;
-			sawmills += 1;
+	var smscost = (25 * (Math.pow(game.buildings.sawMills.owned + 1,1.75)));
+	var smccost = (1 * (Math.pow(game.buildings.sawMills.owned + 1,1.75)));
+	if (game.resources.stone.owned >= smscost) {
+		if (game.resources.clay.owned >= smccost) {
+			game.resources.stone.owned -= smscost;
+			game.resources.clay.owned -= smccost;
+			game.buildings.sawMills.owned += 1;
 			oSmSCost = smscost;
 			oSmCCost = smccost;
-			smscost = (smscost * 1.75);
-			smccost = (smccost * 1.75);
-			totalexp += (25*sawmills);
+			game.stats.totalEXP += (25 * game.buildings.sawMills.owned);
 			updatebuildings();
 			updateresources();		
 			updatetotalexp();
 			message("");
-			message("Built a Sawmill using " + prettify(oSmSCost) + " Stone and " + prettify(oSmCCost) + " Clay and gained " + prettify((sawmills * 25)) + " EXP.");
-			message("This brings you to a total of " + prettify(sawmills) + " Sawmills.");
-			message("Each Lumberjack now produces " + prettify((loggerrate*4) * (1 + (sawmills * 0.10))) + " Wood per second.");
+			message("Built a Sawmill using " + prettify(oSmSCost) + " Stone and " + prettify(oSmCCost) + " Clay and gained " + prettify((game.buildings.sawMills.owned * 25)) + " EXP.");
+			message("This brings you to a total of " + prettify(game.buildings.sawMills.owned) + " Sawmills.");
+			message("Each Lumberjack now produces " + prettify((game.workers.lumberJacks.rate * 4) * (1 + (game.buildings.sawMills.owned * 0.10))) + " Wood per second.");
 			
 		}
 	}
@@ -1177,29 +1195,29 @@ document.getElementById("burnclay").onclick = function() {
 
 
 function forage(m) {
-	if (((water) - (5 * m)) >= 0) {
-		var popbonus = (m * ((population - 1) * 0.05));
-		totalexp += m + popbonus;
-		water -= (m * 5);
-		currentfood += ((m + popbonus) * (keeneyelevel));
-		var fg = ((m + popbonus) * (keeneyelevel));
+	if (((game.resources.water.owned) - (5 * m)) >= 0) {
+		var popbonus = (m * ((game.stats.population) * 0.05));
+		game.stats.totalEXP += m + popbonus;
+		game.resources.water.owned -= (m * 5);
+		game.resources.food.owned += ((m + popbonus) * (game.talents.keenEyes));
+		var fg = ((m + popbonus) * (game.talents.keenEyes));
 		if (getRandomInt(0,100) >= 75) {
-			wood += (((m + popbonus) * 0.25) * (keeneyelevel));
-			var wg = (((m + popbonus) * 0.25) * (keeneyelevel));
+			game.resources.wood.owned += (((m + popbonus) * 0.25) * (game.talents.keenEyes));
+			var wg = (((m + popbonus) * 0.25) * (game.talents.keenEyes));
 		};
 		if (getRandomInt(0,100) >= 85) {
-			stone += (((m + popbonus) * 0.10) * (keeneyelevel));
-			var sg = (((m + popbonus) * 0.10) * (keeneyelevel));
+			game.resources.stone.owned += (((m + popbonus) * 0.10) * (game.talents.keenEyes));
+			var sg = (((m + popbonus) * 0.10) * (game.talents.keenEyes));
 		};
 		if (getRandomInt(0,100) >= 90) {
-			clay += (((m + popbonus) * 0.05) * (keeneyelevel));
-			var cg = (((m + popbonus) * 0.05) * (keeneyelevel));
+			game.resources.clay.owned += (((m + popbonus) * 0.05) * (game.talents.keenEyes));
+			var cg = (((m + popbonus) * 0.05) * (game.talents.keenEyes));
 		};
-		if (wood > woodmax) {wood = woodmax};
-		if (currentfood > foodmax) {currentfood = foodmax};
-		if (stone > stonemax) {stone = stonemax};
-		if (clay > claymax) {clay = claymax};
-		if (coal > coalmax) {coal = coalmax};
+		if (game.resources.wood.owned > game.resources.wood.max) {game.resources.wood.owned = game.resources.wood.max};
+		if (game.resources.food.owned > game.resources.food.max) {game.resources.food.owned = game.resources.food.max};
+		if (game.resources.stone.owned > game.resources.stone.max) {game.resources.stone.owned = game.resources.stone.max};
+		if (game.resources.clay.owned > game.resources.clay.max) {game.resources.clay.owned = game.resources.clay.max};
+		if (game.resources.charcoal.owned > game.resources.charcoal.max) {game.resources.charcoal.owned = game.resources.charcoal.max};
 		updateresources();
 		updatetotalexp();/*
 		if (wg > 0 && sg > 0 && cg > 0) {
@@ -1231,56 +1249,56 @@ function forage(m) {
 }
 
 function mine(m) {
-	if (((water) - (15 * m)) >= 0 && ((currentfood) - (5 * m)) >= 0 ) {
-		var popbonus = (m * ((population - 1) * 0.05));
-		stone += m + popbonus;
-		totalexp += m + popbonus;
-		water -= (m * 15);
-		currentfood -= (m * 7.5);
-		if (getRandomInt(0,100) >= 50) { clay += ((m + popbonus) * 0.03125) };
-		if (getRandomInt(0,100) >= 90) { coal += ((m + popbonus) * 0.05) };
-		if (stone > stonemax) {stone = stonemax};
-		if (clay > claymax) {clay = claymax};
-		if (coal > coalmax) {coal = coalmax};
+	if (((game.resources.water.owned) - (15 * m)) >= 0 && ((game.resources.food.owned) - (5 * m)) >= 0 ) {
+		var popbonus = (m * ((game.stats.population - 1) * 0.05));
+		game.resources.stone.owned += m + popbonus;
+		game.stats.totalEXP += m + popbonus;
+		game.resources.water.owned -= (m * 15);
+		game.resources.food.owned -= (m * 7.5);
+		if (getRandomInt(0,100) >= 50) { game.resources.clay.owned += ((m + popbonus) * 0.03125) };
+		if (getRandomInt(0,100) >= 90) { game.resources.charcoal.owned += ((m + popbonus) * 0.05) };
+		if (game.resources.stone.owned > game.resources.stone.max) {game.resources.stone.owned = game.resources.stone.max};
+		if (game.resources.clay.owned > game.resources.clay.max) {game.resources.clay.owned = game.resources.clay.max};
+		if (game.resources.charcoal.owned > game.resources.charcoal.max) {game.resources.charcoal.owned = game.resources.charcoal.max};
 		updateresources();
 		updatetotalexp();
 	}	
 }
 
 function burn(m) {
-	var popbonus = (m * ((population - 1) * 0.025));
+	var popbonus = (m * ((game.stats.population - 1) * 0.025));
 	
 	if ($('#burncoal').hasClass('active')) {
-		if (wood >= (m * 25)) {
-			wood -= (m * 25);
-			coal += m
-			if (coal >= coalmax) {
-				coal = coalmax;
+		if (game.resources.wood.owned >= (m * 25)) {
+			game.resources.wood.owned -= (m * 25);
+			game.resources.charcoal.owned += m
+			if (game.resources.charcoal.owned >= game.resources.charcoal.max) {
+				game.resources.charcoal.owned = game.resources.charcoal.max;
 			}
-			totalexp += (m * 5) + popbonus;
+			game.stats.totalEXP += (m * 5) + popbonus;
 			updatetotalexp();
 			updateresources();
 		}
 	}
 	if ($('#burnwater').hasClass('active')) {
-		if (water >= (m * 500)) {
-			if (coal >= (m)) {
-				water -= (m * 500);
-				coal -= m;
-				steam += 50;
-				totalexp += (m * 17.5) + popbonus;
+		if (game.resources.water.owned >= (m * 500)) {
+			if (game.resources.charcoal.owned >= (m)) {
+				game.resources.water.owned -= (m * 500);
+				game.resources.charcoal.owned -= m;
+				game.resources.steam.owned += 50;
+				game.stats.totalEXP += (m * 17.5) + popbonus;
 				updatetotalexp();
 				updateresources();
 			}
 		}
 	}
 	if ($('#burnclay').hasClass('active')) {
-		if (clay >= (m * 25)) {
-			if (coal >= (m)) {
-				clay -= m * 25;
-				coal -= m;
-				bricks += 1;
-				totalexp += (m * 7.5) + popbonus;
+		if (game.resources.clay.owned >= (m * 25)) {
+			if (game.resources.charcoal.owned >= (m)) {
+				game.resources.clay.owned -= m * 25;
+				game.resources.charcoal.owned -= m;
+				game.resources.bricks.owned += 1;
+				game.stats.totalEXP += (m * 7.5) + popbonus;
 				updatetotalexp();
 				updateresources();
 			}
@@ -1288,6 +1306,206 @@ function burn(m) {
 	}
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+function resetGame(keepPortal) {
+	//Hide all the stuff that needs to be hidden etc.
+	game = null;
+	game = newGame();
+}
+
+function loadUI() {
+	
+		if (game.talents.burnTalent > 0) {
+			$('#burnspan').removeClass('hidden');
+			$('#burntalent').addClass('hidden');
+			$('#coaldiv').removeClass('hidden');
+			$('#steamdiv').removeClass('hidden');
+			$('#brickdiv').removeClass('hidden');
+		}
+		
+		if (game.talents.mineTalent > 0) {
+			$('#minespan').removeClass('hidden');
+			$('#minetalentlv2').removeClass('hidden');
+			$('#minetalentlv1').addClass('hidden');
+			$('#minetalentlv1desc').addClass('hidden');
+			$('#minetalentlv2desc').removeClass('hidden');
+			$('#coaldiv').removeClass('hidden');
+			$('#crafttalentbutton').removeClass('hidden');
+			$('#keeneyestalent').removeClass('hidden');
+			$('#rivertalent').removeClass('hidden');
+			$('#rtowerdiv').removeClass('hidden');
+		}
+		
+		if (game.talents.researcherTalent > 0) {
+			$('#researchdiv').removeClass('hidden');
+			$('#unlockresearcherbutton').addClass('hidden');
+			$('#rpdiv').removeClass('hidden');
+		}
+		
+		if (game.talents.farmerTalent > 0) {
+			$('#farmerdiv').removeClass('hidden');
+			$('#unlockfarmerdiv').addClass('hidden');
+		}
+		
+		if (game.talents.loggerTalent > 0) {
+			$('#loggerdiv').removeClass('hidden');
+			$('#unlockloggerdiv').addClass('hidden');
+			$('#sawmillspan').removeClass('hidden');
+		}
+		
+		if (game.talents.minerTalent > 0) {
+			$('#minerdiv').removeClass('hidden');
+			$('#unlockminerdiv').addClass('hidden');
+			$('#rhspan').removeClass('hidden');
+		}
+		
+		if (game.talents.warriorTalent > 0) {
+			$('#explorerdiv').removeClass('hidden');
+			$('#unlockexplorerdiv').addClass('hidden');
+		}
+		
+		if (game.talents.constructionTalent > 0) {
+			$('#consttalent').removeClass('hidden');
+		}
+		
+		if (game.talents.houseTalent > 0) {
+			$('#housetab').removeClass('hidden');
+			$('#popspan').removeClass('hidden');
+		}
+		
+		if (game.talents.workerTalent > 0) {
+			$('#workertalent').removeClass('hidden');
+		}
+		
+		if (game.talents.researchTalent > 0) {
+			$('#researchtalent').removeClass('hidden');
+			$('#rpdiv').removeClass('hidden');
+		}
+		
+		if (game.talents.craftingTalent > 0) {
+			$('#craftingtalent').removeClass('hidden');
+			$('#crafttalentbutton').addClass('hidden');
+			$('#craftab').removeClass('hidden');
+			if (game.talents.burnTalent < 1) {
+				$('#burntalent').removeClass('hidden');
+			}
+			
+		}
+		
+		if (game.talents.logTalent > 0) {
+			$('#logspan').removeClass('hidden');
+			$('#logdiv').removeClass('hidden');
+			$('#unlocklogdiv').addClass('hidden');
+			$('#cabinspan').removeClass('hidden');
+		}
+		
+		if (game.talents.blockTalent > 0) {
+			$('#blockspan').removeClass('hidden');
+			$('#blockdiv').removeClass('hidden');
+			$('#unlockblockdiv').addClass('hidden');
+			$('#apartmentspan').removeClass('hidden');
+		}
+		
+		if (game.talents.granaryTalent > 0) {
+			$('#granaryspan').removeClass('hidden');
+		}
+		
+		if (game.talents.aqueductTalent > 0) {
+			$('#aqueductspan').removeClass('hidden');
+		}
+		
+		if (game.workers.farmers.owned + game.workers.lumberJacks.owned >= 10) {
+			$('#forage10').prop('disabled', false);
+		}
+		if (game.workers.miners.owned >= 10) {
+			$('#mine10').prop('disabled', false);
+		}
+		
+		if (game.workers.farmers.owned + game.workers.lumberJacks.owned >= 25) {
+			$('#forage25').prop('disabled', false);
+		}
+		if (game.workers.miners.owned >= 25) {
+			$('#mine25').prop('disabled', false);
+		}
+		
+		if (game.workers.farmers.owned + game.workers.lumberJacks.owned >= 100) {
+			$('#forage100').prop('disabled', false);
+		}
+		if (game.workers.miners.owned >= 100) {
+			$('#mine100').prop('disabled', false);
+		}
+		
+		if (game.stats.currentLevel > 14) {
+			$('#talenttalent').removeClass('hidden');
+		}
+		
+		if (game.buildings.researchTowers > 4) {
+			$('#upgradefarmerdiv').removeClass('hidden');
+			$('#upgradeloggerdiv').removeClass('hidden');
+			$('#upgrademinerdiv').removeClass('hidden');
+			$('#upgradeRPdiv').removeClass('hidden');
+			$('#upgradeexplorerdiv').removeClass('hidden');
+		}
+		
+		var farmerrp = (game.workers.farmers.level * 600) * (game.workers.farmers.level * 1.25);
+		var loggerrp = (game.workers.lumberJacks.level * 900) * (game.workers.lumberJacks.level * 1.25);
+		var minerrp = (game.workers.miners.level * 1200) * (game.workers.miners.level * 1.25);
+		var warriorrp = (game.workers.explorers.level * 2500) * (game.workers.explorers.level * 1.25);
+		var researcherrp = (game.workers.researchers.level * 1500) * (game.workers.researchers.level * 1.25);
+		
+		var tempvar = document.getElementById("riverupgradecost");
+		tempvar.innerHTML = prettify(game.buildings.river.owned);
+		
+		var tempvar2 = document.getElementById("keeneyecost");
+		tempvar2.innerHTML = prettify(game.talents.keenEyes * 2);
+		
+		var tempvar3 = document.getElementById("upgradeshcost");
+		tempvar3.innerHTML = prettify((game.buildings.storeHouses.level * 1500) * (game.buildings.storeHouses.level * 1.15));
+		
+		var tempvar4 = document.getElementById("fieldirrigationcost");
+		tempvar4.innerHTML = prettify((game.buildings.fields.level * 1500) * (game.buildings.fields.level * 1.2));
+		
+		var tempvar5 = document.getElementById("farmerupcost");
+		tempvar5.innerHTML = prettify((game.workers.farmers.level * 600) * (game.workers.farmers.level * 1.25));
+		
+		var tempvar6 = document.getElementById("loggerupcost");
+		tempvar6.innerHTML = prettify((game.workers.lumberJacks.level * 900) * (game.workers.lumberJacks.level * 1.25));
+		
+		var tempvar7 = document.getElementById("minerupcost");
+		tempvar7.innerHTML = prettify((game.workers.miners.level * 1200) * (game.workers.miners.level * 1.25));
+		
+		var tempvar8 = document.getElementById("explorerupcost");
+		tempvar8.innerHTML = prettify((game.workers.explorers.level * 2500) * (game.workers.explorers.level * 1.25));
+		
+		var tempvar9 = document.getElementById("RPupcost");
+		tempvar9.innerHTML = prettify((game.workers.researchers.level * 1500) * game.workers.researchers.level);
+		
+		message("Welcome back!");
+}
+
+document.getElementById("newgame").onclick = function() {
+		resetGame();
+		updateWorkers();
+		autoSave();
+		updatetotalexp();
+		updatebuildings();
+		updateresources();
+		updateWorkerNumber();
+
+		message("You wake up with a splitting headache. Your stomach growls with hunger.");
+		message("Luckily there is a River nearby giving you access to clean water.")
+		message("Better look around for something to eat.");
+		
+}
+
+
+document.getElementById("loadgame").onclick = function() {
+		load();
+		updateWorkers();
+		autoSave();
+		updatetotalexp();
+		updatebuildings();
+		updateresources();
+		updateWorkerNumber();
+		loadUI();
+	
 }

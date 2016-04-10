@@ -66,14 +66,13 @@ $(document).ready(function(){
 		<div class="row" style="height:vh5">
 			<div class="col-xs-4">
 				<h5>Survive: <small>The struggle is real
-				<button id="save" type="button" class="btn btn-info">Save</button></small></h5>
+				<button id="save" type="button" class="btn btn-info">Save</button>
+				<button id="exportSave" type="button" class="btn btn-info">Export Save</button>
+				<button id="importSave" type="button" class="btn btn-info">Import Save</button>
+				</small></h5>
 			</div>
-			<div class="col-xs-4">
-				<br /> Latest Update: 06 Apr 2016
-			</div>
-			<div class="col-xs-4">
-				<br /><span class="glyphicon glyphicon-btc"></span> <a href="img/qr.png" target="_blank">Donate BTC</a>
-				<!--<br /><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cnqm">Launch test quiz</button>-->
+			<div class="col-xs-6">
+				<br /> Latest Update: 09 Apr 2016
 			</div>
 		</div>
 </div>
@@ -159,7 +158,7 @@ $(document).ready(function(){
 					
 					<div id="loggerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
 						<button type="button" class="btn btn-primary btn-block" id="loggerbutton">
-						Loggers <span id="loggernum" class="badge">0</span></button>
+						Lumberjacks <span id="loggernum" class="badge">0</span></button>
 						
 						
 						<div class="btn-group-justified">
@@ -180,13 +179,13 @@ $(document).ready(function(){
 					</div>
 
 					<div id="explorerdiv" class="buttonBox2 boxDiv3 col-xs-4 hidden">
-						<button type="button" class="btn btn-primary btn-block" id="warriorbutton">
-						Explorers <span id="warriornum" class="badge">0</span></button>
+						<button type="button" class="btn btn-primary btn-block" id="explorerbutton">
+						Explorers <span id="explorernum" class="badge">0</span></button>
 						
 						
 						<div class="btn-group-justified">
-							<button type="button" class="btn btn-danger" style="width:50%" id="removewarriorbutton">Fire</button>
-							<button type="button" class="btn btn-success" style="width:50%" id="addwarriorbutton"><span class="hire">Hire</span> <small class="hirecost">(-125 Food)</small></button>
+							<button type="button" class="btn btn-danger" style="width:50%" id="removeexplorerbutton">Fire</button>
+							<button type="button" class="btn btn-success" style="width:50%" id="addexplorerbutton"><span class="hire">Hire</span> <small class="hirecost">(-125 Food)</small></button>
 						</div>
 					</div>
 					
@@ -274,9 +273,9 @@ $(document).ready(function(){
 					Increase Lumberjack Rate.<br />
 					</div>
 					
-					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="aquaductspan">
-					<button type="button" class="btn btn-primary btn-block" id="aquaductbutton"><span class="fa fa-bank"></span> Aquaduct <span class="badge" id="aquaductnum">0</span></button>
-					Cost: <span id="aquaductcost" class="">150</span> Stone, <span id="aquaductfcost" class="">75</span> Food & <span id="aquaductrpcost">1000<span> Research Points.<br />
+					<div class="buttonBox boxDiv3 col-xs-4 hidden" id="aqueductspan">
+					<button type="button" class="btn btn-primary btn-block" id="aqueductbutton"><span class="fa fa-bank"></span> Aqueduct <span class="badge" id="aqueductnum">0</span></button>
+					Cost: <span id="aqueductcost" class="">150</span> Stone, <span id="aqueductfcost" class="">75</span> Food & <span id="aqueductrpcost">1000<span> Research Points.<br />
 					Decreases Food consumption.<br />
 					</div>
 					
@@ -669,11 +668,33 @@ $(document).ready(function(){
 		  </div>
 		</div>
 		
+		<div class="modal fade" id="importModal" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<h3>Paste save string below.</h3><br />
+				<textarea id="importBox" class="form-control" rows="6"></textarea>
+				<button type="button" id ="importGame" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Import Game</button><br /><br />
+				<button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal">Cancel</button><br /><br />
+			</div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="exportModal" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<h3>Copy save string below.</h3><br />
+				<textarea id="exportBox" class="form-control" rows="6"></textarea>
+				<button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Done!</button><br /><br />
+			</div>
+		  </div>
+		</div>
 		
 </div>
 
-<script src="js/saveload.js"></script>
+<script src="js/lz-string.js"></script>
 <script src="js/main.js"></script>
+<script src="js/saveload.js"></script>
+
 <script src="js/workers.js"></script>
 <script src="js/pertick.js"></script> 
 <script src="js/onclickactions.js"></script>

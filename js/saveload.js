@@ -1,397 +1,304 @@
-var waterinterval;
-var foodinterval;
-var saveinterval;
-var farmerinterval;
-var loggerinterval;
-var researcherinterval;
-var minerinterval;
-var talentinterval;
-var warriorinterval;
+function newGame() {
+	var returnValue = {
+		global: {
+			version: 0.1,
+			start: new Date().getTime(),
+			time: 0,
+			achievementBonus: 0,
+			workerTick: 250,
+			saveTick: 300000,
+		},
+		
+		stats: {
+			currentLevel: 1,
+			totalEXP: 0,
+			EXPTNL: 10,
+			talentPoints: 0,
+			population: 0,
+			populationMax: 0
+		},
+		
+		resources: {
+			water: {
+				owned: 500,
+				max: 1000,
+				rate: -1
+			},
+			food: {
+				owned: 0,
+				max: 350,
+				rate: -1
+			},
+			clay: {
+				owned: 0,
+				max: 25,
+				rate: -1
+			},
+			charcoal: {
+				owned: 0,
+				max: 50,
+				rate: -1
+			},
+			steam: {
+				owned: 0,
+				max: -1,
+				rate: .25
+			},
+			wood: {
+				owned: 0,
+				max: 250,
+				rate: -1
+			},
+			stone: {
+				owned: 0,
+				max: 200,
+				rate: -1
+			},
+			logs: {
+				owned: 0,
+				max: -1,
+				rate: 50
+			},
+			concrete: {
+				owned:0,
+				max: -1,
+				rate: {
+					stone: 100,
+					water: 100
+				}
+			},
+			bricks: {
+				owned: 0,
+				max: -1,
+				rate: 25
+			},
+			researchPoints: {
+				owned: 0,
+				max: -1,
+				rate: -1
+			}
+		},
+		
+		buildings: {
+			river: {
+				owned: 1,
+				level: 0,
+				rate: 2.5
+			},
+			fields: {
+				owned: 0,
+				level: 1,
+				rate: {
+					production: 0,
+					price: 1
+				}
+			},
+			huts: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			roundHouses: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			cabins: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			apartments: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			granaries: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			storeHouses: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			researchTowers: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			sawMills: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+			aqueducts: {
+				owned: 0,
+				level: 1,
+				rate: 1
+			},
+		},
+		
+		workers: {
+			freeWorkers: {
+				owned: 0,
+				level: 1,
+				rate: -1
+			},
+			researchers: {
+				owned: 0,
+				level: 1,
+				rate: .0375
+			},
+			farmers: {
+				owned: 0,
+				level: 1,
+				rate: 1.125
+			},
+			lumberJacks: {
+				owned: 0,
+				level: 1,
+				rate: .125
+			},
+			miners: {
+				owned: 0,
+				level: 1,
+				rate: .15
+			},
+			explorers: {
+				owned: 0,
+				level: 1,
+				rate: 2.5
+			},
+			traders: {
+				owned: 0,
+				level: 1,
+				rate: {
+					buy: 1,
+					sell: 1
+				}
+			}
+		},
+		talents: {
+			researcherTalent: 0,
+			farmerTalent: 0,
+			loggerTalent: 0,
+			mineTalent: 0,
+			burnTalent: 0,
+			minerTalent: 0,
+			warriorTalent: 0,
+			constructionTalent: 0,
+			houseTalent: 0,
+			workerTalent: 0,
+			researchTalent: 0,
+			craftingTalent: 0,
+			logTalent: 0,
+			traderTalent: 0,
+			blockTalent: 0,
+			granaryTalent: 0,
+			aqueductTalent: 0,
+			keenEyes: 1
+		}
+	};
+return returnValue;
+};
 
-var workertick = 250;
-var watertick = 2000;
-var foodtick = 500;
-var savetick = 300000;
+var game = newGame();
+var workerInterval;
+var saveInterval;
 
-var waterrate = 2.5;
-var fieldrate = 0;
-
-var water = 500;
-var watermax = 1000;
-var currentfood = 0;
-var foodmax = 350;
-var coal = 0;
-var coalmax = 50;
-var clay = 0;
-var claymax = 25;
-var mana = 0;
-var steam = 0;
-var wood = 0;
-var woodmax = 250;
-var stone = 0;
-var stonemax = 200;
-var logs = 0;
-var woodlogcost = 50;
-var stoneblocks = 0;
-var stoneblockscost = 100;
-var bricks = 0;
-var bricklevel = 1;
-
-var researchmin = 100;
-
-var currentlevel = 1;
-var totalexp = 0;
-var exptnl = 10;
-var talentpoints = 0;
-var researchpoints = 0;
-
-var fields = 0;
-var fieldlevel = 1;
-var fieldrpcost = 550;
-
-var riverupgradecost = 1;
-var riverlevel = 0;
-
-var keeneyescost = 2;
-var keeneyelevel = 1;
-
-var huts = 0;
-var hutlevel = 2;
-
-var roundhouses = 0;
-var rhlevel = 5;
-
-var cabins = 0;
-var cabinlevel = 10;
-
-var apartments = 0;
-var aptlevel = 25;
-
-var granaries = 0;
-var granarywoodcost = 35;
-var granarystonecost = 50;
-var granarylevel = 1;
-
-var storehouses = 0;
-var shcost = 150;
-var shlevel = 1;
-var shrpcost = 1500;
-
-var rtowers = 0;
-var rtowercost = 100;
-
-var sawmills = 0;
-var smscost = 25;
-var smccost = 1;
-
-var aquaducts = 0;
-var aquaductlevel = 1;
-
-var population = 1;
-var popmax = 1;
-var freeworkers = 0;
-var loggers = 0;
-var miners = 0;
-var researchers = 0;
-var warriors = 0;
-var farmers = 0;
-var traders = 0;
-
-var farmerrate = 1.125;
-var farmerlevel = 1;
-var loggerrate = 0.125;
-var loggerlevel = 1;
-var researcherrate = .0375;
-var researcherlevel = 1;
-var minerrate = 0.15;
-var minerlevel = 1;
-var warriorrate = 2.5;
-var warriorlevel = 1;
-
-var researchertalent = 0;
-var farmertalent = 0;
-var loggertalent = 0;
-var minetalent = 0;
-var burntalent = 0;
-var minertalent = 0;
-var warriortalent = 0;
-var constructiontalent = 0;
-var housetalent = 0;
-var workertalent = 0;
-var researchtalent = 0;
-var craftingtalent = 0;
-var logtalent = 0;
-var tradertalent = 0;
-var blocktalent = 0;
-var granarytalent = 0;
-var aquaducttalent = 0;
-
-var btc = 0;
-
-function savegame() {
-	var save = {
-	waterinterval: waterinterval,
-	foodinterval: foodinterval,
-	saveinterval: saveinterval,
-	farmerinterval: farmerinterval,
-	loggerinterval: loggerinterval,
-	researcherinterval: researcherinterval,
-	minerinterval: minerinterval,
-	talentinterval: talentinterval,
-	warriorinterval: warriorinterval,
-	
-	workertick: workertick,
-	watertick: watertick,
-	foodtick: foodtick,
-	savetick: savetick,
-	
-	waterrate: waterrate,
-	fieldrate: fieldrate,
-	
-	water: water,
-	watermax: watermax,
-	currentfood: currentfood,
-	foodmax: foodmax,
-	coal: coal,
-	coalmax: coalmax,
-	clay: clay,
-	claymax: claymax,
-	mana: mana,
-	steam: steam,
-	wood: wood,
-	woodmax: woodmax,
-	stone: stone,
-	stonemax: stonemax,
-	logs: logs,
-	woodlogcost: woodlogcost,
-	stoneblocks: stoneblocks,
-	stoneblockscost: stoneblockscost,
-	bricks: bricks,
-	bricklevel: bricklevel,
-	
-	researchmin: researchmin,
-	
-	currentlevel: currentlevel,
-	totalexp: totalexp,
-	exptnl: exptnl,
-	talentpoints: talentpoints,
-	researchpoints: researchpoints,
-	
-	fields: fields,
-	fieldlevel: fieldlevel,
-	fieldrpcost: fieldrpcost,
-	
-	riverupgradecost: riverupgradecost,
-	riverlevel: riverlevel,
-	
-	keeneyelevel: keeneyelevel,
-	keeneyescost: keeneyescost,
-	
-	huts: huts,
-	hutlevel: hutlevel,
-	
-	roundhouses: roundhouses,
-	rhlevel: rhlevel,
-	
-	cabins: cabins,
-	cabinlevel: cabinlevel,
-	
-	apartments: apartments,
-	aptlevel: aptlevel,
-	
-	granaries: granaries,
-	granarywoodcost: granarywoodcost,
-	granarystonecost: granarystonecost,
-	granarylevel: granarylevel,
-	
-	storehouses: storehouses,
-	shcost: shcost,
-	shlevel: shlevel,
-	shrpcost: shrpcost,
-	
-	rtowers: rtowers,
-	rtowercost: rtowercost,
-
-	sawmills: sawmills,
-	smscost: smscost,
-	smccost: smccost,
-	
-	aquaducts: aquaducts,
-	aquaductlevel: aquaductlevel,
-	
-	population: population,
-	popmax: popmax,
-	freeworkers: freeworkers,
-	loggers: loggers,
-	miners: miners,
-	researchers: researchers,
-	warriors: warriors,
-	farmers: farmers,
-	traders: traders,
-	
-	farmerrate: farmerrate,
-	farmerlevel: farmerlevel,
-	loggerrate: loggerrate,
-	loggerlevel: loggerlevel,
-	researcherrate: researcherrate,
-	researcherlevel: researcherlevel,
-	minerrate: minerrate,
-	minerlevel: minerlevel,
-	warriorrate: warriorrate,
-	warriorlevel: warriorlevel,
-	
-	researchertalent: researchertalent,
-	farmertalent: farmertalent,
-	loggertalent: loggertalent,
-	minetalent: minetalent,
-	burntalent: burntalent,
-	minertalent: minertalent,
-	warriortalent: warriortalent,
-	constructiontalent: constructiontalent,
-	housetalent: housetalent,
-	workertalent: workertalent,
-	researchtalent: researchtalent,
-	craftingtalent: craftingtalent,
-	logtalent: logtalent,
-	tradertalent: tradertalent,
-	blocktalent: blocktalent,
-	granarytalent: granarytalent,
-	aquaducttalent: aquaducttalent,
-	
-	btc: btc
-	
+function save(exportThis) {
+	var saveString = JSON.stringify(game);
+	var saveGame = JSON.parse(saveString);
+	saveString = LZString.compressToBase64(JSON.stringify(saveGame));
+    if (exportThis) return saveString;
+	try{
+		localStorage.setItem("SurviveGameSave1",saveString);
+		if (localStorage.getItem("SurviveGameSave1") == saveString){
+			message("Game Saved!");
+		}
+		else {
+			message("For some reason, your game is not saving. Make sure you export and back up your save!");
+		}
 	}
-	localStorage.setItem("save",JSON.stringify(save));
+	catch(err){ 
+		if(e.name == "NS_ERROR_FILE_CORRUPTED") {
+        message("Sorry, it looks like your browser storage has been corrupted. Please clear your storage by going to Tools -> Clear Recent History -> Cookies and set time range to 'Everything'. This will remove the corrupted browser storage across all sites.");
+		}
+		else
+		message("For some reason, your game is not saving. Make sure you export and back up your save!"); 
+		}
 }
 
-function loadgame() {
-	var savestring = JSON.parse(localStorage.getItem("save")); 
+function load(saveString) {
+	var savegame;
+    if (saveString) {
+        savegame = JSON.parse(LZString.decompressFromBase64(document.getElementById("importBox").value.replace(/(\r\n|\n|\r|\s)/gm,"")));
+		if (!savegame) {
+			message("It looks like your import code isn't working properly.");
+			return;
+		}
+    } else  {
+		var unparsedSave;
+		try {
+			unparsedSave = localStorage.getItem("SurviveGameSave1");
+		}
+		catch (e) {
+			message("Your browser is preventing Survive from accessing localStorage, and you will not be able to save or load your progress. <br/>Please check your browser settings to ensure that 3rd party cookies are not disabled, and that you're not using any addons that might interrupt storage!");
+			return;
+		}
+        if (unparsedSave !== null) savegame = JSON.parse(LZString.decompressFromBase64(unparsedSave));
+		else {
+			return;
+		}
+    }
+	if (typeof savegame === 'undefined' || savegame === null || typeof savegame.global === 'undefined') {
+		return;
+	}
 	
-	if (typeof savestring.workertick !== "undefined") workertick = savestring.workertick;
-	if (typeof savestring.watertick !== "undefined") watertick = savestring.watertick;
-	if (typeof savestring.foodtick !== "undefined") foodtick = savestring.foodtick;
-	if (typeof savestring.savetick !== "undefined") savetick = savestring.savetick;
+	if (typeof savegame.global !== 'undefined') {
+        for (var item in game.global) {
+            if (item == "time" || item == "start") continue;
+            if (typeof savegame.global[item] !== 'undefined') game.global[item] = savegame.global[item];
+        }
+    }
 	
-	if (typeof savestring.waterrate !== "undefined") waterrate = savestring.waterrate;
-	if (typeof savestring.fieldrate !== "undefined") fieldrate = savestring.fieldrate;
+	if (typeof savegame.stats !== 'undefined') {
+        for (var item in game.stats) {
+            if (typeof savegame.stats[item] !== 'undefined') game.stats[item] = savegame.stats[item];
+        }
+    }
 	
-	if (typeof savestring.water !== "undefined") water = savestring.water;
-	if (typeof savestring.watermax !== "undefined") watermax = savestring.watermax;
-	if (typeof savestring.currentfood !== "undefined") currentfood = savestring.currentfood;
-	if (typeof savestring.foodmax !== "undefined") foodmax = savestring.foodmax;
-	if (typeof savestring.coal !== "undefined") coal = savestring.coal;
-	if (typeof savestring.coalmax !== "undefined") coalmax = savestring.coalmax;
-	if (typeof savestring.clay !== "undefined") clay = savestring.clay;
-	if (typeof savestring.claymax !== "undefined") claymax = savestring.claymax;
-	if (typeof savestring.mana !== "undefined") mana = savestring.mana;
-	if (typeof savestring.steam !== "undefined") steam = savestring.steam;
-	if (typeof savestring.wood !== "undefined") wood = savestring.wood;	
-	if (typeof savestring.woodmax !== "undefined") woodmax = savestring.woodmax;	
-	if (typeof savestring.stone !== "undefined") stone = savestring.stone;	
-	if (typeof savestring.stonemax !== "undefined") stonemax = savestring.stonemax;	
-	if (typeof savestring.logs !== "undefined") logs = savestring.logs;	
-	if (typeof savestring.woodlogcost !== "undefined") woodlogcost = savestring.woodlogcost;
-	if (typeof savestring.stoneblocks !== "undefined") stoneblocks = savestring.stoneblocks;
-	if (typeof savestring.stoneblockscost !== "undefined") stoneblockscost = savestring.stoneblockscost;
-	if (typeof savestring.bricks !== "undefined") bricks = savestring.bricks;
-	if (typeof savestring.bricklevel !== "undefined") bricklevel = savestring.bricklevel;
-		
-	if (typeof savestring.researchmin !== "undefined") researchmin = savestring.researchmin;
+	if (typeof savegame.resources !== 'undefined') {
+        for (var item in game.resources) {
+            if (typeof savegame.resources[item] !== 'undefined') game.resources[item] = savegame.resources[item];
+        }
+    }
 	
-	if (typeof savestring.currentlevel !== "undefined") currentlevel = savestring.currentlevel;
-	if (typeof savestring.totalexp !== "undefined") totalexp = savestring.totalexp;
-	if (typeof savestring.exptnl !== "undefined") exptnl = savestring.exptnl;
-	if (typeof savestring.talentpoints !== "undefined") talentpoints = savestring.talentpoints;
-	if (typeof savestring.researchpoints !== "undefined") researchpoints = savestring.researchpoints;
+	if (typeof savegame.buildings !== 'undefined') {
+        for (var item in game.buildings) {
+            if (typeof savegame.buildings[item] !== 'undefined') game.buildings[item] = savegame.buildings[item];
+        }
+    }
 	
-	if (typeof savestring.fields !== "undefined") fields = savestring.fields;
-	if (typeof savestring.fieldlevel !== "undefined") fieldlevel = savestring.fieldlevel;
-	if (typeof savestring.fieldrpcost !== "undefined") fieldrpcost = savestring.fieldrpcost;
+	if (typeof savegame.workers !== 'undefined') {
+        for (var item in game.workers) {
+            if (typeof savegame.workers[item] !== 'undefined') game.workers[item] = savegame.workers[item];
+        }
+    }
 	
-	if (typeof savestring.riverupgradecost !== "undefined") riverupgradecost = savestring.riverupgradecost;
-	if (typeof savestring.riverlevel !== "undefined") riverlevel = savestring.riverlevel;
-	
-	if (typeof savestring.keeneyelevel !== "undefined") keeneyelevel = savestring.keeneyelevel;
-	if (typeof savestring.keeneyescost !== "undefined") keeneyescost = savestring.keeneyescost;
-	
-	if (typeof savestring.huts !== "undefined") huts = savestring.huts;
-	if (typeof savestring.hutlevel !== "undefined") hutlevel = savestring.hutlevel;
-	
-	if (typeof savestring.roundhouses !== "undefined") roundhouses = savestring.roundhouses;
-	if (typeof savestring.rhlevel !== "undefined") rhlevel = savestring.rhlevel;
-	
-	if (typeof savestring.cabins !== "undefined") cabins = savestring.cabins;
-	if (typeof savestring.cabinlevel !== "undefined") cabinlevel = savestring.cabinlevel;
-	
-	if (typeof savestring.apartments !== "undefined") apartments = savestring.apartments;
-	if (typeof savestring.aptlevel !== "undefined") aptlevel = savestring.aptlevel;
-	
-	if (typeof savestring.granaries !== "undefined") granaries = savestring.granaries;
-	if (typeof savestring.granarywoodcost !== "undefined") granarywoodcost = savestring.granarywoodcost;
-	if (typeof savestring.granarystonecost !== "undefined") granarystonecost = savestring.granarystonecost;
-	if (typeof savestring.granarylevel !== "undefined") granarylevel = savestring.granarylevel;
-	
-	if (typeof savestring.storehouses !== "undefined") storehouses = savestring.storehouses;
-	if (typeof savestring.shcost !== "undefined") shcost = savestring.shcost;
-	if (typeof savestring.shlevel !== "undefined") shlevel = savestring.shlevel;
-	if (typeof savestring.shrpcost !== "undefined") shrpcost = savestring.shrpcost;
-	
-	if (typeof savestring.rtowers !== "undefined") rtowers = savestring.rtowers;
-	if (typeof savestring.rtowercost !== "undefined") rtowercost = savestring.rtowercost;
-	
-	if (typeof savestring.sawmills !== "undefined") sawmills = savestring.sawmills;
-	if (typeof savestring.smscost !== "undefined") smscost = savestring.smscost;
-	if (typeof savestring.smccost !== "undefined") smccost = savestring.smccost;
-	
-	if (typeof savestring.aquaducts !== "undefined") aquaducts = savestring.aquaducts;
-	if (typeof savestring.aquaductlevel !== "undefined") aquaductlevel = savestring.aquaductlevel;
-		
-	if (typeof savestring.population !== "undefined") population = savestring.population;
-	if (typeof savestring.popmax !== "undefined") popmax = savestring.popmax;
-	if (typeof savestring.freeworkers !== "undefined") freeworkers = savestring.freeworkers;
-	if (typeof savestring.loggers !== "undefined") loggers = savestring.loggers;
-	if (typeof savestring.miners !== "undefined") miners = savestring.miners;
-	if (typeof savestring.researchers !== "undefined") researchers = savestring.researchers;
-	if (typeof savestring.warriors !== "undefined") warriors = savestring.warriors;
-	if (typeof savestring.farmers !== "undefined") farmers = savestring.farmers;
-	if (typeof savestring.traders !== "undefined") traders = savestring.traders;
-	
-	if (typeof savestring.farmerrate !== "undefined") farmerrate = savestring.farmerrate;
-	if (typeof savestring.farmerlevel !== "undefined") farmerlevel = savestring.farmerlevel;
-	if (typeof savestring.loggerrate !== "undefined") loggerrate = savestring.loggerrate;
-	if (typeof savestring.loggerlevel !== "undefined") loggerlevel = savestring.loggerlevel;
-	if (typeof savestring.researcherrate !== "undefined") researcherrate = savestring.researcherrate;
-	if (typeof savestring.researcherlevel !== "undefined") researcherlevel = savestring.researcherlevel;
-	if (typeof savestring.minerrate !== "undefined") minerrate = savestring.minerrate;
-	if (typeof savestring.minerlevel !== "undefined") minerlevel = savestring.minerlevel;
-	if (typeof savestring.warriorrate !== "undefined") warriorrate = savestring.warriorrate;
-	if (typeof savestring.warriorlevel !== "undefined") warriorlevel = savestring.warriorlevel;
-	
-	if (typeof savestring.researchertalent !== "undefined") researchertalent = savestring.researchertalent;
-	if (typeof savestring.farmertalent !== "undefined") farmertalent = savestring.farmertalent;
-	if (typeof savestring.loggertalent !== "undefined") loggertalent = savestring.loggertalent;
-	if (typeof savestring.minetalent !== "undefined") minetalent = savestring.minetalent;
-	if (typeof savestring.burntalent !== "undefined") burntalent = savestring.burntalent;
-	if (typeof savestring.minertalent !== "undefined") minertalent = savestring.minertalent;
-	if (typeof savestring.warriortalent !== "undefined") warriortalent = savestring.warriortalent;
-	if (typeof savestring.constructiontalent !== "undefined") constructiontalent = savestring.constructiontalent;
-	if (typeof savestring.housetalent !== "undefined") housetalent = savestring.housetalent;
-	if (typeof savestring.workertalent !== "undefined") workertalent = savestring.workertalent;
-	if (typeof savestring.researchtalent !== "undefined") researchtalent = savestring.researchtalent;
-	if (typeof savestring.craftingtalent !== "undefined") craftingtalent = savestring.craftingtalent;
-	if (typeof savestring.logtalent !== "undefined") logtalent = savestring.logtalent;
-	if (typeof savestring.tradertalent !== "undefined") tradertalent = savestring.tradertalent;
-	if (typeof savestring.blocktalent !== "undefined") blocktalent = savestring.blocktalent;
-	if (typeof savestring.granarytalent !== "undefined") granarytalent = savestring.granarytalent;
-	if (typeof savestring.aquaducttalent !== "undefined") aquaducttalent = savestring.aquaducttalent;
-	
-	if (typeof savestring.btc !== "undefined") btc = savestring.btc;
-	
-	fieldrate = ((.175 * (fields)) * fieldlevel);
+	if (typeof savegame.talents !== 'undefined') {
+        for (var item in game.talents) {
+            if (typeof savegame.talents[item] !== 'undefined') game.talents[item] = savegame.talents[item];
+        }
+    }
+	message("Game Loaded!");
 }
 
-function showsave() {
-  savegame();
-  alert("The game has been saved. NOTE: The game will autosave once every five minutes.");
-  
+function autoSave() {
+	clearInterval(game.global.saveInterval);
+		game.global.saveInterval = setInterval(function() {
+			save();
+		}, game.global.saveTick);
 }
