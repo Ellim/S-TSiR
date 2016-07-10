@@ -12,7 +12,7 @@ function newGame() {
 		stats: {
 			currentLevel: 1,
 			totalEXP: 0,
-			EXPTNL: 10,
+			EXPTNL: 25,
 			talentPoints: 0,
 			population: 0,
 			populationMax: 0
@@ -45,7 +45,7 @@ function newGame() {
 				rate: .25
 			},
 			wood: {
-				owned: 5,
+				owned: 0,
 				max: 250,
 				rate: -1
 			},

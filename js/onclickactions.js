@@ -36,13 +36,15 @@ document.getElementById("forage").onclick = function() {
 		} 
 	}
 	if ($('#housetab').hasClass('hidden')) {
-		if (game.resources.wood.owned >= 10) {
+		if (game.resources.wood.owned >= 5) {
+			if (game.buildings.fields.owned > 3) {
 			$('#housetab').removeClass('hidden');
 			$('#popspan').removeClass('hidden');
 			$('#housetab').addClass('btn-danger');
 			game.talents.houseTalent += 1;
 			message("");
 			message("Right on! You now have enough <span class='text-info'>Wood</span> to build a <span class='text-success'>Hut</span>.");
+			}
 		}
 	}
 };
@@ -870,7 +872,6 @@ document.getElementById("addresearcherbutton").onclick = function() {
 			$('#researchtalent').addClass('btn-danger');
 			$('#clastab').addClass('btn-danger');
 			game.talents.researchTalent += 1;
-			$('#rpdiv').removeClass('hidden');
 			message("");
 			message("Workers will eat up a small percentage of your <span class='text-info'>Food</span> every second.");
 			message("If <span class='text-info'>Food</span> gets too low they will stop working. (Except for Farmers!)");
@@ -928,7 +929,7 @@ document.getElementById("addexplorerbutton").onclick = function() {
 
 
 document.getElementById("hutbutton").onclick = function() {
-	var hutcost = (10 * (Math.pow(game.buildings.huts.owned + 1,1.95)));
+	var hutcost = (5 * (Math.pow(game.buildings.huts.owned + 1,1.75)));
 	if (game.resources.wood.owned >= hutcost) {
 		game.resources.wood.owned -= hutcost;
 		game.stats.totalEXP += hutcost;
@@ -950,6 +951,7 @@ document.getElementById("hutbutton").onclick = function() {
 			message("");
 			message("Great! Now you can sustain a few more people to help you out.");
 			message("Don't worry, they will show up on their own.");
+			message("Each worker will use some <span class='text-info'>Water</span> each second.");
 		}
 	}
 	}
@@ -1055,10 +1057,10 @@ document.getElementById("fieldbutton").onclick = function() {
 				game.talents.aqueductTalent += 1;
 			}
 		}
-		if (game.buildings.fields.owned < 2) {
+		if (game.buildings.fields.owned > 3 && game.buildings.huts.owned < 1) {
 			message("")
 			message("Excellent! Now that you have <span class='text-info'>Food</span> and <span class='text-info'>Water</span> under control it's time to build a shelter.");
-			message("Keep Foraging until you've gathered 10 <span class='text-info'>Wood</span>.")
+			message("Keep Foraging until you've gathered 5 <span class='text-info'>Wood</span>.")
 			message("Don't forget to keep tilling <span class='text-success'>Fields</span> when you can!")
 		}
 	}
@@ -1208,12 +1210,12 @@ function forage(m) {
 		game.resources.food.owned += ((m + popbonus) * (game.talents.keenEyes));
 		var fg = ((m + popbonus) * (game.talents.keenEyes));
 		if (getRandomInt(0,100) >= 75) {
-			game.resources.wood.owned += (((m + popbonus) * 0.25) * (game.talents.keenEyes));
-			var wg = (((m + popbonus) * 0.25) * (game.talents.keenEyes));
+			game.resources.wood.owned += (((m + popbonus) * 0.1) * (game.talents.keenEyes));
+			var wg = (((m + popbonus) * 0.15) * (game.talents.keenEyes));
 		};
 		if (getRandomInt(0,100) >= 85) {
-			game.resources.stone.owned += (((m + popbonus) * 0.10) * (game.talents.keenEyes));
-			var sg = (((m + popbonus) * 0.10) * (game.talents.keenEyes));
+			game.resources.stone.owned += (((m + popbonus) * 0.075) * (game.talents.keenEyes));
+			var sg = (((m + popbonus) * 0.075) * (game.talents.keenEyes));
 		};
 		if (getRandomInt(0,100) >= 90) {
 			game.resources.clay.owned += (((m + popbonus) * 0.05) * (game.talents.keenEyes));
@@ -1344,7 +1346,6 @@ function loadUI() {
 		if (game.talents.researcherTalent > 0) {
 			$('#researchdiv').removeClass('hidden');
 			$('#unlockresearcherbutton').addClass('hidden');
-			$('#rpdiv').removeClass('hidden');
 		}
 		
 		if (game.talents.farmerTalent > 0) {
@@ -1384,7 +1385,6 @@ function loadUI() {
 		
 		if (game.talents.researchTalent > 0) {
 			$('#researchtalent').removeClass('hidden');
-			$('#rpdiv').removeClass('hidden');
 		}
 		
 		if (game.talents.craftingTalent > 0) {

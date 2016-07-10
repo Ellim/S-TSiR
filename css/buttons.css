@@ -33,7 +33,7 @@ button .hirecost {display:none;}
 button:hover .hire {display:none;}
 button:hover .hirecost {display:inline;}
 
-.elog {height: 15.5vh; overflow-y: auto;}
+.elog {height: 85vh; overflow-y: auto;}
 
 .botBar {height: 4.5vh;}
 
@@ -55,6 +55,6 @@ button:hover .hirecost {display:inline;}
 
 
 
-.resDiv {height: 90vh; overflow-y: auto;}
+.resDiv {height: 85vh; overflow-y: auto;}
 
 .main { overflow: auto; }
