@@ -242,10 +242,10 @@ document.getElementById("unlockminebutton").onclick = function() {
 	if (game.stats.talentPoints >= 5) {
 		game.stats.talentPoints -= 5;
 		$('#minespan').removeClass('hidden');
-		$('#minetalentlv2').removeClass('hidden');
+		//$('#minetalentlv2').removeClass('hidden');
 		$('#minetalentlv1').addClass('hidden');
 		$('#minetalentlv1desc').addClass('hidden');
-		$('#minetalentlv2desc').removeClass('hidden');
+		//$('#minetalentlv2desc').removeClass('hidden');
 		$('#crafttalentbutton').removeClass('hidden');
 		$('#keeneyestalent').removeClass('hidden');
 		$('#rivertalent').removeClass('hidden');
@@ -1333,10 +1333,10 @@ function loadUI() {
 		
 		if (game.talents.mineTalent > 0) {
 			$('#minespan').removeClass('hidden');
-			$('#minetalentlv2').removeClass('hidden');
+			//$('#minetalentlv2').removeClass('hidden');
 			$('#minetalentlv1').addClass('hidden');
 			$('#minetalentlv1desc').addClass('hidden');
-			$('#minetalentlv2desc').removeClass('hidden');
+			//$('#minetalentlv2desc').removeClass('hidden');
 			$('#coaldiv').removeClass('hidden');
 			$('#crafttalentbutton').removeClass('hidden');
 			$('#keeneyestalent').removeClass('hidden');
