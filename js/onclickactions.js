@@ -952,6 +952,7 @@ document.getElementById("hutbutton").onclick = function() {
 			message("Great! Now you can sustain a few more people to help you out.");
 			message("Don't worry, they will show up on their own.");
 			message("Each worker will use some <span class='text-info'>Water</span> each second.");
+			message("Once your population gets large enough you will need to expand your food capacity to sustain more people.");
 		}
 	}
 	}
@@ -1008,7 +1009,7 @@ document.getElementById("rhbutton").onclick = function() {
 
 document.getElementById("aqueductbutton").onclick = function() {
 	var aqcost = (150 * (Math.pow(game.buildings.aqueducts.owned + 1,1.25)));
-	var aqrpcost = (1000 * (Math.pow(game.buildings.aqueducts.owned+1,1.15)));
+	var aqrpcost = (100 * (Math.pow(game.buildings.aqueducts.owned+1,1.15)));
 	if (game.resources.stone.owned >= aqcost && game.resources.food.owned >= (aqcost/2) && game.resources.researchPoints.owned >= aqrpcost) {
 		game.resources.food.owned -= (aqcost/2);
 		game.resources.stone.owned -= aqcost;
@@ -1260,7 +1261,7 @@ function mine(m) {
 	if (((game.resources.water.owned) - (15 * m)) >= 0 && ((game.resources.food.owned) - (5 * m)) >= 0 ) {
 		var popbonus = (m * ((game.stats.population - 1) * 0.05));
 		game.resources.stone.owned += m + popbonus;
-		game.stats.totalEXP += m + popbonus;
+		game.stats.totalEXP += (2 * m) + (1.15 * popbonus);
 		game.resources.water.owned -= (m * 15);
 		game.resources.food.owned -= (m * 7.5);
 		if (getRandomInt(0,100) >= 50) { game.resources.clay.owned += ((m + popbonus) * 0.03125) };
@@ -1444,7 +1445,7 @@ function loadUI() {
 			$('#talenttalent').removeClass('hidden');
 		}
 		
-		if (game.buildings.researchTowers > 4) {
+		if (game.buildings.researchTowers.owned > 4) {
 			$('#upgradefarmerdiv').removeClass('hidden');
 			$('#upgradeloggerdiv').removeClass('hidden');
 			$('#upgrademinerdiv').removeClass('hidden');

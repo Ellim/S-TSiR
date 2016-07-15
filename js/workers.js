@@ -169,6 +169,11 @@ function updateWorkers() {
 	var arrRPproj = ['#farmercost','#loggercost','#minercost','#warriorcost','#carpentrycost','#masonrycost','#upgradeshcost','#fieldirrigationcost','#RPupcost','#farmerupcost','#loggerupcost','#minerupcost','#explorerupcost'];
 	var arrRPproj1 = ["farmercost","loggercost","minercost","warriorcost","carpentrycost","masonrycost","upgradeshcost","fieldirrigationcost","RPupcost","farmerupcost","loggerupcost","minerupcost","explorerupcost"];
 	var arrRPprojC = [25,150,350,1750,1000,3333,shrpcost,fieldrpcost,researcherrp,farmerrp,loggerrp,minerrp,warriorrp];
+	
+	for (i = 0; i < arrRPproj.length; i++) {
+		var rpprojVar = document.getElementById(arrRPproj1[i]);
+				$(arrRPproj[i]).html(prettify(arrRPprojC[i]));
+	}
 	for (i = 0; i < arrRPproj.length; i++) {
 		var rpprojVar = document.getElementById(arrRPproj1[i]);
 			if (arrRPprojC[i] <= game.resources.researchPoints.owned) {

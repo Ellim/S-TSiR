@@ -20,8 +20,8 @@ function newGame() {
 		
 		resources: {
 			water: {
-				owned: 500,
-				max: 1000,
+				owned: 5000,
+				max: 10000,
 				rate: -1
 			},
 			food: {
@@ -73,7 +73,7 @@ function newGame() {
 				rate: 25
 			},
 			researchPoints: {
-				owned: 0,
+				owned: 100000,
 				max: -1,
 				rate: -1
 			}
