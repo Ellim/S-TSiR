@@ -9,7 +9,7 @@ I've changed and added so much since the last update it may as well be entirely 
 
 07/15/16
 
-Thank you to the creator of the fantastic incremental Trimps for a number of functions that make this game much more readable including his prettify script to shorten long numbers, a script to convert numbers to roman numerals, and the method in which the game object is created and saved. I have added the GPL license to the repo and will be reading further to see what more I may have to do. Thank you to everyone who made it here through reddit, thank you to usere Grabarz19 for pointing this out to me.
+Thank you to the creator of the fantastic incremental Trimps, reddit user Brownprobe, for a number of functions that make this game much more readable including his prettify script to shorten long numbers, a script to convert numbers to roman numerals, and the method in which the game object is created and saved. I have added the GPL license to the repo and will be reading further to see what more I may have to do. Thank you to everyone who made it here through reddit, thank you to usere Grabarz19 for pointing this out to me.
 
 03/31/16
 
